@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doña Lucía</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="icon" type="image/png" href="https://i.postimg.cc/VkBZVg7d/Favicon-Rincon-de-Cuba-Fondo-Blanco.png"/>
+<!-- Animaciones AOS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+<meta property="og:title" content="Rincón de Cuba | Los Mejores Precios">
+<meta property="og:description" content="Arroz, Frijoles, Carnes, Lácteos y mucho mas...">
+
+<meta property="og:image" content="https://i.postimg.cc/brT2kV2z/Combos-Rincon-de-cuba.jpg">
+<meta property="og:url" content="https://decubarincon.github.io/tiendaonline">
+<style>
+  :root {
+    --fondo: #fff9f4;
+    --carrito-menu: #332c45;
+  }
+  .navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--fondo);
+    transition: top 0.3s;
+    height: 70px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  body {
+    padding-top: 70px;
+    background-color: var(--fondo);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    color: var(--carrito-menu);
+    position: absolute;
+    left: 0;
+    padding-left: 15px;
+  }
+  .navbar-toggler:focus,
+  .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+  .shopping-cart {
+    color: var(--fondo);
+    position: absolute;
+    right: 50px; /* Ajuste para el icono del carrito a la izquierda del menú hamburguesa */
+    background-color: var(--carrito-menu); /* Fondo inicial del icono del carrito */
+  border-radius: 50%; /* Hace el fondo del icono redondo */
+  width: 40px; /* Ancho del fondo del icono */
+  height: 40px; /* Altura del fondo del icono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Transición suave para el hover */
+}
+
+.shopping-cart i {
+  transition: transform 0.3s ease; /* Transición suave para la rotación del icono */
+}
+
+.shopping-cart:hover {
+  background-color: #e21a2b; /* Color de fondo al hacer hover */
+  transform: rotate(15deg); /* Rotación ligera al hacer hover */
+}
+
+.shopping-cart:hover i {
+  color: #fff; /* Color del icono al hacer hover */
+}
+  .full-screen-nav {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    background-color: var(--carrito-menu);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s;
+  }
+  .full-screen-nav.show {
+    left: 0;
+  }
+  .full-screen-nav ul {
+    list-style: none;
+    text-align: center;
+  }
+  .full-screen-nav ul li {
+    padding: 10px;
+  }
+  .full-screen-nav ul li a {
+    
+    text-decoration: none;
+    color: var(--fondo);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+  }
+  .full-screen-nav ul li a:hover {
+    color: #e63946;
+  }
+  .close-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--fondo);
+  background-color:#868282; /* Fondo blanco para empezar */
+  border-radius: 50%; /* Hace el fondo completamente redondo */
+  width: 40px; /* Tamaño del fondo */
+  height: 40px; /* Tamaño del fondo */
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
+}
+
+.close-menu:hover {
+  color: #ffd700; /* Cambia el color del ícono a dorado */
+  background-color: #000000; /* Fondo negro para el hover */
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); /* Sombra más oscura para el hover */
+}
+
+
+
+  
+  
+  .container {
+  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex; /* Añadido para usar Flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: column; /* Organiza los elementos en columna */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.product-image {
+  width: 100%; /* Ancho fijo para todas las imágenes */
+  height: 150px; /* Altura fija para todas las imágenes */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio asignado sin deformarse */
+  display: block;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.product-price {
+  font-size: 1.8rem;
+  color: #e63946;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.btn-add-to-cart {
+  background-color: #332c45;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #564f6f;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 740px) {
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .product-card {
+    margin: 0 auto 30px auto; /* Centra los productos en pantallas pequeñas */
+  }
+}
+/* Estilos para los productos en el carrito dentro del primer modal */
+.cart-list {
+  list-style: none;
+  padding: 0;
+  background-color: #f9f9f9; /* Fondo sutil para la lista */
+  border-top: 2px solid #ececec; /* Borde superior sutil */
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* Espacio adicional entre elementos */
+  border-bottom: 2px dashed #e1e1e1; /* Borde inferior punteado */
+  padding-bottom: 10px; /* Espaciado inferior adicional */
+}
+
+.cart-item-image {
+  width: 60px; /* Tamaño ligeramente más grande */
+  height: 60px; /* Tamaño ligeramente más grande */
+  margin-right: 15px; /* Espaciado adicional */
+  border-radius: 50%; /* Imágenes redondas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para las imágenes */
+}
+
+.cart-item-quantity {
+  font-weight: bold;
+  margin-right: 10px; /* Espaciado adicional */
+}
+
+.cart-item-name {
+  flex: 1;
+  margin-right: 10px; /* Espaciado adicional */
+  font-size: 16px; /* Tamaño de fuente más grande */
+}
+
+.cart-item-price {
+  font-weight: bold;
+  margin-right: 10px; /* Espaciado adicional */
+}
+
+.cart-item-remove {
+  margin: 0 10px; /* Espaciado adicional */
+  padding: 8px 12px; /* Espaciado interno adicional */
+  font-size: 16px; /* Tamaño de fuente consistente */
+  cursor: pointer;
+  border: none; /* Sin bordes */
+  border-radius: 50%; /* Botón redondo */
+  background-color: #ff6b6b; /* Color de fondo más vibrante */
+  color: white; /* Texto blanco para contraste */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para botón */
+}
+
+.cart-item-remove:hover {
+  background-color: #ff4757; /* Color de fondo al pasar el ratón */
+}
+
+.cart-total {
+  text-align: center;
+  font-size: 22px; /* Tamaño de fuente más grande */
+  margin-top: 25px; /* Espaciado superior adicional */
+  padding: 15px; /* Espaciado interno adicional */
+  color: #333; /* Color de texto oscuro para un aspecto más discreto */
+  background-color: #fff; /* Fondo blanco */
+  border: 2px solid #ddd; /* Borde más definido */
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada para profundidad */
+}
+
+.product-price {
+  font-size: 18px; /* Tamaño de fuente personalizado */
+  color: #007bff; /* Color de texto personalizado */
+  font-weight: bold; /* Fuente en negrita */
+}
+
+.cart-item-decrease,
+.cart-item-increase {
+  margin: 0 10px; /* Espaciado adicional */
+  padding: 8px 12px; /* Espaciado interno adicional */
+  font-size: 16px; /* Tamaño de fuente consistente */
+  cursor: pointer;
+  border: 2px solid #333; /* Borde más definido */
+  border-radius: 50%; /* Botones redondos */
+  background-color: #fff; /* Fondo blanco */
+  color: #333; /* Color de texto oscuro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para botones */
+}
+
+  /* Oculta el párrafo con el ID "discount" */
+  #discount {
+      display: none;
+  }
+  
+  /* Oculta el campo de entrada con el ID "discountCode" */
+  #discountCode {
+      display: none;
+  }
+
+  .badge {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  top: 2px;
+  right: -2px;
+  font-size: 10px;
+  border-radius: 50%;
+  background: #ff4757; /* Asegúrate de que esta variable esté definida */
+  color: #ffffff;
+}
+
+
+
+.rotating-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #333131;
+  opacity: 0; /* Inicia con opacidad 0 para el efecto de fundido */
+  transition: opacity 1s ease-in-out;
+}
+
+/* Estilo para mostrar el texto */
+.show-text {
+  opacity: 1;
+}
+
+/* CSS: Estilos base para la notificación */
+.notification {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.5); /* Comienza más pequeña */
+    visibility: hidden; /* Inicia invisible */
+    transition: visibility 0s linear 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+/* Clase para mostrar la notificación */
+.notification.show {
+    opacity: 1;
+    transform: scale(1); /* Escala a su tamaño normal */
+    visibility: visible; /* Hace la notificación visible */
+    transition-delay: 0s; /* Restablece el retraso de la visibilidad */
+}
+
+/* Clase para ocultar la notificación */
+.notification.hide {
+    opacity: 0;
+    transform: scale(0.3); /* Reduce su tamaño */
+    visibility: hidden; /* Hace la notificación invisible */
+    transition: opacity 0.3s, transform 0.5s, visibility 0s linear 0.3s;
+}
+
+/* Animación para la aparición suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Aplicar la animación al mostrar la notificación */
+.notification.show {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+/* Ocultar campos inesesarios para el segundo modal del carrito */
+#email,
+#recipient,
+#recipient-phone {
+  display: none;
+}
+.hide-form-group {
+  display: none;
+}
+
+/* Estilo base para el modal en dispositivos móviles */
+#checkoutModal .modal-dialog {
+  margin: 0.5rem;
+  max-width: 100%;
+}
+
+#checkoutModal .modal-content {
+  margin-bottom: 10vh; /* Espacio adicional para evitar que el teclado tape el modal */
+  border-radius: 0.3rem;
+}
+
+/* Estilo para la cabecera del modal */
+#checkoutModal .modal-header {
+  padding: 0.8rem 1rem;
+}
+
+#checkoutModal .modal-title {
+  font-size: 1.1rem;
+}
+
+#checkoutModal .btn-close {
+  padding: 0.5rem;
+  margin: -0.5rem -0.5rem -0.5rem auto;
+}
+
+/* Estilo para el cuerpo del modal */
+#checkoutModal .modal-body {
+  padding: 0.8rem 1rem;
+}
+
+#checkoutModal .modal-form-group {
+  margin-bottom: 0.5rem;
+}
+
+#checkoutModal .modal-form-label {
+  font-size: 0.9rem;
+}
+
+#checkoutModal .modal-form-input {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.7rem;
+}
+
+/* Estilo para el pie de página del modal */
+#checkoutModal .modal-footer {
+  padding: 0.8rem 1rem;
+  flex-wrap: wrap; /* Asegura que los botones no se desborden */
+}
+
+#checkoutModal .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  /* Estilos para tabletas y dispositivos más grandes */
+  #checkoutModal .modal-dialog {
+    max-width: 50%;
+    margin: 1.75rem auto;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container-fluid">
+    <div id="rotatingText" class="rotating-text">Confituras</div>
+    
+     <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="shopping-cart ms-3 hm-icon-cart cartIconContainer">
+      <i class="fas fa-shopping-cart" id="cartIcon"></i>
+      <span class="badge"></span></i>
+    </div>
+  </div>
+</nav>
+
+<div class="full-screen-nav" id="fullScreenNav">
+  <ul>
+    <li><a href="#">Inicio</a></li>
+    
+  </ul>
+  <span class="close-menu" onclick="toggleMenu()">×</span>
+</div>
+
+<div class="container mt-5">
+  <div  class="row">
+    <!-- Producto 1 -->
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4" >
+      <div  class="product-card">
+        <img src="https://i.postimg.cc/wTkgK88t/1510643280-123.jpg" alt="Producto 1" class="product-image">
+        <h5  class="product-name">H Upman Selecto</h5>
+        <p data-aos="fade-up" class="product-price">$200.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <!-- Producto 2 -->
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/nr4ZcNXP/img-1.webp" alt="Producto 2" class="product-image">
+        <h5 class="product-name">Cerveza Coprove</h5>
+        <p data-aos="fade-up" class="product-price">$200.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/rwFcMnMf/cigarro-popular.jpg" alt="Producto 1" class="product-image">
+        <h5 class="product-name">Cigarro Popular</h5>
+        <p data-aos="fade-up" class="product-price">$120.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/GhRdS3Nw/img.webp" alt="Producto 1" class="product-image">
+        <h5 class="product-name">Cigarro Popular Rojo</h5>
+        <p data-aos="fade-up" class="product-price">$250.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/SKnhznX8/173912.jpg" alt="Producto 1" class="product-image">
+        <h5 class="product-name">Galletas dulces</h5>
+        <p data-aos="fade-up" class="product-price">$260.00</p>
+        <button class="btn-add-to-cart">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/2yRrYCSW/53003-IT-1x520-jpeg.jpg" alt="Producto 1" class="product-image">
+        <h5 class="product-name">Queso blanco</h5>
+        <p data-aos="fade-up" class="product-price">$420.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+    <div data-aos="fade-up" class="col-6 col-md-6 mb-4">
+      <div class="product-card">
+        <img src="https://i.postimg.cc/cLqNSK1n/Chorizo-pizza.jpg" alt="Producto 1" class="product-image">
+        <h5 class="product-name">Pizzas de Jamon y Queso</h5>
+        <p  class="product-price">$160.00</p>
+        <button class="btn-add-to-cart" onclick="showNotification()">Agregar al Carrito</button>
+      </div>
+      <div id="notification" class="notification"></div>
+    </div>
+  </div>
+  <!-- Añade más filas de productos según sea necesario -->
+</div>
+
+<!-- =================================
+           MODAL DE CARRITO DE COMPRAS
+        ================================== -->
+        <!-- Primer modal: lista del carrito -->
+        <div class="modal fade top-right" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Lista del carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul class="cart-list"></ul>
+                <p class="cart-total">Total: $0.00</p>
+                <p id="discount">Descuento: $0.00</p>
+                <!-- Campo de entrada para el cupón de descuento -->
+                <input type="text" id="discountCode" placeholder="Ingresa tu cupón de descuento">
+              </div>
+              <div class="modal-footer">
+             
+                <button type="button" class="btn btn-primary" id="checkoutCart" data-bs-toggle="modal" data-bs-target="#checkoutModal">Finalizar compra</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+
+<!-- Segundo modal: formulario de compra -->
+<!-- Segundo modal: formulario de compra con estilo diferente -->
+<div class="modal fade top-right" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl">
+  <div class="modal-content new-style">
+    <div class="modal-header">
+      <h5 class="modal-title text-danger" id="checkoutModalLabel">Finalizar compra</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form class="modal-form">
+        <div class="modal-form-group">
+          <label for="name" class="modal-form-label">Nombre</label>
+          <input type="text" id="name" class="modal-form-input form-control" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="phone" class="modal-form-label">Teléfono</label>
+          <input type="tel" id="phone" class="modal-form-input form-control intl-tel-input" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="email" class="modal-form-label hide-form-group">Correo</label>
+          <input type="email" id="email" class="modal-form-input form-control" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="recipient" class="modal-form-label hide-form-group">Nombre de a quien envía</label>
+          <input type="text" id="recipient" class="modal-form-input form-control" required>
+        </div>
+        <div class="modal-form-group hide-form-group">
+          <label for="recipient-phone" class="modal-form-label">Teléfono de a quien envía</label>
+          <input type="tel" id="recipient-phone" class="modal-form-input form-control intl-tel-input" required>
+        </div>
+        <div class="div">
+          <h3>Direccion a Enviar</h3>
+          
+        </div>
+        <div class="modal-form-group">
+          <label for="street" class="modal-form-label">Nombre de la calle</label>
+          <input type="text" id="street" class="modal-form-input form-control" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="between" class="modal-form-label">Entre calles</label>
+          <input type="text" id="between" class="modal-form-input form-control" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="number" class="modal-form-label">Número de la casa</label>
+          <input type="number" id="number" class="modal-form-input form-control" required>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-bs-target="#cartModal" data-bs-toggle="modal">Volver al Carrito</button>
+
+      <button class="btn btn-primary" type="submit">Enviar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.11/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+
+
+
+
+function showNotification() {
+    var notification = document.getElementById('notification');
+    notification.textContent = 'Producto agregado al carrito';
+    notification.classList.add('show');
+
+    // Verifica si la API de vibración es soportada
+    if (navigator.vibrate) {
+        // Hace que el teléfono vibre por 50 milisegundos
+        navigator.vibrate(50);
+    }
+
+    setTimeout(function() {
+        notification.classList.add('hide');
+
+        setTimeout(function() {
+            notification.classList.remove('show', 'hide');
+        }, 500);
+    }, 2000);
+}
+
+
+  
+   let lastScrollTop = 0;
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+      document.getElementById('navbar').style.top = '-70px';
+    } else {
+      document.getElementById('navbar').style.top = '0';
+    }
+    lastScrollTop = currentScroll;
+  });
+
+  function toggleMenu() {
+    document.getElementById('fullScreenNav').classList.toggle('show');
+  }
+document.addEventListener('DOMContentLoaded', function () {
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+
+  const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      const productCard = this.closest('.product-card');
+      const productName = productCard.querySelector('.product-name').textContent;
+      const productImage = productCard.querySelector('.product-image').src;
+      const productPriceText = productCard.querySelector('.product-price').textContent.trim();
+      const productPrice = extractPrice(productPriceText);
+      addToCart(productName, productImage, productPrice);
+    });
+  });
+
+  function extractPrice(priceText) {
+    const currencySymbols = ['$', '€'];
+    const priceArray = priceText.split(' ');
+    let price = 0;
+    for (const item of priceArray) {
+      if (!isNaN(parseFloat(item))) {
+        price = parseFloat(item);
+        break;
+      } else {
+        for (const symbol of currencySymbols) {
+          if (item.includes(symbol)) {
+            const number = item.replace(symbol, '');
+            price = parseFloat(number);
+            break;
+          }
+        }
+      }
+    }
+    return price;
+  }
+
+  function addToCart(productName, productImage, productPrice) {
+    if (cartItems[productName]) {
+      cartItems[productName].quantity++;
+      cartItems[productName].totalPrice = cartItems[productName].quantity * productPrice;
+    } else {
+      cartItems[productName] = {
+        image: productImage,
+        quantity: 1,
+        price: productPrice,
+        totalPrice: productPrice
+      };
+    }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.querySelector('.cart-list');
+    const cartTotal = document.querySelector('.cart-total');
+    cartList.innerHTML = '';
+    let grandTotal = 0;
+    for (const productName in cartItems) {
+      const { image, quantity, price, totalPrice } = cartItems[productName];
+      const li = document.createElement('li');
+      li.classList.add('cart-item');
+      li.innerHTML = `
+        <img src="${image}" alt="${productName}" class="cart-item-image">
+        <span class="cart-item-name">${productName}</span>
+        <span class="cart-item-quantity">
+          <button class="cart-item-decrease">-</button>
+          ${quantity}
+          <button class="cart-item-increase">+</button>
+        </span>
+        <span class="cart-item-total-price">$ ${totalPrice.toFixed(2)}</span>
+        <button class="cart-item-remove">X</button>
+      `;
+      cartList.appendChild(li);
+      grandTotal += totalPrice;
+    }
+    cartTotal.textContent = `Total: $ ${grandTotal.toFixed(2)}`;
+    const cartCounter = document.querySelector('.hm-icon-cart .badge');
+    const totalCount = Object.values(cartItems).reduce((acc, item) => acc + item.quantity, 0);
+    cartCounter.textContent = totalCount;
+  }
+
+  const cartList = document.querySelector(".cart-list");
+  cartList.addEventListener("click", function (event) {
+    if (event.target.classList.contains("cart-item-remove")) {
+      const productCard = event.target.closest(".cart-item");
+      const productName = productCard.querySelector(".cart-item-name").textContent;
+      removeProduct(productName);
+    } else if (event.target.classList.contains("cart-item-increase")) {
+      const productCard = event.target.closest(".cart-item");
+      const productName = productCard.querySelector(".cart-item-name").textContent;
+      increaseQuantity(productName);
+    } else if (event.target.classList.contains("cart-item-decrease")) {
+      const productCard = event.target.closest(".cart-item");
+      const productName = productCard.querySelector(".cart-item-name").textContent;
+      decreaseQuantity(productName);
+    }
+  });
+
+  function removeProduct(productName) {
+    delete cartItems[productName];
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCart();
+  }
+
+  function increaseQuantity(productName) {
+    if (cartItems[productName]) {
+      cartItems[productName].quantity++;
+      cartItems[productName].totalPrice = cartItems[productName].quantity * cartItems[productName].price;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      updateCart();
+    }
+  }
+
+  function decreaseQuantity(productName) {
+    if (cartItems[productName] && cartItems[productName].quantity > 1) {
+      cartItems[productName].quantity--;
+      cartItems[productName].totalPrice = cartItems[productName].quantity * cartItems[productName].price;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      updateCart();
+    } else if (cartItems[productName] && cartItems[productName].quantity === 1) {
+      removeProduct(productName);
+    }
+  }
+
+  // Asegúrate de que el ID del ícono del carrito en tu HTML sea "cartIcon" para que coincida con el script
+  var cartIcon = document.getElementById("cartIcon");
+  cartIcon.addEventListener("click", function () {
+    var modalElement = document.getElementById('cartModal');
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    
+    if (modalInstance) {
+      modalInstance.show();
+    } else {
+      new bootstrap.Modal(modalElement).show();
+    }
+  });
+
+  // Restaurar el carrito al cargar la página
+  updateCart();
+});
+
+const sendToWhatsApp = () => {
+  const cartItems = document.querySelectorAll('.cart-item');
+  let cartProducts = '';
+  cartItems.forEach(item => {
+    const quantity = item.querySelector('.cart-item-quantity').textContent.trim().split('\n')[1].trim();
+    const name = item.querySelector('.cart-item-name').textContent.trim();
+    cartProducts += `* ${quantity} - ${name}\n`; // Añade un asterisco y un salto de línea para cada producto
+  });
+  
+  const cartTotal = document.querySelector('.cart-total').textContent.trim().split(':')[1].trim();
+  const discountCode = document.querySelector('#discountCode').value.trim();
+  const name = document.querySelector('#name').value.trim();
+  const recipient = document.querySelector('#recipient').value.trim();
+  const recipientPhone = document.querySelector('#recipient-phone').value.trim();
+  const street = document.querySelector('#street').value.trim();
+  const between = document.querySelector('#between').value.trim();
+  const number = document.querySelector('#number').value.trim();
+
+  
+  
+  let message = `Hola desde la Cafetería Doña Lucía,\n`;
+  message += `Mi nombre es ${name} y he realizado un pedido de:\n\n`;
+  message += `${cartProducts}\n`; // Asegúrate de que haya un salto de línea al final de la lista de productos
+  message += `Con un total de: ${cartTotal}.\n`;
+  message += `Mi dirección es: Calle ${street}, entre ${between}, #${number}.\n`;
+  message += `Espero su respuesta... saludos.\n`;
+  
+  const whatsappLink = `https://api.whatsapp.com/send?phone=5363658636&text=${encodeURIComponent(message)}`;
+  window.open(whatsappLink, '_blank');
+};
+
+
+  const sendButton = document.querySelector('.btn-primary[type="submit"]');
+  sendButton.addEventListener('click', sendToWhatsApp);
+
+  document.addEventListener('DOMContentLoaded', function () {
+  var cartIconContainer = document.querySelector(".cartIconContainer");
+  cartIconContainer.addEventListener("click", function () {
+    var modalElement = document.getElementById('cartModal');
+    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+    
+    if (modalInstance) {
+      modalInstance.show();
+    } else {
+      new bootstrap.Modal(modalElement).show();
+    }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const rotatingText = document.getElementById('rotatingText');
+  const texts = ['Al +53055189657', 'Llámanos ya!!', 'Será un placer...', 'atenderle!!'];
+  let currentIndex = 0;
+
+  setInterval(() => {
+    // Remueve la clase 'show-text' para iniciar la transición de desaparición
+    rotatingText.classList.remove('show-text');
+    
+    // Cambia el texto después de que la transición haya terminado
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % texts.length;
+      rotatingText.textContent = texts[currentIndex];
+      // Añade la clase 'show-text' para iniciar la transición de aparición
+      rotatingText.classList.add('show-text');
+    }, 1000); // Asegúrate de que este tiempo coincida con la duración de la transición CSS
+  }, 3000); // Cambia el texto cada 3 segundos
+});
+
+AOS.init({
+  duration: 1200,
+})
+
+</script>
+
+</body>
+</html>
+

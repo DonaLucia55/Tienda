@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doña Lucia - Contacto</title>
+    <!-- Incluye el CSS de Bootstrap desde un CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluye el CSS de los iconos de Bootstrap desde un CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="./img/Iconapp.png"/>
+</head>
+<body>
+    <!-- Crea una barra de navegación con el logo y los enlaces de tu tienda -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./img/Doña-Lucia-Icono.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Doña Lucia
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Ir de compras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./nosotros.html">Nosotros</a>
+                    </li>                   
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./registro.html">Registro</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Crea un encabezado con un título y un subtítulo -->
+    <header class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Contacto</h1>
+                    <p class="lead">Si tienes alguna duda, sugerencia o reclamación, puedes contactarnos a través de este formulario. Te responderemos lo antes posible.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Crea una sección con un formulario de contacto -->
+    <section class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <!-- No necesitas el atributo action ni los campos ocultos -->
+              <form id="form" method="POST">
+                <div class="mb-3">
+                  <label for="name" name="Nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" name="Client Name" id="name" placeholder="Escribe tu nombre" required/>
+                </div>
+                <div class="mb-3">
+                  <label for="email" name="Email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" name="Email" id="email" placeholder="Escribe tu correo electrónico" required/>
+                </div>
+                <!--<div class="mb-3">
+                  <label for="subject" name="Notes" class="form-label">Asunto</label>
+                  <input type="text" class="form-control" name='subject' id="subject" placeholder="Escribe el asunto de tu mensaje" required>
+                </div> -->
+                <div class="mb-3">
+                  <label for="message" class="form-label">Mensaje</label>
+                  <textarea class="form-control" name="Notes" id="message" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" name="Agree To Terms" value="yes" id="consent" required/>
+                  <label class="form-check-label" for="consent">Acepto la política de privacidad y el tratamiento de mis datos personales.</label>
+                </div class="control">
+                <button type="submit" class="btn btn-primary " id="submit-button">Enviar</button>
+                
+              </form>
+            </div>
+            <div
+              id="message"
+              style="
+                display: none;
+                margin: 20px;
+                font-weight: bold;
+                color: green;
+                padding: 8px;
+                background-color: beige;
+                border-radius: 4px;
+                border-color: aquamarine;
+              "
+            ></div>
+        
+   
+                <div class="col-md-4">
+                    <h2>Otras formas de contacto</h2>
+                    <p>También puedes contactarnos por teléfono, correo electrónico o redes sociales.</p>
+                    <p><i class="bi bi-telephone"></i> <a href="tel:+5363658636">+53 50545976</a></p>
+                    <p><i class="bi bi-envelope"></i> <a href="mailto:donalucia19550722@gmail.com">donalucia19550722@gmail.com</a></p>
+                    <p><i class="bi bi-facebook"></i> <a href="https://www.facebook.com/profile.php?id=61560188109940&mibextid=ZbWKwL">Contactar en Facebook</a></p>
+                    
+                   <!-- <p><i class="bi bi-instagram"></i> [Instagram](https://cssyjavascript.com.es/guias/como-poner-iconos-de-redes-sociales-en-html-y-css-2/)</p>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Crea un pie de página con los datos de contacto y las redes sociales de tu tienda -->
+    <footer class="py-3 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Doña Lucia</p>
+                    <p>La mejor solución para enviar comprar alimentos y aceo a tu familia o conocidos en Cuba</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Contacto</p>
+                    <p><i class="bi bi-telephone"></i> <a href="tel:+5363658636">+53 50545976</a></p>
+
+                    <p><i class="bi bi-envelope"></i> <a href="mailto:donalucia19550722@gmail.com">donalucia19550722@gmail.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Síguenos</p>
+                    <p><i class="bi bi-facebook"></i> <a href="https://www.facebook.com/profile.php?id=61560188109940&mibextid=ZbWKwL">Contactar en Facebook</a></p>
+                    
+                    <!-- <p><i class="bi bi-twitter"></i> [Twitter](https://www.freepik.es/iconos/redes-sociales)</p>
+                    <p><i class="bi bi-instagram"></i> [Instagram](https://cssyjavascript.com.es/guias/como-poner-iconos-de-redes-sociales-en-html-y-css-2/)</p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Incluye el JS de Bootstrap desde un CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        document.getElementById("message").textContent = "Submitting..";
+        document.getElementById("message").style.display = "block";
+        document.getElementById("submit-button").disabled = true;
+
+        // Collect the form data
+        var formData = new FormData(this);
+        var keyValuePairs = [];
+        for (var pair of formData.entries()) {
+          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        }
+
+        var formDataString = keyValuePairs.join("&");
+
+        // Send a POST request to your Google Apps Script
+        fetch(
+          "https://script.google.com/macros/s/AKfycbw7fTfAbNEqCeVw0nXo-cklSulq_yBHqYXsA3k46GVkUtqxOQmeHK3sJopRReA89zfp/exec",
+          {
+            redirect: "follow",
+            method: "POST",
+            body: formDataString,
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+          }
+        )
+          .then(function (response) {
+            // Check if the request was successful
+            if (response) {
+              return response; // Assuming your script returns JSON response
+            } else {
+              throw new Error("Failed to submit the form.");
+            }
+          })
+          .then(function (data) {
+            // Display a success message
+            document.getElementById("message").textContent =
+              "Data submitted successfully!";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("message").style.backgroundColor = "green";
+            document.getElementById("message").style.color = "beige";
+            document.getElementById("submit-button").disabled = false;
+            document.getElementById("form").reset();
+
+            setTimeout(function () {
+              document.getElementById("message").textContent = "";
+              document.getElementById("message").style.display = "none";
+            }, 2600);
+          })
+          .catch(function (error) {
+            // Handle errors, you can display an error message here
+            console.error(error);
+            document.getElementById("message").textContent =
+              "An error occurred while submitting the form.";
+            document.getElementById("message").style.display = "block";
+          });
+      });
+    </script>
+    
+    
+</body>
+</html>

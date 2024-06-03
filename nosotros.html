@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doña Lucia - Nosotros</title>
+    
+    <!-- Incluye el CSS de Bootstrap desde un CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluye el CSS de los iconos de Bootstrap desde un CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/Iconapp.png"/>
+    <!-- Mis Estilos -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+       /* Estilo CSS para el efecto de círculo */
+.circular {
+  /* Fijar el ancho y el alto al mismo valor para hacer que la imagen sea un cuadrado */
+  width: 300px;
+  height: 300px;
+  /* Definir el radio de redondeo de las esquinas como la mitad del lado del cuadrado */
+  border-radius: 50%;
+  /* Ajustar el tamaño de la imagen */
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Crea una barra de navegación con el logo y los enlaces de tu tienda -->
+    <!-- =================================
+           HEADER MENU
+        ================================== -->
+        <div class="hm-header">
+
+            <div class="container">
+                <div class="header-menu">
+
+                    <div class="hm-logo">
+                        <a href="./index.html">
+                            <img src="https://i.postimg.cc/HnLxDr2M/logo-home-master-store.png" alt="">
+                        </a>
+                    </div>
+
+                    <nav class="hm-menu">
+                        <ul>
+                        
+                            
+                            <li><a href="./contacto.html">Contacto</a></li>
+                            <li><a href="./registro.html">Registro</a></li>
+                        </ul>
+
+
+                        
+
+                        <div class="icon-menu">
+                            <button type="button"><i class="fas fa-bars"></i></button>
+                        </div>
+
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- =================================
+           HEADER MENU Movil
+        ================================== -->
+        <div class="header-menu-movil">
+            <button class="cerrar-menu"><i class="fas fa-times"></i></button>
+            <ul>
+               
+                <li><a href="./nosotros.html">Nosotros</a></li>
+                <li><a href="./contacto.html">Contacto</a></li>
+                <li><a href="./index.html">Registro</a></li>
+            </ul>
+        </div>
+    <!-- Crea un encabezado con un título y un subtítulo -->
+    <header class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Nosotros</h1>
+                    <p class="lead">Somos una tienda online que ofrece una solución rápida, fácil y segura para que los cubanos residentes en Estados Unidos puedan comprar alimentos a sus familiares y amigos que viven en Cuba.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Crea una sección con una imagen y un texto sobre tu misión -->
+    <section class="py-4">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <!-- Contenedor de la imagen con la clase img-fluid de Bootstrap -->
+              <div class="img-fluid">
+                <!-- Imagen con la clase circular para aplicar el efecto -->
+                <img src="https://i.postimg.cc/fRmQTY8N/mision.jpg" alt="Misión" class="circular">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h2>Nuestra misión</h2>
+              <p>Nuestra misión es facilitar la compra de alimentos en Cuba, ofreciendo una amplia variedad de productos de calidad, precios competitivos y entregas rápidas y confiables. Queremos ser el puente que conecta a los cubanos que viven en el exterior con sus seres queridos en la isla, brindándoles una forma de apoyarlos y demostrarles su cariño.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Crea una sección con un texto y una imagen sobre tu visión -->
+      <section class="py-4 bg-light">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 order-md-2">
+              <!-- Contenedor de la imagen con la clase img-fluid de Bootstrap -->
+              <div class="img-fluid">
+                <!-- Imagen con la clase circular para aplicar el efecto -->
+                <img src="https://i.postimg.cc/N0tqyLnr/vision.jpg" alt="Visión" class="circular">
+              </div>
+            </div>
+            <div class="col-md-6 order-md-1">
+              <h2>Nuestra visión</h2>
+              <p>Nuestra visión es ser la tienda online líder en el envío de alimentos a Cuba, reconocida por su calidad, eficiencia y seguridad. Queremos expandir nuestro catálogo de productos y servicios, incorporando nuevas opciones que satisfagan las necesidades y preferencias de nuestros clientes. Queremos contribuir al desarrollo y bienestar de las familias cubanas, generando un impacto positivo en la sociedad.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+    <!-- Crea una sección con un carrusel de testimonios de tus clientes -->
+    <section class="py-4">
+        <div class="container">
+          <h2>Testimonios</h2>
+          <p>Esto es lo que dicen algunos de nuestros clientes satisfechos:</p>
+          <!-- Crea una cuadrícula con tres columnas para los testimonios -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">"Estoy muy contento con el servicio de Tu Tienda Online. He podido comprar alimentos a mi familia en Cuba de forma rápida y segura. Los productos son de buena calidad y los precios son razonables teniendo en cuenta la inflacion. Recomiendo esta tienda a todos los cubanos que quieren ayudar a sus seres queridos."</p>
+                  <p class="card-text"><small class="text-muted">Carlos, Miami</small></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">"Tu Tienda Online es una excelente opción para enviar alimentos a Cuba. Me gusta la variedad de productos que ofrecen y la facilidad para hacer el pedido. La entrega es puntual y el personal es muy amable. Mi familia está y yo estamos muy agradecidos."</p>
+                  <p class="card-text"><small class="text-muted">María, New York</small></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-text">"He usado Tu Tienda Online varias veces y siempre he quedado satisfecho. Es una forma cómoda y segura de comprar alimentos en Cuba. Los productos son frescos y de calidad. La atención al cliente es excelente. Es una tienda que recomiendo sin duda."</p>
+                  <p class="card-text"><small class="text-muted">José, Los Angeles</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    <!-- Crea un pie de página con los datos de contacto y las redes sociales de tu tienda -->
+    <footer class="py-3 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Dona Lucia</p>
+                    <p>La mejor solución para enviar comprar alimentos y aceo a tu familia o conocidos en Cuba</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Contacto</p>
+                    <p><i class="bi bi-telephone"></i> +53 63658636</p>
+                    <p><i class="bi bi-envelope"></i> <a href="mailto:donalucia19550722@gmail.com">donalucia19550722@gmail.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Síguenos</p>
+                    <p><i class="bi bi-facebook"></i> <a href="https://www.fb.com/l/6lp1kJRRR">Facebook</a></p>
+                    <p><i class="bi bi-twitter"></i> </p>
+                    <p><i class="bi bi-instagram"></i></p>
+                </div>
+            </div>
+        </div>
+    </footer>         
+    </body>
+    </html>
