@@ -1,0 +1,262 @@
+/* Estilo CSS para Bootstrap 5 Productos empresarial */
+
+/* Variables de colores */
+:root {
+    --color-primary: #0d6efd;
+    --color-secondary: #f8f9fa;
+    --color-tertiary: #212529;
+    --color-accent: #ffc107;
+  }
+  
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+  /* Estilos generales */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-secondary);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .col-md-3 {
+    background-color: #333;
+    padding: 20px;
+    color: white;
+    width: 25%;
+    min-height: 100vh;
+    flex: 0 0 25%; /* Añadido para fijar el ancho de la columna */
+  }
+  
+  
+  h1 {
+    color: var(--color-primary);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+  
+  /* Estilos del formulario */
+  .form-label {
+    color: var(--color-tertiary);
+    font-weight: bold;
+  }
+  
+  .form-control {
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  
+  #product-urls {
+    height: 100px;
+  }
+  
+  #product-name,
+  #product-price,
+  #product-volume {
+    width: 80%;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.1);
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+  }
+  
+  .btn-danger:hover {
+    background-color: #bb2d3b;
+    transform: scale(1.1);
+  }
+  
+  
+  /* Estilos de la tabla */
+  .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+  }
+  
+  .table td, .table th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .table th {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  .table th:first-child, .table td:first-child {
+    width: 10%;
+  }
+  .table th:nth-child(2), .table td:nth-child(2) {
+    width: 20%;
+  }
+  
+  /* Estilo de la tercera columna de la tabla */
+  .table th:nth-child(3), .table td:nth-child(3) {
+    width: 30%;
+  }
+  
+  /* Estilo de la cuarta columna de la tabla */
+  .table th:nth-child(4), .table td:nth-child(4) {
+    width: 20%;
+  }
+  
+  /* Estilo de la quinta columna de la tabla */
+  .table th:nth-child(5), .table td:nth-child(5) {
+    width: 10%;
+  }
+  
+  /* Estilo de la sexta columna de la tabla */
+  .table th:last-child, .table td:last-child {
+    width: 10%;
+  }
+  .table td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .table td img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  
+  .table td a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .table td a:hover {
+    color: #0b5ed7;
+  }
+  
+  
+  /* Estilos de los productos */
+  .produto {
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .produto__img {
+    width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+  
+  .produto__img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  
+  .productDescription {
+    padding: 10px;
+    background-color: var(--color-secondary);
+  }
+  
+  .produto__title {
+    color: var(--color-tertiary);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .produto__price {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  .produto__icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--color-primary);
+    font-size: 2rem;
+  }
+  
+  .produto__icon:hover {
+    color: #0b5ed7;
+  }
+  /* Estilos para el logo */
+  .logo {
+      display: block;
+      width: 150px;
+      margin: 20px auto;
+  }
+  
+  /* Estilos para el título */
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el subtítulo */
+  .subtitle {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-secondary);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    display: flex; /* Añadido para usar flex */
+  }
+  
+  .product-item {
+    display: none;
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .grid-container {
+      display: grid;
+      grid-template-columns: auto auto; /* Ajusta esto según tus necesidades */
+      gap: 10px; /* Espacio entre los elementos de la cuadrícula */
+  }
+  
