@@ -74,16 +74,14 @@
 </head>
 <body>
     <div style="max-width: 400px; margin: 0 auto;">
-        
         <img src="https://i.postimg.cc/cHr4Gmr3/Logo-Do-a-Lucia-rojo.png" alt="Logo Doña Lucia" style="width: 150px; display: block; margin: 20px auto; border: 2px solid #ff4500; border-radius: 50%; box-shadow: 0 0 10px #ff4500;">
         <p style="font-family: 'Georgia', serif; color: #ff4500; text-align: center; font-size: 1.2em;"><strong>Doña Lucia</strong></p>
         <p style="font-family: 'Georgia', serif; color: #ffd700; background-color: #333333; padding: 10px; border-radius: 10px; text-align: center; box-shadow: 0 0 10px #ffd700;">🌟 ¡Seleccione la cantidad deseada en el producto deseado! 🌟</p>
         <p style="font-family: 'Georgia', serif; color: #ffffff; background-color: #444444; padding: 10px; border-radius: 10px; text-align: center; box-shadow: 0 0 10px #ffffff;"> Luego presione en el botón de enviar mediante WhatsApp situado al final...</p>
-        
     </div>
     
         
-
+    <h2>Total: $<span id="total-price">0.00</span>us</h2>
     
         <div class="combo">
             <h3>🍚 Combo Familiar Básico:</h3>
@@ -160,15 +158,15 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div style="display: none;" class="cart-item">
-                <span class="cart-item-name">Gelatinas $2.00us</span>
+                <span class="cart-item-name">Gelatinas $1.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Confituras de Varios tipos(Consultar mediante el chat)</span>
+                <span class="cart-item-name">Confituras de todo tipo(Consultar en el chat)</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Chocolate cocoa en polvo(Media Libra) $2.00us</span>
+                <span class="cart-item-name">Chocolate en polvo(0.5Libras) $2.00us </span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
@@ -184,15 +182,15 @@
         <div class="combo">
             <h3>🥤 Combo Bebidas y Snacks:</h3>
             <div class="cart-item">
-                <span class="cart-item-name">Paquetes de refresco (5 Unidades) $1.00us</span>
+                <span class="cart-item-name">Paquetes de refresco $0.20us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Pomos de refresco de gas $2.00us</span>
+                <span class="cart-item-name">Pomos de refresco de gas $2.00us </span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Latas de refresco de gas $0.80</span>
+                <span class="cart-item-name">Latas de refresco $0.80us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
@@ -200,11 +198,15 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Cajas de jugo 1L de varios sabores $2.00us</span>
+                <span class="cart-item-name">Cajas de jugo 1Litro $2.00us </span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
-            <div style="display: none;" class="cart-item">
-                <span class="cart-item-name">Yogurt de varios sabores</span>
+            <div class="cart-item">
+                <span class="cart-item-name">Cajas de jugo 250ml $0.60us </span>
+                <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
+            </div>
+            <div class="cart-item">
+                <span class="cart-item-name">Yogurt de potesito $0.80us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
@@ -216,11 +218,15 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Ron(Varios)(Consultar mediante el chat)</span>
+                <span class="cart-item-name">Ron(Pepino de un litro Arecha) $4.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Cerveza Cristal(24Unid) $24.00us</span>
+                <span class="cart-item-name">Cerveza Cristal $1.00us</span>
+                <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
+            </div>
+            <div class="cart-item">
+                <span class="cart-item-name">Cerveza Importada $1.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
         </div>
@@ -228,7 +234,7 @@
         <div class="combo">
             <h3>🍳 Combo Cocina Completa:</h3>
             <div class="cart-item">
-                <span class="cart-item-name">Pomos de puré y pasta de puré(Consultar mediante el chat)</span>
+                <span class="cart-item-name">Pomos de puré y pasta de puré(Consultar en el chat)</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
@@ -236,18 +242,18 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div style="display: none;" class="cart-item">
-                <span class="cart-item-name">Pomos de vinagre</span>
+                <span class="cart-item-name">Pomos de vinagre $1.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div style="display: none;" class="cart-item">
-                <span class="cart-item-name">Pomos de extracto puro de limón</span>
+                <span class="cart-item-name">Pomos de extracto puro de limón $1.50us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Sazones 10Unidades $3.00us</span>
+                <span class="cart-item-name">Sazones $0.20us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
-            <div style="none" class="cart-item">
+            <div style="display: none;" class="cart-item">
                 <span class="cart-item-name">Mantequilla $1.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
@@ -256,7 +262,7 @@
         <div class="combo">
             <h3>🍗 Combo Proteínas:</h3>
             <div class="cart-item">
-                <span class="cart-item-name">Paquetes de pollo 10Libras $14.00us</span>
+                <span class="cart-item-name">Paquetes de pollo 10libras $14.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
@@ -264,7 +270,7 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Jamonada 6Libras $12.00us</span>
+                <span class="cart-item-name">Jamonada 6L $12.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
         </div>
@@ -276,31 +282,31 @@
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Leche en polvo $5.00us</span>
+                <span class="cart-item-name">Leche en polvo $6.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
-            <div class="cart-item">
+            <div style="display: none;" class="cart-item">
                 <span class="cart-item-name">Helado 4 Litros $8.00us</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
         </div>
     
-        <div class="combo">
-            <h3>🧴 Combo Aceo personal:</h3>
+        <div style="display: none;" class="combo">
+            <h3>🧴 Combo Acero personal:</h3>
             <div class="cart-item">
-                <span class="cart-item-name">Desodorantes de pasta y de varios tipos...(Consultar mediante el chat)</span>
+                <span class="cart-item-name">Desodorantes de pasta y de varios tipos</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Shampoo (Consultar mediante el chat)</span>
+                <span class="cart-item-name">Shampoo</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div class="cart-item">
-                <span class="cart-item-name">Acondicionador (Consultar mediante el chat)</span>
+                <span class="cart-item-name">Acondicionador</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
             <div style="display: none;" class="cart-item">
-                <span class="cart-item-name">Crema para la piel (Consultar mediante el chat)</span>
+                <span class="cart-item-name">Crema para la piel</span>
                 <span class="cart-item-quantity">Cantidad: <input type="number" value="0" min="0"></span>
             </div>
         </div>
@@ -313,29 +319,65 @@
     
 
     <script>
-        const sendToWhatsApp = () => {
-            const cartItems = document.querySelectorAll('.cart-item');
-            let cartProducts = '';
+       const calculateTotal = () => {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let total = 0;
+    let totalQuantity = 0;
 
-            cartItems.forEach(item => {
-                const quantity = item.querySelector('input').value.trim();
-                const name = item.querySelector('.cart-item-name').textContent.trim();
-                if (quantity > 0) {
-                    cartProducts += `${quantity} ${name}\n`;
-                }
-            });
+    cartItems.forEach(item => {
+        const quantity = parseInt(item.querySelector('input').value.trim(), 10);
+        const name = item.querySelector('.cart-item-name').textContent.trim();
+        const priceMatch = name.match(/\$(\d+(\.\d{1,2})?)us/);
+        const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
+        if (quantity > 0) {
+            total += quantity * price;
+            totalQuantity += quantity;
+        }
+    });
 
-            let message = `Hola, he realizado un pedido de:\n`;
-            message += `${cartProducts}`;
-            message += `espero su respuesta... saludos.\n`;
+    document.getElementById('total-price').textContent = total.toFixed(2);
+    document.getElementById('total-quantity').textContent = totalQuantity;
+};
 
-            const whatsappLink = `https://api.whatsapp.com/send?phone=55189657&text=${encodeURIComponent(message)}`;
+const sendToWhatsApp = () => {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let cartProducts = '';
+    let total = 0;
 
-            window.open(whatsappLink, '_blank');
-        };
+    cartItems.forEach(item => {
+        const quantity = parseInt(item.querySelector('input').value.trim(), 10);
+        const name = item.querySelector('.cart-item-name').textContent.trim();
+        const priceMatch = name.match(/\$(\d+(\.\d{1,2})?)us/);
+        const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
+        if (quantity > 0) {
+            cartProducts += `${quantity} ${name}\n`;
+            total += quantity * price;
+        }
+    });
 
-        const sendButton = document.querySelector('.btn-primary[type="submit"]');
-        sendButton.addEventListener('click', sendToWhatsApp);
+    if (cartProducts === '') {
+        alert('No hay artículos en el carrito.');
+        return;
+    }
+
+    let message = `Hola, he realizado un pedido de:\n${cartProducts}Total: $${total.toFixed(2)}us\nEspero su respuesta... saludos.\n`;
+    const whatsappLink = `https://api.whatsapp.com/send?phone=55189657&text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappLink, '_blank').catch(error => {
+        console.error('Error al abrir WhatsApp:', error);
+    });
+};
+
+const sendButton = document.querySelector('.btn-primary[type="submit"]');
+sendButton.addEventListener('click', sendToWhatsApp);
+
+const quantityInputs = document.querySelectorAll('.cart-item input');
+quantityInputs.forEach(input => {
+    input.addEventListener('input', calculateTotal);
+    input.addEventListener('focus', (event) => {
+        event.target.select();
+    });
+});
     </script>
 </body>
 </html>
