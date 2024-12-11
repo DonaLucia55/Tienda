@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online - Envío de Productos a Cuba</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="">
+    <style>
+       body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    padding: 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1em;
+    margin: 10px 0;
+    color: #dcdcdc;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 5px 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff6f61;
+    color: white;
+}
+
+.cart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.cart-icon:hover {
+    transform: scale(1.2);
+    color: #ff6f61;
+}
+
+.fixed-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fixed-nav ul li {
+    margin: 5px 10px;
+}
+
+.fixed-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.fixed-nav ul li a:hover {
+    background-color: #ff6f61;
+    color: white;
+}
+
+.fixed-cart-icon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-price {
+    color: #ff6f61;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.buy-button {
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #e55d50;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    justify-self: end;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr auto;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.cart-item span {
+    font-size: 1em;
+    color: #333;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-item button {
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-item button:hover {
+    background-color: #e55d50;
+}
+
+.cart-item-remove {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.cart-item-remove:hover {
+    background-color: #c0392b;
+}
+
+.total-amount {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.order-button {
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.order-button:hover {
+    background-color: #e67e22;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ecf0f1;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+    color: #2c3e50;
+}
+
+.hero h2 {
+    font-size: 2em;
+    margin: 10px 0;
+    color: #34495e;
+}
+
+.hero h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #34495e;
+}
+
+.luxury-content {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.product-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff6f61;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tienda Online</h1>
+        <p>Envía productos a tus familiares en Cumanayagua desde Estados Unidos</p>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showTab('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="showTab('dulces')">Dulces</a></li>
+                <li><a href="#" onclick="showTab('galletas')">Galletas</a></li>
+                <li><a href="#" onclick="showTab('pizzas')">Pizzas</a></li>
+            </ul>
+        </nav>
+        <i class="fas fa-shopping-cart cart-icon" onclick="openCart()"></i>
+    </header>
+    <div class="fixed-nav" id="fixedNav">
+        <ul>
+            <li><a href="#" onclick="showTab('inicio')">Inicio</a></li>
+            <li><a href="#" onclick="showTab('dulces')">Dulces</a></li>
+            <li><a href="#" onclick="showTab('galletas')">Galletas</a></li>
+            <li><a href="#" onclick="showTab('pizzas')">Pizzas</a></li>
+        </ul>
+        <i class="fas fa-shopping-cart fixed-cart-icon" onclick="openCart()"></i>
+    </div>
+
+    
+    
+    <section id="inicio" class="tab-content active">
+        <div class="hero">
+            <h2 class="animate__animated animate__fadeIn">Envío de Productos a Cumanayagua</h2>
+            <img src="https://test.bodegon47.com/wp-content/uploads/11-170Q.png" alt="Elaboración de Combos y Alimentos" class="animate__animated animate__fadeIn">
+            <h4 class="animate__animated animate__fadeIn">Elaboración de Combos y Alimentos</h4>
+            <h2 class="animate__animated animate__fadeIn">Envío de Productos a Cumanayagua</h2>
+            <h3 class="animate__animated animate__fadeIn">Desde Estados Unidos a tus Familiares y Amigos</h3>
+            <img src="https://rapidmultiservice.com/wp-content/uploads/2023/11/OW-Combo-Familion-01-430x430.jpg" alt="Envío de Productos" class="animate__animated animate__fadeIn">
+        </div>
+        <div class="luxury-content animate__animated animate__fadeIn">
+            <p>En nuestra tienda online, nos especializamos en la <strong>elaboración de combos y alimentos de alta calidad</strong> para enviar a tus seres queridos en Cuba. Desde dulces y galletas hasta pizzas deliciosas, ofrecemos una amplia variedad de productos que puedes <strong>Agregar al Carrito</strong> fácilmente y enviar directamente a tus familiares y amigos en Cuba.</p>
+            <p>Utilizamos técnicas de <strong>SEO profesional</strong> y marketing para asegurarnos de que encuentres nuestros productos fácilmente en los motores de búsqueda y disfrutes de una experiencia de compra agradable y sin complicaciones. Nuestros combos son especialmente populares en <strong>Cumanayagua</strong>.</p>
+            <div class="product-gallery">
+                <img src="https://static.dimecuba.com/images/onlineStore/products/5984-13742.webp" alt="Combo de Productos para Cumanayagua" class="animate__animated animate__fadeIn">
+                <img src="https://rapidmultiservice.com/wp-content/uploads/2023/03/OW-Tiger-68-Mediano-La-Habana-150x150.jpg" alt="Combo Mediano La Habana" class="animate__animated animate__fadeIn">
+                <img src="https://www.tramison.com/wp-content/uploads/2022/03/15_Combo-ASEO_1500x1500.jpg" alt="Combo de Aseo" class="animate__animated animate__fadeIn">
+                <img src="https://static.dimecuba.com/images/onlineStore/products/5175-11706.webp" alt="Combo de Alimentos" class="animate__animated animate__fadeIn">
+                <img src="https://esencialpack.com/wp-content/uploads/2023/11/Camaguey-el-oferton-300x300.jpg" alt="Combo El Ofertón Camagüey" class="animate__animated animate__fadeIn">
+                <img src="https://nercado.com/wp-content/uploads/2023/05/combo-mixto-para-cuba.jpg" alt="Combo El Ofertón Camagüey" class="animate__animated animate__fadeIn">
+                <img src="https://esencialpack.com/wp-content/uploads/2022/03/oferton-300x300.jpg" alt="Combo El Ofertón Camagüey" class="animate__animated animate__fadeIn">
+                <img src="https://cubakilos.com/tienda/wp-content/uploads/2024/08/combo-cuba-surtido-caribeno.jpg" alt="Combo El Ofertón Camagüey" class="animate__animated animate__fadeIn">
+            </div>
+            <p>Nuestros <strong>combos de productos</strong> están diseñados para satisfacer las necesidades de tus familiares en Cuba, asegurando que reciban productos de alta calidad y frescura. Ya sea que estés buscando enviar alimentos, productos de aseo o cualquier otro tipo de combo, tenemos opciones para todos los gustos y necesidades.</p>
+        </div>
+    </section>
+    
+    
+    <section id="dulces" class="tab-content ">
+        <div class="container ">
+           
+            <div class="product-card ">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png" alt="Dulce de Guayaba">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Dulce de Guayaba</h2>
+                    <p class="product-price">$19.99</p>
+                    <button class="buy-button" onclick="addToCart('Dulce de Guayaba', 19.99, 'https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card ">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png" alt="Dulce de Guayaba">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Dulce de Guayaba</h2>
+                    <p class="product-price">$19.99</p>
+                    <button class="buy-button" onclick="addToCart('Dulce de Guayaba', 19.99, 'https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png')">Agregar al Carrito</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section id="galletas" class="tab-content">
+        <div class="container">
+            <div class="product-card animate__animated animate__fadeIn">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/VLDQ8zXF/Galletas-de-sal.jpg" alt="Galletas de Sal">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Galletas de Sal</h2>
+                    <p class="product-price">$29.99</p>
+                    <button class="buy-button" onclick="addToCart('Galletas de Sal', 29.99, 'https://i.postimg.cc/VLDQ8zXF/Galletas-de-sal.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="product-card animate__animated animate__fadeIn">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/VLDQ8zXF/Galletas-de-sal.jpg" alt="Galletas de Sal">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Galletas de Sal</h2>
+                    <p class="product-price">$29.99</p>
+                    <button class="buy-button" onclick="addToCart('Galletas de Sal', 29.99, 'https://i.postimg.cc/VLDQ8zXF/Galletas-de-sal.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="pizzas" class="tab-content">
+        <div class="container">
+            <div class="product-card animate__animated animate__fadeIn">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/BnT142VT/pizza-dequeso.jpg" alt="Pizza de Queso">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Queso</h2>
+                    <p class="product-price">$39.99</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Queso', 39.99, 'https://i.postimg.cc/BnT142VT/pizza-dequeso.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="product-card animate__animated animate__fadeIn">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp" alt="Pizza de Salchichas">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Salchichas</h2>
+                    <p class="product-price">$49.99</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Salchichas', 49.99, 'https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp')">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div id="cartItems"></div>
+        </div>
+    </div>
+    <script src="scripttienda2.js" defer></script>
+    <script>
+      
+    </script>
+    
+    </body>
+    </html>
