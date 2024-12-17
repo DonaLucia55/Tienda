@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="">
     <style>
-       body {
+     body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -408,6 +408,114 @@ nav ul li a:hover {
     transform: translateY(0);
 }
 
+#contactModal.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#contactModal .modal-content {
+    background: linear-gradient(135deg, #ff6f61 0%, #ff9a8b 100%);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#contactModal .modal-header, #contactModal .modal-footer {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+}
+
+#contactModal .modal-header h2 {
+    margin: 0;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#contactModal .modal-body {
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+#contactModal .modal-whatsapp-btn {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+#contactModal .modal-whatsapp-btn:hover {
+    background: #1DA851;
+}
+
+#contactModal .close, #contactModal .close-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#contactModal .close:hover, #contactModal .close-btn:hover {
+    background: #c0392b;
+}
+
+#text-container {
+    position: relative;
+    height: 100px; /* Ajusta según el tamaño de tus textos */
+    overflow: hidden;
+    text-align: center;
+}
+
+.header-whatsapp-btn {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px; /* Ajusta el margen inferior */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-whatsapp-btn:hover {
+    background: #1DA851;
+}
+
+.text-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.text-slide.active {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         grid-template-columns: repeat(2, 1fr);
@@ -416,9 +524,12 @@ nav ul li a:hover {
 
 @media (max-width: 480px) {
     .container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+
 
 
     </style>
@@ -426,28 +537,55 @@ nav ul li a:hover {
 <body>
     <header>
         <h1>Tienda Online</h1>
-        <p>Envía productos a tus familiares en Cumanayagua desde Estados Unidos</p>
+        <div id="text-container">
+            <div class="text-slide">
+                <p>Envía productos a tus familiares en Cumanayagua desde Estados Unidos</p>
+            </div>
+            <div class="text-slide">
+                <p>Ofrecemos una amplia variedad de productos</p>
+            </div>
+            <div class="text-slide">
+                <p>Entrega rápida y segura</p>
+            </div>
+            <div class="text-slide">
+                <p>¡Haz feliz a tus seres queridos hoy mismo!</p>
+            </div>
+            <a href="https://wa.me/5355189657" target="_blank" class="header-whatsapp-btn">WhatsApp: +53 55189657</a>
+        </div>
         <nav>
             <ul>
                 <li><a href="#" onclick="showTab('inicio')">Inicio</a></li>
-                <li><a href="#" onclick="showTab('dulces')">Dulces</a></li>
-                <li><a href="#" onclick="showTab('galletas')">Galletas</a></li>
+                <li><a href="#" onclick="showTab('Alimentos')">Alimentos</a></li>
+                <li><a href="#" onclick="showTab('Confituras')">Confituras</a></li>
                 <li><a href="#" onclick="showTab('pizzas')">Pizzas</a></li>
             </ul>
         </nav>
         <i class="fas fa-shopping-cart cart-icon" onclick="openCart()"></i>
     </header>
+    
     <div class="fixed-nav" id="fixedNav">
         <ul>
             <li><a href="#" onclick="showTab('inicio')">Inicio</a></li>
-            <li><a href="#" onclick="showTab('dulces')">Dulces</a></li>
-            <li><a href="#" onclick="showTab('galletas')">Galletas</a></li>
+            <li><a href="#" onclick="showTab('Alimentos')">Alimentos</a></li>
+            <li><a href="#" onclick="showTab('Confituras')">Confituras</a></li>
             <li><a href="#" onclick="showTab('pizzas')">Pizzas</a></li>
         </ul>
         <i class="fas fa-shopping-cart fixed-cart-icon" onclick="openCart()"></i>
     </div>
-
     
+    
+    
+    
+    
+    <div class="fixed-nav" id="fixedNav">
+        <ul>
+            <li><a href="#" onclick="showTab('inicio')">Inicio</a></li>
+            <li><a href="#" onclick="showTab('Alimentos')">Alimentos</a></li>
+            <li><a href="#" onclick="showTab('Confituras')">Confituras</a></li>
+            <li><a href="#" onclick="showTab('pizzas')">Pizzas</a></li>
+        </ul>
+        <i class="fas fa-shopping-cart fixed-cart-icon" onclick="openCart()"></i>
+    </div>
     
     <section id="inicio" class="tab-content active">
         <div class="hero">
@@ -460,7 +598,7 @@ nav ul li a:hover {
         </div>
         <div class="luxury-content animate__animated animate__fadeIn">
             <p>En nuestra tienda online, nos especializamos en la <strong>elaboración de combos y alimentos de alta calidad</strong> para enviar a tus seres queridos en Cuba. Desde dulces y galletas hasta pizzas deliciosas, ofrecemos una amplia variedad de productos que puedes <strong>Agregar al Carrito</strong> fácilmente y enviar directamente a tus familiares y amigos en Cuba.</p>
-            <p>Utilizamos técnicas de <strong>SEO profesional</strong> y marketing para asegurarnos de que encuentres nuestros productos fácilmente en los motores de búsqueda y disfrutes de una experiencia de compra agradable y sin complicaciones. Nuestros combos son especialmente populares en <strong>Cumanayagua</strong>.</p>
+            
             <div class="product-gallery">
                 <img src="https://static.dimecuba.com/images/onlineStore/products/5984-13742.webp" alt="Combo de Productos para Cumanayagua" class="animate__animated animate__fadeIn">
                 <img src="https://rapidmultiservice.com/wp-content/uploads/2023/03/OW-Tiger-68-Mediano-La-Habana-150x150.jpg" alt="Combo Mediano La Habana" class="animate__animated animate__fadeIn">
@@ -476,34 +614,211 @@ nav ul li a:hover {
     </section>
     
     
-    <section id="dulces" class="tab-content ">
+    
+    <section id="Alimentos" class="tab-content ">
         <div class="container ">
            
-            <div class="product-card ">
+            <div class="product-card">
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png" alt="Dulce de Guayaba">
+                    <img src="https://i.postimg.cc/G204BNxg/Arroz-Grano-Largo-El-Pozo-02-87e8bc6c-a40c-4465-a91b-bfdd246f9e1a-1024x1024-2x.webp" alt="Arroz">
                 </div>
                 <div class="product-info">
-                    <h2 class="product-title">Dulce de Guayaba</h2>
-                    <p class="product-price">$19.99</p>
-                    <button class="buy-button" onclick="addToCart('Dulce de Guayaba', 19.99, 'https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png')">Agregar al Carrito</button>
+                    <h2 class="product-title">Arroz 5Libras</h2>
+                    <p class="product-price">$5.00us</p>
+                    <button class="buy-button" onclick="addToCart('Arroz', 1.00, 'https://i.postimg.cc/G204BNxg/Arroz-Grano-Largo-El-Pozo-02-87e8bc6c-a40c-4465-a91b-bfdd246f9e1a-1024x1024-2x.webp')">Agregar al Carrito</button>
                 </div>
             </div>
 
-            <div class="product-card ">
+            <div class="product-card">
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png" alt="Dulce de Guayaba">
+                    <img src="https://i.postimg.cc/rFspmtLZ/Frijoles-Negros.jpg" alt="Frijoles 5Libras">
                 </div>
                 <div class="product-info">
-                    <h2 class="product-title">Dulce de Guayaba</h2>
-                    <p class="product-price">$19.99</p>
-                    <button class="buy-button" onclick="addToCart('Dulce de Guayaba', 19.99, 'https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png')">Agregar al Carrito</button>
+                    <h2 class="product-title">Frijoles 5Libras</h2>
+                    <p class="product-price">$8.00us</p>
+                    <button class="buy-button" onclick="addToCart('Frijoles 5Libras', 8.00, 'https://i.postimg.cc/rFspmtLZ/Frijoles-Negros.jpg')">Agregar al Carrito</button>
                 </div>
             </div>
-            
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cHSjWvW7/Azucar-Turbinada.jpg" alt="Azucar Crudo 5Libras">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Azucar Crudo 5Libras</h2>
+                    <p class="product-price">$6.00us</p>
+                    <button class="buy-button" onclick="addToCart('Azucar Crudo 5Libras', 6.00, 'https://i.postimg.cc/cHSjWvW7/Azucar-Turbinada.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/KjBcpkm6/Paquete-de-Pollo-89-Carnico-Alimento.jpg" alt="Paquete de Pollo 10Libras">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Paquete de Pollo 10Libras</h2>
+                    <p class="product-price">$13.00us</p>
+                    <button class="buy-button" onclick="addToCart('Paquete de Pollo 10Libras', 13.00, 'https://i.postimg.cc/KjBcpkm6/Paquete-de-Pollo-89-Carnico-Alimento.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/wvwjbHYg/CAlton-de-huevos.jpg" alt="Cartón de Huevos ">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Cartón de Huevos </h2>
+                    <p class="product-price">$12.00us</p>
+                    <button class="buy-button" onclick="addToCart('Cartón de Huevos ', 12.00, 'https://i.postimg.cc/wvwjbHYg/CAlton-de-huevos.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/ZRHWtppk/Aceite-de-1-L.jpg" alt="Aceite">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Aceite</h2>
+                    <p class="product-price">$3.00us</p>
+                    <button class="buy-button" onclick="addToCart('Aceite', 3.00, 'https://i.postimg.cc/ZRHWtppk/Aceite-de-1-L.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/KcLZMnRm/Pernil-de-Cerdo.jpg" alt="Pierna de Cerdo 15Libras">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pierna de Cerdo 15Libras</h2>
+                    <p class="product-price">$40.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pierna de Cerdo 15Libras', 40.00, 'https://i.postimg.cc/KcLZMnRm/Pernil-de-Cerdo.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/MKq8fNCY/salchicas.jpg" alt="Salchichas 10u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Salchichas 10u</h2>
+                    <p class="product-price">$1.90us</p>
+                    <button class="buy-button" onclick="addToCart('Salchichas 10u', 1.90, 'https://i.postimg.cc/MKq8fNCY/salchicas.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img2.elyerromenu.com/images/carpe-diem-caibarien/carne-enlatada-texana/img.webp" alt="Carne Enlatada">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Carne Enlatada</h2>
+                    <p class="product-price">$2.50us</p>
+                    <button class="buy-button" onclick="addToCart('Carne Enlatada', 2.50, 'https://img2.elyerromenu.com/images/carpe-diem-caibarien/carne-enlatada-texana/img.webp')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img1.elyerromenu.com/images/delirios-combos/lata-de-pasta-de-tomate/img.webp" alt="Pasta de Tomate">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pasta de Tomate</h2>
+                    <p class="product-price">$2.50us</p>
+                    <button class="buy-button" onclick="addToCart('Pasta de Tomate', 2.50, 'https://img1.elyerromenu.com/images/delirios-combos/lata-de-pasta-de-tomate/img.webp')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img2.elyerromenu.com/images/s-s-home-delivery/jamonada-de-pollo/img.webp" alt="Jamonada 6Libras">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Jamonada 6Libras</h2>
+                    <p class="product-price">$12.00us</p>
+                    <button class="buy-button" onclick="addToCart('Jamonada 6Libras', 12.00, 'https://img2.elyerromenu.com/images/s-s-home-delivery/jamonada-de-pollo/img.webp')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/XNKRWxrB/Spaguettis-Selmi.jpg" alt="Espaguetis">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Espaguetis</h2>
+                    <p class="product-price">$1.00us</p>
+                    <button class="buy-button" onclick="addToCart('Espaguetis', 1.00, 'https://i.postimg.cc/XNKRWxrB/Spaguettis-Selmi.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/9fY21Whq/hamburguesas1.jpg" alt="Hamburguesa 10u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Hamburguesa 10u</h2>
+                    <p class="product-price">$3.50us</p>
+                    <button class="buy-button" onclick="addToCart('Hamburguesa 10u', 3.50, 'https://i.postimg.cc/9fY21Whq/hamburguesas1.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/qRJ7LqY1/Cafe-la-llave.jpg" alt="Café La llave">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Café La llave</h2>
+                    <p class="product-price">$6.00us</p>
+                    <button class="buy-button" onclick="addToCart('Café La llave', 6.00, 'https://i.postimg.cc/qRJ7LqY1/Cafe-la-llave.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+                                           <!--Refrescos-->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/hGLrnMpv/Refresco-Tu-Kola-1-5-Lt-Bebidas.jpg" alt="Refresco Pomo 1.5L">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Refresco Pomo 1.5L</h2>
+                    <p class="product-price">$2.00us</p>
+                    <button class="buy-button" onclick="addToCart('Refresco Pomo 1.5L', 2.00, 'https://i.postimg.cc/hGLrnMpv/Refresco-Tu-Kola-1-5-Lt-Bebidas.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/65Pzf88W/Refrescos-Ciego-Montero-set-de-6-355-ml.jpg" alt="Refresco Lata">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Refresco Lata</h2>
+                    <p class="product-price">$0.80us</p>
+                    <button class="buy-button" onclick="addToCart('Refresco Lata', 0.80, 'https://i.postimg.cc/65Pzf88W/Refrescos-Ciego-Montero-set-de-6-355-ml.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/k4yfQwbz/refresco-tukola-caja-Bebidas.jpg" alt="Refresco Lata 24u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Refresco Lata 24u</h2>
+                    <p class="product-price">$19.00us</p>
+                    <button class="buy-button" onclick="addToCart('Refresco Lata 24u', 19.00, 'https://i.postimg.cc/k4yfQwbz/refresco-tukola-caja-Bebidas.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/qq1nFzK0/Malta-amarilla.jpg" alt="Malta">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Malta</h2>
+                    <p class="product-price">$0.90us</p>
+                    <button class="buy-button" onclick="addToCart('Malta', 0.90, 'https://i.postimg.cc/qq1nFzK0/Malta-amarilla.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+                                                    <!--Refrescos-->
         </div>
     </section>
-    <section id="galletas" class="tab-content">
+    <section id="Confituras" class="tab-content">
         <div class="container">
             <div class="product-card animate__animated animate__fadeIn">
                 <div class="product-image">
@@ -529,26 +844,74 @@ nav ul li a:hover {
     </section>
     <section id="pizzas" class="tab-content">
         <div class="container">
-            <div class="product-card animate__animated animate__fadeIn">
+            
+            <div class="product-card">
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/BnT142VT/pizza-dequeso.jpg" alt="Pizza de Queso">
+                    <img src="https://i.postimg.cc/C1XmjN52/Papa-Pizza-Cubana-1440x900-2c68d2995056a36-2c68d3ce-5056-a36a-0bf13765f33f194d.jpg" alt="Pizza de Queso Doble 5u">
                 </div>
                 <div class="product-info">
-                    <h2 class="product-title">Pizza de Queso</h2>
-                    <p class="product-price">$39.99</p>
-                    <button class="buy-button" onclick="addToCart('Pizza de Queso', 39.99, 'https://i.postimg.cc/BnT142VT/pizza-dequeso.jpg')">Agregar al Carrito</button>
+                    <h2 class="product-title">Pizza de Queso Doble 5u</h2>
+                    <p class="product-price">$4.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Queso Doble 5u', 4.00, 'https://i.postimg.cc/C1XmjN52/Papa-Pizza-Cubana-1440x900-2c68d2995056a36-2c68d3ce-5056-a36a-0bf13765f33f194d.jpg')">Agregar al Carrito</button>
                 </div>
             </div>
-            <div class="product-card animate__animated animate__fadeIn">
+
+            <div class="product-card">
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp" alt="Pizza de Salchichas">
+                    <img src="https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp" alt="Pizza de Salchicha 5u">
                 </div>
                 <div class="product-info">
-                    <h2 class="product-title">Pizza de Salchichas</h2>
-                    <p class="product-price">$49.99</p>
-                    <button class="buy-button" onclick="addToCart('Pizza de Salchichas', 49.99, 'https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp')">Agregar al Carrito</button>
+                    <h2 class="product-title">Pizza de Salchicha 5u</h2>
+                    <p class="product-price">$4.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Salchicha 5u', 4.00, 'https://i.postimg.cc/Bn91rmMZ/Pizza-Salchichas.webp')">Agregar al Carrito</button>
                 </div>
             </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/sfqRjLVF/IMG20241212113719.jpg" alt="Pizza de Jamonada 5u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Jamonada 5u</h2>
+                    <p class="product-price">$4.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Jamonada 5u', 4.00, 'https://i.postimg.cc/sfqRjLVF/IMG20241212113719.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.postimg.cc/cLqNSK1n/Chorizo-pizza.jpg" alt="Pizza de Jamon 5u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Jamon 5u</h2>
+                    <p class="product-price">$5.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Jamon 5u', 5.00, 'https://i.postimg.cc/cLqNSK1n/Chorizo-pizza.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img2.elyerromenu.com/images/sandwichazo-cafeteria/pizza-de-cebolla/img.webp" alt="Pizza de Cebolla 5u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Cebolla 5u</h2>
+                    <p class="product-price">$5.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Cebolla 5u', 5.00, 'https://img2.elyerromenu.com/images/sandwichazo-cafeteria/pizza-de-cebolla/img.webp')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.tgraf.cu/catauro/wp-content/uploads/sites/4/2022/09/pizza-mediana-vegetales%C3%97340.jpg" alt="Pizza de Vegetales 5u">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Pizza de Vegetales 5u</h2>
+                    <p class="product-price">$6.00us</p>
+                    <button class="buy-button" onclick="addToCart('Pizza de Vegetales 5u', 6.00, 'https://www.tgraf.cu/catauro/wp-content/uploads/sites/4/2022/09/pizza-mediana-vegetales%C3%97340.jpg')">Agregar al Carrito</button>
+                </div>
+            </div>
+
+
         </div>
     </section>
     <div id="cartModal" class="modal">
@@ -558,10 +921,56 @@ nav ul li a:hover {
             <div id="cartItems"></div>
         </div>
     </div>
+
+     <!-- Modal -->
+     <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>¡Contáctanos Ahora!</h2>
+            </div>
+            <div class="modal-body">
+                <p>¿Tienes alguna pregunta o quieres hacer un pedido? ¡Estamos aquí para ayudarte!</p>
+                <a href="https://wa.me/5355189657" target="_blank" class="whatsapp-btn">WhatsApp: +53 55189657</a>
+                <p>Responde a tus necesidades con rapidez y eficiencia. ¡Contáctanos ya y descubre nuestras ofertas especiales!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="close-btn">Cerrar</button>
+            </div>
+        </div>
+    </div>
     <script src="scripttienda2.js" defer></script>
     <script>
-      
+
+    let currentIndex = 0;
+    const texts = document.querySelectorAll('.text-slide');
+
+    function showNextText() {
+        texts[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % texts.length;
+        texts[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextText, 3000); // Cambia el texto cada 3 segundos
+
+    // Inicializa el primer texto como activo
+    texts[currentIndex].classList.add('active');
+
+
+        
+        window.onload = function() {
+            document.getElementById('contactModal').classList.add('show');
+        };
+    
+        document.querySelector('#contactModal .close').onclick = function() {
+            document.getElementById('contactModal').classList.remove('show');
+        };
+    
+        document.querySelector('#contactModal .close-btn').onclick = function() {
+            document.getElementById('contactModal').classList.remove('show');
+        };
     </script>
+    
     
     </body>
     </html>
