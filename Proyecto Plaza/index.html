@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Licitación Plaza Guamuaya - Doña Lucia (v2)</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts (Opcional - Bootstrap usa buenas fuentes por defecto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- === INICIO ESTILOS PERSONALIZADOS === -->
+    <style>
+        :root {
+            /* Define colores primarios y secundarios si quieres personalizarlos */
+            --bs-primary-rgb: 0, 121, 107; /* Un tono Teal más profesional */
+            --bs-secondary-rgb: 255, 193, 7; /* Un tono ámbar para acentos */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa; /* Gris muy claro de Bootstrap */
+            color: #343a40; /* Texto un poco más oscuro */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .display-4, .display-5, .display-6 {
+             font-family: 'Poppins', sans-serif;
+             font-weight: 700;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, rgba(0, 121, 107, 0.9), rgba(0, 150, 136, 0.85)), url('https://via.placeholder.com/1500x400.png?text=Plaza+Guamuaya+Concept') no-repeat center center; /* Reemplaza con una imagen real! */
+            background-size: cover;
+            color: white;
+            padding: 6rem 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            border: none; /* Quita borde por defecto */
+            border-radius: 0.8rem; /* Bordes más redondeados */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Asegura que los bordes redondeados se apliquen bien */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important; /* Sombra más pronunciada al pasar */
+        }
+
+        .card-title i {
+            margin-right: 0.6rem;
+            color: var(--bs-primary); /* Usa el color primario para iconos de título */
+        }
+
+        .card-title {
+             color: var(--bs-primary);
+             font-weight: 600;
+        }
+
+        .table {
+            margin-top: 1rem;
+        }
+
+        .table thead th {
+            background-color: var(--bs-primary);
+            color: white;
+            font-weight: 500;
+            border-bottom: none;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+             background-color: rgba(0, 121, 107, 0.05); /* Alternancia de color suave */
+        }
+
+        .table-hover > tbody > tr:hover > * {
+            background-color: rgba(0, 121, 107, 0.15); /* Resaltado más notable */
+            color: var(--bs-dark);
+        }
+
+        .currency {
+            text-align: right;
+            font-family: 'Poppins', monospace; /* Monospace ayuda a alinear */
+            white-space: nowrap;
+        }
+        .text-end { /* Alias para alinear a la derecha */
+             text-align: right !important;
+        }
+
+        .table tfoot {
+            font-weight: bold;
+            border-top: 2px solid var(--bs-primary);
+        }
+
+        .table tfoot td {
+             color: var(--bs-dark);
+        }
+
+        .table-note {
+            font-size: 0.85em;
+            color: #6c757d; /* Color muted de Bootstrap */
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .aportaciones-resumen {
+            background-color: #e0f2f1; /* Fondo verde azulado muy claro */
+            border-left: 5px solid var(--bs-primary);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .aportaciones-resumen p {
+            margin-bottom: 0.5rem;
+        }
+        .aportaciones-resumen .total-general {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--bs-primary);
+            margin-top: 1rem;
+        }
+        .aportaciones-resumen .total-general span {
+            color: var(--bs-dark);
+        }
+
+        .vision-mision .card {
+            background-color: #f8f9fa; /* Fondo ligeramente diferente */
+        }
+        .vision-mision h5 i {
+             color: var(--bs-secondary); /* Iconos de visión/misión en color secundario */
+             margin-right: 0.5rem;
+        }
+         .vision-mision h5 {
+             color: var(--bs-dark);
+         }
+
+        .list-styled-icons {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list-styled-icons li {
+            display: flex;
+            align-items: flex-start; /* Alinear al inicio para textos largos */
+            margin-bottom: 0.8rem;
+        }
+        .list-styled-icons li i {
+            color: var(--bs-primary);
+            margin-right: 0.8rem;
+            font-size: 1.2em;
+            margin-top: 0.2em; /* Ajuste vertical */
+        }
+
+        .estrategia-item .card-title {
+             font-size: 1.1rem; /* Títulos de estrategia un poco más pequeños */
+             color: #343a40;
+        }
+        .estrategia-item .card-body {
+             background-color: #ffffff;
+        }
+         .estrategia-item i {
+             color: var(--bs-secondary); /* Iconos de estrategia en amarillo */
+             margin-right: 0.5rem;
+         }
+
+        footer {
+            background-color: #343a40; /* Footer oscuro */
+        }
+
+        /* Animación Fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <!-- === FIN ESTILOS PERSONALIZADOS === -->
+
+</head>
+<body>
+
+    <!-- Encabezado Hero -->
+    <header class="hero-header text-center fade-in">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Propuesta de Licitación</h1>
+            <h2 class="display-6 mb-4">Plaza Guamuaya</h2>
+            <p class="lead fs-4">Presentado por: <span class="fw-semibold" style="color: var(--bs-warning);">Doña Lucia</span></p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Sección Proponente -->
+        <section id="proponente" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4"><i class="fas fa-user-tie"></i>Datos del Proponente</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <p><strong class="text-primary-emphasis">Nombre y Apellidos:</strong><br> Erick Olivera Rodríguez</p>
+                            <p><strong class="text-primary-emphasis">Número de Identidad:</strong><br> 89040631503</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p><strong class="text-primary-emphasis">Dirección Particular:</strong><br> Calle Napoleón Diego No 4 e/ Antonio Machado y Menéndez Peláez, Cumanayagua, Cienfuegos.</p>
+                            <p><strong class="text-primary-emphasis">Socio TCP:</strong><br> Doña Lucia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Inversión -->
+        <section id="inversion" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4"><i class="fas fa-cubes-stacked"></i>Artículos, Equipos y Aportaciones</h3>
+
+                    <h4 class="mb-3 text-secondary-emphasis"><i class="fas fa-box-open"></i> Detalle de Equipos (Aportaciones No Dinerarias)</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-tag"></i> Artículo</th>
+                                    <th class="text-center"><i class="fas fa-hashtag"></i> Cant.</th>
+                                    <th class="text-end"><i class="fas fa-dollar-sign"></i> Valor Unit. (CUP)</th>
+                                    <th class="text-end"><i class="fas fa-coins"></i> Valor Total (CUP)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-snowflake text-info me-2"></i>Nevera de congelación</td>
+                                    <td class="text-center">1</td>
+                                    <td class="currency">50,000.00</td>
+                                    <td class="currency">50,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-coffee text-warning me-2"></i>Cafetera Express (1 torre)</td>
+                                    <td class="text-center">1</td>
+                                    <td class="currency">45,000.00</td>
+                                    <td class="currency">45,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-blender text-success me-2"></i>Batidora</td>
+                                    <td class="text-center">1</td>
+                                    <td class="currency">15,000.00</td>
+                                    <td class="currency">15,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-volume-up text-danger me-2"></i>Equipo de audio</td>
+                                    <td class="text-center">1</td>
+                                    <td class="currency">40,000.00</td>
+                                    <td class="currency">40,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-glass-whiskey text-primary me-2"></i>Vasos</td>
+                                    <td class="text-center">100</td>
+                                    <td class="currency">100.00</td>
+                                    <td class="currency">10,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-utensils text-secondary me-2"></i>Cuchillos de elaboración</td>
+                                    <td class="text-center">10</td>
+                                    <td class="currency">25.00</td>
+                                    <td class="currency">250.00</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-spoon text-secondary me-2"></i>Cucharas y cucharitas</td>
+                                    <td class="text-center">50</td>
+                                    <td class="currency">25.00</td>
+                                    <td class="currency">1,250.00</td> <!-- Corregido: 50 * 25 = 1250 -->
+                                </tr>
+                                 <tr>
+                                    <td><i class="fas fa-stroopwafel text-warning me-2"></i>Fritera Eléctrica</td>
+                                    <td class="text-center">3</td>
+                                    <td class="currency">30,000.00</td>
+                                    <td class="currency">90,000.00</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total Aportaciones No Dinerarias</strong></td>
+                                    <td class="currency"><strong>251,500.00</strong></td> <!-- Corregido: Suma recalculada -->
+                                </tr>
+                            </tfoot>
+                        </table>
+                         <p class="table-note">*Nota: El total original indicaba 250,485.00 CUP. La suma recalculada (corrigiendo 50*25=1250) es 251,500.00 CUP.</p>
+                    </div>
+
+                    <div class="aportaciones-resumen mt-4">
+                        <h4 class="mb-3 text-secondary-emphasis"><i class="fas fa-chart-pie"></i> Resumen de Aportaciones</h4>
+                        <p><strong>Total de aportaciones dinerarias:</strong> <span class="currency float-end">100,000.00 CUP</span></p>
+                        <p><strong>Total de aportaciones no dinerarias:</strong> <span class="currency float-end">251,500.00 CUP</span></p>
+                        <hr>
+                        <p class="total-general"><strong>Total General del Proyecto:</strong> <span class="currency float-end fs-5 fw-bold">351,500.00 CUP</span></p>
+                        <p class="table-note mt-3">*Nota: El total general original indicaba 495,000.00 CUP. La suma calculada de las aportaciones (100k + 251.5k) es 351,500.00 CUP.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Plan de Negocio -->
+        <section id="plan-negocio" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4"><i class="fas fa-lightbulb"></i>Plan de Negocio: Doña Lucia</h3>
+                    <p><strong>Razón social:</strong> Doña Lucia | <strong>Nombre comercial:</strong> Doña Lucia</p>
+
+                    <h4 class="mt-4 mb-3 text-secondary-emphasis"><i class="fas fa-compass"></i> Planeamiento Estratégico</h4>
+                    <div class="row vision-mision g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                     <h5 class="card-title"><i class="fas fa-eye"></i>Visión del negocio</h5>
+                                     <p class="card-text">Ofrecer servicios gastronómicos accesibles y de calidad, enfocados en satisfacer las necesidades alimentarias de la comunidad, especialmente de las personas más necesitadas y con menor poder adquisitivo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-bullseye"></i>Misión del negocio</h5>
+                                    <p class="card-text">Mantener el objeto social ofreciendo bebidas por trago y proporcionar alimentos ligeros y de fácil adquisición, con alto estándar de calidad y servicio. Ser un referente comunitario, promoviendo inclusión y desarrollo local.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-5 mb-3 text-secondary-emphasis"><i class="fas fa-tasks"></i> Objetivos del Negocio</h4>
+                    <ul class="list-styled-icons">
+                        <li><i class="fas fa-check-circle"></i>Brindar servicios gastronómicos de calidad a precios accesibles.</li>
+                        <li><i class="fas fa-check-circle"></i>Promover la cultura local a través de la gastronomía.</li>
+                        <li><i class="fas fa-check-circle"></i>Apoyar el desarrollo económico y social de la comunidad.</li>
+                        <li><i class="fas fa-check-circle"></i>Ofrecer un espacio seguro y acogedor para todos los clientes.</li>
+                        <li><i class="fas fa-check-circle"></i>Fomentar el uso de productos locales y sostenibles.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+         <!-- Sección Análisis Mercado -->
+        <section id="analisis-mercado" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4"><i class="fas fa-chart-line"></i>Análisis del Entorno y Mercado</h3>
+
+                    <h4 class="mb-3 text-secondary-emphasis"><i class="fas fa-building"></i> Análisis del Entorno Empresarial</h4>
+                    <p>El negocio se ubicará en la plaza Guamuaya, un área concurrida con otros establecimientos. La competencia existe, pero nos diferenciaremos por nuestro enfoque en <strong class="text-primary">accesibilidad</strong> y <strong class="text-primary">calidad</strong>.</p>
+
+                    <h4 class="mt-4 mb-3 text-secondary-emphasis"><i class="fas fa-users"></i> Análisis del Mercado Potencial</h4>
+                    <div class="table-responsive">
+                         <table class="table table-bordered table-sm w-auto"> <!-- Tabla más pequeña -->
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th class="text-end">Cantidad / Estimación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-map-marker-alt me-2 text-muted"></i>Personas en la zona</td>
+                                    <td class="text-end">~12,000</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-user-check me-2 text-muted"></i>Demandantes potenciales</td>
+                                    <td class="text-end">~6,000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong><i class="fas fa-clock me-2 text-muted"></i>Compras por período (Estimado):</strong></td>
+                                </tr>
+                                <tr><td> - 8:00 am a 10:00 am</td><td class="text-end">150</td></tr>
+                                <tr><td> - 10:00 am a 12:00 pm</td><td class="text-end">150</td></tr>
+                                <tr><td> - 12:00 pm a 3:00 pm</td><td class="text-end">100</td></tr>
+                                <tr><td> - 3:00 pm a 10:00 pm</td><td class="text-end">250</td></tr>
+                                <tr><td> - Después de las 10:00 pm</td><td class="text-end">+100</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <h4 class="mt-4 mb-3 text-secondary-emphasis"><i class="fas fa-bullseye-pointer"></i> Segmento del Mercado: Público Objetivo</h4>
+                    <p>Dirigido a <strong class="text-primary">todas las edades</strong>, con énfasis especial en aquellos con <strong class="text-primary">menor poder adquisitivo</strong>. Ofreceremos alimentos ligeros y bebidas a precios accesibles, adaptados a las necesidades del cliente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Ventajas -->
+        <section id="ventajas" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="card-title mb-4"><i class="fas fa-star"></i>Ventajas Diferenciadas</h3>
+                     <ul class="list-styled-icons">
+                        <li><i class="fas fa-hand-holding-usd"></i><strong>Accesibilidad:</strong> Precios asequibles para todos.</li>
+                        <li><i class="fas fa-medal"></i><strong>Calidad:</strong> Productos frescos y de alta calidad garantizada.</li>
+                        <li><i class="fas fa-utensils"></i><strong>Variedad:</strong> Amplia gama de alimentos y bebidas para todos los gustos.</li>
+                        <li><i class="fas fa-map-pin"></i><strong>Localización:</strong> Ubicación céntrica y estratégica en la Plaza Guamuaya.</li>
+                        <li><i class="fas fa-heart"></i><strong>Servicio:</strong> Atención al cliente excepcional, amable y eficiente.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Estrategias Marketing -->
+        <section id="marketing" class="mb-5 fade-in">
+            <div class="card shadow-sm">
+                 <div class="card-body p-4 p-md-5">
+                     <h3 class="card-title mb-4"><i class="fas fa-bullhorn"></i>Estrategias de Mercadeo</h3>
+                     <div class="row g-4 estrategia-item">
+                        <div class="col-lg-4">
+                             <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title fs-5"><i class="fas fa-hamburger"></i>Producto/Servicio</h4>
+                                    <p>Variedad de alimentos ligeros (pan con croqueta, pizzas, pan con chorizo) y bebidas (jugos, refrescos). Foco en calidad, accesibilidad y productos locales/sostenibles.</p>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title fs-5"><i class="fas fa-share-alt"></i>Promoción</h4>
+                                    <p>Campañas locales, uso activo de redes sociales, colaboraciones con negocios y organizaciones comunitarias para aumentar visibilidad.</p>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-lg-4">
+                             <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title fs-5"><i class="fas fa-truck"></i>Distribución</h4>
+                                    <p>Venta directa en los locales de la plaza. Implementación de servicio de entrega a domicilio para mayor alcance y comodidad del cliente.</p>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+    </div> <!-- Fin container principal -->
+
+    <!-- Footer -->
+    <footer class="py-4 mt-5 bg-dark text-white text-center fade-in">
+        <div class="container">
+            <p class="mb-1">Propuesta preparada con entusiasmo por Erick Olivera Rodríguez.</p>
+            <p class="mb-0 small">© 2023 Doña Lucia - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- === INICIO JAVASCRIPT PERSONALIZADO === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Animación Fade-in al hacer scroll ---
+            const fadeElems = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.15, // Un poco más de visibilidad antes de animar
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            fadeElems.forEach(elem => {
+                appearOnScroll.observe(elem);
+            });
+
+            // --- Activar Tooltips de Bootstrap (si los añadieras) ---
+            // Ejemplo: si pones data-bs-toggle="tooltip" data-bs-title="Texto del tooltip" a un elemento
+            /*
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            */
+
+            console.log("Página de Propuesta Doña Lucia (v2) cargada con Bootstrap y FontAwesome.");
+
+        });
+    </script>
+    <!-- === FIN JAVASCRIPT PERSONALIZADO === -->
+
+</body>
+</html>
