@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "name": "Yogur de Potecito",
+        "price": 1,
+        "image": "https://i.postimg.cc/k5JsvzQC/ZOTTIS-FRUIT.jpg",
+        "description": "Yogur en potecito",
+        "specifications": [
+            "Vainilla",
+            "Fresa",
+            "Platanito",
+            "Uba"
+        ],
+        "featured": false,
+        "category": "Lácteo"
+    },
+    {
+        "id": 2,
+        "name": "Maisena",
+        "price": 1,
+        "image": "https://i.postimg.cc/RhHL0BB7/Zuko-Atole-caramelo-Alimentos.jpg",
+        "description": "Maisena en sobre de 100 gramos",
+        "specifications": [
+            "Vainilla",
+            "Fresa",
+            "chocolate",
+            "Limon"
+        ],
+        "featured": false,
+        "category": "Lácteo"
+    },
+    {
+        "id": 3,
+        "name": "Nuevo 3",
+        "price": 0,
+        "image": "https://i.postimg.cc/k4Zy95kM/zuko-manzana-Bebidas.png",
+        "description": "",
+        "specifications": [],
+        "featured": false,
+        "category": ""
+    },
+    {
+        "id": 4,
+        "name": "Nuevo 4",
+        "price": 0,
+        "image": "https://i.postimg.cc/HWc2zQyr/zumo-juver-100-melocoton-manzana-uva-1l-Bebidas.png",
+        "description": "",
+        "specifications": [],
+        "featured": false,
+        "category": ""
+    },
+    {
+        "id": 5,
+        "name": "Nuevo 5",
+        "price": 0,
+        "image": "https://i.postimg.cc/KjcN3RZY/cerveza-shekels-33cl-mlc-45-vol.png",
+        "description": "",
+        "specifications": [],
+        "featured": false,
+        "category": ""
+    },
+    {
+        "id": 6,
+        "name": "Nuevo 6",
+        "price": 0,
+        "image": "https://i.postimg.cc/qvM2czCf/Dulce-de-gauallaba-Confituras.png",
+        "description": "",
+        "specifications": [],
+        "featured": false,
+        "category": ""
+    },
+    {
+        "id": 7,
+        "name": "Galleta de Sal",
+        "price": 1,
+        "image": "https://i.postimg.cc/VLDQ8zXF/Galletas-de-sal.jpg",
+        "description": "Galleta de sal",
+        "specifications": [
+            "Sal",
+            "Chorizo",
+            "Mantequilla"
+        ],
+        "featured": true,
+        "category": "Galletas"
+    }
+]
