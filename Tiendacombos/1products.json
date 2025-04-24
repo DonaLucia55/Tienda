@@ -1,0 +1,135 @@
+
+[
+    {
+        "id": 1,
+        "name": "Bisclass",
+        "price": 1.50,
+        "image": "https://i.postimg.cc/KzcdjJLK/Bisclass.jpg",
+        "description": "Deliciosas galletas tipo sándwich con crema.",
+        "specifications": ["Paquete individual", "Sabor vainilla", "Crujiente"],
+        "featured": true,
+        "category": "Galletas"
+    },
+    {
+        "id": 2,
+        "name": "Caramelos Surtidos",
+        "price": 0.75,
+        "image": "https://i.postimg.cc/FRPwL3gT/Caramelos.jpg",
+        "description": "Bolsa de caramelos de diferentes sabores frutales.",
+        "specifications": ["Sabores variados", "Textura suave", "Ideales para compartir"],
+        "featured": false,
+        "category": "Caramelos"
+    },
+    {
+        "id": 3,
+        "name": "Chicle Menta",
+        "price": 0.25,
+        "image": "https://i.postimg.cc/Ls3cmrqK/chicle.jpg",
+        "description": "Chicle sabor a menta para un aliento fresco.",
+        "specifications": ["Sabor intenso", "Larga duración", "Sin azúcar"],
+        "featured": false,
+        "category": "Chicles"
+    },
+    {
+        "id": 4,
+        "name": "Chicles de Bolitas",
+        "price": 1.00,
+        "image": "https://i.postimg.cc/90rKt0LC/Chicles-de-Bolitas.jpg",
+        "description": "Divertidos chicles en forma de bolitas con centro líquido.",
+        "specifications": ["Múltiples colores", "Sabor dulce", "Para todas las edades"],
+        "featured": false,
+        "category": "Chicles"
+    },
+    {
+        "id": 5,
+        "name": "Choco Lips",
+        "price": 0.50,
+        "image": "https://i.postimg.cc/05BL5GNQ/Choco-Lips.jpg",
+        "description": "Barrita de chocolate con forma de labios.",
+        "specifications": ["Chocolate con leche", "Diseño divertido", "Un pequeño placer"],
+        "featured": true,
+        "category": "Chocolates"
+    },
+    {
+        "id": 6,
+        "name": "Cigarro de Chocolate",
+        "price": 2.00,
+        "image": "https://i.postimg.cc/QCwP6Dz5/Cigarro-Popular.jpg",
+        "description": "Barra de chocolate alargada simulando un cigarro.",
+        "specifications": ["Chocolate negro", "Forma peculiar", "Ideal para bromas"],
+        "featured": true,
+        "category": "Chocolates"
+    },
+    {
+        "id": 7,
+        "name": "Otro Destacado",
+        "price": 3.00,
+        "image": "https://via.placeholder.com/300?text=Producto+7",
+        "description": "Descripción de otro producto destacado.",
+        "specifications": ["Spec 1", "Spec 2"],
+        "featured": false,
+        "category": "Otros"
+    },
+    {
+        "id": 8,
+        "name": "Galleta María",
+        "price": 1.20,
+        "image": "https://via.placeholder.com/300?text=Galleta+Maria",
+        "description": "Clásica galleta María, ideal para mojar.",
+        "specifications": ["Paquete familiar", "Textura crujiente", "Sabor tradicional"],
+        "featured": false,
+        "category": "Galletas"
+    },
+    {
+        "id": 9,
+        "name": "Turrón Blando",
+        "price": 2.50,
+        "image": "https://via.placeholder.com/300?text=Turron",
+        "description": "Delicioso turrón blando de almendras.",
+        "specifications": ["Calidad suprema", "Textura suave", "Ingredientes naturales"],
+        "featured": false,
+        "category": "Turrones"
+    },
+    {
+        "id": 9,
+        "name": "papitas fritas",
+        "price": 2.50,
+        "image": "https://via.placeholder.com/300?text=Turron",
+        "description": "Delicioso turrón blando de almendras.",
+        "specifications": ["Calidad suprema", "Textura suave", "Ingredientes naturales"],
+        "featured": true,
+        "category": "Snacks salados"
+    },
+    {
+        "id": 12,
+        "name": "Picadillo",
+        "price": 3,
+        "image": "https://i.postimg.cc/Qdk56TGf/Picadillodepollo.jpg",
+        "description": "Excelente calidad",
+        "specifications": [],
+        "featured": true,
+        "category": "Carnico"
+    },
+    {
+        "id": 11,
+        "name": "Yogur Natural",
+        "price": 3,
+        "image": "https://i.postimg.cc/qvdjzzgz/Yogur-natural-23-Lacteo.jpg",
+        "description": "Excelente calidad",
+        "specifications": [
+            "Fresa"
+        ],
+        "featured": true,
+        "category": "Lácteo"
+    },
+    {
+        "id": 10,
+        "name": "Refresco de Lata",
+        "price": 1.00,
+        "image": "https://via.placeholder.com/300?text=Refresco",
+        "description": "Refresco carbonatado en lata.",
+        "specifications": ["Sabor cola", "330ml", "Servir frío"],
+        "featured": false,
+        "category": "Bebidas"
+    }
+]
