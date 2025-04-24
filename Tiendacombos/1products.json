@@ -131,5 +131,18 @@
         "specifications": ["Sabor cola", "330ml", "Servir frío"],
         "featured": false,
         "category": "Bebidas"
-    }
+    },
+    {
+    "id": 49,
+    "name": "Carne Limpia de Cerdo",
+    "price": 58,
+    "image": "https://i.postimg.cc/KcLZMnRm/Pernil-de-Cerdo.jpg",
+    "description": "Carne Limpia de cerdo",
+    "specifications": [
+        "3.5us por Libra",
+        "58.00 us por 20 Libras"
+    ],
+    "featured": true,
+    "category": ""
+}
 ]
