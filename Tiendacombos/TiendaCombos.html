@@ -1,882 +1,1248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doña Lucía - Experiencia Completa</title>
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #ffffff; color: #1F2937; overscroll-behavior: none; }
-        body.modal-open { overflow: hidden; }
-        :root { --dl-accent-pink: #EC4899; --dl-accent-pink-dark: #DB2777; --dl-text-primary: #1F2937; --dl-text-secondary: #6B7280; --dl-border-light: #E5E7EB; --dl-bg-light: #F9FAFB; --dl-gold-accent: #D4AF37; }
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9FAFB; /* Light gray background */
+            color: #1F2937;
+            overscroll-behavior: none;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Accent Color Definition */
+        :root {
+            --dl-accent-pink: #EC4899;
+            --dl-accent-pink-dark: #DB2777;
+            --dl-text-primary: #1F2937;
+            --dl-text-secondary: #6B7280;
+            --dl-border-light: #E5E7EB;
+            --dl-bg-light: #F9FAFB;
+            --dl-gold-accent: #D4AF37; /* Richer Gold */
+            --dl-gold-accent-dark: #B8860B; /* Darker Gold for hover */
+            --dl-warning-text: #D97706; /* Amber 600 for refresh text */
+            --dl-warning-bg-hover: #FEF3C7; /* Amber 100 for refresh hover */
+            --dl-promo-bg: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* Subtle gradient for promo modal */
+        }
         .bg-accent { background-color: var(--dl-accent-pink); }
         .text-accent { color: var(--dl-accent-pink); }
         .border-accent { border-color: var(--dl-accent-pink); }
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.25rem; border-radius: 0.375rem; font-weight: 500; transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out; cursor: pointer; border: 1px solid transparent; focus:outline-none; focus:ring-2 focus:ring-offset-2; --tw-ring-color: var(--dl-accent-pink); }
+        .text-gold { color: var(--dl-gold-accent); }
+        .bg-gold { background-color: var(--dl-gold-accent); }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.25rem; border-radius: 0.375rem; font-weight: 500; transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out; cursor: pointer; border: 1px solid transparent; focus:outline-none; focus:ring-2 focus:ring-offset-2; --tw-ring-color: var(--dl-accent-pink); }
         .btn-primary { background-color: var(--dl-accent-pink); color: white; border-color: var(--dl-accent-pink); }
         .btn-primary:hover { background-color: var(--dl-accent-pink-dark); border-color: var(--dl-accent-pink-dark); }
-        .btn-secondary { background-color: white; color: var(--dl-text-primary); border-color: var(--dl-border-light); }
+        .btn-primary:disabled { background-color: #f3f4f6; color: #9ca3af; border-color: #e5e7eb; cursor: not-allowed; opacity: 0.7; }
+        .btn-secondary { background-color: white; color: var(--dl-text-primary); border-color: var(--dl-border-light); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
         .btn-secondary:hover { background-color: var(--dl-bg-light); border-color: #D1D5DB; }
-        .btn-xs { padding: 0.3rem 0.6rem; font-size: 0.75rem; line-height: 1rem; }
+        .btn-gold { background-color: var(--dl-gold-accent); color: white; border-color: var(--dl-gold-accent); }
+        .btn-gold:hover { background-color: var(--dl-gold-accent-dark); border-color: var(--dl-gold-accent-dark); }
         .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.875rem; }
-        .product-card { background-color: white; border: none; border-radius: 0.75rem; overflow: hidden; transition: box-shadow 0.35s ease, transform 0.35s ease; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .btn-xs { padding: 0.3rem 0.6rem; font-size: 0.75rem; line-height: 1rem; }
+
+        /* Product Card Style */
+        .product-card { background-color: white; border-radius: 0.75rem; overflow: hidden; transition: box-shadow 0.3s ease, transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; border: 1px solid var(--dl-border-light); }
         .product-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: translateY(-5px); }
         .product-card .product-image { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
-        .product-card .product-info { padding: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card .product-name { font-weight: 600; font-size: 1.05rem; color: var(--dl-text-primary); margin-bottom: 0.5rem; line-height: 1.4; }
-        .product-card .product-price { font-weight: 700; font-size: 1.2rem; color: var(--dl-text-primary); margin-bottom: 1rem; }
-        .product-card .btn-secondary { background-color: transparent; border-color: var(--dl-border-light); color: var(--dl-text-secondary); font-weight: 500; padding: 0.5rem 1rem; }
-        .product-card .btn-secondary:hover { background-color: var(--dl-bg-light); border-color: var(--dl-text-secondary); color: var(--dl-text-primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 100; opacity: 0; visibility: hidden; transform: translateX(100%); transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out; display: flex; flex-direction: column; }
+        .product-card .product-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card .product-name { font-weight: 600; font-size: 1rem; color: var(--dl-text-primary); margin-bottom: 0.35rem; line-height: 1.4; }
+        .product-card .product-price { font-weight: 700; font-size: 1.125rem; color: var(--dl-text-primary); margin-bottom: 0.8rem; }
+
+        /* Full-Screen Modal Styles */
+        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white bg */ backdrop-filter: blur(4px); z-index: 100; opacity: 0; visibility: hidden; transform: translateX(100%); transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out; display: flex; flex-direction: column; }
         .modal-fullscreen.active { opacity: 1; visibility: visible; transform: translateX(0); }
-        .modal-fullscreen.menu-modal { transform: translateX(-100%); }
+        .modal-fullscreen.menu-modal { transform: translateX(-100%); background-color: white; backdrop-filter: none;} /* Solid bg for menu */
         .modal-fullscreen.menu-modal.active { transform: translateX(0); }
-        .modal-header-fs { padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dl-border-light); flex-shrink: 0; }
-        .modal-title-fs { font-size: 1.25rem; font-weight: 600; color: var(--dl-text-primary); }
-        .modal-close-btn-fs { padding: 0.5rem; color: var(--dl-text-secondary); background: none; border: none; cursor: pointer; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; }
+        .modal-header-fs { padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dl-border-light); flex-shrink: 0; background-color: white; }
+        .modal-header-fs .modal-header-content { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+        @media (min-width: 1024px) { .modal-header-fs .modal-header-content { max-width: 56rem; margin-left: auto; margin-right: auto; } }
+        .modal-title-fs { font-size: 1.25rem; font-weight: 600; color: var(--dl-text-primary); flex-grow: 1; text-align: center; margin: 0 1rem; }
+        .modal-close-btn-fs { padding: 0.5rem; color: var(--dl-text-secondary); background: none; border: none; cursor: pointer; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; flex-shrink: 0; }
         .modal-close-btn-fs:hover { background-color: var(--dl-bg-light); color: var(--dl-text-primary); }
         .modal-close-btn-fs svg { width: 1.5rem; height: 1.5rem; }
-        .modal-body-fs { padding: 1.5rem; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch; }
-        .cart-badge { position: absolute; top: -4px; right: -6px; background-color: var(--dl-accent-pink); color: white; font-size: 0.65rem; font-weight: 600; line-height: 1; padding: 0.15rem 0.4rem; border-radius: 9999px; display: none; }
-        #cartItemsFs .cart-item { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--dl-border-light); }
-        #cartItemsFs .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        #cartItemsFs .cart-item-image { width: 4rem; height: 4rem; object-fit: cover; border-radius: 0.25rem; margin-right: 1rem; border: 1px solid var(--dl-border-light); }
-        #cartItemsFs .cart-item-details { flex-grow: 1; }
-        #cartItemsFs .cart-item-name { font-weight: 500; font-size: 0.875rem; }
-        #cartItemsFs .cart-item-price { font-size: 0.75rem; color: var(--dl-text-secondary); }
-        #cartItemsFs .quantity-controls button { background-color: #F3F4F6; color: var(--dl-text-secondary); border: 1px solid var(--dl-border-light); width: 1.5rem; height: 1.5rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; font-size: 0.875rem; transition: background-color 0.2s ease; }
-        #cartItemsFs .quantity-controls button:hover { background-color: #E5E7EB; }
-        #cartItemsFs .quantity-controls span { margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500; min-width: 1rem; text-align: center; }
-        #cartItemsFs .remove-button { color: var(--dl-text-secondary); margin-left: 1rem; padding: 0.25rem; }
-        #cartItemsFs .remove-button:hover { color: var(--dl-accent-pink); }
-        #cartItemsFs .remove-button svg { width: 1rem; height: 1rem; }
+        .modal-body-fs { padding: 1.5rem 1rem; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch; background-color: transparent; /* Inherit from modal-fullscreen */ }
+        /* Make menu body solid white */
+        .modal-fullscreen.menu-modal .modal-body-fs { background-color: white;}
+        .modal-body-content-wrapper { width: 100%; margin-left: auto; margin-right: auto; background-color: white; border-radius: 0.5rem; /* Add rounded corners to content area inside modal */ box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Subtle shadow for content */ padding: 1.5rem; }
+         /* Specific modal content wrappers */
+        #cartModalFs .modal-body-content-wrapper,
+        #menuModalFs .modal-body-content-wrapper { padding: 0; box-shadow: none; border-radius: 0; } /* Remove padding/shadow for cart/menu body wrappers */
+        #menuModalFs .modal-body-fs { padding: 0; } /* Remove body padding for menu */
+        @media (min-width: 1024px) { .modal-body-content-wrapper { max-width: 56rem; padding: 2rem; } #cartModalFs .modal-body-content-wrapper { padding: 0; } }
+
+        /* Cart Badge Style */
+        .cart-badge { position: absolute; top: -4px; right: -6px; background-color: var(--dl-accent-pink); color: white; font-size: 0.65rem; font-weight: 600; line-height: 1; padding: 0.15rem 0.4rem; border-radius: 9999px; display: none; transition: transform 0.15s ease-out; }
+
+        /* Cart Item Style */
+        #cartItemsFs .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--dl-border-light); }
+        #cartItemsFs .cart-item:last-child { border-bottom: none; }
+        #cartItemsFs .cart-item-image { width: 4rem; height: 4rem; object-fit: cover; border-radius: 0.25rem; margin-right: 1rem; border: 1px solid var(--dl-border-light); flex-shrink: 0; }
+        #cartItemsFs .cart-item-details { flex-grow: 1; margin-right: 1rem; }
+        #cartItemsFs .cart-item-name { font-weight: 500; font-size: 0.875rem; line-height: 1.3; margin-bottom: 0.1rem; }
+        #cartItemsFs .cart-item-price { font-size: 0.75rem; color: var(--dl-text-secondary); margin-bottom: 0.3rem; }
+        #cartItemsFs .quantity-controls { display: flex; align-items: center; }
+        #cartItemsFs .quantity-controls button { background-color: #F3F4F6; color: var(--dl-text-secondary); border: 1px solid var(--dl-border-light); width: 1.75rem; height: 1.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; font-size: 0.875rem; transition: background-color 0.2s ease; }
+        #cartItemsFs .quantity-controls button:hover:not(:disabled) { background-color: #E5E7EB; }
+        #cartItemsFs .quantity-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+        #cartItemsFs .quantity-controls .quantity-display { margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500; min-width: 1rem; text-align: center; }
+        #cartItemsFs .remove-button { color: var(--dl-text-secondary); flex-shrink: 0; padding: 0.25rem; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; }
+        #cartItemsFs .remove-button:hover { color: var(--dl-accent-pink); background-color: var(--dl-bg-light); }
+        #cartItemsFs .remove-button svg { width: 1.25rem; height: 1.25rem; }
+
+        /* Menu Modal Link Style (Mobile Menu) */
         #menuModalFs .menu-link { display: flex; align-items: center; padding: 1rem 1.5rem; font-size: 1.125rem; font-weight: 500; color: var(--dl-text-primary); border-bottom: 1px solid var(--dl-border-light); transition: background-color 0.2s ease; text-decoration: none; }
         #menuModalFs .menu-link:hover { background-color: var(--dl-bg-light); }
         #menuModalFs .menu-link svg { width: 1.5rem; height: 1.5rem; margin-right: 1rem; color: var(--dl-text-secondary); }
+        /* Refresh Link specific colors (Mobile) */
+        #forceRefreshLinkMobile { color: var(--dl-warning-text); }
+        #forceRefreshLinkMobile:hover { background-color: var(--dl-warning-bg-hover); }
+        #forceRefreshLinkMobile svg { color: var(--dl-warning-text); }
+        /* Promo Link specific colors (Mobile) */
+        #promoLinkMobile { color: var(--dl-gold-accent); }
+        #promoLinkMobile:hover { background-color: #FFFBEB; /* Lighter gold hover */ }
+        #promoLinkMobile svg { color: var(--dl-gold-accent); }
+
+        /* Desktop Navbar Link Style */
+        .desktop-nav-link { color: var(--dl-text-secondary); transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; }
+        .desktop-nav-link:hover { color: var(--dl-text-primary); background-color: var(--dl-bg-light); }
+        .desktop-nav-link svg { width: 1.1rem; height: 1.1rem; margin-right: 0.4rem; }
+        /* Refresh Link specific colors (Desktop) */
+        #forceRefreshLinkDesktop { color: var(--dl-warning-text); }
+        #forceRefreshLinkDesktop:hover { background-color: var(--dl-warning-bg-hover); }
+        #forceRefreshLinkDesktop svg { color: var(--dl-warning-text); }
+         /* Promo Link specific colors (Desktop) */
+        #promoLinkDesktop { color: var(--dl-gold-accent); }
+        #promoLinkDesktop:hover { background-color: #FFFBEB; /* Lighter gold hover */ color: var(--dl-gold-accent-dark); }
+        #promoLinkDesktop svg { color: var(--dl-gold-accent); }
+
+        /* Heroicon Size Utilities */
         .heroicon { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
         .heroicon-sm { width: 1rem; height: 1rem; }
         .heroicon-md { width: 1.5rem; height: 1.5rem; }
         .heroicon-lg { width: 2rem; height: 2rem; }
+        .heroicon-xl { width: 3rem; height: 3rem; }
+        .heroicon-xxl { width: 4rem; height: 4rem; }
+
+        /* Featured Badge Style */
         .featured-badge { position: absolute; top: 0.75rem; left: 0.75rem; background-color: var(--dl-gold-accent); color: white; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 0.25rem; z-index: 10; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Swiper Carousel Styles */
         .featured-carousel { padding-left: 5px; padding-right: 5px; position: relative; z-index: 20; }
-        .featured-carousel .swiper-button-next, .featured-carousel .swiper-button-prev { color: var(--dl-text-primary); background-color: rgba(255, 255, 255, 0.8); border-radius: 9999px; width: 2.75rem; height: 2.75rem; transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
+        .featured-carousel .swiper-button-next, .featured-carousel .swiper-button-prev { color: var(--dl-text-primary); background-color: rgba(255, 255, 255, 0.8); border-radius: 9999px; width: 2.75rem; height: 2.75rem; transition: all 0.25s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); display: none; /* Hide by default */ align-items: center; justify-content: center; }
+        .featured-carousel.swiper-initialized .swiper-button-next,
+        .featured-carousel.swiper-initialized .swiper-button-prev { display: flex; } /* Show only when initialized */
         .featured-carousel .swiper-button-next:hover, .featured-carousel .swiper-button-prev:hover { background-color: white; color: var(--dl-accent-pink); box-shadow: 0 5px 12px rgba(0,0,0,0.12); transform: scale(1.05); }
         .featured-carousel .swiper-button-next::after, .featured-carousel .swiper-button-prev::after { content: ''; }
         .featured-carousel .swiper-button-prev { left: -5px; }
         .featured-carousel .swiper-button-next { right: -5px; }
         @media (max-width: 640px) { .featured-carousel .swiper-button-prev { left: 5px; } .featured-carousel .swiper-button-next { right: 5px; } .featured-carousel { padding-left: 0; padding-right: 0; } }
         .featured-carousel .swiper-slide { height: auto; display: flex; padding: 5px 0; }
-        .featured-carousel .product-card { width: 100%; margin-bottom: 0.5rem; }
-        .related-product-card { background-color: #fff; }
-        .related-product-card img { object-fit: cover; }
-        #tutorialModal.active { opacity: 1; visibility: visible; }
-        #tutorialModal.active .tutorial-content { transform: scale(1); opacity: 1; }
-        .tutorial-content { max-height: 90vh; overflow-y: auto; }
-        .toast-notification { @apply bg-gray-800 text-white text-sm font-medium px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 transition-all duration-300 ease-out pointer-events-auto transform translate-y-2 opacity-0; }
-        .toast-notification.show { @apply translate-y-0 opacity-100; }
-        .toast-notification .toast-icon { @apply flex-shrink-0 w-5 h-5 text-green-400; }
+        .featured-carousel .product-card { width: 100%; height: 100%; margin-bottom: 0.5rem; }
+
+        /* Toast Notification Style (Top-Right) */
+        .toast-notification { position: fixed; top: 1rem; right: 1rem; z-index: 9999; background-color: rgba(31, 41, 55, 0.95); color: white; font-size: 0.875rem; font-weight: 500; padding: 0.75rem 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease-out; pointer-events: none; transform: translateY(-150%); opacity: 0; max-width: calc(100% - 2rem); }
+        .toast-notification.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .toast-notification .toast-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
+        #toastContainer { position: fixed; top: 0; right: 0; z-index: 9998; pointer-events: none; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+
+        /* Tutorial Modal Specific Styles */
+        #tutorialModalFs .modal-body-fs ul { list-style-position: outside; padding-left: 1.5rem; }
+        #tutorialModalFs .modal-body-fs li { margin-bottom: 0.5rem; }
+
+        /* Promo Modal Specific Styles */
+        #promoModalFs .modal-body-fs { background: var(--dl-promo-bg); }
+        #promoModalFs .modal-body-content-wrapper {
+            text-align: center;
+            padding: 2rem 1rem;
+            display: flex; /* Enable flex for centering */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px; /* Ensure minimum height */
+        }
+        #promoModalFs .promo-icon {
+            color: var(--dl-gold-accent);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 3px 5px rgba(212, 175, 55, 0.3)); /* Subtle gold shadow */
+        }
+        #promoModalFs .promo-headline {
+            font-size: 1.8rem; /* Larger headline */
+            font-weight: 700;
+            color: var(--dl-text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+         @media (min-width: 640px) { #promoModalFs .promo-headline { font-size: 2.25rem; } }
+        #promoModalFs .promo-subheadline {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dl-accent-pink);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        #promoModalFs .promo-text {
+            color: var(--dl-text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 450px; /* Limit text width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #promoModalFs .promo-cta-button {
+            padding: 0.8rem 2rem; /* Larger button */
+            font-size: 1rem;
+        }
+
     </style>
 </head>
-<body class="">
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50 border-b border-gray-100">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <button id="menuBtn" class="p-2 text-gray-500 hover:text-gray-800 focus:outline-none md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="heroicon heroicon-md" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /> </svg>
-            </button>
-            <a href="#" class="flex items-center flex-grow md:flex-grow-0 justify-center md:justify-start">
-                <span class="font-bold text-2xl text-primary tracking-tight">Doña Lucía</span>
-            </a>
-            <div class="relative">
-                <button id="openCartBtn" class="p-2 text-gray-500 hover:text-gray-800 focus:outline-none transition-default">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="heroicon heroicon-md" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg>
-                    <span id="cartItemCount" class="cart-badge">0</span>
-                </button>
+<body class="bg-gray-50">
+
+    <!-- Header - RESPONSIVE -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <div class="flex items-center">
+                    <button id="menuBtn" class="p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent lg:hidden mr-2" aria-label="Abrir menú">
+                        <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <a href="#" class="flex-shrink-0">
+                        <span class="font-bold text-2xl text-primary tracking-tight">Doña Lucía</span>
+                    </a>
+                </div>
+
+                <nav class="hidden lg:flex lg:items-center lg:space-x-1"> <!-- Reduced space slightly -->
+                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="cartModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg> Carrito (<span id="desktopCartCount">0</span>) </a>
+                     <!-- Desktop Promo Link -->
+                     <a href="#" id="promoLinkDesktop" class="desktop-nav-link nav-link" data-target-modal="promoModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> Envío Gratis </a>
+                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="contactModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
+                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de </a>
+                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /> </svg> Guía Rápida </a>
+                     <!-- Desktop Refresh Link -->
+                     <a href="#" id="forceRefreshLinkDesktop" class="desktop-nav-link"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Actualizar </a>
+                 </nav>
+
+                <div class="flex items-center">
+                     <div class="relative flex-shrink-0">
+                         <button id="openCartBtn" class="p-2 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-default" aria-label="Abrir carrito">
+                            <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg>
+                            <span id="cartItemCount" class="cart-badge" data-prev-count="0">0</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </header>
+    <!-- End Header -->
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <section id="featuredSection" class="mb-16 relative">
-            <h3 class="text-2xl font-semibold text-center text-primary mb-8 border-b pb-3 border-gray-200"> ✨ Destacados ✨ </h3>
-            <div class="swiper featured-carousel px-4 md:px-0">
-                <div class="swiper-wrapper" id="featuredProductWrapper"> </div>
-                <div class="swiper-button-prev"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /> </svg> </div>
-                <div class="swiper-button-next"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /> </svg> </div>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+
+        <section id="featuredSection" class="mb-12 relative" style="display: none;"> <!-- Hide until populated -->
+            <h3 class="text-2xl font-semibold text-center text-primary mb-6 border-b pb-2 border-gray-200"> ✨ Destacados ✨ </h3>
+             <div class="swiper featured-carousel px-4 md:px-0">
+                <div class="swiper-wrapper" id="featuredProductWrapper"> <!-- Content added dynamically --> </div>
+                <div class="swiper-button-prev"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /> </svg> </div>
+                <div class="swiper-button-next"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /> </svg> </div>
             </div>
         </section>
 
-        <h2 class="text-3xl font-bold text-center text-primary mb-4">Todos Nuestros Productos</h2>
+        <h2 class="text-3xl font-bold text-center text-primary mb-4 mt-12"> Todos Nuestros Productos </h2>
 
-        <div class="mb-8 px-4 md:px-0 space-y-4">
-           <input type="search" id="searchInput" placeholder="Buscar por nombre..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150 ease-in-out" aria-label="Buscar productos">
+        <div class="mb-8 space-y-4">
+           <input type="search" id="searchInput" placeholder="Buscar por nombre..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150 ease-in-out shadow-sm" aria-label="Buscar productos">
            <div id="categoryFilters" class="flex flex-wrap gap-2 justify-center">
-               <span class="text-sm text-gray-500">Cargando categorías...</span>
+                <span class="text-sm text-gray-500 italic">Cargando categorías...</span>
            </div>
         </div>
 
-        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            <p class="text-center text-gray-500 col-span-full py-10">Cargando productos...</p>
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+            <!-- Initial Loading/Error Message -->
+            <p id="productGridStatus" class="text-center text-gray-500 col-span-full py-10">
+                <svg class="animate-spin h-6 w-6 text-gray-400 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                Cargando productos...
+            </p>
         </div>
+
     </main>
+    <!-- End Contenido Principal -->
 
-    <footer class="bg-gray-50 py-8 mt-16 border-t border-gray-200">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-             <p class="text-sm text-secondary mb-2">© 2023 Doña Lucía. Todos los derechos reservados.</p>
-             <button id="openTutorialBtnFooter" class="text-xs text-accent hover:text-accent-dark underline">Mostrar Guía Rápida</button>
-        </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8 mt-16 border-t border-gray-200">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center"> <p class="text-sm text-secondary">© 2024 Doña Lucía. Todos los derechos reservados.</p> </div>
     </footer>
+    <!-- End Footer -->
 
+
+    <!-- --- Full-Screen Modals --- -->
+
+    <!-- Menu Modal (Mobile Sidebar) -->
     <div id="menuModalFs" class="modal-fullscreen menu-modal">
         <div class="modal-header-fs">
-            <h2 class="modal-title-fs">Menú</h2>
-            <button class="modal-close-btn-fs" data-modal-id="menuModalFs" aria-label="Cerrar menú">
-                <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-        </div>
-        <div class="modal-body-fs p-0">
-            <nav>
-                <a href="#" class="menu-link modal-nav-link" data-target-modal="cartModalFs">
-                   <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                   Ver Carrito (<span id="menuCartCount">0</span>)
-                </a>
-                <a href="#" class="menu-link modal-nav-link" data-target-modal="contactModalFs">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                    Contacto
-                </a>
-                <a href="#" class="menu-link modal-nav-link" data-target-modal="aboutModalFs">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Acerca de Nosotros
-                </a>
-                <a href="#" class="menu-link modal-nav-link" data-target-modal="offersModalFs">
-                   <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                       <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-5 5a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M17.5 10a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /> </svg>
-                   Ofertas Especiales
-                </a>
-                <a href="#" id="openTutorialBtnMenu" class="menu-link">
-                   <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    Ver Tutorial
-                </a>
-                <a href="#" id="forceRefreshLink" class="menu-link text-yellow-600 hover:bg-yellow-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg>
-                    Actualizar Productos
-                </a>
-           </nav>
-       </div>
-   </div>
-
-    <div id="productModalFs" class="modal-fullscreen">
-         <div class="modal-header-fs">
-             <h2 id="productModalTitleFs" class="modal-title-fs">Detalles del Producto</h2>
-             <button class="modal-close-btn-fs" data-modal-id="productModalFs" aria-label="Cerrar detalles">
-                 <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-             </button>
-         </div>
-         <div class="modal-body-fs">
-             <div id="productDetailsContentFs">
-             </div>
-         </div>
-    </div>
-
-    <div id="cartModalFs" class="modal-fullscreen">
-         <div class="modal-header-fs">
-             <h2 class="modal-title-fs">Carrito de Compras</h2>
-             <button class="modal-close-btn-fs" data-modal-id="cartModalFs" aria-label="Cerrar carrito">
-                 <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-             </button>
-         </div>
-         <div class="modal-body-fs flex flex-col">
-            <div id="cartItemsFs" class="flex-grow overflow-y-auto -mr-2 pr-2 mb-4">
-                <p class="text-secondary text-center py-8" id="emptyCartMessageFs">Tu carrito está vacío.</p>
+            <div class="modal-header-content">
+                <h2 class="modal-title-fs text-left flex-grow-0 mr-auto">Menú</h2>
+                <button class="modal-close-btn-fs" data-modal-id="menuModalFs" aria-label="Cerrar menú"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg> </button>
             </div>
-             <div id="cartSummaryFs" class="mt-auto border-t border-gray-200 pt-4">
-                 <div class="flex justify-between items-center mb-4">
-                     <span class="text-base font-medium text-secondary">Total:</span>
-                     <span id="cartTotalFs" class="text-xl font-bold text-primary">$0.00</span>
-                 </div>
-                 <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-3">
-                     <button id="clearCartBtnFs" class="btn btn-secondary w-full sm:w-auto text-sm">Vaciar carrito</button>
-                     <button id="checkoutBtnFs" class="btn btn-primary w-full sm:w-auto">Finalizar Pedido</button>
-                 </div>
-             </div>
-         </div>
-    </div>
-
-    <div id="contactModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs">
-            <h2 class="modal-title-fs">Contacto</h2>
-            <button class="modal-close-btn-fs" data-modal-id="contactModalFs" aria-label="Cerrar contacto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
         </div>
         <div class="modal-body-fs">
-            <h3 class="text-lg font-semibold mb-4">Ponte en contacto con nosotros</h3>
-            <p class="text-secondary mb-2">Puedes enviarnos un mensaje directamente a través de WhatsApp haciendo clic en el botón de finalizar pedido en el carrito.</p>
-            <p class="text-secondary mb-2">O llámanos al: <a href="tel:+5355189657" class="text-accent hover:underline">+53 55189657</a></p>
-            <p class="text-secondary">Dirección: Cumanayagua, Cienfuegos, Cuba</p>
+            <div class="modal-body-content-wrapper">
+                 <nav>
+                    <a href="#" class="menu-link modal-nav-link" data-target-modal="cartModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> Ver Carrito (<span id="menuCartCount">0</span>) </a>
+                    <!-- Mobile Promo Link -->
+                    <a href="#" id="promoLinkMobile" class="menu-link modal-nav-link" data-target-modal="promoModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> ¡Envío Gratis! </a>
+                    <a href="#" class="menu-link modal-nav-link" data-target-modal="contactModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
+                    <a href="#" class="menu-link modal-nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de Nosotros </a>
+                    <a href="#" class="menu-link modal-nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg> Guía Rápida </a>
+                    <!-- Mobile Refresh Link -->
+                    <a href="#" id="forceRefreshLinkMobile" class="menu-link"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Forzar Recarga </a>
+                 </nav>
+            </div>
         </div>
     </div>
 
+    <!-- Product Details Modal -->
+    <div id="productModalFs" class="modal-fullscreen">
+         <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 id="productModalTitleFs" class="modal-title-fs">Detalles</h2> <button class="modal-close-btn-fs" data-modal-id="productModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
+         <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <div id="productDetailsContentFs"><p class="text-gray-500">Cargando...</p></div> </div> </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModalFs" class="modal-fullscreen">
+         <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Carrito de Compras</h2> <button class="modal-close-btn-fs" data-modal-id="cartModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
+         <div class="modal-body-fs flex flex-col p-0"> <!-- Remove padding from body -->
+             <div class="modal-body-content-wrapper h-full flex flex-col"> <!-- Wrapper still has padding -->
+                <div id="cartItemsFs" class="flex-grow overflow-y-auto px-4 sm:px-6 lg:px-8 mb-4">
+                     <p class="text-secondary text-center py-8" id="emptyCartMessageFs">Tu carrito está vacío.</p>
+                 </div>
+                 <div id="cartSummaryFs" class="mt-auto border-t border-gray-200 pt-4 px-4 sm:px-6 lg:px-8 pb-4 flex-shrink-0 bg-gray-50 rounded-b-md">
+                     <div class="flex justify-between items-center mb-4">
+                         <span class="text-base font-medium text-secondary">Total:</span>
+                         <span id="cartTotalFs" class="text-xl font-bold text-primary">$0.00</span>
+                     </div>
+                     <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                         <button id="clearCartBtnFs" class="btn btn-secondary w-full sm:w-auto text-sm">Vaciar carrito</button>
+                         <button id="checkoutBtnFs" class="btn btn-primary w-full sm:w-auto" disabled>Finalizar Pedido</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModalFs" class="modal-fullscreen">
+        <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Contacto</h2> <button class="modal-close-btn-fs" data-modal-id="contactModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
+        <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-lg font-semibold mb-4">Ponte en contacto</h3> <p class="text-secondary mb-2">Envíanos un mensaje por WhatsApp al hacer clic en <strong class="font-medium">"Finalizar Pedido"</strong> en el carrito.</p> <p class="text-secondary mb-2">O llámanos: <a href="tel:+5355189657" class="text-accent hover:underline">+53 55189657</a></p> <p class="text-secondary">Dirección: Cumanayagua, Cienfuegos, Cuba</p> </div> </div>
+    </div>
+
+     <!-- About Modal -->
     <div id="aboutModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs">
-            <h2 class="modal-title-fs">🍕✨ La Historia de Doña Lucía ✨🍕</h2>
-            <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar acerca de">
-                <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-        </div>
-        <div class="modal-body-fs text-center md:text-left">
-            <h3 class="text-xl font-semibold mb-4 text-primary">Sabor que Viene de Corazón</h3>
-            <p class="text-secondary mb-4 leading-relaxed"> En el corazón de Cumanayagua, donde las tradiciones se viven con cada amanecer, nace <strong class="font-medium text-primary">Doña Lucía</strong>, un homenaje a la pasión y dedicación de mi madre, Lucia. </p>
-            <p class="text-secondary mb-4 leading-relaxed"> Desde sus humildes comienzos ha compartido la alegría al pueblo, con sabores que evocan recuerdos de infancia y momentos compartidos cuando ofertaba café en las madrugadas, dulce de coco, pan con tortilla, café con leche y otras tradiciones culinarias. </p>
-            <p class="text-secondary mb-4 leading-relaxed"> Hoy, Doña Lucía no es solo un nombre y un local, sino un <strong class="font-medium text-primary">símbolo de calidad y sabor auténtico</strong>. Con cada producto que ofrecemos, ya sea una golosina clásica o una novedad deliciosa, celebramos la herencia de una mujer que enseñó que el mejor ingrediente es <strong class="text-accent font-medium">el amor</strong>. </p>
-            <p class="text-secondary font-medium leading-relaxed"> Te invitamos a ser parte de nuestra historia. Ven y descubre por qué en Doña Lucía, cada bocado cuenta una historia. </p>
-        </div>
+        <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">🍕✨ La Historia ✨🍕</h2> <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
+        <div class="modal-body-fs md:text-left"> <div class="modal-body-content-wrapper"> <h3 class="text-xl font-semibold mb-4 text-primary">Sabor que Viene de Corazón</h3> <p class="text-secondary mb-4 leading-relaxed">En el corazón de Cumanayagua nace <strong class="font-medium text-primary">Doña Lucía</strong>, homenaje a la pasión de mi madre, Lucia.</p> <p class="text-secondary mb-4 leading-relaxed">Desde sus inicios ha compartido alegría con sabores que evocan recuerdos y momentos compartidos.</p> <p class="text-secondary mb-4 leading-relaxed">Hoy, Doña Lucía es <strong class="font-medium text-primary">símbolo de calidad y sabor auténtico</strong>. Celebramos la herencia de una mujer que enseñó que el mejor ingrediente es <strong class="text-accent font-medium">el amor</strong>.</p> <p class="text-secondary font-medium leading-relaxed">Te invitamos a ser parte de nuestra historia.</p> </div> </div>
     </div>
 
-    <div id="tutorialModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-[200] opacity-0 invisible transition-opacity duration-300 ease-in-out">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-11/12 max-w-md transform scale-95 opacity-0 transition-all duration-300 ease-in-out tutorial-content relative">
-            <div class="flex justify-between items-center border-b border-gray-200 pb-3 mb-4">
-                <h3 class="text-lg font-semibold text-primary" id="tutorialModalLabel">¡Bienvenido/a a Doña Lucía!</h3>
-                <button id="tutorialCloseBtnHeader" class="p-1 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors" aria-label="Cerrar tutorial">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+    <!-- Tutorial Modal -->
+    <div id="tutorialModalFs" class="modal-fullscreen">
+        <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">💡 Guía Rápida 💡</h2> <button class="modal-close-btn-fs" data-modal-id="tutorialModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
+        <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-lg font-semibold text-primary mb-4">¡Bienvenido/a!</h3> <p class="text-secondary mb-4">Explorar nuestros productos es fácil:</p> <ul class="list-disc text-secondary space-y-3"> <li>Usa la <strong class="text-primary">barra de búsqueda</strong> o filtra por <strong class="text-primary">categorías</strong>.</li> <li>Echa un vistazo a los <strong class="text-primary">✨ Destacados ✨</strong> o navega por <strong class="text-primary">Todos los Productos</strong>.</li> <li>Toca <strong class="text-primary">"Ver Detalles"</strong> en un producto para más información y añadirlo al carrito.</li> <li>El icono del carrito <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> (arriba a la derecha) te lleva a tu pedido.</li> <li>En el carrito, puedes ajustar las cantidades o eliminar productos. Presiona <strong class="text-accent">"Finalizar Pedido"</strong> para enviarnos tu orden por WhatsApp.</li> <li>Usa el menú <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg> (en móvil) o los enlaces de la barra superior (en escritorio) para acceder a otras secciones como Contacto, Promociones o esta Guía.</li> </ul> <p class="mt-6 text-center font-medium text-primary">¡Disfruta tu experiencia de compra!</p> </div> </div>
+    </div>
+
+    <!-- Promo Modal (NEW) -->
+    <div id="promoModalFs" class="modal-fullscreen">
+        <div class="modal-header-fs">
+            <div class="modal-header-content">
+                <span class="w-10"></span> <!-- Spacer -->
+                <h2 class="modal-title-fs text-gold">✨ ¡Oferta Especial! ✨</h2>
+                <button class="modal-close-btn-fs" data-modal-id="promoModalFs" aria-label="Cerrar">
+                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
-            <div class="text-sm text-secondary space-y-3" id="tutorialModalDesc">
-                <p>¡Explorar nuestros deliciosos productos es muy fácil!</p>
-                <ul class="list-disc list-inside space-y-1 pl-2">
-                    <li>Usa la <strong class="text-primary">búsqueda</strong> o los botones de <strong class="text-primary">categoría</strong> para encontrar lo que buscas.</li>
-                    <li>Navega por los productos <strong class="text-primary">Destacados</strong> o la lista completa.</li>
-                    <li>Haz clic en <strong class="text-primary">"Ver Detalles"</strong> para más información y añadir al carrito desde allí.</li>
-                    <li>Busca el icono del carrito <svg xmlns="http://www.w3.org/2000/svg" class="heroicon-sm inline-block align-text-bottom" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg> arriba a la derecha para ver tu pedido.</li>
-                    <li>Desde el carrito, puedes <strong class="text-accent">"Finalizar Pedido"</strong> para enviárnoslo por WhatsApp.</li>
-                    <li>Usa el botón de menú <svg xmlns="http://www.w3.org/2000/svg" class="heroicon-sm inline-block align-text-bottom" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /> </svg> (en móviles) para otras opciones como Contacto o Forzar Recarga.</li>
-                </ul>
-                <p>¡Que disfrutes tu visita!</p>
-            </div>
-            <div class="mt-5 pt-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
-                 <div class="flex items-center text-xs">
-                    <input type="checkbox" id="dontShowAgainCheckbox" class="mr-2 h-4 w-4 text-accent focus:ring-accent border-gray-300 rounded">
-                    <label for="dontShowAgainCheckbox" class="text-gray-500 select-none">No volver a mostrar</label>
-                </div>
-                <button id="tutorialCloseBtnFooter" class="btn btn-primary btn-sm w-full sm:w-auto">¡Entendido!</button>
+        </div>
+        <div class="modal-body-fs">
+            <div class="modal-body-content-wrapper">
+                <svg class="heroicon-xxl promo-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5a1.125 1.125 0 001.125-1.125V6.75a1.125 1.125 0 00-1.125-1.125H3.375A1.125 1.125 0 002.25 6.75v10.5a1.125 1.125 0 001.125 1.125z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 18.75H18a1.125 1.125 0 001.125-1.125V6.75A1.125 1.125 0 0018 5.625h-5.25A1.125 1.125 0 0011.625 6.75v10.5A1.125 1.125 0 0012.75 18.75h3zM15 11.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+                <h3 class="promo-headline">¡Tu Sabor Favorito, Directo a Tu Puerta!</h3>
+                <p class="promo-subheadline">🎉 ENVÍO GRATIS 🎉</p>
+                <p class="promo-text">
+                    Disfruta de la comodidad de recibir tus delicias de Doña Lucía sin costo adicional.
+                    Válido para todos los pedidos dentro de Cumanayagua. ¡Aprovecha!
+                </p>
+                <button class="btn btn-gold promo-cta-button modal-close-btn-fs" data-modal-id="promoModalFs">
+                    ¡Entendido!
+                </button>
             </div>
         </div>
     </div>
 
-    <div id="offersModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs">
-            <h2 class="modal-title-fs">🎁 Ofertas Especiales 🎁</h2>
-            <button class="modal-close-btn-fs" data-modal-id="offersModalFs" aria-label="Cerrar ofertas">
-                <svg xmlns="http://www.w3.org/2000/svg" class="heroicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-        </div>
-        <div class="modal-body-fs space-y-6">
-            <div class="bg-pink-50 border border-pink-200 rounded-lg p-4 shadow-sm">
-                <h3 class="text-lg font-semibold text-accent mb-2">¡Ahorra en Pedidos Grandes!</h3>
-                <p class="text-secondary">Para compras superiores a <strong class="text-primary font-medium">$15.00 USD</strong>, recibe un <strong class="text-primary font-medium">10% de descuento</strong> en el total de tu pedido.</p>
-                <p class="text-xs text-gray-500 mt-2">*El descuento se aplicará al confirmar tu pedido vía WhatsApp.</p>
-            </div>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-sm">
-                <h3 class="text-lg font-semibold text-blue-600 mb-2">Combo Refrescante</h3>
-                <p class="text-secondary">¡Llévate <strong class="text-primary font-medium">1 Refresco de Lata + 1 Choco Lips</strong> por solo <strong class="text-primary font-medium">$1.25 USD</strong>!</p>
-                <p class="text-xs text-gray-500 mt-2">*Asegúrate de añadir ambos productos al carrito.</p>
-            </div>
-             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 shadow-sm">
-                <h3 class="text-lg font-semibold text-yellow-700 mb-2">¡Oferta Semanal!</h3>
-                <p class="text-secondary">Esta semana, las galletas <strong class="text-primary font-medium">Bisclass</strong> tienen un <strong class="text-primary font-medium">15% de descuento</strong>. ¡A solo <strong class="text-primary font-medium">$1.27 USD</strong>!</p>
-                 <p class="text-xs text-gray-500 mt-2">*El precio ya está reflejado en la lista de productos.</p>
-            </div>
-             <div class="text-center text-gray-400 pt-4">
-                <p>¡Vuelve pronto para descubrir más ofertas!</p>
-            </div>
-        </div>
-    </div>
 
-    <div id="toastContainer" class="fixed bottom-4 right-4 z-[9999] w-full max-w-xs space-y-2 pointer-events-none">
-    </div>
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
 
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        const CART_STORAGE_KEY = 'donLuciaModernCart';
-        let cart = {};
-        let featuredSwiper = null;
-        const TUTORIAL_SHOWN_KEY = 'donLuciaTutorialShown_v1';
-        let hasClosedTutorialThisSession = false;
-        let allProductsData = [];
-        let currentCategoryFilter = 'Todos';
-        let currentSearchTerm = '';
+        document.addEventListener('DOMContentLoaded', () => {
 
-        async function loadProducts() {
+            // --- State & Constants ---
+            const CART_STORAGE_KEY = 'donLuciaModernCart_v3';
+            let cart = {};
+            let allProductsData = null; // Stores the product array once loaded
+            let featuredSwiper = null;
+            let currentCategoryFilter = 'Todos';
+            let currentSearchTerm = '';
+            let dataLoadError = false;
+            let isRenderingCart = false;
+            const WHATSAPP_NUMBER = '5355189657'; // Centralize WhatsApp number
+
+            // --- DOM Elements ---
             const productGrid = document.getElementById('productGrid');
-            try {
-                const response = await fetch('1products.json');
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
-                }
-                allProductsData = await response.json();
-                console.log("Productos cargados:", allProductsData.length);
-                initializePage();
-            } catch (error) {
-                console.error("No se pudieron cargar los productos:", error);
-                if (productGrid) {
-                     productGrid.innerHTML = '<p class="text-red-600 font-semibold text-center col-span-full py-10">❌ Error al cargar productos. Intenta refrescar.</p>';
-                }
-                const featuredSection = document.getElementById('featuredSection');
-                if(featuredSection) featuredSection.style.display = 'none';
-                const categoryFilters = document.getElementById('categoryFilters');
-                if(categoryFilters) categoryFilters.innerHTML = '<p class="text-red-500 text-xs">Error cargando categorías.</p>';
-            }
-        }
-
-        function initializePage() {
-            renderFeaturedProducts();
-            renderCategoryFilters();
-            renderProducts();
-            setupSearchListener();
-        }
-
-        function setupSearchListener() {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('input', (event) => {
-                    currentSearchTerm = event.target.value.trim();
-                    renderProducts();
-                });
-            }
-        }
-
-        function renderCategoryFilters() {
-            const filtersContainer = document.getElementById('categoryFilters');
-            if (!filtersContainer || !allProductsData || allProductsData.length === 0) {
-                if (filtersContainer) filtersContainer.innerHTML = '';
-                return;
-            }
-
-            const categories = ['Todos', ...new Set(allProductsData.map(p => p.category).filter(Boolean))].sort();
-            filtersContainer.innerHTML = '';
-
-            categories.forEach(category => {
-                const button = document.createElement('button');
-                button.textContent = category;
-                button.dataset.category = category;
-                button.classList.add('btn', 'btn-sm', 'transition-colors', 'duration-150');
-                if (category === currentCategoryFilter) {
-                    button.classList.add('btn-primary');
-                    button.classList.remove('btn-secondary', 'text-gray-600', 'hover:bg-gray-100');
-                } else {
-                    button.classList.add('btn-secondary', 'text-gray-600', 'hover:bg-gray-100');
-                    button.classList.remove('btn-primary');
-                }
-
-                button.addEventListener('click', () => {
-                    currentCategoryFilter = category;
-                    renderCategoryFilters();
-                    renderProducts();
-                });
-                filtersContainer.appendChild(button);
-            });
-        }
-
-        function triggerHapticFeedback(duration = 50) {
-            if (navigator.vibrate) {
-                try { navigator.vibrate(duration); }
-                catch (e) { console.warn("Could not trigger vibration", e); }
-            }
-        }
-
-        function getRelatedProducts(currentProductId, count, allProducts) {
-            const eligibleProducts = allProducts.filter(p => p.id !== currentProductId);
-            const shuffled = eligibleProducts.sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        function openFullScreenModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.classList.add('modal-open');
-            } else { console.error(`Modal with ID ${modalId} not found.`); }
-        }
-
-        function closeFullScreenModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                requestAnimationFrame(() => {
-                    const anyActive = document.querySelector('.modal-fullscreen.active');
-                    if (!anyActive) {
-                        document.body.classList.remove('modal-open');
-                    }
-                });
-            }
-        }
-
-        function closeAllFullscreenModals() {
-            document.querySelectorAll('.modal-fullscreen.active').forEach(modal => {
-                 closeFullScreenModal(modal.id);
-            });
-        }
-
-        function saveCart() {
-            try {
-                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-                updateCartDisplay();
-            } catch (e) { console.error("Error saving cart:", e); }
-        }
-
-        function loadCart() {
-            try {
-                const sc = localStorage.getItem(CART_STORAGE_KEY);
-                return sc ? JSON.parse(sc) : {};
-            } catch (e) { console.error("Error loading cart:", e); return {}; }
-        }
-
-        function showToast(message) {
-            const toastContainer = document.getElementById('toastContainer');
-            if (!toastContainer) return;
-            const toast = document.createElement('div');
-            toast.className = 'toast-notification';
-            toast.innerHTML = `
-                <svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>${message}</span>
-            `;
-            toastContainer.appendChild(toast);
-            requestAnimationFrame(() => { toast.classList.add('show'); });
-            const TOAST_DURATION = 3000;
-            setTimeout(() => {
-                toast.classList.remove('show');
-                toast.addEventListener('transitionend', () => {
-                    if (toast.parentNode === toastContainer) { toast.remove(); }
-                }, { once: true });
-                setTimeout(() => {
-                    if (toast.parentNode === toastContainer) { toast.remove(); }
-                }, 500);
-            }, TOAST_DURATION);
-        }
-
-        function handleAddToCart(productId, sourceButton = null) {
-             if (isNaN(productId)) return;
-             triggerHapticFeedback();
-             const id = parseInt(productId);
-             const product = allProductsData.find(p => p.id === id);
-             if (!product) { console.error(`Product with ID ${id} not found.`); return; }
-             cart[id] = (cart[id] || 0) + 1;
-             saveCart();
-             showToast(`"${product.name}" añadido al carrito!`);
-             if (sourceButton) {
-                const originalDisabled = sourceButton.disabled;
-                sourceButton.disabled = true;
-                setTimeout(() => { sourceButton.disabled = originalDisabled; }, 800);
-             }
-         }
-
-        function handleAddToCartFromDetails(event) {
-             const button = event.currentTarget;
-             const productId = parseInt(button.dataset.productId);
-             handleAddToCart(productId, button);
-        }
-
-        function renderCartItemsFs() {
-            const cartItemsContainerFs = document.getElementById('cartItemsFs');
-            const emptyCartMessageFs = document.getElementById('emptyCartMessageFs');
-            const cartSummaryDivFs = document.getElementById('cartSummaryFs');
-            if (!cartItemsContainerFs || !emptyCartMessageFs || !cartSummaryDivFs) return;
-            cartItemsContainerFs.innerHTML = '';
-            const cartKeys = Object.keys(cart);
-
-            let hasItems = false;
-            cartKeys.forEach(productIdStr => {
-                const productId = parseInt(productIdStr);
-                const quantity = cart[productId];
-                const product = allProductsData.find(p => p.id === productId);
-
-                if (product && quantity > 0) {
-                    hasItems = true;
-                    const cartItem = document.createElement('div');
-                    cartItem.classList.add('cart-item');
-                    cartItem.innerHTML = `
-                        <img src="${product.image}" alt="${product.name}" class="cart-item-image" loading="lazy">
-                        <div class="cart-item-details">
-                            <h4 class="cart-item-name">${product.name}</h4>
-                            <p class="cart-item-price">$${product.price.toFixed(2)}</p>
-                            <div class="flex items-center mt-1 quantity-controls">
-                                <button data-product-id="${productId}" data-action="decrease" aria-label="Disminuir cantidad"><svg xmlns="http://www.w3.org/2000/svg" class="heroicon-sm" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg></button>
-                                <span>${quantity}</span>
-                                <button data-product-id="${productId}" data-action="increase" aria-label="Aumentar cantidad"><svg xmlns="http://www.w3.org/2000/svg" class="heroicon-sm" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg></button>
-                            </div>
-                        </div>
-                        <button class="remove-button remove-from-cart" data-product-id="${productId}" title="Eliminar item" aria-label="Eliminar ${product.name}"><svg xmlns="http://www.w3.org/2000/svg" class="heroicon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
-                    `;
-                    cartItemsContainerFs.appendChild(cartItem);
-                } else if (!product && quantity > 0) {
-                    console.warn(`Producto con ID ${productId} en el carrito no encontrado en los datos actuales. Será ignorado.`);
-                     delete cart[productId];
-                     saveCart();
-                } else if (quantity <= 0) {
-                    delete cart[productId];
-                    saveCart();
-                }
-            });
-
-            if (hasItems) {
-                emptyCartMessageFs.classList.add('hidden');
-                cartSummaryDivFs.classList.remove('hidden');
-            } else {
-                emptyCartMessageFs.classList.remove('hidden');
-                cartSummaryDivFs.classList.add('hidden');
-            }
-
-            cartItemsContainerFs.querySelectorAll('button[data-product-id]').forEach(button => {
-                button.addEventListener('click', handleCartItemActionFs);
-            });
-            updateCartTotalFs();
-        }
-
-        function handleCartItemActionFs(event) {
-            const button = event.currentTarget;
-            const productIdStr = button.dataset.productId;
-            const action = button.dataset.action;
-            if (!productIdStr || !cart[productIdStr]) return;
-            triggerHapticFeedback();
-            const productId = parseInt(productIdStr);
-            if (action === 'increase') { cart[productId]++; }
-            else if (action === 'decrease') { cart[productId]--; if (cart[productId] <= 0) { delete cart[productId]; } }
-            else if (button.classList.contains('remove-from-cart')) { delete cart[productId]; }
-            else { return; }
-            saveCart();
-            renderCartItemsFs();
-        }
-
-        function updateCartTotalFs() {
-            const cartTotalElementFs = document.getElementById('cartTotalFs');
-            if (!cartTotalElementFs) return;
-            let total = 0;
-            for (const productId in cart) {
-                const product = allProductsData.find(p => p.id === parseInt(productId));
-                if (product && cart[productId] > 0) { total += product.price * cart[productId]; }
-            }
-            cartTotalElementFs.textContent = `$${total.toFixed(2)}`;
-        }
-
-        function clearCartFs() {
-            if (Object.keys(cart).length > 0 && confirm("¿Estás seguro de que quieres vaciar todo el carrito?")) {
-                triggerHapticFeedback(100);
-                cart = {};
-                saveCart();
-                renderCartItemsFs();
-            }
-        }
-
-        function checkoutFs() {
-            const cartKeys = Object.keys(cart).filter(key => cart[key] > 0);
-            if (cartKeys.length === 0) { alert('Tu carrito está vacío. Añade algunos productos antes de finalizar.'); return; }
-            let message = "🛍️ *Nuevo Pedido - Doña Lucía* 🛍️\n\nHola! Me gustaría pedir lo siguiente:\n\n";
-            let total = 0;
-            for (const pidStr in cart) {
-                const pid = parseInt(pidStr);
-                const quantity = cart[pid];
-                if (quantity > 0) {
-                    const p = allProductsData.find(pr => pr.id === pid);
-                    if (p) { const itemTotal = p.price * quantity; total += itemTotal; message += `▪️ ${p.name} (x${quantity}) - $${itemTotal.toFixed(2)}\n`; }
-                     else {
-                        console.warn(`Producto con ID ${pid} en carrito no encontrado para checkout.`);
-                        message += `▪️ Producto ID ${pid} (x${quantity}) - [Precio no disponible]\n`;
-                    }
-                }
-            }
-            message += `\n--------------------\n*Total Estimado:* $${total.toFixed(2)}\n\nEspero confirmación y detalles de entrega.\n¡Gracias! 😊`;
-            const whatsappNumber = '+5355189657';
-            if (!whatsappNumber || whatsappNumber === '+53XXXXXXXXXX' || whatsappNumber.length < 10) { alert("Error: El número de WhatsApp no parece estar configurado correctamente en el código (función checkoutFs). Por favor, contacta al administrador."); return; }
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function updateCartDisplay() {
-            const cartItemCountBadge = document.getElementById('cartItemCount');
-            const menuCartCount = document.getElementById('menuCartCount');
-            if (!cartItemCountBadge || !menuCartCount) return;
-            const totalItems = Object.values(cart).reduce((sum, qty) => sum + (qty || 0), 0);
-            cartItemCountBadge.textContent = totalItems;
-            cartItemCountBadge.style.display = totalItems > 0 ? 'inline-block' : 'none';
-            menuCartCount.textContent = totalItems;
-            if (totalItems > 0 && document.querySelector('.modal-fullscreen.active') === null) {
-                cartItemCountBadge.classList.add('transform', 'scale-125');
-                setTimeout(() => { cartItemCountBadge.classList.remove('transform', 'scale-125'); }, 150);
-            }
-            updateCartTotalFs();
-        }
-
-        function renderFeaturedProducts() {
+            const productGridStatus = document.getElementById('productGridStatus'); // Message inside grid
             const featuredWrapper = document.getElementById('featuredProductWrapper');
             const featuredSection = document.getElementById('featuredSection');
-            if (!featuredWrapper || !featuredSection) return;
-            const featuredProducts = allProductsData.filter(product => product.featured === true);
-
-            if (featuredProducts.length === 0) {
-                featuredSection.style.display = 'none';
-                return;
-            } else {
-                featuredSection.style.display = 'block';
-            }
-
-            featuredWrapper.innerHTML = '';
-            featuredProducts.forEach(product => {
-                const swiperSlide = document.createElement('div');
-                swiperSlide.classList.add('swiper-slide');
-                swiperSlide.innerHTML = `
-                    <div class="product-card featured-product-card w-full flex flex-col">
-                        <div class="relative"> <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy"> <span class="featured-badge">Destacado</span> </div>
-                        <div class="product-info">
-                            <div class="mb-auto"> <h3 class="product-name">${product.name}</h3> <p class="product-price">$${product.price.toFixed(2)}</p> </div>
-                            <button class="btn btn-secondary w-full mt-4 open-product-details text-sm" data-product-id="${product.id}"> Ver Detalles </button>
-                        </div> </div> `;
-                featuredWrapper.appendChild(swiperSlide);
-            });
-            initializeFeaturedSwiper(featuredProducts.length);
-            featuredWrapper.querySelectorAll('.open-product-details').forEach(button => { button.addEventListener('click', handleOpenProductDetails); });
-        }
-
-        function initializeFeaturedSwiper(featuredCount) {
-            if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
-            if (typeof Swiper === 'undefined') { console.error("Swiper library is not loaded."); return; }
-            const swiperContainer = document.querySelector('.featured-carousel');
-            if (!swiperContainer) { console.error("Swiper container '.featured-carousel' not found."); return; }
-            featuredSwiper = new Swiper('.featured-carousel', {
-                loop: featuredCount > 3, slidesPerView: 1.3, centeredSlides: true, spaceBetween: 15, grabCursor: true,
-                navigation: { nextEl: '.featured-carousel .swiper-button-next', prevEl: '.featured-carousel .swiper-button-prev', },
-                breakpoints: { 640: { slidesPerView: 2, spaceBetween: 20, centeredSlides: false, loop: featuredCount > 2, }, 1024: { slidesPerView: 3, spaceBetween: 25, centeredSlides: false, loop: featuredCount > 3, } },
-            });
-        }
-
-        function renderProducts() {
-            const productGrid = document.getElementById('productGrid');
-            if (!productGrid) return;
-
-            productGrid.innerHTML = '';
-
-            let filteredProducts = allProductsData;
-
-            if (currentCategoryFilter && currentCategoryFilter !== 'Todos') {
-                filteredProducts = filteredProducts.filter(p => p.category === currentCategoryFilter);
-            }
-
-            if (currentSearchTerm) {
-                const lowerSearchTerm = currentSearchTerm.toLowerCase();
-                filteredProducts = filteredProducts.filter(p =>
-                    p.name.toLowerCase().includes(lowerSearchTerm) ||
-                    (p.description && p.description.toLowerCase().includes(lowerSearchTerm))
-                );
-            }
-
-            if (filteredProducts.length === 0) {
-                 productGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full py-10">🤷‍♀️ No se encontraron productos que coincidan.</p>`;
-                 return;
-            }
-
-            filteredProducts.forEach(product => {
-                const productCard = document.createElement('div'); productCard.classList.add('product-card');
-                productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div> <h3 class="product-name">${product.name}</h3> <p class="product-price">$${product.price.toFixed(2)}</p> </div>
-                        <button class="btn btn-secondary w-full mt-2 open-product-details text-sm" data-product-id="${product.id}"> Ver Detalles </button>
-                    </div> `;
-                productGrid.appendChild(productCard);
-            });
-            productGrid.querySelectorAll('.open-product-details').forEach(button => { button.addEventListener('click', handleOpenProductDetails); });
-        }
-
-        function handleOpenProductDetails(event) {
-             const productId = parseInt(event.target.dataset.productId);
-             const product = allProductsData.find(p => p.id === productId);
-             const productDetailsContentFs = document.getElementById('productDetailsContentFs');
-             const productModalTitleFs = document.getElementById('productModalTitleFs');
-
-             if (product && productDetailsContentFs && productModalTitleFs) {
-                 const relatedProducts = getRelatedProducts(productId, 3, allProductsData);
-                 let relatedProductsHTML = '';
-                 if (relatedProducts.length > 0) {
-                     relatedProductsHTML = `
-                         <div class="mt-10 pt-6 border-t border-gray-200 related-products-section">
-                             <h4 class="text-lg font-semibold text-primary mb-4">También te podría gustar:</h4>
-                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                 ${relatedProducts.map(relatedProd => `
-                                     <div class="related-product-card border border-gray-100 rounded-md p-3 text-center hover:shadow-sm transition-shadow duration-200 flex flex-col items-center">
-                                         <img src="${relatedProd.image}" alt="${relatedProd.name}" class="w-20 h-20 object-cover mb-2 rounded" loading="lazy">
-                                         <h5 class="text-xs font-medium text-primary mb-1 leading-tight">${relatedProd.name}</h5>
-                                         <p class="text-sm font-semibold text-gray-700 mb-2">$${relatedProd.price.toFixed(2)}</p>
-                                         <button class="btn btn-secondary btn-xs w-full mt-auto open-product-details text-xs" data-product-id="${relatedProd.id}"> Ver </button>
-                                     </div> `).join('')} </div> </div> `; }
-                 productDetailsContentFs.innerHTML = `
-                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                         <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover" loading="lazy">
-                         <div class="flex flex-col h-full">
-                             <p class="text-secondary mb-4 text-sm">${product.description || 'Descripción no disponible.'}</p>
-                             <p class="text-3xl font-bold text-primary mb-5">$${product.price.toFixed(2)}</p>
-                             ${product.specifications && product.specifications.length > 0 ? `
-                                 <h4 class="font-semibold text-gray-600 mb-2 text-xs uppercase tracking-wider">Detalles:</h4>
-                                 <ul class="list-disc list-inside text-secondary mb-6 text-sm space-y-1 pl-1"> ${product.specifications.map(spec => `<li>${spec}</li>`).join('')} </ul> ` : ''}
-                             <button class="btn btn-primary w-full mt-auto add-to-cart-btn" data-product-id="${product.id}"> <svg xmlns="http://www.w3.org/2000/svg" class="heroicon heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg> Añadir al carrito </button>
-                         </div> </div> ${relatedProductsHTML} `;
-                 productModalTitleFs.textContent = product.name;
-                 const addToCartButton = productDetailsContentFs.querySelector('.add-to-cart-btn');
-                 if (addToCartButton) { addToCartButton.addEventListener('click', handleAddToCartFromDetails); }
-                 const relatedDetailButtons = productDetailsContentFs.querySelectorAll('.related-product-card .open-product-details');
-                 relatedDetailButtons.forEach(button => {
-                     button.addEventListener('click', (event) => {
-                         closeFullScreenModal('productModalFs');
-                         const relatedProductId = event.currentTarget.dataset.productId;
-                         setTimeout(() => { handleOpenProductDetails({ target: { dataset: { productId: relatedProductId } } }); }, 150); }); });
-                 openFullScreenModal('productModalFs');
-             } else {
-                 console.error(`Producto con ID ${productId} no encontrado o elementos del modal faltantes.`);
-             }
-         }
-
-        function openCartFsModal() { renderCartItemsFs(); openFullScreenModal('cartModalFs'); }
-
-        function openTutorialModal(isManual = false) {
-            const tutorialModal = document.getElementById('tutorialModal');
-            if (!tutorialModal) return;
-            if (document.querySelector('.modal-fullscreen.active')) return;
-            if (!isManual && hasClosedTutorialThisSession) return;
-            tutorialModal.classList.add('active');
-            const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
-            if (dontShowAgainCheckbox) dontShowAgainCheckbox.checked = false;
-        }
-
-        function closeTutorialModal() {
-            const tutorialModal = document.getElementById('tutorialModal');
-            const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
-            if (!tutorialModal) return;
-            if (dontShowAgainCheckbox && dontShowAgainCheckbox.checked) {
-                try { localStorage.setItem(TUTORIAL_SHOWN_KEY, 'true'); }
-                catch (e) { console.error("Error saving tutorial preference:", e); }
-            }
-            tutorialModal.classList.remove('active');
-            hasClosedTutorialThisSession = true;
-        }
-
-        function checkAndShowTutorial() {
-            try {
-                setTimeout(() => {
-                    if (document.querySelector('.modal-fullscreen.active')) return;
-                    const tutorialShown = localStorage.getItem(TUTORIAL_SHOWN_KEY);
-                    if (tutorialShown !== 'true') { openTutorialModal(false); }
-                }, 700);
-            } catch (e) {
-                console.error("Error reading tutorial preference:", e);
-                 setTimeout(() => {
-                     if (document.querySelector('.modal-fullscreen.active')) return;
-                     openTutorialModal(false);
-                }, 700);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            cart = loadCart();
-            loadProducts();
-            setupStaticEventListeners();
-            updateCartDisplay();
-            checkAndShowTutorial();
-        });
-
-        function setupStaticEventListeners() {
-            const menuBtn = document.getElementById('menuBtn');
-            const openCartBtn = document.getElementById('openCartBtn');
+            const searchInput = document.getElementById('searchInput');
+            const categoryFiltersContainer = document.getElementById('categoryFilters');
+            const productDetailsContentFs = document.getElementById('productDetailsContentFs');
+            const productModalTitleFs = document.getElementById('productModalTitleFs');
+            const cartItemsContainerFs = document.getElementById('cartItemsFs');
+            const cartTotalElementFs = document.getElementById('cartTotalFs');
+            const emptyCartMessageFs = document.getElementById('emptyCartMessageFs');
+            const cartSummaryDivFs = document.getElementById('cartSummaryFs');
             const clearCartBtnFs = document.getElementById('clearCartBtnFs');
             const checkoutBtnFs = document.getElementById('checkoutBtnFs');
-            const forceRefreshLink = document.getElementById('forceRefreshLink');
-            const tutorialModal = document.getElementById('tutorialModal');
-            const tutorialContent = tutorialModal?.querySelector('.tutorial-content');
-            const tutorialCloseBtnHeader = document.getElementById('tutorialCloseBtnHeader');
-            const tutorialCloseBtnFooter = document.getElementById('tutorialCloseBtnFooter');
-            const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
-            const openTutorialBtnMenu = document.getElementById('openTutorialBtnMenu');
-            const openTutorialBtnFooter = document.getElementById('openTutorialBtnFooter');
+            const menuBtn = document.getElementById('menuBtn'); // Hamburger
+            const openCartBtn = document.getElementById('openCartBtn');
+            const cartItemCountBadge = document.getElementById('cartItemCount'); // Shared Badge
+            const menuCartCount = document.getElementById('menuCartCount'); // Mobile Menu Count
+            const desktopCartCount = document.getElementById('desktopCartCount'); // Desktop Nav Count
+            const forceRefreshLinkMobile = document.getElementById('forceRefreshLinkMobile'); // Mobile refresh
+            const forceRefreshLinkDesktop = document.getElementById('forceRefreshLinkDesktop'); // Desktop refresh
+            const toastContainer = document.getElementById('toastContainer');
 
-            if (openCartBtn) openCartBtn.addEventListener('click', openCartFsModal);
-            if (menuBtn) menuBtn.addEventListener('click', () => openFullScreenModal('menuModalFs'));
+             // --- Utility Functions ---
+             function debounce(func, wait) { let timeout; return function executedFunction(...args) { const later = () => { clearTimeout(timeout); func.apply(this, args); }; clearTimeout(timeout); timeout = setTimeout(later, wait); }; }
+             function showConfirmation(message, onConfirm) { if (window.confirm(message)) { onConfirm(); } }
 
-            document.querySelectorAll('.modal-close-btn-fs').forEach(button => {
-                button.addEventListener('click', () => {
-                    const modalId = button.dataset.modalId;
-                    if (modalId) closeFullScreenModal(modalId);
-                    else console.warn("Close button missing data-modal-id");
-                });
-            });
+            // --- Data Loading ---
+            async function loadProducts() {
+                console.log('[App] Attempting to load products...');
+                if (productGridStatus) productGridStatus.innerHTML = `<svg class="animate-spin h-6 w-6 text-gray-400 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Cargando productos...`;
+                if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<span class="text-sm text-gray-500 italic">Cargando...</span>';
+                if (featuredSection) featuredSection.style.display = 'none'; // Hide featured initially
 
-            document.querySelectorAll('#menuModalFs .menu-link').forEach(link => {
-                link.addEventListener('click', (event) => {
-                    const targetModalId = link.dataset.targetModal;
-                    if (link.id !== 'forceRefreshLink' && link.id !== 'openTutorialBtnMenu') {
-                        event.preventDefault();
+                try {
+                    const response = await fetch(`1products.json?v=${Date.now()}`); // Cache-busting
+                    console.log(`[App] Fetch response status: ${response.status}`);
+                    if (!response.ok) {
+                        throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
                     }
+                    const jsonData = await response.json();
+                    if (!Array.isArray(jsonData)) {
+                        throw new Error("Formato de datos inválido: Se esperaba un array de productos.");
+                    }
+                    allProductsData = jsonData;
+                    dataLoadError = false;
+                    console.log(`[App] Products loaded successfully (${allProductsData.length} items).`);
 
-                    if (link.id === 'openTutorialBtnMenu') {
-                        closeAllFullscreenModals();
-                        hasClosedTutorialThisSession = false;
-                        setTimeout(() => openTutorialModal(true), 50);
-                        event.preventDefault();
-                    } else if (link.id === 'forceRefreshLink') {
-                        // Logic handled in its dedicated listener
-                    } else {
-                        closeFullScreenModal('menuModalFs');
-                        if (targetModalId) {
-                            setTimeout(() => {
-                                if (targetModalId === 'cartModalFs') { openCartFsModal(); }
-                                else { openFullScreenModal(targetModalId); }
-                            }, 50);
+                    // ---- SUCCESS -> Initialize Page Content ----
+                    initializePageContent();
+                    updateCartDisplay(); // Update cart counts and totals
+
+                } catch (error) {
+                    console.error("[Error] Failed to load or process products:", error);
+                    dataLoadError = true;
+                    allProductsData = []; // Ensure it's an empty array on error
+
+                    // ---- ERROR -> Display Error Messages ----
+                    if (productGrid) productGrid.innerHTML = ''; // Clear grid content
+                    if (productGridStatus) {
+                        productGridStatus.innerHTML = `<p class="text-red-600 font-semibold text-center col-span-full py-10">❌ Error al cargar los productos.<br>Asegúrate de que el archivo '1products.json' existe, es válido y está en la misma carpeta.<br> Intenta <a href="#" onclick="window.location.reload(true); return false;" class="underline hover:text-red-800">refrescar la página</a> o revisa la consola (F12).</p>`;
+                        productGridStatus.classList.remove('hidden'); // Make sure status is visible
+                         productGrid.appendChild(productGridStatus); // Append status message into the grid area
+                    }
+                     if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<p class="text-red-500 text-xs">Error al cargar categorías.</p>';
+                    if (featuredSection) featuredSection.style.display = 'none'; // Keep featured hidden
+
+                    updateCartDisplay(); // Update cart (may show loading/error state there too)
+                    showToast("Error cargando datos. Revisa la consola (F12).", "error");
+                }
+            }
+
+            // --- Initial Page Setup (Called AFTER successful data load) ---
+            function initializePageContent() {
+                console.log('[App] Initializing page content...');
+                renderFeaturedProducts(); // Render featured section first
+                renderCategoryFilters();
+                renderProducts(); // Render the main grid
+                setupSearchListener(); // Set up search only after data is ready
+                console.log('[App] Page content initialized.');
+            }
+
+            // --- Modals ---
+            function openFullScreenModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('active'); document.body.classList.add('modal-open'); const b = m.querySelector('.modal-body-fs'); if(b) b.scrollTop = 0; } else console.error(`[Modal] Modal con ID '${id}' no encontrado.`); }
+            function closeFullScreenModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('active'); requestAnimationFrame(() => { if (!document.querySelector('.modal-fullscreen.active')) document.body.classList.remove('modal-open'); }); } }
+
+            // --- Cart Persistence ---
+            function saveCart() { try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); updateCartDisplay(); } catch (e) { console.error("[Cart] Error saving cart to localStorage:", e); showToast("Error al guardar carrito", "error"); } }
+            function loadCart() { try { const s = localStorage.getItem(CART_STORAGE_KEY); if (!s) return {}; const p = JSON.parse(s); if (typeof p === 'object' && p !== null) { const c = {}; for (const k in p) { const id = parseInt(k), q = p[k]; if (!isNaN(id) && typeof q === 'number' && q > 0 && Number.isInteger(q)) c[id] = q; } console.log('[Cart] Cart loaded from localStorage:', c); return c; } throw new Error("Invalid cart data format"); } catch (e) { console.error("[Cart] Error loading cart from localStorage:", e); localStorage.removeItem(CART_STORAGE_KEY); return {}; } }
+
+            // --- Featured Products (Swiper) ---
+            function renderFeaturedProducts() {
+                if (!featuredWrapper || !featuredSection) { console.warn('[Featured] Missing featured DOM elements.'); return; }
+                if (!Array.isArray(allProductsData) || dataLoadError || allProductsData.length === 0) {
+                    console.log('[Featured] No data or error, hiding section.');
+                    featuredSection.style.display = 'none';
+                    if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
+                    return;
+                }
+                const featuredProducts = allProductsData.filter(p => p.featured);
+                console.log(`[Featured] Found ${featuredProducts.length} featured products.`);
+                if (featuredProducts.length === 0) {
+                    featuredSection.style.display = 'none';
+                    if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
+                    return;
+                }
+
+                featuredWrapper.innerHTML = ''; // Clear previous slides
+                featuredProducts.forEach(p => {
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide h-auto'; // Swiper needs this class
+                    slide.innerHTML = `
+                        <div class="product-card featured-product-card w-full h-full flex flex-col">
+                            <div class="relative">
+                                <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                                <span class="featured-badge">Destacado</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="mb-auto">
+                                    <h3 class="product-name">${p.name}</h3>
+                                    <p class="product-price">$${p.price.toFixed(2)}</p>
+                                </div>
+                                <button class="btn btn-secondary w-full mt-4 open-product-details text-sm" data-product-id="${p.id}">Ver Detalles</button>
+                            </div>
+                        </div>`;
+                    slide.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
+                    featuredWrapper.appendChild(slide);
+                });
+
+                featuredSection.style.display = 'block'; // Show the section
+                initializeFeaturedSwiper(featuredProducts.length);
+            }
+
+            function initializeFeaturedSwiper(count) {
+                if (featuredSwiper) {
+                    featuredSwiper.destroy(true, true);
+                    featuredSwiper = null;
+                    console.log('[Swiper] Destroyed previous instance.');
+                }
+                if (typeof Swiper === 'undefined') { console.warn("[Swiper] Swiper library not loaded."); return; }
+
+                const container = document.querySelector('.featured-carousel');
+                if (!container || count === 0) { console.log('[Swiper] No container or no slides.'); return; }
+
+                // Determine max slides visible for loop calculation
+                const breakpoints = { 640: 2, 1024: 3, 1280: 4 };
+                let maxSlides = 1.3; // Mobile default
+                for(const bp in breakpoints) { if (window.innerWidth >= parseInt(bp)) maxSlides = breakpoints[bp]; }
+
+                console.log(`[Swiper] Initializing with ${count} slides. Max visible: ${maxSlides}`);
+                featuredSwiper = new Swiper(container, {
+                    loop: count > maxSlides, // Enable loop only if more slides than visible
+                    slidesPerView: 1.3,
+                    spaceBetween: 15,
+                    centeredSlides: count <= 1, // Center only if 1 slide shown
+                    grabCursor: true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        640: { slidesPerView: 2, spaceBetween: 20, centeredSlides: count <= 2 },
+                        1024: { slidesPerView: 3, spaceBetween: 25, centeredSlides: count <= 3 },
+                        1280: { slidesPerView: 4, spaceBetween: 25, centeredSlides: count <= 4 }
+                    },
+                    on: { // Add event listener for init
+                        init: function () {
+                            container.classList.add('swiper-initialized'); // Add class to show nav buttons
+                             console.log('[Swiper] Initialized.');
+                        },
+                    },
+                });
+            }
+
+            // --- Search & Filter ---
+            function setupSearchListener() {
+                 if (searchInput) {
+                    searchInput.addEventListener('input', debounce(() => {
+                        currentSearchTerm = searchInput.value.trim().toLowerCase();
+                         console.log(`[Search] Term updated: "${currentSearchTerm}"`);
+                        renderProducts(); // Re-render the grid based on new search term
+                    }, 300)); // Debounce search input
+                 } else {
+                     console.warn('[Search] Search input element not found.');
+                 }
+            }
+
+            function renderCategoryFilters() {
+                 if (!categoryFiltersContainer) { console.warn('[Filter] Category container not found.'); return; }
+                 if (!Array.isArray(allProductsData) || dataLoadError) {
+                     categoryFiltersContainer.innerHTML = dataLoadError ? '<p class="text-red-500 text-xs">Error</p>' : '<span class="text-sm text-gray-500 italic">...</span>';
+                     return;
+                 }
+                 // Extract unique categories, add "Todos", and sort
+                 const categories = ['Todos', ...new Set(allProductsData.map(p => p.category).filter(Boolean))].sort((a, b) => {
+                     if (a === 'Todos') return -1; if (b === 'Todos') return 1; return a.localeCompare(b);
+                 });
+
+                 console.log('[Filter] Rendering categories:', categories);
+                 categoryFiltersContainer.innerHTML = ''; // Clear previous filters
+                 categories.forEach(cat => {
+                     const button = document.createElement('button');
+                     button.textContent = cat;
+                     button.dataset.category = cat;
+                     // Apply active style if it matches the current filter
+                     const isActive = cat === currentCategoryFilter;
+                     button.className = `btn btn-sm transition-colors duration-150 ease-in-out ${isActive ? 'btn-primary' : 'btn-secondary text-gray-600 hover:bg-gray-100'}`;
+                     button.onclick = () => {
+                         currentCategoryFilter = cat; // Update state
+                         console.log(`[Filter] Category selected: "${currentCategoryFilter}"`);
+                         renderCategoryFilters(); // Re-render filters to update active style
+                         renderProducts(); // Re-render products for the selected category
+                     };
+                     categoryFiltersContainer.appendChild(button);
+                 });
+            }
+
+            // --- Render Products ---
+            function renderProducts() {
+                if (!productGrid) { console.error("[Render] Product grid container not found."); return; }
+                if (!productGridStatus) { console.warn("[Render] Product grid status element not found."); }
+
+                // Handle loading/error state for product data
+                if (!Array.isArray(allProductsData)) {
+                    if (dataLoadError) {
+                         // Error message is already handled by loadProducts
+                         console.log('[Render] Cannot render products due to data load error.');
+                     } else {
+                         console.log('[Render] Waiting for product data...');
+                        if (productGridStatus) productGridStatus.classList.remove('hidden'); // Show loading message
+                    }
+                    return; // Exit if data isn't ready or failed to load
+                }
+
+                console.log(`[Render] Rendering products. Filter: "${currentCategoryFilter}", Search: "${currentSearchTerm}"`);
+
+                // Filter products based on category and search term
+                let filteredProducts = allProductsData;
+                if (currentCategoryFilter !== 'Todos') {
+                    filteredProducts = filteredProducts.filter(p => p.category === currentCategoryFilter);
+                }
+                if (currentSearchTerm) {
+                    const terms = currentSearchTerm.split(' ').filter(t => t.length > 0);
+                    filteredProducts = filteredProducts.filter(p => {
+                        const nameLower = p.name.toLowerCase();
+                        const descLower = (p.description || '').toLowerCase();
+                        // Check if *all* search terms are present in name or description
+                        return terms.every(term => nameLower.includes(term) || descLower.includes(term));
+                    });
+                }
+
+                productGrid.innerHTML = ''; // Clear previous products or loading message
+
+                 if (filteredProducts.length === 0) {
+                     console.log('[Render] No products match filters.');
+                    // Display appropriate "no results" message
+                     const message = currentSearchTerm
+                        ? `No se encontraron productos para "${searchInput.value}".`
+                        : (currentCategoryFilter !== 'Todos'
+                            ? `No hay productos en la categoría "${currentCategoryFilter}".`
+                            : `🤷‍♀️ No hay productos disponibles en este momento.`);
+                     productGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full py-10">${message}</p>`;
+                 } else {
+                     console.log(`[Render] Displaying ${filteredProducts.length} products.`);
+                    // Create and append product cards
+                     filteredProducts.forEach(p => {
+                         const productCardElement = document.createElement('div');
+                         productCardElement.className = 'product-card'; // Use existing class
+                         productCardElement.innerHTML = `
+                            <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                            <div class="product-info">
+                                <div>
+                                    <h3 class="product-name">${p.name}</h3>
+                                    <p class="product-price">$${p.price.toFixed(2)}</p>
+                                </div>
+                                <button class="btn btn-secondary w-full mt-2 open-product-details text-sm" data-product-id="${p.id}">Detalles</button>
+                            </div>`;
+                         // Add event listener to the button inside this card
+                        productCardElement.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
+                        productGrid.appendChild(productCardElement);
+                     });
+                 }
+                 // Hide the initial status message if it exists and products are rendered or "no results" shown
+                 if (productGridStatus) productGridStatus.classList.add('hidden');
+            }
+
+            // --- Product Modal ---
+             function handleOpenProductDetails(event) {
+                 const productId = parseInt(event.currentTarget.dataset.productId);
+                 console.log(`[Product Modal] Opening details for ID: ${productId}`);
+                 if (isNaN(productId)) { console.warn('[Product Modal] Invalid product ID.'); return; }
+                 if (!Array.isArray(allProductsData)) { showToast("Datos de productos no están listos.", "error"); return; }
+
+                 const product = allProductsData.find(p => p.id === productId);
+                 if (!product) { showToast("Error: No se pudo encontrar el producto.", "error"); return; }
+
+                 if (productDetailsContentFs && productModalTitleFs) {
+                     const relatedProducts = getRelatedProducts(productId, 3);
+                     let relatedHTML = '';
+                     if (relatedProducts.length > 0) {
+                        console.log(`[Product Modal] Found ${relatedProducts.length} related products.`);
+                         relatedHTML = `
+                             <div class="mt-10 pt-6 border-t border-gray-200">
+                                 <h4 class="text-lg font-semibold text-primary mb-4">También te podría gustar:</h4>
+                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                     ${relatedProducts.map(rp => `
+                                         <div class="related-product-card border border-gray-100 rounded-md p-3 text-center hover:shadow-sm flex flex-col items-center bg-white transition-shadow duration-200">
+                                             <img src="${rp.image}" alt="${rp.name}" class="w-20 h-20 object-cover mb-2 rounded" loading="lazy">
+                                             <h5 class="text-xs font-medium text-primary mb-1 leading-tight">${rp.name}</h5>
+                                             <p class="text-sm font-semibold text-gray-700 mb-2">$${rp.price.toFixed(2)}</p>
+                                             <button class="btn btn-secondary btn-xs w-full mt-auto related-details-btn text-xs py-1 px-2" data-product-id="${rp.id}">Ver</button>
+                                         </div>`).join('')}
+                                 </div>
+                             </div>`;
+                     }
+
+                     productDetailsContentFs.innerHTML = `
+                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                             <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover border border-gray-100">
+                             <div class="flex flex-col h-full">
+                                 <p class="text-secondary mb-4 text-sm">${product.description || 'Descripción no disponible.'}</p>
+                                 <p class="text-3xl font-bold text-primary mb-5">$${product.price.toFixed(2)}</p>
+                                 ${product.specifications?.length ? `
+                                     <h4 class="font-semibold text-gray-600 mb-2 text-xs uppercase tracking-wider">Especificaciones:</h4>
+                                     <ul class="list-disc list-inside text-secondary mb-6 text-sm space-y-1 pl-1">
+                                         ${product.specifications.map(s => `<li>${s}</li>`).join('')}
+                                     </ul>` : ''}
+                                 <button class="btn btn-primary w-full mt-auto add-to-cart-btn" data-product-id="${product.id}">
+                                     <svg class="heroicon heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
+                                     Añadir al carrito
+                                 </button>
+                             </div>
+                         </div>
+                         ${relatedHTML}`;
+
+                     productModalTitleFs.textContent = product.name;
+                     // Add listeners for buttons inside the modal
+                     productDetailsContentFs.querySelector('.add-to-cart-btn')?.addEventListener('click', handleAddToCartFromDetails);
+                     productDetailsContentFs.querySelectorAll('.related-details-btn').forEach(button => button.addEventListener('click', handleRelatedProductClick));
+
+                     openFullScreenModal('productModalFs');
+                 } else {
+                     console.error('[Product Modal] Modal content or title element not found.');
+                 }
+             }
+
+            function getRelatedProducts(currentProductId, count = 3) {
+                 if (!Array.isArray(allProductsData)) return [];
+                 const currentProduct = allProductsData.find(p => p.id === currentProductId);
+                 const currentCategory = currentProduct?.category;
+
+                 // Filter out the current product
+                 const otherProducts = allProductsData.filter(p => p.id !== currentProductId);
+
+                 // Prioritize products from the same category
+                 let related = [];
+                 let remaining = [];
+                 if (currentCategory) {
+                     related = otherProducts.filter(p => p.category === currentCategory);
+                     remaining = otherProducts.filter(p => p.category !== currentCategory);
+                 } else {
+                     remaining = otherProducts; // No category to match
+                 }
+
+                 // Shuffle both lists for variety
+                 related.sort(() => 0.5 - Math.random());
+                 remaining.sort(() => 0.5 - Math.random());
+
+                 // Combine, prioritizing same category, and take the required count
+                 const combined = [...related, ...remaining];
+                 return combined.slice(0, count);
+             }
+
+            function handleRelatedProductClick(event) {
+                 const relatedProductId = event.currentTarget.dataset.productId;
+                 console.log(`[Product Modal] Clicked related product ID: ${relatedProductId}`);
+                 closeFullScreenModal('productModalFs');
+                 // Use setTimeout to allow the close animation to start before opening the new one
+                 setTimeout(() => {
+                     // Simulate the event object needed by handleOpenProductDetails
+                     handleOpenProductDetails({ currentTarget: { dataset: { productId: relatedProductId } } });
+                 }, 150); // Adjust delay if needed
+             }
+
+
+            // --- Cart ---
+            function handleAddToCart(productId, buttonElement = null) {
+                const id = parseInt(productId);
+                if (isNaN(id)) { console.warn('[Cart] Invalid product ID for add.'); return; }
+                if (!Array.isArray(allProductsData)) { showToast("Error: Datos de productos no cargados.", "error"); return; }
+
+                const product = allProductsData.find(p => p.id === id);
+                if (!product) { showToast("Error: Producto no encontrado.", "error"); return; }
+
+                console.log(`[Cart] Adding product ID ${id} (${product.name})`);
+                cart[id] = (cart[id] || 0) + 1; // Increment quantity
+                saveCart(); // Save and trigger UI update
+                showToast(`"${product.name}" añadido al carrito`, 'success');
+
+                // Visual feedback on the button
+                if (buttonElement) {
+                    const originalHTML = buttonElement.innerHTML;
+                    const originalClassName = buttonElement.className;
+                    buttonElement.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`; // Loading spinner
+                    buttonElement.className = 'btn w-full mt-auto bg-green-500 text-white border-green-500 cursor-default pointer-events-none flex justify-center items-center'; // Green bg, disable
+                    buttonElement.disabled = true;
+
+                    setTimeout(() => {
+                        if (document.body.contains(buttonElement)) { // Check if button still exists
+                            buttonElement.innerHTML = `<svg class="heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg> Añadido`;
                         }
-                    }
+                    }, 700); // Show checkmark after spinner
+
+                    setTimeout(() => {
+                         if (document.body.contains(buttonElement)) {
+                            buttonElement.innerHTML = originalHTML;
+                            buttonElement.className = originalClassName;
+                            buttonElement.disabled = false;
+                        }
+                    }, 1500); // Restore original state
+                }
+            }
+
+             function handleAddToCartFromDetails(event) {
+                handleAddToCart(event.currentTarget.dataset.productId, event.currentTarget);
+            }
+
+             function renderCartItemsFs() {
+                 if (isRenderingCart) { console.log('[Cart Render] Already rendering, skipping.'); return; }
+                 isRenderingCart = true;
+
+                 if (!cartItemsContainerFs || !emptyCartMessageFs || !cartSummaryDivFs) {
+                     console.error("[Cart Render] Essential Cart UI elements are missing.");
+                     isRenderingCart = false; return;
+                 }
+
+                 console.log('[Cart Render] Rendering cart items...');
+                 cartItemsContainerFs.innerHTML = ''; // Clear previous items
+                 const cartKeys = Object.keys(cart).map(k => parseInt(k)).filter(k => !isNaN(k) && cart[k] > 0);
+                 let hasVisibleItems = false;
+
+                 if (!Array.isArray(allProductsData)) {
+                     emptyCartMessageFs.textContent = dataLoadError ? "Error al cargar datos." : "Cargando datos...";
+                     emptyCartMessageFs.classList.remove('hidden');
+                     cartSummaryDivFs.classList.add('hidden');
+                     console.log('[Cart Render] Cannot render items, product data not ready.');
+                 } else if (cartKeys.length === 0) {
+                     emptyCartMessageFs.textContent = "Tu carrito está vacío.";
+                     emptyCartMessageFs.classList.remove('hidden');
+                     cartSummaryDivFs.classList.add('hidden');
+                     console.log('[Cart Render] Cart is empty.');
+                 } else {
+                     emptyCartMessageFs.classList.add('hidden'); // Hide empty message
+                     cartSummaryDivFs.classList.remove('hidden'); // Show summary
+                     console.log(`[Cart Render] Processing ${cartKeys.length} items.`);
+
+                     cartKeys.forEach(productId => {
+                         const quantity = cart[productId];
+                         const product = allProductsData.find(p => p.id === productId);
+
+                         if (product) {
+                             hasVisibleItems = true;
+                             const itemElement = document.createElement('div');
+                             itemElement.className = 'cart-item';
+                             itemElement.dataset.productId = productId;
+                             itemElement.innerHTML = `
+                                 <img src="${product.image}" alt="${product.name}" class="cart-item-image" loading="lazy">
+                                 <div class="cart-item-details">
+                                     <h4 class="cart-item-name">${product.name}</h4>
+                                     <p class="cart-item-price">$${product.price.toFixed(2)} cada uno</p>
+                                     <div class="flex items-center mt-1 quantity-controls">
+                                         <button data-product-id="${productId}" data-action="decrease" aria-label="Disminuir cantidad de ${product.name}" class="btn btn-xs bg-gray-200 text-gray-600 hover:bg-gray-300 rounded-full p-1 leading-none" ${quantity <= 1 ? 'disabled' : ''}>
+                                             <svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                                         </button>
+                                         <span class="quantity-display mx-2">${quantity}</span>
+                                         <button data-product-id="${productId}" data-action="increase" aria-label="Aumentar cantidad de ${product.name}" class="btn btn-xs bg-gray-200 text-gray-600 hover:bg-gray-300 rounded-full p-1 leading-none">
+                                             <svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                                         </button>
+                                     </div>
+                                 </div>
+                                 <button class="remove-button remove-from-cart ml-2" data-product-id="${productId}" title="Eliminar ${product.name} del carrito" aria-label="Eliminar ${product.name} del carrito">
+                                     <svg class="heroicon-sm w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                 </button>`;
+                             // Add listeners for buttons inside this item
+                             itemElement.querySelector('[data-action="decrease"]').onclick = handleCartItemActionFs;
+                             itemElement.querySelector('[data-action="increase"]').onclick = handleCartItemActionFs;
+                             itemElement.querySelector('.remove-from-cart').onclick = handleCartItemActionFs;
+                             cartItemsContainerFs.appendChild(itemElement);
+                         } else {
+                             console.warn(`[Cart Render] Product ID ${productId} in cart but not found in data. Removing.`);
+                             delete cart[productId];
+                             saveCart(); // Auto-clean invalid item (will trigger another render)
+                         }
+                     });
+
+                     // Handle edge case where all items were invalid and removed
+                     if (!hasVisibleItems && cartKeys.length > 0) {
+                         emptyCartMessageFs.textContent = "Error al mostrar items. Intenta recargar.";
+                         emptyCartMessageFs.classList.remove('hidden');
+                         cartSummaryDivFs.classList.add('hidden');
+                         console.log('[Cart Render] No valid items rendered, showing error.');
+                     } else if (!hasVisibleItems && cartKeys.length === 0) {
+                         emptyCartMessageFs.textContent = "Tu carrito está vacío.";
+                         emptyCartMessageFs.classList.remove('hidden');
+                         cartSummaryDivFs.classList.add('hidden');
+                         console.log('[Cart Render] Cart became empty after removing invalid items.');
+                     }
+                 }
+                 isRenderingCart = false;
+                 console.log('[Cart Render] Finished rendering.');
+             }
+
+            function handleCartItemActionFs(event) {
+                 const button = event.currentTarget;
+                 const productIdStr = button.dataset.productId;
+                 const action = button.dataset.action || (button.classList.contains('remove-from-cart') ? 'remove' : null);
+                 const productId = parseInt(productIdStr);
+
+                 if (isNaN(productId) || !action) {
+                     console.warn(`[Cart Action] Invalid action or product ID: Action=${action}, ID=${productIdStr}`);
+                     return;
+                 }
+                 console.log(`[Cart Action] Action: ${action}, Product ID: ${productId}`);
+
+                 let cartChanged = false;
+                 if (action === 'increase') {
+                     cart[productId] = (cart[productId] || 0) + 1;
+                     cartChanged = true;
+                 } else if (action === 'decrease') {
+                     if (cart[productId] && cart[productId] > 1) {
+                         cart[productId]--;
+                         cartChanged = true;
+                     } else if (cart[productId] === 1) {
+                         // Decreasing from 1 means remove
+                         delete cart[productId];
+                         cartChanged = true;
+                          showToast("Producto eliminado del carrito", "info");
+                     }
+                 } else if (action === 'remove') {
+                     if (cart[productId]) {
+                         delete cart[productId];
+                         cartChanged = true;
+                         showToast("Producto eliminado del carrito", "info");
+                     }
+                 }
+
+                 if (cartChanged) {
+                     saveCart(); // Save and trigger UI update (which includes re-rendering)
+                 } else {
+                     console.warn(`[Cart Action] Action "${action}" for product ${productId} resulted in no change.`);
+                 }
+            }
+
+            function updateCartTotalFs() {
+                 if (!cartTotalElementFs || !checkoutBtnFs) { console.warn('[Cart Total] Total or checkout button element not found.'); return; }
+
+                 let total = 0;
+                 let canCalculate = false;
+                 if (Array.isArray(allProductsData)) {
+                     canCalculate = true;
+                     for (const pidStr in cart) {
+                         const pid = parseInt(pidStr);
+                         const quantity = cart[pid];
+                         const product = allProductsData.find(p => p.id === pid);
+                         if (product && quantity > 0) {
+                             total += product.price * quantity;
+                         } else if (quantity > 0) {
+                             // Product ID in cart but not in data - indicates an issue
+                             canCalculate = false;
+                              console.warn(`[Cart Total] Cannot accurately calculate total, missing data for product ID ${pid}`);
+                             break;
+                         }
+                     }
+                 }
+
+                 if (canCalculate) {
+                     cartTotalElementFs.textContent = `$${total.toFixed(2)}`;
+                     checkoutBtnFs.disabled = total <= 0; // Enable only if total > 0
+                     console.log(`[Cart Total] Updated total: $${total.toFixed(2)}, Checkout enabled: ${!checkoutBtnFs.disabled}`);
+                 } else {
+                     cartTotalElementFs.textContent = `$?.??`;
+                     checkoutBtnFs.disabled = true;
+                     console.log('[Cart Total] Cannot calculate total, checkout disabled.');
+                 }
+            }
+
+            function clearCartFs() {
+                 const itemCount = Object.keys(cart).length;
+                 if (itemCount > 0) {
+                     showConfirmation('¿Estás seguro de que quieres vaciar todo el carrito?', () => {
+                         console.log('[Cart] Clearing cart.');
+                         cart = {};
+                         saveCart(); // Save the empty cart and trigger UI update
+                         showToast('Carrito vaciado', 'info');
+                     });
+                 } else {
+                     showToast('El carrito ya está vacío.', 'info');
+                 }
+            }
+
+            function checkoutFs() {
+                 const validCartKeys = Object.keys(cart).filter(k => cart[k] > 0 && !isNaN(parseInt(k)));
+                 if (validCartKeys.length === 0) {
+                     showToast('Tu carrito está vacío. Añade productos antes de finalizar.', "error");
+                     return;
+                 }
+                 if (!Array.isArray(allProductsData)) {
+                     showToast("Error: Datos de productos no disponibles. Intenta recargar.", "error");
+                     return;
+                 }
+                 if (WHATSAPP_NUMBER === 'YOUR_NUMBER_HERE' || WHATSAPP_NUMBER.length < 10) {
+                    console.error("WhatsApp number not configured correctly in WHATSAPP_NUMBER constant.");
+                    showToast("Error de configuración interna. Contacta al administrador.", "error");
+                    return;
+                }
+
+
+                 let messageBody = "";
+                 let grandTotal = 0;
+                 let productsFound = true;
+
+                 validCartKeys.forEach(pidStr => {
+                     const pid = parseInt(pidStr);
+                     const quantity = cart[pid];
+                     const product = allProductsData.find(p => p.id === pid);
+                     if (product) {
+                         const itemTotal = product.price * quantity;
+                         grandTotal += itemTotal;
+                         // Format: Checkmark, Bold Name, (Quantity), Price
+                         messageBody += `✅ *${product.name}* (x${quantity}) - $${itemTotal.toFixed(2)}\n`;
+                     } else {
+                         messageBody += `❓ _[ID ${pid} no encontrado]_ (x${quantity})\n`;
+                         productsFound = false; // Mark if any product details were missing
+                     }
+                 });
+
+                 // Construct the final WhatsApp message
+                 let finalMessage = `🎉 *¡Nuevo Pedido Doña Lucía!* 🎉\n\nHola! Me gustaría realizar el siguiente pedido:\n\n`;
+                 finalMessage += `-----------\n`;
+                 finalMessage += `${messageBody}`; // Add the list of items
+                 finalMessage += `-----------\n`;
+                 finalMessage += `💰 *Total Estimado:* $${grandTotal.toFixed(2)}\n\n`;
+
+                 if (!productsFound) {
+                     finalMessage += `_(Nota: Algunos detalles de productos pueden faltar. Por favor confirmar.)_\n\n`;
+                 }
+
+                 finalMessage += `📍 _Espero confirmación de disponibilidad y detalles para la entrega._\n\n`;
+                 finalMessage += `¡Muchas gracias! 🙏`;
+
+                 // Encode and open WhatsApp link
+                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`;
+                 console.log("[Checkout] Opening WhatsApp URL:", whatsappUrl);
+                 window.open(whatsappUrl, '_blank'); // Open in a new tab
+            }
+
+
+            // --- Cart Display Update (Counters) ---
+            function updateCartDisplay() {
+                 const totalItems = Object.values(cart).reduce((sum, qty) => sum + (qty || 0), 0);
+                 console.log(`[Cart Display] Updating counts. Total items: ${totalItems}`);
+
+                 // Update badge counter
+                 if (cartItemCountBadge) {
+                     cartItemCountBadge.textContent = totalItems;
+                     cartItemCountBadge.style.display = totalItems > 0 ? 'inline-block' : 'none';
+                     // Simple scale animation on change (if badge was already visible)
+                     const prevCount = parseInt(cartItemCountBadge.dataset.prevCount || '0');
+                     if (totalItems > 0 && totalItems !== prevCount && !document.querySelector('.modal-fullscreen.active')) {
+                         cartItemCountBadge.classList.add('transform', 'scale-125', 'transition-transform', 'duration-150', 'ease-out');
+                         setTimeout(() => cartItemCountBadge.classList.remove('transform', 'scale-125'), 150);
+                     }
+                     cartItemCountBadge.dataset.prevCount = totalItems.toString();
+                 }
+
+                 // Update text counters
+                 if (menuCartCount) menuCartCount.textContent = totalItems;
+                 if (desktopCartCount) desktopCartCount.textContent = totalItems;
+
+                 // Render items and update total (important for enabling/disabling checkout)
+                 // This needs to happen regardless of whether the cart modal is open
+                 renderCartItemsFs();
+                 updateCartTotalFs();
+            }
+
+
+            // --- Toasts ---
+            function showToast(message, type = 'info', duration = 3000) {
+                if (!toastContainer) return;
+                const toast = document.createElement('div');
+                toast.className = 'toast-notification';
+                let icon = '';
+                let bgColorClass = 'bg-gray-800'; // Default: info
+
+                switch (type) {
+                    case 'success':
+                        icon = `<svg class="toast-icon text-green-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`;
+                        bgColorClass = 'bg-green-600'; break;
+                    case 'error':
+                        icon = `<svg class="toast-icon text-red-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>`;
+                        bgColorClass = 'bg-red-600'; break;
+                    case 'info':
+                        icon = `<svg class="toast-icon text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`;
+                        bgColorClass = 'bg-blue-600'; break;
+                }
+                toast.classList.add(bgColorClass);
+                toast.innerHTML = `${icon}<span class="flex-grow">${message}</span>`;
+                toastContainer.appendChild(toast);
+
+                // Trigger animation
+                requestAnimationFrame(() => { toast.classList.add('show'); });
+
+                // Auto-dismiss
+                const dismissTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+                    // Fallback removal if transitionend doesn't fire reliably
+                    setTimeout(() => { if(toast.parentNode) toast.remove(); }, 500);
+                }, duration);
+
+                // Click to dismiss
+                toast.addEventListener('click', () => {
+                    clearTimeout(dismissTimeout);
+                    toast.classList.remove('show');
+                     toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+                     setTimeout(() => { if(toast.parentNode) toast.remove(); }, 500);
+                }, { once: true });
+            }
+
+
+            // --- Event Listeners Setup ---
+            function setupStaticEventListeners() {
+                console.log('[Events] Setting up static event listeners...');
+                // Cart button
+                if (openCartBtn) openCartBtn.addEventListener('click', () => openFullScreenModal('cartModalFs'));
+
+                // Mobile menu button
+                if (menuBtn) menuBtn.addEventListener('click', () => openFullScreenModal('menuModalFs'));
+
+                // All modal close buttons
+                document.querySelectorAll('.modal-close-btn-fs').forEach(button => {
+                    button.addEventListener('click', () => closeFullScreenModal(button.dataset.modalId));
                 });
-            });
 
-            if (clearCartBtnFs) clearCartBtnFs.addEventListener('click', clearCartFs);
-            if (checkoutBtnFs) checkoutBtnFs.addEventListener('click', checkoutFs);
+                // Links inside the mobile menu (that open other modals)
+                 document.querySelectorAll('#menuModalFs .modal-nav-link').forEach(link => {
+                    link.addEventListener('click', (event) => handleMenuLinkClick(event, link));
+                });
 
-            if (tutorialCloseBtnHeader) tutorialCloseBtnHeader.addEventListener('click', closeTutorialModal);
-            if (tutorialCloseBtnFooter) tutorialCloseBtnFooter.addEventListener('click', closeTutorialModal);
-            if (tutorialModal && tutorialContent) {
-                tutorialModal.addEventListener('click', (event) => { if (event.target === tutorialModal) { closeTutorialModal(); } });
+                // Links in the desktop nav bar (that open modals)
+                 document.querySelectorAll('header nav .desktop-nav-link.nav-link').forEach(link => {
+                    link.addEventListener('click', (event) => handleNavLinkClick(event, link));
+                });
+
+
+                // Cart actions
+                if (clearCartBtnFs) clearCartBtnFs.addEventListener('click', clearCartFs);
+                if (checkoutBtnFs) checkoutBtnFs.addEventListener('click', checkoutFs);
+
+                // Force refresh links
+                if(forceRefreshLinkMobile) forceRefreshLinkMobile.addEventListener('click', handleForceRefresh);
+                if(forceRefreshLinkDesktop) forceRefreshLinkDesktop.addEventListener('click', handleForceRefresh);
+
+                // Optional: Close modal on background click (clicking outside content)
+                document.querySelectorAll('.modal-fullscreen').forEach(modal => {
+                    modal.addEventListener('click', (e) => {
+                        // Close only if the direct target of the click is the modal overlay itself
+                        if (e.target === modal) {
+                             console.log(`[Modal] Closing modal '${modal.id}' via background click.`);
+                            closeFullScreenModal(modal.id);
+                        }
+                    });
+                });
+                 console.log('[Events] Static event listeners setup complete.');
             }
-            if (openTutorialBtnFooter) {
-                openTutorialBtnFooter.addEventListener('click', (e) => { e.preventDefault(); closeAllFullscreenModals(); hasClosedTutorialThisSession = false; openTutorialModal(true); });
-            }
 
-            if (forceRefreshLink) {
-                forceRefreshLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const confirmation = confirm("Esto borrará los datos del carrito y recargará la aplicación para obtener la última versión desde internet y mostrar los nuevos productos agregados.\n\n¿Desea continuar?");
-                    if (confirmation) {
-                        console.log("Forzando actualización: Borrando datos y recargando...");
-                        try {
-                            localStorage.removeItem(CART_STORAGE_KEY);
-                            localStorage.removeItem(TUTORIAL_SHOWN_KEY);
-                            console.log("Datos locales borrados.");
-                        } catch (e) { console.error("Error al borrar localStorage:", e); }
-                        try {
-                            const baseUrl = window.location.origin + window.location.pathname;
-                            const timestamp = new Date().getTime(); const newUrl = `${baseUrl}?v=${timestamp}`;
-                            console.log(`Recargando hacia: ${newUrl}`); window.location.href = newUrl;
-                            setTimeout(() => { console.log("Fallback: intentando location.reload(true)"); window.location.reload(true); }, 500);
-                        } catch (e) { console.error("Error al intentar recargar la página con parámetro:", e); window.location.reload(); }
-                    } else {
-                        console.log("Actualización cancelada.");
-                        closeFullScreenModal('menuModalFs');
-                    }
+             // Handler for MOBILE menu links that trigger modals
+             function handleMenuLinkClick(event, linkElement) {
+                 const targetModalId = linkElement.dataset.targetModal;
+                 if (targetModalId) {
+                     event.preventDefault(); // Prevent default only if it's opening a modal
+                     console.log(`[Menu] Clicked link for modal: ${targetModalId}`);
+                     closeFullScreenModal('menuModalFs'); // Close menu first
+                     // Open target modal after a short delay
+                     setTimeout(() => { openFullScreenModal(targetModalId); }, 50);
+                 }
+                 // Allow default behavior for links without data-target-modal (like force refresh)
+             }
+
+              // Handler for DESKTOP navbar links that trigger modals
+              function handleNavLinkClick(event, linkElement) {
+                  const targetModalId = linkElement.dataset.targetModal;
+                  if (targetModalId) {
+                      event.preventDefault(); // Prevent default only if it's opening a modal
+                      console.log(`[Nav] Clicked link for modal: ${targetModalId}`);
+                      openFullScreenModal(targetModalId);
+                  }
+                 // Allow default behavior for links without data-target-modal (like force refresh)
+              }
+
+             // Generic Force Refresh Handler
+             function handleForceRefresh(event) {
+                 event.preventDefault(); // Always prevent default for this link
+                 console.log('[Refresh] Force refresh requested.');
+                 showConfirmation("Esto borrará los datos locales (como el carrito) y recargará la página completamente para obtener la versión más reciente. ¿Continuar?", () => {
+                    console.log("[Refresh] Proceeding with refresh...");
+                    try { localStorage.removeItem(CART_STORAGE_KEY); } catch (e) { console.warn("Could not remove cart from local storage:", e); }
+                    // Attempt cache-busting reload
+                    try { window.location.href = `${window.location.pathname}?force_reload=${Date.now()}`; setTimeout(()=>window.location.reload(true), 500); } catch(e) { window.location.reload(true); }
                 });
             }
-        }
+
+            // --- Initial Application Load ---
+            console.log('[App] DOMContentLoaded event fired.');
+            cart = loadCart(); // Load cart from storage first
+            setupStaticEventListeners(); // Setup listeners that don't depend on data
+            loadProducts(); // Start loading product data async
+
+        }); // End DOMContentLoaded
     </script>
+
 </body>
 </html>
