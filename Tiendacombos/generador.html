@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Visual de Catálogo (Corrección z-index)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* --- Estilos Generales --- */
+        body { font-family: sans-serif; background-color: #f0f2f5; padding: 1.5rem; position: relative; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; font-size: 0.875rem; }
+        input[type="text"], input[type="search"], input[type="url"], input[type="number"], textarea, select {
+            width: 100%; padding: 0.65rem; border: 1px solid #d1d5db; border-radius: 0.375rem;
+            margin-bottom: 1rem; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); font-size: 0.875rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); }
+        textarea { min-height: 60px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.1rem; border-radius: 0.375rem; font-weight: 500; transition: background-color 0.2s ease-in-out; cursor: pointer; border: 1px solid transparent; focus:outline-none; focus:ring-2 focus:ring-offset-2; text-sm; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        /* --- Colores Botones --- */
+        .btn-blue { background-color: #3b82f6; color: white; border-color: #3b82f6; } .btn-blue:hover:not(:disabled) { background-color: #2563eb; }
+        .btn-green { background-color: #10b981; color: white; border-color: #10b981; } .btn-green:hover:not(:disabled) { background-color: #059669; }
+        .btn-red { background-color: #ef4444; color: white; border-color: #ef4444; } .btn-red:hover:not(:disabled) { background-color: #dc2626; }
+        .btn-gray { background-color: #6b7280; color: white; border-color: #6b7280; } .btn-gray:hover:not(:disabled) { background-color: #4b5563; }
+        .btn-indigo { background-color: #6366f1; color: white; border-color: #6366f1; } .btn-indigo:hover:not(:disabled) { background-color: #4f46e5; }
+        .btn-yellow { background-color: #f59e0b; color: white; border-color: #f59e0b; } .btn-yellow:hover:not(:disabled) { background-color: #d97706; }
+        .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+        pre { background-color: #1f2937; color: #d1d5db; padding: 1rem; border-radius: 0.375rem; overflow-x: auto; font-size: 0.8rem; line-height: 1.4; margin-top: 1rem; max-height: 300px; }
+        code { font-family: monospace; }
+        .checkbox-label { display: flex; align-items: center; margin-bottom: 1rem; }
+        .checkbox-label input { margin-right: 0.5rem; width: auto; height: 1rem; width: 1rem; }
+        .feedback { min-height: 1.25rem; font-size: 0.875rem; margin-top: 0.5rem; }
+        .section-divider { border-top: 1px solid #e5e7eb; margin-top: 1.5rem; margin-bottom: 1.5rem; }
+
+        /* --- Estilos Catálogo Visual --- */
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.75rem; max-height: 350px; overflow-y: auto; padding: 0.5rem; background-color: #e5e7eb; border-radius: 0.375rem; border: 1px solid #d1d5db;}
+        .catalog-item { background-color: white; border-radius: 0.375rem; overflow: hidden; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; border: 2px solid transparent; position: relative; }
+        .catalog-item:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .catalog-item.selected-for-edit { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4); transform: scale(1.02); }
+        .catalog-item.selected-for-subcatalog { border-color: #10b981; }
+        .catalog-item img { display: block; width: 100%; height: 90px; object-fit: cover; }
+        .catalog-item-name { font-size: 0.7rem; text-align: center; padding: 0.3rem 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #374151; background-color: rgba(255,255,255,0.9); position: absolute; bottom: 0; left: 0; right: 0; line-height: 1.2; }
+        .catalog-placeholder { display: flex; align-items: center; justify-content: center; min-height: 150px; color: #6b7280; font-size: 0.875rem; text-align: center; border-radius: 0.375rem; background-color: #e5e7eb;}
+        .catalog-item-toggle-btn { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s, opacity 0.2s; opacity: 0.7; z-index: 10; border: none; } /* z-index 10 es para estar sobre la img */
+        .catalog-item:hover .catalog-item-toggle-btn { opacity: 1; }
+        .catalog-item-toggle-btn.add { background-color: rgba(16, 185, 129, 0.7); color: white; } .catalog-item-toggle-btn.add:hover { background-color: rgba(5, 150, 105, 0.9); }
+        .catalog-item-toggle-btn.remove { background-color: rgba(239, 68, 68, 0.7); color: white; } .catalog-item-toggle-btn.remove:hover { background-color: rgba(220, 38, 38, 0.9); }
+        .catalog-item-toggle-btn:disabled { opacity: 0.3 !important; cursor: not-allowed !important; background-color: rgba(150, 150, 150, 0.5) !important; }
+        .catalog-item-toggle-btn svg { width: 14px; height: 14px; }
+
+        /* *** NUEVA CLASE PARA OCULTAR BOTONES +/- *** */
+        .hidden-when-modal-open { display: none !important; }
+
+        /* --- Estilos Modal --- */
+        .modal-body { -webkit-overflow-scrolling: touch; }
+        #editModal label { margin-bottom: 0.25rem; }
+        #editModal input, #editModal textarea, #editModal select { margin-bottom: 0.75rem; }
+        #editModal .checkbox-label { margin-bottom: 0.75rem; }
+        #editModal pre { margin-top: 0.25rem; }
+
+         /* --- Estilos Tooltip --- */
+        #productTooltip { }
+        .catalog-item.tooltip-active { border-color: #a78bfa; }
+        #productTooltip h4 { letter-spacing: 0.025em; }
+        #productTooltip #tooltipPrice { text-shadow: 0 1px 3px rgba(74, 222, 128, 0.4); }
+        #productTooltip #tooltipFeaturedBadge span { box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="max-w-7xl mx-auto bg-white p-5 md:p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Editor Visual de Catálogo (Corrección z-index)</h1>
+
+        <!-- === SECCIÓN DE GESTIÓN GENERAL === -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 border-b pb-4 border-gray-200">
+             <div> <label for="fileInput" class="mb-2 font-semibold">Catálogo Principal:</label> <div class="flex space-x-2 items-center"> <input type="file" id="fileInput" accept=".json" class="block w-full text-sm text-gray-500 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 p-0 border-none shadow-none cursor-pointer"> <button id="loadFileBtn" class="btn btn-blue btn-sm flex-shrink-0">Cargar</button> </div> <p id="fileFeedback" class="feedback text-green-600 font-medium"></p> </div>
+             <div class="flex justify-end items-start pt-5"> <button id="clearCatalogBtn" class="btn btn-red btn-sm">Limpiar TODO (Principal y Subs)</button> </div>
+        </div>
+
+        <!-- === SECCIÓN DE GESTIÓN SUB-CATÁLOGOS === -->
+        <div class="mb-6 p-4 border border-indigo-200 rounded-md bg-indigo-50">
+            <h2 class="text-lg font-semibold text-indigo-800 mb-3">Gestión de Sub-Catálogos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
+                <div> <label for="subCatalogSelector">Sub-Catálogo Activo:</label> <select id="subCatalogSelector"><option value="">-- Ninguno --</option></select> </div>
+                <div class="flex flex-wrap gap-2"> <button id="renameSubCatalogBtn" class="btn btn-yellow btn-sm flex-1 min-w-[100px]" disabled>Renombrar</button> <button id="deleteSubCatalogBtn" class="btn btn-red btn-sm flex-1 min-w-[100px]" disabled>Eliminar</button> </div>
+                 <div> <label for="newSubCatalogName" class="block mb-1">Crear Nuevo Sub-Catálogo:</label> <div class="flex space-x-2"> <input type="text" id="newSubCatalogName" placeholder="Nombre único..." class="flex-grow mb-0 text-sm p-2"> <button id="createSubCatalogBtn" class="btn btn-indigo btn-sm flex-shrink-0">Crear</button> </div> <p id="subCatalogMgmtFeedback" class="feedback text-sm"></p> </div>
+            </div>
+        </div>
+
+        <!-- === SECCIÓN AÑADIR AL CATÁLOGO PRINCIPAL === -->
+         <div class="mb-6 p-4 border border-gray-200 rounded-md bg-gray-50">
+             <label for="bulkUrls" class="font-semibold text-gray-700 mb-2">Añadir Nuevos Productos al Catálogo <span class="font-bold text-red-600">Principal</span> (URLs una por línea):</label>
+             <textarea id="bulkUrls" placeholder="Pega aquí las URLs..." class="text-sm mb-2" rows="3"></textarea>
+             <button id="addBulkBtn" class="btn btn-green w-full">Añadir URLs al Principal</button>
+             <p id="bulkFeedback" class="feedback text-green-600 font-medium text-center"></p>
+         </div>
+
+        <div class="section-divider"></div>
+
+        <!-- === SECCIÓN VISUALIZACIÓN Y EDICIÓN === -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Catálogo Principal -->
+            <div>
+                <h2 class="text-xl font-semibold text-gray-700 mb-3">Catálogo Principal</h2>
+                <div class="mb-3"> <input type="search" id="mainCatalogSearch" placeholder="Buscar por nombre, ID, desc, URL, categoría, spec..." class="mb-0 text-sm p-2"> </div>
+                <p class="text-xs text-gray-500 mb-2">Pasa cursor: ver detalles. Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar. Clic <strong class="text-green-600">[+]</strong>/<strong class="text-red-600">[-]</strong>: añadir/quitar sub-catálogo.</p>
+                <div id="mainCatalogGridContainer"> <div id="mainCatalogGrid" class="catalog-grid mb-6 hidden"></div> <div id="mainCatalogPlaceholder" class="catalog-placeholder">El catálogo principal está vacío.</div> </div>
+            </div>
+
+            <!-- Sub-Catálogo Activo -->
+            <div>
+                 <h2 class="text-xl font-semibold text-gray-700 mb-3">Sub-Catálogo: <span id="activeSubCatalogNameDisplay" class="text-indigo-700">Ninguno Seleccionado</span></h2>
+                 <div class="mb-3"> <input type="search" id="subCatalogSearch" placeholder="Buscar en sub-catálogo activo..." class="mb-0 text-sm p-2" disabled> </div>
+                  <p class="text-xs text-gray-500 mb-2">Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar (original). Clic <strong class="text-red-600">[-]</strong>: quitar de aquí.</p>
+                 <div id="subCatalogGridContainer"> <div id="subCatalogGrid" class="catalog-grid mb-6 hidden"></div> <div id="subCatalogPlaceholder" class="catalog-placeholder">Selecciona o crea un sub-catálogo.</div> </div>
+                  <div class="mt-4 text-center"> <h3 class="text-lg font-semibold text-gray-700 mb-2">Exportar Sub-Catálogo Activo</h3> <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"> <button id="copySubCatalogBtn" class="btn btn-green flex-1" disabled>Copiar JSON (Sub)</button> <button id="downloadSubCatalogBtn" class="btn btn-indigo flex-1" disabled>Descargar JSON (Sub)</button> </div> <p id="subCopyFeedback" class="feedback text-sm"></p> <p id="subDownloadFeedback" class="feedback text-sm"></p> </div>
+            </div>
+        </div>
+
+        <div class="section-divider mt-8"></div>
+
+        <!-- Sección de Descarga/Copia Catálogo Completo -->
+        <div class="mt-6 text-center">
+            <h2 class="text-xl font-semibold text-gray-700 mb-3">Exportar Catálogo Principal Completo</h2>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto"> <button id="copyFullCatalogBtn" class="btn btn-gray flex-1">Copiar JSON (Principal)</button> <button id="downloadFullCatalogBtn" class="btn btn-gray flex-1">Descargar JSON (Principal)</button> </div>
+             <p id="copyFullFeedback" class="feedback text-green-600 font-medium text-center"></p>
+             <p id="downloadFeedback" class="feedback text-green-600 font-medium text-center"></p>
+        </div>
+
+    </div>
+
+    <!-- === MODAL DE EDICIÓN === -->
+    <div id="editModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[60] hidden opacity-0 transition-opacity duration-300 ease-in-out" aria-labelledby="modalTitle" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-3xl transform transition-all duration-300 ease-in-out scale-95 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-gray-200 pb-3 mb-4 flex-shrink-0"> <h2 class="text-xl font-semibold text-gray-800" id="modalTitle">Editar Producto</h2> <button id="closeModalBtn" class="p-1 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors" aria-label="Cerrar modal"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg> </button> </div>
+            <div class="modal-body overflow-y-auto pr-2 -mr-2 flex-grow"> <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3"> <div class="space-y-3"> <div> <label for="modalProductId">ID (Editable, debe ser único):</label> <input type="number" id="modalProductId" min="1"> <p id="idFeedback" class="feedback text-xs text-red-600 -mt-2 mb-2"></p> </div> <div> <label for="modalProductName">Nombre:</label> <input type="text" id="modalProductName"> </div> <div> <label for="modalProductPrice">Precio (USD):</label> <input type="number" id="modalProductPrice" step="0.01" min="0"> </div> <div> <label for="modalProductImage">URL Imagen:</label> <input type="url" id="modalProductImage"> </div> <div class="checkbox-label pt-2"> <input type="checkbox" id="modalProductFeatured"> <label for="modalProductFeatured" class="mb-0 font-normal">¿Destacado?</label> </div> <div> <label for="modalProductCategory">Categoría:</label> <input type="text" id="modalProductCategory"> </div> </div> <div class="space-y-3"> <div> <label for="modalProductDescription">Descripción:</label> <textarea id="modalProductDescription" rows="4"></textarea> </div> <div> <label for="modalProductSpecifications">Especificaciones (una por línea):</label> <textarea id="modalProductSpecifications" rows="4"></textarea> </div> <div> <label>Previsualización JSON:</label> <pre class="max-h-40"><code id="modalJsonOutput">{ ... }</code></pre> </div> </div> </div> </div>
+            <div class="border-t border-gray-200 pt-4 mt-4 flex flex-col sm:flex-row justify-between items-center gap-3 flex-shrink-0"> <div class="flex gap-3"> <button id="modalCopySingleBtn" class="btn btn-gray btn-sm">Copiar JSON</button> <button id="modalDeleteProductBtn" class="btn btn-red btn-sm">Eliminar del Principal</button> </div> <p id="modalFeedback" class="feedback text-sm text-center flex-grow"></p> <button id="modalSaveChangesAndCloseBtn" class="btn btn-blue">Cerrar Editor</button> </div>
+        </div>
+    </div>
+
+     <!-- === TOOLTIP === -->
+    <div id="productTooltip" class="fixed hidden opacity-0 transition-opacity duration-200 ease-in-out z-[100] pointer-events-none"> <div class="bg-gray-900 bg-opacity-90 text-white rounded-lg shadow-2xl p-4 max-w-xs text-sm leading-relaxed backdrop-blur-sm border border-gray-700"> <h4 id="tooltipName" class="font-bold text-base mb-2 text-indigo-300"></h4> <p class="mb-2 flex justify-between items-center"> <span id="tooltipCategory" class="text-xs uppercase tracking-wider font-medium text-gray-400"></span> <span id="tooltipPrice" class="text-lg font-semibold text-green-400"></span> </p> <p id="tooltipDescription" class="text-gray-300 mb-3 text-xs"></p> <div id="tooltipSpecsContainer" class="mb-1"> <h5 class="text-xs font-semibold text-gray-400 mb-1">Especificaciones:</h5> <ul id="tooltipSpecsList" class="list-disc list-inside text-gray-300 text-xs space-y-0.5 pl-1"></ul> </div> <div id="tooltipFeaturedBadge" class="mt-3 hidden"> <span class="inline-block bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-0.5 rounded">✨ Destacado ✨</span> </div> </div> </div>
+
+
+    <script>
+        // --- DOM Elements ---
+        const fileInput = document.getElementById('fileInput');
+        const loadFileBtn = document.getElementById('loadFileBtn');
+        const fileFeedback = document.getElementById('fileFeedback');
+        const clearCatalogBtn = document.getElementById('clearCatalogBtn');
+        const bulkUrls = document.getElementById('bulkUrls');
+        const addBulkBtn = document.getElementById('addBulkBtn');
+        const bulkFeedback = document.getElementById('bulkFeedback');
+        const mainCatalogGridContainer = document.getElementById('mainCatalogGridContainer');
+        const mainCatalogGrid = document.getElementById('mainCatalogGrid');
+        const mainCatalogPlaceholder = document.getElementById('mainCatalogPlaceholder');
+        const mainCatalogSearch = document.getElementById('mainCatalogSearch');
+        const copyFullCatalogBtn = document.getElementById('copyFullCatalogBtn');
+        const downloadFullCatalogBtn = document.getElementById('downloadFullCatalogBtn');
+        const copyFullFeedback = document.getElementById('copyFullFeedback');
+        const downloadFeedback = document.getElementById('downloadFeedback');
+        const subCatalogSelector = document.getElementById('subCatalogSelector');
+        const newSubCatalogNameInput = document.getElementById('newSubCatalogName');
+        const createSubCatalogBtn = document.getElementById('createSubCatalogBtn');
+        const renameSubCatalogBtn = document.getElementById('renameSubCatalogBtn');
+        const deleteSubCatalogBtn = document.getElementById('deleteSubCatalogBtn');
+        const subCatalogMgmtFeedback = document.getElementById('subCatalogMgmtFeedback');
+        const activeSubCatalogNameDisplay = document.getElementById('activeSubCatalogNameDisplay');
+        const subCatalogGridContainer = document.getElementById('subCatalogGridContainer');
+        const subCatalogGrid = document.getElementById('subCatalogGrid');
+        const subCatalogPlaceholder = document.getElementById('subCatalogPlaceholder');
+        const subCatalogSearch = document.getElementById('subCatalogSearch');
+        const copySubCatalogBtn = document.getElementById('copySubCatalogBtn');
+        const downloadSubCatalogBtn = document.getElementById('downloadSubCatalogBtn');
+        const subCopyFeedback = document.getElementById('subCopyFeedback');
+        const subDownloadFeedback = document.getElementById('subDownloadFeedback');
+        const editModal = document.getElementById('editModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalSaveChangesAndCloseBtn = document.getElementById('modalSaveChangesAndCloseBtn');
+        const modalFeedback = document.getElementById('modalFeedback');
+        const modalProductIdInput = document.getElementById('modalProductId');
+        const idFeedback = document.getElementById('idFeedback');
+        const modalProductNameInput = document.getElementById('modalProductName');
+        const modalProductPriceInput = document.getElementById('modalProductPrice');
+        const modalProductImageInput = document.getElementById('modalProductImage');
+        const modalProductDescriptionInput = document.getElementById('modalProductDescription');
+        const modalProductSpecificationsInput = document.getElementById('modalProductSpecifications');
+        const modalProductFeaturedInput = document.getElementById('modalProductFeatured');
+        const modalProductCategoryInput = document.getElementById('modalProductCategory');
+        const modalJsonOutput = document.getElementById('modalJsonOutput');
+        const modalCopySingleBtn = document.getElementById('modalCopySingleBtn');
+        const modalDeleteProductBtn = document.getElementById('modalDeleteProductBtn');
+        const productTooltip = document.getElementById('productTooltip');
+        const tooltipName = document.getElementById('tooltipName');
+        const tooltipCategory = document.getElementById('tooltipCategory');
+        const tooltipPrice = document.getElementById('tooltipPrice');
+        const tooltipDescription = document.getElementById('tooltipDescription');
+        const tooltipSpecsContainer = document.getElementById('tooltipSpecsContainer');
+        const tooltipSpecsList = document.getElementById('tooltipSpecsList');
+        const tooltipFeaturedBadge = document.getElementById('tooltipFeaturedBadge');
+
+        const modalOtherFormInputs = [ modalProductNameInput, modalProductPriceInput, modalProductImageInput, modalProductDescriptionInput, modalProductSpecificationsInput, modalProductFeaturedInput, modalProductCategoryInput ];
+
+        // --- State ---
+        let allProductsData = [];
+        let subCatalogs = {};
+        let activeSubCatalogName = null;
+        let selectedProductId = null;
+        let originalProductIdBeforeEdit = null;
+        let tooltipTimeout = null;
+        let mainCatalogSearchTerm = '';
+        let subCatalogSearchTerm = '';
+        let searchDebounceTimeout = null;
+        const LOCAL_STORAGE_KEY = 'visualProductCatalogEditorData_v6';
+
+        // --- Utility Functions ---
+        function showFeedback(element, message, isError = false, duration = 2500) { if (!element) return; element.textContent = message; element.classList.remove('text-red-600', 'text-green-600', 'text-blue-600'); if (isError) { element.classList.add('text-red-600'); } else { element.classList.add('text-green-600'); } if (duration > 0) { setTimeout(() => { element.textContent = ''; }, duration); } }
+        function getNextId() { if (!allProductsData || allProductsData.length === 0) return 1; const maxId = Math.max(0, ...allProductsData.map(p => p.id || 0)); return maxId + 1; }
+        function copyToClipboard(text, feedbackElement) { if (!text || text.trim() === '' || (text.startsWith('{') && text.includes('Selecciona un producto'))) { showFeedback(feedbackElement, 'Nada que copiar.', true); return; } if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(() => showFeedback(feedbackElement, '¡Copiado!', false)).catch(err => { console.error('Error al copiar: ', err); showFeedback(feedbackElement, 'Error al copiar', true); }); } else { try { const textArea = document.createElement("textarea"); textArea.value = text; textArea.style.position = "fixed"; document.body.appendChild(textArea); textArea.focus(); textArea.select(); document.execCommand('copy'); document.body.removeChild(textArea); showFeedback(feedbackElement, '¡Copiado! (Fallback)', false); } catch (err) { console.error('Fallback: Error al copiar: ', err); showFeedback(feedbackElement, 'Error al copiar (Fallback)', true); } } }
+
+        // --- Search Helper ---
+        function productMatchesSearch(product, searchTerm) {
+            if (!product) return false;
+            if (!searchTerm) return true;
+            const term = searchTerm; // Ya está en minúsculas desde el handler
+
+            const nameMatch = (product.name || '').toLowerCase().includes(term);
+            const descMatch = (product.description || '').toLowerCase().includes(term);
+            const idMatch = String(product.id || '').includes(term); // Busca ID como string
+            const urlMatch = (product.image || '').toLowerCase().includes(term);
+            const specsMatch = (product.specifications || []).some(spec => (spec || '').toLowerCase().includes(term));
+            const categoryMatch = (product.category || '').toLowerCase().includes(term);
+
+            return nameMatch || descMatch || idMatch || urlMatch || specsMatch || categoryMatch;
+        }
+
+        // --- Core Logic: Data Saving/Loading ---
+        function saveDataStructure() { const dataToSave = { mainCatalog: allProductsData, subCatalogs: subCatalogs, activeSubCatalogName: activeSubCatalogName }; try { localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataToSave)); console.log("Data saved"); } catch (error) { console.error("Error saving:", error); showFeedback(fileFeedback, '¡ERROR GRAVE AL GUARDAR!', true, 0); } }
+        function loadDataStructure() { try { const storedData = localStorage.getItem(LOCAL_STORAGE_KEY); if (storedData) { const d = JSON.parse(storedData); allProductsData = d.mainCatalog || []; subCatalogs = d.subCatalogs || {}; activeSubCatalogName = (d.activeSubCatalogName && subCatalogs[d.activeSubCatalogName]) ? d.activeSubCatalogName : null; console.log("Data loaded"); return true; } } catch (error) { console.error("Error loading:", error); allProductsData = []; subCatalogs = {}; activeSubCatalogName = null; localStorage.removeItem(LOCAL_STORAGE_KEY); } return false; }
+
+        // --- Core Logic: Rendering ---
+        function renderMainCatalogGrid() {
+            mainCatalogGrid.innerHTML = '';
+            const searchTerm = mainCatalogSearchTerm; // Estado ya en minúsculas
+            const filteredProducts = allProductsData.filter(product => productMatchesSearch(product, searchTerm));
+
+            const hasProducts = filteredProducts.length > 0;
+            mainCatalogPlaceholder.classList.toggle('hidden', hasProducts);
+            mainCatalogGrid.classList.toggle('hidden', !hasProducts);
+            mainCatalogPlaceholder.textContent = searchTerm ? 'No hay productos que coincidan.' : 'Catálogo principal vacío.';
+
+            if (hasProducts) {
+                filteredProducts.sort((a, b) => (a.id || 0) - (b.id || 0));
+                const activeSubCatalogIds = activeSubCatalogName ? (subCatalogs[activeSubCatalogName] || []) : [];
+
+                filteredProducts.forEach(product => {
+                    const item = document.createElement('div');
+                    item.classList.add('catalog-item');
+                    item.dataset.productId = product.id;
+                    item.classList.toggle('selected-for-subcatalog', activeSubCatalogIds.includes(product.id));
+
+                    const isAdded = activeSubCatalogName && activeSubCatalogIds.includes(product.id);
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.classList.add('catalog-item-toggle-btn');
+                    toggleBtn.classList.toggle('add', !isAdded);
+                    toggleBtn.classList.toggle('remove', isAdded);
+                    toggleBtn.title = isAdded ? 'Quitar del sub activo' : 'Añadir al sub activo';
+                    toggleBtn.innerHTML = isAdded ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>`;
+                    toggleBtn.disabled = !activeSubCatalogName;
+                    if (!activeSubCatalogName) { toggleBtn.style.display = 'none'; }
+                    toggleBtn.addEventListener('click', (e) => { e.stopPropagation(); handleToggleProductInSubCatalog(product.id); });
+                    item.appendChild(toggleBtn);
+
+                    const img = document.createElement('img');
+                    img.src = product.image || 'https://via.placeholder.com/150?text=No+Image';
+                    img.alt = product.name || 'Producto sin nombre';
+                    img.loading = 'lazy';
+                    img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150?text=Error'; };
+                    img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id); });
+                    item.appendChild(img);
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.classList.add('catalog-item-name');
+                    nameDiv.textContent = product.name || `ID: ${product.id}`;
+                    nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id); });
+                    item.appendChild(nameDiv);
+
+                    mainCatalogGrid.appendChild(item);
+                });
+            }
+        }
+
+        function renderSubCatalogGrid() {
+            subCatalogGrid.innerHTML = '';
+            const hasActiveSub = activeSubCatalogName && subCatalogs[activeSubCatalogName];
+            const searchTerm = subCatalogSearchTerm; // Estado ya en minúsculas
+            let productsToDisplay = [];
+
+            subCatalogSearch.disabled = !hasActiveSub;
+            copySubCatalogBtn.disabled = !hasActiveSub;
+            downloadSubCatalogBtn.disabled = !hasActiveSub;
+            renameSubCatalogBtn.disabled = !hasActiveSub;
+            deleteSubCatalogBtn.disabled = !hasActiveSub;
+
+            if (hasActiveSub) {
+                const productIds = subCatalogs[activeSubCatalogName] || [];
+                productsToDisplay = productIds
+                    .map(id => allProductsData.find(p => p.id === id))
+                    .filter(product => productMatchesSearch(product, searchTerm)); // Usar helper
+            }
+
+            const hasProductsToShow = productsToDisplay.length > 0;
+            subCatalogPlaceholder.classList.toggle('hidden', hasProductsToShow);
+            subCatalogGrid.classList.toggle('hidden', !hasProductsToShow);
+
+            if (!hasActiveSub) { subCatalogPlaceholder.textContent = "Selecciona o crea un sub-catálogo."; }
+            else if (!hasProductsToShow && searchTerm) { subCatalogPlaceholder.textContent = 'No hay productos que coincidan.'; }
+            else if (!hasProductsToShow && !searchTerm) { subCatalogPlaceholder.textContent = `"${activeSubCatalogName}" está vacío.`; }
+
+            if (hasProductsToShow) {
+                 productsToDisplay.sort((a, b) => (a.id || 0) - (b.id || 0)).forEach(product => {
+                    const item = document.createElement('div');
+                    item.classList.add('catalog-item');
+                    item.dataset.productId = product.id;
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.classList.add('catalog-item-toggle-btn', 'remove');
+                    removeBtn.title = 'Quitar de este sub-catálogo';
+                    removeBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>`;
+                    removeBtn.addEventListener('click', (e) => { e.stopPropagation(); handleToggleProductInSubCatalog(product.id); });
+                    item.appendChild(removeBtn);
+
+                    const img = document.createElement('img');
+                    img.src = product.image || 'https://via.placeholder.com/150?text=No+Image';
+                    img.alt = product.name || 'Producto sin nombre';
+                    img.loading = 'lazy';
+                    img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150?text=Error'; };
+                    img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id); });
+                    item.appendChild(img);
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.classList.add('catalog-item-name');
+                    nameDiv.textContent = product.name || `ID: ${product.id}`;
+                    nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id); });
+                    item.appendChild(nameDiv);
+
+                    subCatalogGrid.appendChild(item);
+                 });
+            }
+             activeSubCatalogNameDisplay.textContent = activeSubCatalogName || 'Ninguno Seleccionado';
+        }
+
+        function populateSubCatalogSelector() { const currentVal = subCatalogSelector.value; subCatalogSelector.innerHTML = '<option value="">-- Ninguno --</option>'; Object.keys(subCatalogs).sort().forEach(name => { const option = document.createElement('option'); option.value = name; option.textContent = name; subCatalogSelector.appendChild(option); }); subCatalogSelector.value = activeSubCatalogName || currentVal || ""; activeSubCatalogName = subCatalogSelector.value || null; }
+        function updateAllUI() { renderMainCatalogGrid(); populateSubCatalogSelector(); renderSubCatalogGrid(); }
+
+        // --- Sub-Catalog Management ---
+        function handleCreateSubCatalog() { const name = newSubCatalogNameInput.value.trim(); if (!name) { showFeedback(subCatalogMgmtFeedback, "Introduce nombre.", true); return; } if (subCatalogs[name]) { showFeedback(subCatalogMgmtFeedback, `"${name}" ya existe.`, true); return; } subCatalogs[name] = []; activeSubCatalogName = name; newSubCatalogNameInput.value = ''; saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Sub "${name}" creado.`, false); }
+        function handleRenameSubCatalog() { if (!activeSubCatalogName) return; const oldName = activeSubCatalogName; const newName = prompt(`Renombrar "${oldName}" a:`, oldName); if (!newName || newName.trim() === '' || newName === oldName) { showFeedback(subCatalogMgmtFeedback, "Cancelado.", true); return; } if (subCatalogs[newName.trim()]) { showFeedback(subCatalogMgmtFeedback, `"${newName.trim()}" ya existe.`, true); return; } subCatalogs[newName.trim()] = subCatalogs[oldName]; delete subCatalogs[oldName]; activeSubCatalogName = newName.trim(); saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Renombrado a "${activeSubCatalogName}".`, false); }
+        function handleDeleteSubCatalog() { if (!activeSubCatalogName) return; if (confirm(`¿Eliminar sub-catálogo "${activeSubCatalogName}"?`)) { const deletedName = activeSubCatalogName; delete subCatalogs[activeSubCatalogName]; activeSubCatalogName = null; subCatalogSearchTerm = ''; subCatalogSearch.value = ''; saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Sub "${deletedName}" eliminado.`, true); } }
+        function handleSubCatalogSelect() { activeSubCatalogName = subCatalogSelector.value || null; subCatalogSearchTerm = ''; subCatalogSearch.value = ''; saveDataStructure(); updateAllUI(); }
+
+        // --- Add/Remove Products from Sub-Catalog ---
+        function handleToggleProductInSubCatalog(productId) { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName]) { showFeedback(subCatalogMgmtFeedback, "Selecciona sub activo.", true); return; } const productIds = subCatalogs[activeSubCatalogName]; const index = productIds.indexOf(productId); if (index > -1) { productIds.splice(index, 1); } else { productIds.push(productId); } saveDataStructure(); updateAllUI(); }
+
+        // --- Modal Functions ---
+        function openModal(productId) { const product = allProductsData.find(p => p.id === productId); if (!product) return; originalProductIdBeforeEdit = productId; selectedProductId = productId; modalTitle.textContent = `Editar (Principal): ${product.name || `ID ${productId}`}`; populateModalForm(product); idFeedback.textContent = ''; document.querySelectorAll('.catalog-item-toggle-btn').forEach(btn => { btn.classList.add('hidden-when-modal-open'); }); editModal.classList.remove('hidden'); requestAnimationFrame(() => { editModal.classList.remove('opacity-0', 'scale-95'); editModal.classList.add('opacity-100', 'scale-100'); }); document.querySelectorAll('.catalog-item').forEach(el => { el.classList.remove('selected-for-edit');}); document.querySelectorAll(`.catalog-item[data-product-id="${productId}"]`).forEach(el => { el.classList.add('selected-for-edit'); }); }
+        function closeModal() { editModal.classList.remove('opacity-100', 'scale-100'); editModal.classList.add('opacity-0', 'scale-95'); setTimeout(() => { editModal.classList.add('hidden'); document.querySelectorAll('.catalog-item.selected-for-edit').forEach(el => el.classList.remove('selected-for-edit')); selectedProductId = null; originalProductIdBeforeEdit = null; modalFeedback.textContent = ''; document.querySelectorAll('.catalog-item-toggle-btn').forEach(btn => { btn.classList.remove('hidden-when-modal-open'); }); }, 300); }
+        function populateModalForm(product) { if (!product) return; modalProductIdInput.value = product.id || ''; modalProductNameInput.value = product.name || ''; modalProductPriceInput.value = product.price !== undefined ? product.price.toFixed(2) : ''; modalProductImageInput.value = product.image || ''; modalProductDescriptionInput.value = product.description || ''; modalProductSpecificationsInput.value = (product.specifications || []).join('\n'); modalProductFeaturedInput.checked = product.featured || false; modalProductCategoryInput.value = product.category || ''; updateModalJsonOutput(); }
+        function updateModalJsonOutput() { if (selectedProductId === null) { modalJsonOutput.textContent = '...'; return; } const product = allProductsData.find(p => p.id === selectedProductId); modalJsonOutput.textContent = product ? JSON.stringify(product, null, 4) : '{ // Error }'; }
+        function updateProductDataFromModalForm() { if (selectedProductId === null) return; const productIndex = allProductsData.findIndex(p => p.id === selectedProductId); if (productIndex === -1) { console.error(`Autosave fail: ID ${selectedProductId} not found.`); return; } const specificationsArray = modalProductSpecificationsInput.value.split('\n').map(line => line.trim()).filter(line => line.length > 0); const updatedProduct = { ...allProductsData[productIndex], name: modalProductNameInput.value, price: parseFloat(modalProductPriceInput.value) || 0.00, image: modalProductImageInput.value, description: modalProductDescriptionInput.value, specifications: specificationsArray, featured: modalProductFeaturedInput.checked, category: modalProductCategoryInput.value }; allProductsData[productIndex] = updatedProduct; document.querySelectorAll(`.catalog-item[data-product-id="${selectedProductId}"]`).forEach(gridItem => { if (gridItem) { const nameEl = gridItem.querySelector('.catalog-item-name'); const imgEl = gridItem.querySelector('img'); if (nameEl) nameEl.textContent = updatedProduct.name || `ID: ${updatedProduct.id}`; if (imgEl && imgEl.src !== updatedProduct.image) { imgEl.src = updatedProduct.image || 'https://via.placeholder.com/150?text=No+Image'; } } }); updateModalJsonOutput(); saveDataStructure(); renderSubCatalogGrid(); /* Re-render sub por si estaba */ }
+        function handleIdChange() { idFeedback.textContent = ''; if (selectedProductId === null || originalProductIdBeforeEdit === null) { return false; } const newIdValue = modalProductIdInput.value.trim(); const newId = parseInt(newIdValue); if (isNaN(newId) || newId <= 0 || newIdValue !== String(newId)) { showFeedback(idFeedback, "ID inválido.", true, 0); return false; } if (newId === originalProductIdBeforeEdit) { selectedProductId = originalProductIdBeforeEdit; idFeedback.textContent = ''; updateModalJsonOutput(); return true; } if (allProductsData.some(p => p.id === newId)) { showFeedback(idFeedback, `ID ${newId} ya existe.`, true, 0); return false; } const productIndex = allProductsData.findIndex(p => p.id === originalProductIdBeforeEdit); if (productIndex === -1) { showFeedback(idFeedback, "Error interno.", true, 0); return false; } const oldId = originalProductIdBeforeEdit; allProductsData[productIndex].id = newId; for (const catName in subCatalogs) { const idIndex = subCatalogs[catName].indexOf(oldId); if (idIndex > -1) { subCatalogs[catName][idIndex] = newId; } } document.querySelectorAll(`.catalog-item[data-product-id="${oldId}"]`).forEach(gridItem => { if (gridItem) { gridItem.dataset.productId = newId; const nameEl = gridItem.querySelector('.catalog-item-name'); if (nameEl && (nameEl.textContent.includes('ID:') || !allProductsData[productIndex].name)) { nameEl.textContent = allProductsData[productIndex].name || `ID: ${newId}`; } } }); selectedProductId = newId; originalProductIdBeforeEdit = newId; modalTitle.textContent = `Editar (Principal): ${allProductsData[productIndex].name || `ID ${newId}`}`; saveDataStructure(); updateModalJsonOutput(); updateAllUI(); showFeedback(idFeedback, `ID actualizado a ${newId}.`, false, 3000); return true; }
+        function deleteSelectedProduct() { if (selectedProductId === null) { showFeedback(modalFeedback, "Ningún producto seleccionado.", true, 3000); return; } const product = allProductsData.find(p => p.id === selectedProductId); const productName = product?.name || `ID ${selectedProductId}`; if (confirm(`¿Eliminar "${productName}" del PRINCIPAL y TODOS los sub-catálogos?`)) { const deletedId = selectedProductId; allProductsData = allProductsData.filter(p => p.id !== deletedId); for (const catName in subCatalogs) { subCatalogs[catName] = subCatalogs[catName].filter(id => id !== deletedId); } selectedProductId = null; originalProductIdBeforeEdit = null; saveDataStructure(); updateAllUI(); showFeedback(modalFeedback, `"${productName}" eliminado.`, true, 3000); closeModal(); } }
+
+        // --- Tooltip Functions ---
+        function populateTooltip(product) { if (!product) return; tooltipName.textContent = product.name || 'Sin Nombre'; tooltipCategory.textContent = product.category || 'Sin Categoría'; tooltipPrice.textContent = product.price !== undefined ? `$${product.price.toFixed(2)}` : 'N/A'; tooltipDescription.textContent = product.description || ''; tooltipDescription.classList.toggle('hidden', !product.description); tooltipSpecsList.innerHTML = ''; if (product.specifications && product.specifications.length > 0) { tooltipSpecsContainer.classList.remove('hidden'); product.specifications.forEach(spec => { const li = document.createElement('li'); li.textContent = spec; tooltipSpecsList.appendChild(li); }); } else { tooltipSpecsContainer.classList.add('hidden'); } tooltipFeaturedBadge.classList.toggle('hidden', !product.featured); }
+        function positionTooltip(event) { const tooltipRect = productTooltip.getBoundingClientRect(); const scrollX = window.scrollX; const scrollY = window.scrollY; let x = event.pageX + 15; let y = event.pageY + 15; if (x + tooltipRect.width > window.innerWidth + scrollX - 10) { x = event.pageX - tooltipRect.width - 15; } if (y + tooltipRect.height > window.innerHeight + scrollY - 10) { y = event.pageY - tooltipRect.height - 15; } if (x < scrollX + 10) { x = scrollX + 10; } if (y < scrollY + 10) { y = scrollY + 10; } productTooltip.style.left = `${x}px`; productTooltip.style.top = `${y}px`; }
+        function showTooltip(productId, event) { clearTimeout(tooltipTimeout); const product = allProductsData.find(p => p.id === productId); if (!product) return; const gridItem = mainCatalogGrid.querySelector(`.catalog-item[data-product-id="${productId}"]`); if(gridItem) gridItem.classList.add('tooltip-active'); populateTooltip(product); productTooltip.classList.remove('hidden'); requestAnimationFrame(() => { positionTooltip(event); productTooltip.classList.remove('opacity-0'); productTooltip.classList.add('opacity-100'); }); }
+        function hideTooltip(productId) { clearTimeout(tooltipTimeout); if(productId){ const gridItem = mainCatalogGrid.querySelector(`.catalog-item[data-product-id="${productId}"]`); if(gridItem) gridItem.classList.remove('tooltip-active'); } else { document.querySelectorAll('.catalog-item.tooltip-active').forEach(el => el.classList.remove('tooltip-active')); } productTooltip.classList.remove('opacity-100'); productTooltip.classList.add('opacity-0'); tooltipTimeout = setTimeout(() => { productTooltip.classList.add('hidden'); }, 200); }
+
+        // --- Event Handlers ---
+        function handleFileLoad(event) { const file = event.target.files[0]; if (!file) { showFeedback(fileFeedback, "No seleccionado.", true); return; } if (file.type !== "application/json") { showFeedback(fileFeedback, ".json requerido.", true); return; } const reader = new FileReader(); reader.onload = (e) => { try { const d = JSON.parse(e.target.result); if (!Array.isArray(d)) throw new Error("No es array."); allProductsData = d; selectedProductId = null; originalProductIdBeforeEdit = null; subCatalogs = {}; activeSubCatalogName = null; mainCatalogSearchTerm = ''; mainCatalogSearch.value = ''; subCatalogSearchTerm = ''; subCatalogSearch.value = ''; saveDataStructure(); updateAllUI(); showFeedback(fileFeedback, `"${file.name}" cargado (${allProductsData.length} prod).`); fileInput.value = ''; } catch (error) { console.error("Error parse:", error); showFeedback(fileFeedback, `Error: ${error.message}`, true); allProductsData = []; subCatalogs={}; activeSubCatalogName=null; updateAllUI(); } }; reader.onerror = () => { showFeedback(fileFeedback, "Error al leer.", true); allProductsData = []; subCatalogs={}; activeSubCatalogName=null; updateAllUI(); }; reader.readAsText(file); }
+        function handleBulkAdd() { const urls = bulkUrls.value.split('\n').map(url => url.trim()).filter(url => url.length > 5 && url.startsWith('http')); if (urls.length === 0) { showFeedback(bulkFeedback, "No URLs válidas.", true); return; } let count = 0; urls.forEach(url => { const newId = getNextId(); const newProduct = { id: newId, name: `Nuevo ${newId}`, price: 0.00, image: url, description: "", specifications: [], featured: false, category: "" }; allProductsData.push(newProduct); count++; }); if (count > 0) { saveDataStructure(); renderMainCatalogGrid(); bulkUrls.value = ''; showFeedback(bulkFeedback, `${count} añadidos al Principal.`); } else { showFeedback(bulkFeedback, "No se añadieron.", true); } }
+        function handleCopyFullCatalog() { if (!allProductsData || allProductsData.length === 0) { showFeedback(copyFullFeedback, 'Principal vacío.', true); return; } copyToClipboard(JSON.stringify(allProductsData, null, 4), copyFullFeedback); }
+        function handleDownloadFullCatalog() { if (!allProductsData || allProductsData.length === 0) { showFeedback(downloadFeedback, 'Principal vacío.', true); return; } try { const filename = "products_principal.json"; const jsonStr = JSON.stringify(allProductsData, null, 4); const blob = new Blob([jsonStr], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); showFeedback(downloadFeedback, `"${filename}" descargado.`); } catch (error) { console.error("Error descarga:", error); showFeedback(downloadFeedback, 'Error descarga.', true); } }
+        function handleCopySubCatalog() { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) { showFeedback(subCopyFeedback, 'Sub vacío/no seleccionado.', true); return; } const ids = subCatalogs[activeSubCatalogName]; const data = ids.map(id => allProductsData.find(p => p.id === id)).filter(Boolean); copyToClipboard(JSON.stringify(data, null, 4), subCopyFeedback); }
+        function handleDownloadSubCatalog() { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) { showFeedback(subDownloadFeedback, 'Sub vacío/no seleccionado.', true); return; } try { const ids = subCatalogs[activeSubCatalogName]; const data = ids.map(id => allProductsData.find(p => p.id === id)).filter(Boolean); const filename = `sub_${activeSubCatalogName.replace(/\W+/g, '_')}.json`; const jsonStr = JSON.stringify(data, null, 4); const blob = new Blob([jsonStr], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); showFeedback(subDownloadFeedback, `"${filename}" descargado.`); } catch (error) { console.error("Error descarga sub:", error); showFeedback(subDownloadFeedback, 'Error descarga.', true); } }
+        function handleClearCatalog() { if (confirm("¿BORRAR TODO?")) { allProductsData = []; subCatalogs = {}; activeSubCatalogName = null; selectedProductId = null; originalProductIdBeforeEdit = null; mainCatalogSearchTerm = ''; mainCatalogSearch.value = ''; subCatalogSearchTerm = ''; subCatalogSearch.value = ''; localStorage.removeItem(LOCAL_STORAGE_KEY); updateAllUI(); closeModal(); showFeedback(fileFeedback, "Datos locales eliminados.", true, 4000); } }
+
+         // --- Debounced Search Handler ---
+        function handleSearchInput(event) {
+            clearTimeout(searchDebounceTimeout);
+            const inputElement = event.target;
+            const searchTerm = inputElement.value.toLowerCase(); // Convertir a minúsculas aquí
+
+            searchDebounceTimeout = setTimeout(() => {
+                if (inputElement.id === 'mainCatalogSearch') {
+                    mainCatalogSearchTerm = searchTerm;
+                    renderMainCatalogGrid();
+                } else if (inputElement.id === 'subCatalogSearch') {
+                    subCatalogSearchTerm = searchTerm;
+                    renderSubCatalogGrid();
+                }
+            }, 300); // 300ms debounce delay
+        }
+
+        // --- Event Listeners Setup ---
+        function setupEventListeners() {
+            // General y Principal
+            loadFileBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileLoad);
+            clearCatalogBtn.addEventListener('click', handleClearCatalog);
+            addBulkBtn.addEventListener('click', handleBulkAdd);
+            copyFullCatalogBtn.addEventListener('click', handleCopyFullCatalog);
+            downloadFullCatalogBtn.addEventListener('click', handleDownloadFullCatalog);
+            mainCatalogSearch.addEventListener('input', handleSearchInput);
+
+            // Sub-Catálogos
+            subCatalogSelector.addEventListener('change', handleSubCatalogSelect);
+            createSubCatalogBtn.addEventListener('click', handleCreateSubCatalog);
+            renameSubCatalogBtn.addEventListener('click', handleRenameSubCatalog);
+            deleteSubCatalogBtn.addEventListener('click', handleDeleteSubCatalog);
+            copySubCatalogBtn.addEventListener('click', handleCopySubCatalog);
+            downloadSubCatalogBtn.addEventListener('click', handleDownloadSubCatalog);
+            subCatalogSearch.addEventListener('input', handleSearchInput);
+
+            // Modal
+            closeModalBtn.addEventListener('click', closeModal);
+            modalSaveChangesAndCloseBtn.addEventListener('click', closeModal);
+            modalDeleteProductBtn.addEventListener('click', deleteSelectedProduct);
+            modalCopySingleBtn.addEventListener('click', () => { copyToClipboard(modalJsonOutput.textContent, modalFeedback); });
+            modalProductIdInput.addEventListener('blur', handleIdChange);
+            editModal.addEventListener('click', (event) => { if (event.target === editModal) { closeModal(); } });
+            modalOtherFormInputs.forEach(input => { input.addEventListener('input', updateProductDataFromModalForm); if (input.type === 'checkbox') { input.addEventListener('change', updateProductDataFromModalForm); } });
+
+            // Tooltip y Clic en Grid Principal (Delegado)
+            mainCatalogGrid.addEventListener('mouseover', (event) => { const item = event.target.closest('.catalog-item'); if (item && !event.target.closest('.catalog-item-toggle-btn')) { const id = parseInt(item.dataset.productId); if (!isNaN(id)) { clearTimeout(tooltipTimeout); tooltipTimeout = setTimeout(() => { showTooltip(id, event); }, 150); } } else { clearTimeout(tooltipTimeout); hideTooltip(null); } });
+            mainCatalogGrid.addEventListener('mouseout', (event) => { const item = event.target.closest('.catalog-item'); if (item) { const id = parseInt(item.dataset.productId); if (!isNaN(id)) { clearTimeout(tooltipTimeout); hideTooltip(id); } } });
+            mainCatalogGrid.addEventListener('mousemove', (event) => { if (!productTooltip.classList.contains('hidden') && event.target.closest('.catalog-item') && !event.target.closest('.catalog-item-toggle-btn')) { positionTooltip(event); } else if (!event.target.closest('.catalog-item')) { clearTimeout(tooltipTimeout); hideTooltip(null); } });
+             // Clics para abrir modal ya están en img/name en renderMainCatalogGrid
+
+        }
+
+        // --- Initial Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            if (loadDataStructure()) {
+                updateAllUI();
+                showFeedback(fileFeedback, "Datos cargados.", false, 4000);
+            } else {
+                updateAllUI(); // Renderiza estado inicial vacío
+            }
+            setupEventListeners();
+        });
+
+    </script>
+
+</body>
+</html>
