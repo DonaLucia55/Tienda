@@ -66,10 +66,15 @@
         .product-card .product-price { font-weight: 700; font-size: 1.125rem; color: var(--dl-text-primary); margin-bottom: 0.8rem; }
 
         /* Full-Screen Modal Styles */
-        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white bg */ backdrop-filter: blur(4px); z-index: 100; opacity: 0; visibility: hidden; transform: translateX(100%); transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out; display: flex; flex-direction: column; }
-        .modal-fullscreen.active { opacity: 1; visibility: visible; transform: translateX(0); }
+        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white bg */ backdrop-filter: blur(4px); z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out; display: flex; flex-direction: column; transform: scale(1.05); /* Start slightly zoomed out for entry */ }
+        .modal-fullscreen.active { opacity: 1; visibility: visible; transform: scale(1.0); /* Scale in */ }
+        /* Slide-in for menu */
         .modal-fullscreen.menu-modal { transform: translateX(-100%); background-color: white; backdrop-filter: none;} /* Solid bg for menu */
         .modal-fullscreen.menu-modal.active { transform: translateX(0); }
+        /* Different transition for cart (slide from right) */
+        .modal-fullscreen#cartModalFs { transform: translateX(100%); }
+        .modal-fullscreen#cartModalFs.active { transform: translateX(0); }
+
         .modal-header-fs { padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dl-border-light); flex-shrink: 0; background-color: white; }
         .modal-header-fs .modal-header-content { width: 100%; display: flex; align-items: center; justify-content: space-between; }
         @media (min-width: 1024px) { .modal-header-fs .modal-header-content { max-width: 56rem; margin-left: auto; margin-right: auto; } }
@@ -156,11 +161,52 @@
         .featured-carousel .swiper-slide { height: auto; display: flex; padding: 5px 0; }
         .featured-carousel .product-card { width: 100%; height: 100%; margin-bottom: 0.5rem; }
 
-        /* Toast Notification Style (Top-Right) */
-        .toast-notification { position: fixed; top: 1rem; right: 1rem; z-index: 9999; background-color: rgba(31, 41, 55, 0.95); color: white; font-size: 0.875rem; font-weight: 500; padding: 0.75rem 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease-out; pointer-events: none; transform: translateY(-150%); opacity: 0; max-width: calc(100% - 2rem); }
-        .toast-notification.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
-        .toast-notification .toast-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
-        #toastContainer { position: fixed; top: 0; right: 0; z-index: 9998; pointer-events: none; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        /* Toast Notification Style (Top-Center) - UPDATED */
+        #toastContainer {
+            position: fixed;
+            top: 0;
+            left: 50%; /* Added */
+            transform: translateX(-50%); /* Added */
+            z-index: 9998;
+            pointer-events: none;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center toasts horizontally within the container */
+            gap: 0.5rem;
+        }
+
+        .toast-notification {
+            z-index: 9999;
+            background-color: rgba(31, 41, 55, 0.95);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease-out;
+            pointer-events: none;
+            transform: translateY(-150%); /* Animation still starts off-screen top */
+            opacity: 0;
+            max-width: calc(100% - 2rem); /* Keep max-width */
+            width: auto; /* Allow toast to size based on content */
+        }
+
+        .toast-notification.show {
+            transform: translateY(0); /* Animation ends in view */
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .toast-notification .toast-icon {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
 
         /* Tutorial Modal Specific Styles */
         #tutorialModalFs .modal-body-fs ul { list-style-position: outside; padding-left: 1.5rem; }
@@ -208,6 +254,48 @@
         #promoModalFs .promo-cta-button {
             padding: 0.8rem 2rem; /* Larger button */
             font-size: 1rem;
+        }
+
+        /* Image Zoom Modal Specific Styles (Optional, mostly inline) */
+        #imageZoomModalFs {
+            /* Inline styles handle background and blur */
+        }
+        #imageZoomModalFs .modal-header-fs {
+            background: transparent;
+            border-bottom: none;
+        }
+         #imageZoomModalFs .modal-close-btn-fs {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+         }
+         #imageZoomModalFs .modal-close-btn-fs:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+         }
+        #imageZoomModalFs .modal-body-fs {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* Adjust padding as needed */
+        }
+        #zoomedImage {
+            max-width: 90%;
+            max-height: 85vh; /* Slightly more height */
+            object-fit: contain;
+            border-radius: 0.5rem; /* Optional rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            margin-left: auto;
+            margin-right: auto;
+            display: block; /* Ensure it behaves like a block element */
+        }
+        #zoomedImageCaption {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.9); /* Slightly less bright white */
+            font-size: 1rem;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6); /* Text shadow for readability */
         }
 
     </style>
@@ -332,7 +420,7 @@
     </div>
 
     <!-- Cart Modal -->
-    <div id="cartModalFs" class="modal-fullscreen">
+    <div id="cartModalFs" class="modal-fullscreen"> <!-- Specific ID for animation override -->
          <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Carrito de Compras</h2> <button class="modal-close-btn-fs" data-modal-id="cartModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
          <div class="modal-body-fs flex flex-col p-0"> <!-- Remove padding from body -->
              <div class="modal-body-content-wrapper h-full flex flex-col"> <!-- Wrapper still has padding -->
@@ -368,10 +456,10 @@
     <!-- Tutorial Modal -->
     <div id="tutorialModalFs" class="modal-fullscreen">
         <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">💡 Guía Rápida 💡</h2> <button class="modal-close-btn-fs" data-modal-id="tutorialModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
-        <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-lg font-semibold text-primary mb-4">¡Bienvenido/a!</h3> <p class="text-secondary mb-4">Explorar nuestros productos es fácil:</p> <ul class="list-disc text-secondary space-y-3"> <li>Usa la <strong class="text-primary">barra de búsqueda</strong> o filtra por <strong class="text-primary">categorías</strong>.</li> <li>Echa un vistazo a los <strong class="text-primary">✨ Destacados ✨</strong> o navega por <strong class="text-primary">Todos los Productos</strong>.</li> <li>Toca <strong class="text-primary">"Ver Detalles"</strong> en un producto para más información y añadirlo al carrito.</li> <li>El icono del carrito <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> (arriba a la derecha) te lleva a tu pedido.</li> <li>En el carrito, puedes ajustar las cantidades o eliminar productos. Presiona <strong class="text-accent">"Finalizar Pedido"</strong> para enviarnos tu orden por WhatsApp.</li> <li>Usa el menú <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg> (en móvil) o los enlaces de la barra superior (en escritorio) para acceder a otras secciones como Contacto, Promociones o esta Guía.</li> </ul> <p class="mt-6 text-center font-medium text-primary">¡Disfruta tu experiencia de compra!</p> </div> </div>
+        <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-lg font-semibold text-primary mb-4">¡Bienvenido/a!</h3> <p class="text-secondary mb-4">Explorar nuestros productos es fácil:</p> <ul class="list-disc text-secondary space-y-3"> <li>Usa la <strong class="text-primary">barra de búsqueda</strong> o filtra por <strong class="text-primary">categorías</strong>.</li> <li>Echa un vistazo a los <strong class="text-primary">✨ Destacados ✨</strong> o navega por <strong class="text-primary">Todos los Productos</strong>.</li> <li>Toca <strong class="text-primary">"Ver Detalles"</strong> en un producto para más información y añadirlo al carrito.</li> <li>Haz clic en cualquier <strong class="text-primary">imagen de producto</strong> para verla más grande.</li> <li>El icono del carrito <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> (arriba a la derecha) te lleva a tu pedido.</li> <li>En el carrito, puedes ajustar las cantidades o eliminar productos. Presiona <strong class="text-accent">"Finalizar Pedido"</strong> para enviarnos tu orden por WhatsApp.</li> <li>Usa el menú <svg class="heroicon-sm inline-block align-text-bottom mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg> (en móvil) o los enlaces de la barra superior (en escritorio) para acceder a otras secciones como Contacto, Promociones o esta Guía.</li> </ul> <p class="mt-6 text-center font-medium text-primary">¡Disfruta tu experiencia de compra!</p> </div> </div>
     </div>
 
-    <!-- Promo Modal (NEW) -->
+    <!-- Promo Modal -->
     <div id="promoModalFs" class="modal-fullscreen">
         <div class="modal-header-fs">
             <div class="modal-header-content">
@@ -397,6 +485,23 @@
                 <button class="btn btn-gold promo-cta-button modal-close-btn-fs" data-modal-id="promoModalFs">
                     ¡Entendido!
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Zoom Modal (NEW) -->
+    <div id="imageZoomModalFs" class="modal-fullscreen image-zoom-modal" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);"> <!-- Darker overlay -->
+        <div class="modal-header-fs" style="background: transparent; border-bottom: none;">
+             <div class="modal-header-content" style="justify-content: flex-end;"> <!-- Only show close button -->
+                <button class="modal-close-btn-fs" data-modal-id="imageZoomModalFs" aria-label="Cerrar imagen" style="color: white; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);">
+                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body-fs flex items-center justify-center p-4" style="background: transparent;"> <!-- Centering content -->
+            <div class="text-center"> <!-- Container for image and caption -->
+                 <img id="zoomedImage" src="" alt="Imagen ampliada" class="max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-xl mx-auto block">
+                 <p id="zoomedImageCaption" class="mt-4 text-white text-lg font-medium text-shadow"></p>
             </div>
         </div>
     </div>
@@ -445,6 +550,11 @@
             const forceRefreshLinkMobile = document.getElementById('forceRefreshLinkMobile'); // Mobile refresh
             const forceRefreshLinkDesktop = document.getElementById('forceRefreshLinkDesktop'); // Desktop refresh
             const toastContainer = document.getElementById('toastContainer');
+            // Image Zoom Modal Elements (Add these)
+            const zoomedImageElement = document.getElementById('zoomedImage');
+            const zoomedImageCaptionElement = document.getElementById('zoomedImageCaption');
+            const imageZoomModalElement = document.getElementById('imageZoomModalFs');
+
 
              // --- Utility Functions ---
              function debounce(func, wait) { let timeout; return function executedFunction(...args) { const later = () => { clearTimeout(timeout); func.apply(this, args); }; clearTimeout(timeout); timeout = setTimeout(later, wait); }; }
@@ -452,14 +562,14 @@
 
             // --- Data Loading ---
             async function loadProducts() {
-                console.log('[App] Attempting to load products...');
+                console.log('[App] Intentando cargar productos...');
                 if (productGridStatus) productGridStatus.innerHTML = `<svg class="animate-spin h-6 w-6 text-gray-400 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Cargando productos...`;
                 if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<span class="text-sm text-gray-500 italic">Cargando...</span>';
                 if (featuredSection) featuredSection.style.display = 'none'; // Hide featured initially
 
                 try {
                     const response = await fetch(`1products.json?v=${Date.now()}`); // Cache-busting
-                    console.log(`[App] Fetch response status: ${response.status}`);
+                    console.log(`[App] Estado de respuesta fetch: ${response.status}`);
                     if (!response.ok) {
                         throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
                     }
@@ -469,14 +579,14 @@
                     }
                     allProductsData = jsonData;
                     dataLoadError = false;
-                    console.log(`[App] Products loaded successfully (${allProductsData.length} items).`);
+                    console.log(`[App] Productos cargados exitosamente (${allProductsData.length} items).`);
 
                     // ---- SUCCESS -> Initialize Page Content ----
                     initializePageContent();
                     updateCartDisplay(); // Update cart counts and totals
 
                 } catch (error) {
-                    console.error("[Error] Failed to load or process products:", error);
+                    console.error("[Error] Falló al cargar o procesar productos:", error);
                     dataLoadError = true;
                     allProductsData = []; // Ensure it's an empty array on error
 
@@ -497,33 +607,75 @@
 
             // --- Initial Page Setup (Called AFTER successful data load) ---
             function initializePageContent() {
-                console.log('[App] Initializing page content...');
+                console.log('[App] Inicializando contenido de la página...');
                 renderFeaturedProducts(); // Render featured section first
                 renderCategoryFilters();
                 renderProducts(); // Render the main grid
                 setupSearchListener(); // Set up search only after data is ready
-                console.log('[App] Page content initialized.');
+                console.log('[App] Contenido de la página inicializado.');
             }
 
             // --- Modals ---
-            function openFullScreenModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('active'); document.body.classList.add('modal-open'); const b = m.querySelector('.modal-body-fs'); if(b) b.scrollTop = 0; } else console.error(`[Modal] Modal con ID '${id}' no encontrado.`); }
-            function closeFullScreenModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('active'); requestAnimationFrame(() => { if (!document.querySelector('.modal-fullscreen.active')) document.body.classList.remove('modal-open'); }); } }
+            function openFullScreenModal(id) {
+                const m = document.getElementById(id);
+                if (m) {
+                    // Add 'active' slightly after making visible to ensure transition plays
+                    m.style.visibility = 'visible'; // Make it visible first
+                    requestAnimationFrame(() => { // Wait for next frame
+                        m.classList.add('active');
+                        document.body.classList.add('modal-open');
+                        const b = m.querySelector('.modal-body-fs');
+                        if(b) b.scrollTop = 0;
+                    });
+                } else {
+                    console.error(`[Modal] Modal con ID '${id}' no encontrado.`);
+                }
+            }
+
+            function closeFullScreenModal(id) {
+                const m = document.getElementById(id);
+                if (m) {
+                    m.classList.remove('active');
+                    // Wait for transition to finish before hiding completely and removing body class
+                    m.addEventListener('transitionend', () => {
+                        if (!m.classList.contains('active')) { // Ensure it's still meant to be hidden
+                            m.style.visibility = 'hidden';
+                            // Check if any *other* modal is still active before removing body class
+                            if (!document.querySelector('.modal-fullscreen.active')) {
+                                document.body.classList.remove('modal-open');
+                            }
+                        }
+                    }, { once: true });
+
+                    // Fallback: If transitionend doesn't fire (e.g., element removed, display none)
+                    setTimeout(() => {
+                        if (!m.classList.contains('active')) {
+                           m.style.visibility = 'hidden';
+                            if (!document.querySelector('.modal-fullscreen.active')) {
+                                document.body.classList.remove('modal-open');
+                            }
+                        }
+                    }, 350); // Slightly longer than transition duration
+
+                }
+            }
+
 
             // --- Cart Persistence ---
-            function saveCart() { try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); updateCartDisplay(); } catch (e) { console.error("[Cart] Error saving cart to localStorage:", e); showToast("Error al guardar carrito", "error"); } }
-            function loadCart() { try { const s = localStorage.getItem(CART_STORAGE_KEY); if (!s) return {}; const p = JSON.parse(s); if (typeof p === 'object' && p !== null) { const c = {}; for (const k in p) { const id = parseInt(k), q = p[k]; if (!isNaN(id) && typeof q === 'number' && q > 0 && Number.isInteger(q)) c[id] = q; } console.log('[Cart] Cart loaded from localStorage:', c); return c; } throw new Error("Invalid cart data format"); } catch (e) { console.error("[Cart] Error loading cart from localStorage:", e); localStorage.removeItem(CART_STORAGE_KEY); return {}; } }
+            function saveCart() { try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); updateCartDisplay(); } catch (e) { console.error("[Cart] Error guardando carrito en localStorage:", e); showToast("Error al guardar carrito", "error"); } }
+            function loadCart() { try { const s = localStorage.getItem(CART_STORAGE_KEY); if (!s) return {}; const p = JSON.parse(s); if (typeof p === 'object' && p !== null) { const c = {}; for (const k in p) { const id = parseInt(k), q = p[k]; if (!isNaN(id) && typeof q === 'number' && q > 0 && Number.isInteger(q)) c[id] = q; } console.log('[Cart] Carrito cargado desde localStorage:', c); return c; } throw new Error("Invalid cart data format"); } catch (e) { console.error("[Cart] Error cargando carrito desde localStorage:", e); localStorage.removeItem(CART_STORAGE_KEY); return {}; } }
 
             // --- Featured Products (Swiper) ---
             function renderFeaturedProducts() {
-                if (!featuredWrapper || !featuredSection) { console.warn('[Featured] Missing featured DOM elements.'); return; }
+                if (!featuredWrapper || !featuredSection) { console.warn('[Featured] Faltan elementos DOM destacados.'); return; }
                 if (!Array.isArray(allProductsData) || dataLoadError || allProductsData.length === 0) {
-                    console.log('[Featured] No data or error, hiding section.');
+                    console.log('[Featured] Sin datos o error, ocultando sección.');
                     featuredSection.style.display = 'none';
                     if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
                     return;
                 }
                 const featuredProducts = allProductsData.filter(p => p.featured);
-                console.log(`[Featured] Found ${featuredProducts.length} featured products.`);
+                console.log(`[Featured] Encontrados ${featuredProducts.length} productos destacados.`);
                 if (featuredProducts.length === 0) {
                     featuredSection.style.display = 'none';
                     if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
@@ -537,7 +689,7 @@
                     slide.innerHTML = `
                         <div class="product-card featured-product-card w-full h-full flex flex-col">
                             <div class="relative">
-                                <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                                <img src="${p.image}" alt="${p.name}" class="product-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
                                 <span class="featured-badge">Destacado</span>
                             </div>
                             <div class="product-info">
@@ -549,6 +701,7 @@
                             </div>
                         </div>`;
                     slide.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
+                    // Note: Click listener for image is handled by delegation on body
                     featuredWrapper.appendChild(slide);
                 });
 
@@ -560,19 +713,19 @@
                 if (featuredSwiper) {
                     featuredSwiper.destroy(true, true);
                     featuredSwiper = null;
-                    console.log('[Swiper] Destroyed previous instance.');
+                    console.log('[Swiper] Instancia previa destruida.');
                 }
-                if (typeof Swiper === 'undefined') { console.warn("[Swiper] Swiper library not loaded."); return; }
+                if (typeof Swiper === 'undefined') { console.warn("[Swiper] Librería Swiper no cargada."); return; }
 
                 const container = document.querySelector('.featured-carousel');
-                if (!container || count === 0) { console.log('[Swiper] No container or no slides.'); return; }
+                if (!container || count === 0) { console.log('[Swiper] Sin contenedor o sin slides.'); return; }
 
                 // Determine max slides visible for loop calculation
                 const breakpoints = { 640: 2, 1024: 3, 1280: 4 };
                 let maxSlides = 1.3; // Mobile default
                 for(const bp in breakpoints) { if (window.innerWidth >= parseInt(bp)) maxSlides = breakpoints[bp]; }
 
-                console.log(`[Swiper] Initializing with ${count} slides. Max visible: ${maxSlides}`);
+                console.log(`[Swiper] Inicializando con ${count} slides. Máx visibles: ${maxSlides}`);
                 featuredSwiper = new Swiper(container, {
                     loop: count > maxSlides, // Enable loop only if more slides than visible
                     slidesPerView: 1.3,
@@ -591,7 +744,7 @@
                     on: { // Add event listener for init
                         init: function () {
                             container.classList.add('swiper-initialized'); // Add class to show nav buttons
-                             console.log('[Swiper] Initialized.');
+                             console.log('[Swiper] Inicializado.');
                         },
                     },
                 });
@@ -602,16 +755,16 @@
                  if (searchInput) {
                     searchInput.addEventListener('input', debounce(() => {
                         currentSearchTerm = searchInput.value.trim().toLowerCase();
-                         console.log(`[Search] Term updated: "${currentSearchTerm}"`);
+                         console.log(`[Search] Término actualizado: "${currentSearchTerm}"`);
                         renderProducts(); // Re-render the grid based on new search term
                     }, 300)); // Debounce search input
                  } else {
-                     console.warn('[Search] Search input element not found.');
+                     console.warn('[Search] Elemento de entrada de búsqueda no encontrado.');
                  }
             }
 
             function renderCategoryFilters() {
-                 if (!categoryFiltersContainer) { console.warn('[Filter] Category container not found.'); return; }
+                 if (!categoryFiltersContainer) { console.warn('[Filter] Contenedor de categorías no encontrado.'); return; }
                  if (!Array.isArray(allProductsData) || dataLoadError) {
                      categoryFiltersContainer.innerHTML = dataLoadError ? '<p class="text-red-500 text-xs">Error</p>' : '<span class="text-sm text-gray-500 italic">...</span>';
                      return;
@@ -621,7 +774,7 @@
                      if (a === 'Todos') return -1; if (b === 'Todos') return 1; return a.localeCompare(b);
                  });
 
-                 console.log('[Filter] Rendering categories:', categories);
+                 console.log('[Filter] Renderizando categorías:', categories);
                  categoryFiltersContainer.innerHTML = ''; // Clear previous filters
                  categories.forEach(cat => {
                      const button = document.createElement('button');
@@ -632,7 +785,7 @@
                      button.className = `btn btn-sm transition-colors duration-150 ease-in-out ${isActive ? 'btn-primary' : 'btn-secondary text-gray-600 hover:bg-gray-100'}`;
                      button.onclick = () => {
                          currentCategoryFilter = cat; // Update state
-                         console.log(`[Filter] Category selected: "${currentCategoryFilter}"`);
+                         console.log(`[Filter] Categoría seleccionada: "${currentCategoryFilter}"`);
                          renderCategoryFilters(); // Re-render filters to update active style
                          renderProducts(); // Re-render products for the selected category
                      };
@@ -642,22 +795,22 @@
 
             // --- Render Products ---
             function renderProducts() {
-                if (!productGrid) { console.error("[Render] Product grid container not found."); return; }
-                if (!productGridStatus) { console.warn("[Render] Product grid status element not found."); }
+                if (!productGrid) { console.error("[Render] Contenedor de cuadrícula de productos no encontrado."); return; }
+                if (!productGridStatus) { console.warn("[Render] Elemento de estado de cuadrícula de productos no encontrado."); }
 
                 // Handle loading/error state for product data
                 if (!Array.isArray(allProductsData)) {
                     if (dataLoadError) {
                          // Error message is already handled by loadProducts
-                         console.log('[Render] Cannot render products due to data load error.');
+                         console.log('[Render] No se pueden renderizar productos debido a error de carga de datos.');
                      } else {
-                         console.log('[Render] Waiting for product data...');
+                         console.log('[Render] Esperando datos de productos...');
                         if (productGridStatus) productGridStatus.classList.remove('hidden'); // Show loading message
                     }
                     return; // Exit if data isn't ready or failed to load
                 }
 
-                console.log(`[Render] Rendering products. Filter: "${currentCategoryFilter}", Search: "${currentSearchTerm}"`);
+                console.log(`[Render] Renderizando productos. Filtro: "${currentCategoryFilter}", Búsqueda: "${currentSearchTerm}"`);
 
                 // Filter products based on category and search term
                 let filteredProducts = allProductsData;
@@ -677,7 +830,7 @@
                 productGrid.innerHTML = ''; // Clear previous products or loading message
 
                  if (filteredProducts.length === 0) {
-                     console.log('[Render] No products match filters.');
+                     console.log('[Render] Ningún producto coincide con los filtros.');
                     // Display appropriate "no results" message
                      const message = currentSearchTerm
                         ? `No se encontraron productos para "${searchInput.value}".`
@@ -686,13 +839,13 @@
                             : `🤷‍♀️ No hay productos disponibles en este momento.`);
                      productGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full py-10">${message}</p>`;
                  } else {
-                     console.log(`[Render] Displaying ${filteredProducts.length} products.`);
+                     console.log(`[Render] Mostrando ${filteredProducts.length} productos.`);
                     // Create and append product cards
                      filteredProducts.forEach(p => {
                          const productCardElement = document.createElement('div');
                          productCardElement.className = 'product-card'; // Use existing class
                          productCardElement.innerHTML = `
-                            <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                            <img src="${p.image}" alt="${p.name}" class="product-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
                             <div class="product-info">
                                 <div>
                                     <h3 class="product-name">${p.name}</h3>
@@ -702,6 +855,7 @@
                             </div>`;
                          // Add event listener to the button inside this card
                         productCardElement.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
+                         // Note: Click listener for image is handled by delegation on body
                         productGrid.appendChild(productCardElement);
                      });
                  }
@@ -712,8 +866,8 @@
             // --- Product Modal ---
              function handleOpenProductDetails(event) {
                  const productId = parseInt(event.currentTarget.dataset.productId);
-                 console.log(`[Product Modal] Opening details for ID: ${productId}`);
-                 if (isNaN(productId)) { console.warn('[Product Modal] Invalid product ID.'); return; }
+                 console.log(`[Product Modal] Abriendo detalles para ID: ${productId}`);
+                 if (isNaN(productId)) { console.warn('[Product Modal] ID de producto inválido.'); return; }
                  if (!Array.isArray(allProductsData)) { showToast("Datos de productos no están listos.", "error"); return; }
 
                  const product = allProductsData.find(p => p.id === productId);
@@ -723,14 +877,14 @@
                      const relatedProducts = getRelatedProducts(productId, 3);
                      let relatedHTML = '';
                      if (relatedProducts.length > 0) {
-                        console.log(`[Product Modal] Found ${relatedProducts.length} related products.`);
+                        console.log(`[Product Modal] Encontrados ${relatedProducts.length} productos relacionados.`);
                          relatedHTML = `
                              <div class="mt-10 pt-6 border-t border-gray-200">
                                  <h4 class="text-lg font-semibold text-primary mb-4">También te podría gustar:</h4>
                                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                      ${relatedProducts.map(rp => `
                                          <div class="related-product-card border border-gray-100 rounded-md p-3 text-center hover:shadow-sm flex flex-col items-center bg-white transition-shadow duration-200">
-                                             <img src="${rp.image}" alt="${rp.name}" class="w-20 h-20 object-cover mb-2 rounded" loading="lazy">
+                                             <img src="${rp.image}" alt="${rp.name}" class="w-20 h-20 object-cover mb-2 rounded zoomable-image cursor-pointer" loading="lazy" data-product-name="${rp.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
                                              <h5 class="text-xs font-medium text-primary mb-1 leading-tight">${rp.name}</h5>
                                              <p class="text-sm font-semibold text-gray-700 mb-2">$${rp.price.toFixed(2)}</p>
                                              <button class="btn btn-secondary btn-xs w-full mt-auto related-details-btn text-xs py-1 px-2" data-product-id="${rp.id}">Ver</button>
@@ -741,7 +895,7 @@
 
                      productDetailsContentFs.innerHTML = `
                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                             <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover border border-gray-100">
+                             <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover border border-gray-100 zoomable-image cursor-pointer" data-product-name="${product.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
                              <div class="flex flex-col h-full">
                                  <p class="text-secondary mb-4 text-sm">${product.description || 'Descripción no disponible.'}</p>
                                  <p class="text-3xl font-bold text-primary mb-5">$${product.price.toFixed(2)}</p>
@@ -762,10 +916,11 @@
                      // Add listeners for buttons inside the modal
                      productDetailsContentFs.querySelector('.add-to-cart-btn')?.addEventListener('click', handleAddToCartFromDetails);
                      productDetailsContentFs.querySelectorAll('.related-details-btn').forEach(button => button.addEventListener('click', handleRelatedProductClick));
+                     // Note: Click listener for images is handled by delegation on body
 
                      openFullScreenModal('productModalFs');
                  } else {
-                     console.error('[Product Modal] Modal content or title element not found.');
+                     console.error('[Product Modal] Elemento de contenido o título del modal no encontrado.');
                  }
              }
 
@@ -798,7 +953,7 @@
 
             function handleRelatedProductClick(event) {
                  const relatedProductId = event.currentTarget.dataset.productId;
-                 console.log(`[Product Modal] Clicked related product ID: ${relatedProductId}`);
+                 console.log(`[Product Modal] Clic en producto relacionado ID: ${relatedProductId}`);
                  closeFullScreenModal('productModalFs');
                  // Use setTimeout to allow the close animation to start before opening the new one
                  setTimeout(() => {
@@ -811,13 +966,13 @@
             // --- Cart ---
             function handleAddToCart(productId, buttonElement = null) {
                 const id = parseInt(productId);
-                if (isNaN(id)) { console.warn('[Cart] Invalid product ID for add.'); return; }
+                if (isNaN(id)) { console.warn('[Cart] ID de producto inválido para añadir.'); return; }
                 if (!Array.isArray(allProductsData)) { showToast("Error: Datos de productos no cargados.", "error"); return; }
 
                 const product = allProductsData.find(p => p.id === id);
                 if (!product) { showToast("Error: Producto no encontrado.", "error"); return; }
 
-                console.log(`[Cart] Adding product ID ${id} (${product.name})`);
+                console.log(`[Cart] Añadiendo producto ID ${id} (${product.name})`);
                 cart[id] = (cart[id] || 0) + 1; // Increment quantity
                 saveCart(); // Save and trigger UI update
                 showToast(`"${product.name}" añadido al carrito`, 'success');
@@ -851,15 +1006,15 @@
             }
 
              function renderCartItemsFs() {
-                 if (isRenderingCart) { console.log('[Cart Render] Already rendering, skipping.'); return; }
+                 if (isRenderingCart) { console.log('[Cart Render] Ya renderizando, omitiendo.'); return; }
                  isRenderingCart = true;
 
                  if (!cartItemsContainerFs || !emptyCartMessageFs || !cartSummaryDivFs) {
-                     console.error("[Cart Render] Essential Cart UI elements are missing.");
+                     console.error("[Cart Render] Faltan elementos esenciales de la interfaz de usuario del carrito.");
                      isRenderingCart = false; return;
                  }
 
-                 console.log('[Cart Render] Rendering cart items...');
+                 console.log('[Cart Render] Renderizando ítems del carrito...');
                  cartItemsContainerFs.innerHTML = ''; // Clear previous items
                  const cartKeys = Object.keys(cart).map(k => parseInt(k)).filter(k => !isNaN(k) && cart[k] > 0);
                  let hasVisibleItems = false;
@@ -868,16 +1023,16 @@
                      emptyCartMessageFs.textContent = dataLoadError ? "Error al cargar datos." : "Cargando datos...";
                      emptyCartMessageFs.classList.remove('hidden');
                      cartSummaryDivFs.classList.add('hidden');
-                     console.log('[Cart Render] Cannot render items, product data not ready.');
+                     console.log('[Cart Render] No se pueden renderizar ítems, datos de productos no listos.');
                  } else if (cartKeys.length === 0) {
                      emptyCartMessageFs.textContent = "Tu carrito está vacío.";
                      emptyCartMessageFs.classList.remove('hidden');
                      cartSummaryDivFs.classList.add('hidden');
-                     console.log('[Cart Render] Cart is empty.');
+                     console.log('[Cart Render] El carrito está vacío.');
                  } else {
                      emptyCartMessageFs.classList.add('hidden'); // Hide empty message
                      cartSummaryDivFs.classList.remove('hidden'); // Show summary
-                     console.log(`[Cart Render] Processing ${cartKeys.length} items.`);
+                     console.log(`[Cart Render] Procesando ${cartKeys.length} ítems.`);
 
                      cartKeys.forEach(productId => {
                          const quantity = cart[productId];
@@ -889,7 +1044,7 @@
                              itemElement.className = 'cart-item';
                              itemElement.dataset.productId = productId;
                              itemElement.innerHTML = `
-                                 <img src="${product.image}" alt="${product.name}" class="cart-item-image" loading="lazy">
+                                 <img src="${product.image}" alt="${product.name}" class="cart-item-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${product.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
                                  <div class="cart-item-details">
                                      <h4 class="cart-item-name">${product.name}</h4>
                                      <p class="cart-item-price">$${product.price.toFixed(2)} cada uno</p>
@@ -910,9 +1065,10 @@
                              itemElement.querySelector('[data-action="decrease"]').onclick = handleCartItemActionFs;
                              itemElement.querySelector('[data-action="increase"]').onclick = handleCartItemActionFs;
                              itemElement.querySelector('.remove-from-cart').onclick = handleCartItemActionFs;
+                             // Note: Click listener for image is handled by delegation on body
                              cartItemsContainerFs.appendChild(itemElement);
                          } else {
-                             console.warn(`[Cart Render] Product ID ${productId} in cart but not found in data. Removing.`);
+                             console.warn(`[Cart Render] ID de producto ${productId} en carrito pero no encontrado en datos. Eliminando.`);
                              delete cart[productId];
                              saveCart(); // Auto-clean invalid item (will trigger another render)
                          }
@@ -920,19 +1076,19 @@
 
                      // Handle edge case where all items were invalid and removed
                      if (!hasVisibleItems && cartKeys.length > 0) {
-                         emptyCartMessageFs.textContent = "Error al mostrar items. Intenta recargar.";
+                         emptyCartMessageFs.textContent = "Error al mostrar ítems. Intenta recargar.";
                          emptyCartMessageFs.classList.remove('hidden');
                          cartSummaryDivFs.classList.add('hidden');
-                         console.log('[Cart Render] No valid items rendered, showing error.');
+                         console.log('[Cart Render] No se renderizaron ítems válidos, mostrando error.');
                      } else if (!hasVisibleItems && cartKeys.length === 0) {
                          emptyCartMessageFs.textContent = "Tu carrito está vacío.";
                          emptyCartMessageFs.classList.remove('hidden');
                          cartSummaryDivFs.classList.add('hidden');
-                         console.log('[Cart Render] Cart became empty after removing invalid items.');
+                         console.log('[Cart Render] El carrito quedó vacío después de eliminar ítems inválidos.');
                      }
                  }
                  isRenderingCart = false;
-                 console.log('[Cart Render] Finished rendering.');
+                 console.log('[Cart Render] Renderizado finalizado.');
              }
 
             function handleCartItemActionFs(event) {
@@ -942,10 +1098,10 @@
                  const productId = parseInt(productIdStr);
 
                  if (isNaN(productId) || !action) {
-                     console.warn(`[Cart Action] Invalid action or product ID: Action=${action}, ID=${productIdStr}`);
+                     console.warn(`[Cart Action] Acción o ID de producto inválido: Acción=${action}, ID=${productIdStr}`);
                      return;
                  }
-                 console.log(`[Cart Action] Action: ${action}, Product ID: ${productId}`);
+                 console.log(`[Cart Action] Acción: ${action}, ID Producto: ${productId}`);
 
                  let cartChanged = false;
                  if (action === 'increase') {
@@ -972,12 +1128,12 @@
                  if (cartChanged) {
                      saveCart(); // Save and trigger UI update (which includes re-rendering)
                  } else {
-                     console.warn(`[Cart Action] Action "${action}" for product ${productId} resulted in no change.`);
+                     console.warn(`[Cart Action] La acción "${action}" para el producto ${productId} no resultó en cambios.`);
                  }
             }
 
             function updateCartTotalFs() {
-                 if (!cartTotalElementFs || !checkoutBtnFs) { console.warn('[Cart Total] Total or checkout button element not found.'); return; }
+                 if (!cartTotalElementFs || !checkoutBtnFs) { console.warn('[Cart Total] Elemento de total o botón de finalizar no encontrado.'); return; }
 
                  let total = 0;
                  let canCalculate = false;
@@ -992,7 +1148,7 @@
                          } else if (quantity > 0) {
                              // Product ID in cart but not in data - indicates an issue
                              canCalculate = false;
-                              console.warn(`[Cart Total] Cannot accurately calculate total, missing data for product ID ${pid}`);
+                              console.warn(`[Cart Total] No se puede calcular el total con precisión, faltan datos para el ID de producto ${pid}`);
                              break;
                          }
                      }
@@ -1001,11 +1157,11 @@
                  if (canCalculate) {
                      cartTotalElementFs.textContent = `$${total.toFixed(2)}`;
                      checkoutBtnFs.disabled = total <= 0; // Enable only if total > 0
-                     console.log(`[Cart Total] Updated total: $${total.toFixed(2)}, Checkout enabled: ${!checkoutBtnFs.disabled}`);
+                     console.log(`[Cart Total] Total actualizado: $${total.toFixed(2)}, Finalizar habilitado: ${!checkoutBtnFs.disabled}`);
                  } else {
                      cartTotalElementFs.textContent = `$?.??`;
                      checkoutBtnFs.disabled = true;
-                     console.log('[Cart Total] Cannot calculate total, checkout disabled.');
+                     console.log('[Cart Total] No se puede calcular el total, finalizar deshabilitado.');
                  }
             }
 
@@ -1013,7 +1169,7 @@
                  const itemCount = Object.keys(cart).length;
                  if (itemCount > 0) {
                      showConfirmation('¿Estás seguro de que quieres vaciar todo el carrito?', () => {
-                         console.log('[Cart] Clearing cart.');
+                         console.log('[Cart] Vaciando carrito.');
                          cart = {};
                          saveCart(); // Save the empty cart and trigger UI update
                          showToast('Carrito vaciado', 'info');
@@ -1034,7 +1190,7 @@
                      return;
                  }
                  if (WHATSAPP_NUMBER === 'YOUR_NUMBER_HERE' || WHATSAPP_NUMBER.length < 10) {
-                    console.error("WhatsApp number not configured correctly in WHATSAPP_NUMBER constant.");
+                    console.error("Número de WhatsApp no configurado correctamente en la constante WHATSAPP_NUMBER.");
                     showToast("Error de configuración interna. Contacta al administrador.", "error");
                     return;
                 }
@@ -1067,7 +1223,7 @@
                  finalMessage += `💰 *Total Estimado:* $${grandTotal.toFixed(2)}\n\n`;
 
                  if (!productsFound) {
-                     finalMessage += `_(Nota: Algunos detalles de productos pueden faltar. Por favor confirmar.)_\n\n`;
+                     finalMessage += `_(Nota: Pueden faltar detalles de algunos productos. Por favor confirmar.)_\n\n`;
                  }
 
                  finalMessage += `📍 _Espero confirmación de disponibilidad y detalles para la entrega._\n\n`;
@@ -1075,7 +1231,7 @@
 
                  // Encode and open WhatsApp link
                  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`;
-                 console.log("[Checkout] Opening WhatsApp URL:", whatsappUrl);
+                 console.log("[Checkout] Abriendo URL de WhatsApp:", whatsappUrl);
                  window.open(whatsappUrl, '_blank'); // Open in a new tab
             }
 
@@ -1083,7 +1239,7 @@
             // --- Cart Display Update (Counters) ---
             function updateCartDisplay() {
                  const totalItems = Object.values(cart).reduce((sum, qty) => sum + (qty || 0), 0);
-                 console.log(`[Cart Display] Updating counts. Total items: ${totalItems}`);
+                 console.log(`[Cart Display] Actualizando contadores. Ítems totales: ${totalItems}`);
 
                  // Update badge counter
                  if (cartItemCountBadge) {
@@ -1092,8 +1248,8 @@
                      // Simple scale animation on change (if badge was already visible)
                      const prevCount = parseInt(cartItemCountBadge.dataset.prevCount || '0');
                      if (totalItems > 0 && totalItems !== prevCount && !document.querySelector('.modal-fullscreen.active')) {
-                         cartItemCountBadge.classList.add('transform', 'scale-125', 'transition-transform', 'duration-150', 'ease-out');
-                         setTimeout(() => cartItemCountBadge.classList.remove('transform', 'scale-125'), 150);
+                         cartItemCountBadge.style.transform = 'scale(1.25)';
+                         setTimeout(() => { cartItemCountBadge.style.transform = 'scale(1)'; }, 150);
                      }
                      cartItemCountBadge.dataset.prevCount = totalItems.toString();
                  }
@@ -1152,10 +1308,26 @@
                 }, { once: true });
             }
 
+            // --- Image Zoom Modal ---
+            function openImageZoomModal(imageUrl, imageAlt, captionText = '') {
+                if (imageZoomModalElement && zoomedImageElement && zoomedImageCaptionElement) {
+                    console.log(`[Image Zoom] Abriendo: ${imageUrl}, Leyenda: ${captionText}`);
+                    zoomedImageElement.src = imageUrl;
+                    zoomedImageElement.alt = imageAlt || 'Imagen ampliada'; // Use provided alt or a default
+                    zoomedImageCaptionElement.textContent = captionText;
+                    zoomedImageCaptionElement.style.display = captionText ? 'block' : 'none'; // Hide caption if empty
+
+                    openFullScreenModal('imageZoomModalFs'); // Use existing function to open
+                } else {
+                    console.error('[Image Zoom] No se encontró el modal, la imagen o el elemento de leyenda.');
+                    showToast("Error al mostrar la imagen.", "error");
+                }
+            }
+
 
             // --- Event Listeners Setup ---
             function setupStaticEventListeners() {
-                console.log('[Events] Setting up static event listeners...');
+                console.log('[Events] Configurando escuchadores de eventos estáticos...');
                 // Cart button
                 if (openCartBtn) openCartBtn.addEventListener('click', () => openFullScreenModal('cartModalFs'));
 
@@ -1191,12 +1363,28 @@
                     modal.addEventListener('click', (e) => {
                         // Close only if the direct target of the click is the modal overlay itself
                         if (e.target === modal) {
-                             console.log(`[Modal] Closing modal '${modal.id}' via background click.`);
+                             console.log(`[Modal] Cerrando modal '${modal.id}' por clic en fondo.`);
                             closeFullScreenModal(modal.id);
                         }
                     });
                 });
-                 console.log('[Events] Static event listeners setup complete.');
+
+                // --- Event Listener for Image Zoom (Delegation) ---
+                document.body.addEventListener('click', (event) => {
+                    // Check if the clicked element is an image we want to zoom
+                    const clickedImage = event.target.closest('img.zoomable-image');
+
+                    if (clickedImage) {
+                        event.preventDefault(); // Prevent any default image link behavior if it existed
+                        const imageUrl = clickedImage.src; // Get the source URL
+                        const imageAlt = clickedImage.alt;
+                        const captionText = clickedImage.dataset.productName || imageAlt || ''; // Get name from data-attribute or alt
+
+                        openImageZoomModal(imageUrl, imageAlt, captionText);
+                    }
+                });
+
+                 console.log('[Events] Configuración de escuchadores de eventos estáticos completa.');
             }
 
              // Handler for MOBILE menu links that trigger modals
@@ -1204,10 +1392,10 @@
                  const targetModalId = linkElement.dataset.targetModal;
                  if (targetModalId) {
                      event.preventDefault(); // Prevent default only if it's opening a modal
-                     console.log(`[Menu] Clicked link for modal: ${targetModalId}`);
+                     console.log(`[Menu] Clic en enlace para modal: ${targetModalId}`);
                      closeFullScreenModal('menuModalFs'); // Close menu first
                      // Open target modal after a short delay
-                     setTimeout(() => { openFullScreenModal(targetModalId); }, 50);
+                     setTimeout(() => { openFullScreenModal(targetModalId); }, 150); // Increased delay slightly
                  }
                  // Allow default behavior for links without data-target-modal (like force refresh)
              }
@@ -1217,8 +1405,15 @@
                   const targetModalId = linkElement.dataset.targetModal;
                   if (targetModalId) {
                       event.preventDefault(); // Prevent default only if it's opening a modal
-                      console.log(`[Nav] Clicked link for modal: ${targetModalId}`);
-                      openFullScreenModal(targetModalId);
+                      console.log(`[Nav] Clic en enlace para modal: ${targetModalId}`);
+                      // Check if another modal is already open and close it first
+                      const activeModal = document.querySelector('.modal-fullscreen.active');
+                      if (activeModal && activeModal.id !== targetModalId) {
+                           closeFullScreenModal(activeModal.id);
+                           setTimeout(() => openFullScreenModal(targetModalId), 150); // Delay opening new one
+                      } else {
+                           openFullScreenModal(targetModalId);
+                      }
                   }
                  // Allow default behavior for links without data-target-modal (like force refresh)
               }
@@ -1226,17 +1421,17 @@
              // Generic Force Refresh Handler
              function handleForceRefresh(event) {
                  event.preventDefault(); // Always prevent default for this link
-                 console.log('[Refresh] Force refresh requested.');
+                 console.log('[Refresh] Recarga forzada solicitada.');
                  showConfirmation("Esto borrará los datos locales (como el carrito) y recargará la página completamente para obtener la versión más reciente. ¿Continuar?", () => {
-                    console.log("[Refresh] Proceeding with refresh...");
-                    try { localStorage.removeItem(CART_STORAGE_KEY); } catch (e) { console.warn("Could not remove cart from local storage:", e); }
+                    console.log("[Refresh] Procediendo con la recarga...");
+                    try { localStorage.removeItem(CART_STORAGE_KEY); } catch (e) { console.warn("No se pudo eliminar el carrito del almacenamiento local:", e); }
                     // Attempt cache-busting reload
                     try { window.location.href = `${window.location.pathname}?force_reload=${Date.now()}`; setTimeout(()=>window.location.reload(true), 500); } catch(e) { window.location.reload(true); }
                 });
             }
 
             // --- Initial Application Load ---
-            console.log('[App] DOMContentLoaded event fired.');
+            console.log('[App] Evento DOMContentLoaded disparado.');
             cart = loadCart(); // Load cart from storage first
             setupStaticEventListeners(); // Setup listeners that don't depend on data
             loadProducts(); // Start loading product data async
