@@ -16,7 +16,7 @@
     {
         "id": 2,
         "name": "Caramelos Surtidos",
-        "price": 0.75,
+        "price": 5,
         "image": "https://i.postimg.cc/FRPwL3gT/Caramelos.jpg",
         "description": "Bolsa de caramelos de diferentes sabores frutales.",
         "specifications": [
