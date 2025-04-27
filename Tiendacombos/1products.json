@@ -84,16 +84,6 @@
         "category": "Chocolates"
     },
     {
-        "id": 12,
-        "name": "Picadillo",
-        "price": 3,
-        "image": "https://i.postimg.cc/Qdk56TGf/Picadillodepollo.jpg",
-        "description": "Excelente calidad",
-        "specifications": [],
-        "featured": true,
-        "category": "Carnico"
-    },
-    {
         "id": 11,
         "name": "Yogur Natural",
         "price": 3,
