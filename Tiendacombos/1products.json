@@ -117,5 +117,15 @@
         ],
         "featured": true,
         "category": ""
+    },
+    {
+        "id": 383,
+        "name": "Refresco de Naranja",
+        "price": 0.8,
+        "image": "https://i.postimg.cc/FsvsMWKW/Santa-Orange.jpg",
+        "description": "",
+        "specifications": [],
+        "featured": true,
+        "category": "Bebidas"
     }
 ]
