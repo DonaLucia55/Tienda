@@ -123,6 +123,15 @@
         #promoLinkMobile { color: var(--dl-gold-accent); }
         #promoLinkMobile:hover { background-color: #FFFBEB; /* Lighter gold hover */ }
         #promoLinkMobile svg { color: var(--dl-gold-accent); }
+        /* Solidarity Link specific colors (Mobile) - OPTIONAL */
+        #solidarityLinkMobile { color: #3B82F6; /* Example Blue */ }
+        #solidarityLinkMobile:hover { background-color: #EFF6FF; }
+        #solidarityLinkMobile svg { color: #3B82F6; }
+        /* <!-- NUEVO --> Admin Link specific colors (Mobile) */
+        #adminAccessLinkMobile { color: #4B5563; /* Gray-600 */ }
+        #adminAccessLinkMobile:hover { background-color: #E5E7EB; }
+        #adminAccessLinkMobile svg { color: #6B7280; /* Gray-500 */ }
+
 
         /* Desktop Navbar Link Style */
         .desktop-nav-link { color: var(--dl-text-secondary); transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; }
@@ -136,6 +145,11 @@
         #promoLinkDesktop { color: var(--dl-gold-accent); }
         #promoLinkDesktop:hover { background-color: #FFFBEB; /* Lighter gold hover */ color: var(--dl-gold-accent-dark); }
         #promoLinkDesktop svg { color: var(--dl-gold-accent); }
+        /* Solidarity Link specific colors (Desktop) - OPTIONAL */
+        #solidarityLinkDesktop { color: #3B82F6; }
+        #solidarityLinkDesktop:hover { background-color: #EFF6FF; color: #1D4ED8; }
+        #solidarityLinkDesktop svg { color: #3B82F6; }
+
 
         /* Heroicon Size Utilities */
         .heroicon { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
@@ -298,6 +312,17 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.6); /* Text shadow for readability */
         }
 
+        /* --- Specific Styles for About Modal (Added for clarity) --- */
+        #aboutModalFs .modal-body-fs .text-primary { color: var(--dl-text-primary); }
+        #aboutModalFs .modal-body-fs .text-secondary { color: var(--dl-text-secondary); }
+        #aboutModalFs .modal-body-fs .text-accent { color: var(--dl-accent-pink); }
+        #aboutModalFs .modal-body-fs .font-medium { font-weight: 500; }
+        #aboutModalFs .modal-body-fs .font-semibold { font-weight: 600; }
+        #aboutModalFs .modal-body-fs .mb-4 { margin-bottom: 1rem; }
+        #aboutModalFs .modal-body-fs .leading-relaxed { line-height: 1.6; }
+        #aboutModalFs .modal-body-fs .text-xl { font-size: 1.25rem; }
+
+
     </style>
 </head>
 <body class="bg-gray-50">
@@ -322,6 +347,8 @@
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="cartModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg> Carrito (<span id="desktopCartCount">0</span>) </a>
                      <!-- Desktop Promo Link -->
                      <a href="#" id="promoLinkDesktop" class="desktop-nav-link nav-link" data-target-modal="promoModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> Envío Gratis </a>
+                     <!-- Desktop Solidarity Link - ADDED -->
+                     <a href="#" id="solidarityLinkDesktop" class="desktop-nav-link nav-link" data-target-modal="solidarityModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /> </svg> Combos Cuba </a>
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="contactModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de </a>
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /> </svg> Guía Rápida </a>
@@ -382,7 +409,13 @@
 
     <!-- Footer -->
     <footer class="bg-gray-100 py-8 mt-16 border-t border-gray-200">
-        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center"> <p class="text-sm text-secondary">© 2024 Doña Lucía. Todos los derechos reservados.</p> </div>
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-secondary">© 2024 Doña Lucía. Todos los derechos reservados.</p>
+            <!-- NUEVO: Admin Access Link -->
+            <p class="text-xs text-gray-400 mt-2">
+                <a href="#" id="adminAccessLinkFooter" class="hover:text-gray-600 transition-colors">Acceso Admin</a>
+            </p>
+        </div>
     </footer>
     <!-- End Footer -->
 
@@ -399,15 +432,24 @@
         </div>
         <div class="modal-body-fs">
             <div class="modal-body-content-wrapper">
-                 <nav>
+                 <nav class="flex flex-col h-full"> <!-- Allow nav to grow -->
+                    <!-- Main Links -->
                     <a href="#" class="menu-link modal-nav-link" data-target-modal="cartModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> Ver Carrito (<span id="menuCartCount">0</span>) </a>
-                    <!-- Mobile Promo Link -->
                     <a href="#" id="promoLinkMobile" class="menu-link modal-nav-link" data-target-modal="promoModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> ¡Envío Gratis! </a>
+                    <a href="#" id="solidarityLinkMobile" class="menu-link modal-nav-link" data-target-modal="solidarityModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg> Combos para Cuba </a>
                     <a href="#" class="menu-link modal-nav-link" data-target-modal="contactModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
                     <a href="#" class="menu-link modal-nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de Nosotros </a>
                     <a href="#" class="menu-link modal-nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg> Guía Rápida </a>
-                    <!-- Mobile Refresh Link -->
                     <a href="#" id="forceRefreshLinkMobile" class="menu-link"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Forzar Recarga </a>
+
+                    <!-- Separator and Admin Link -->
+                    <div class="mt-auto pt-4 border-t border-gray-200"> <!-- Push to bottom -->
+                         <!-- NUEVO: Admin Link -->
+                         <a href="#" id="adminAccessLinkMobile" class="menu-link">
+                             <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                             Administrar Catálogo
+                         </a>
+                    </div>
                  </nav>
             </div>
         </div>
@@ -447,11 +489,75 @@
         <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-lg font-semibold mb-4">Ponte en contacto</h3> <p class="text-secondary mb-2">Envíanos un mensaje por WhatsApp al hacer clic en <strong class="font-medium">"Finalizar Pedido"</strong> en el carrito.</p> <p class="text-secondary mb-2">O llámanos: <a href="tel:+5355189657" class="text-accent hover:underline">+53 55189657</a></p> <p class="text-secondary">Dirección: Cumanayagua, Cienfuegos, Cuba</p> </div> </div>
     </div>
 
-     <!-- About Modal -->
+    <!-- About Modal -->
     <div id="aboutModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">🍕✨ La Historia ✨🍕</h2> <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
-        <div class="modal-body-fs md:text-left"> <div class="modal-body-content-wrapper"> <h3 class="text-xl font-semibold mb-4 text-primary">Sabor que Viene de Corazón</h3> <p class="text-secondary mb-4 leading-relaxed">En el corazón de Cumanayagua nace <strong class="font-medium text-primary">Doña Lucía</strong>, homenaje a la pasión de mi madre, Lucia.</p> <p class="text-secondary mb-4 leading-relaxed">Desde sus inicios ha compartido alegría con sabores que evocan recuerdos y momentos compartidos.</p> <p class="text-secondary mb-4 leading-relaxed">Hoy, Doña Lucía es <strong class="font-medium text-primary">símbolo de calidad y sabor auténtico</strong>. Celebramos la herencia de una mujer que enseñó que el mejor ingrediente es <strong class="text-accent font-medium">el amor</strong>.</p> <p class="text-secondary font-medium leading-relaxed">Te invitamos a ser parte de nuestra historia.</p> </div> </div>
+        <div class="modal-header-fs">
+            <div class="modal-header-content">
+                <span class="w-10"></span> <!-- Espaciador para centrar el título -->
+                <h2 class="modal-title-fs">🍕✨ La Historia de Doña Lucía ✨🍕</h2> <!-- Título del primer modal -->
+                <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar acerca de"> <!-- Botón con detalles del primer modal -->
+                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body-fs">
+            <div class="modal-body-content-wrapper">
+                <!-- Contenido completo del primer modal -->
+                <h3 class="text-xl font-semibold mb-4 text-primary">Sabor que Viene de Corazón</h3>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    En el corazón de Cumanayagua, donde las tradiciones se viven con cada amanecer, nace <strong class="font-medium text-primary">Doña Lucía</strong>, un homenaje a la pasión y dedicación de mi madre, Lucia.
+                </p>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    Desde sus humildes comienzos ha compartido la alegría al pueblo, con sabores que evocan recuerdos de infancia y momentos compartidos cuando ofertaba café en las madrugadas, dulce de coco, pan con tortilla, café con leche y otras tradiciones culinarias.
+                </p>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    Hoy, Doña Lucía no es solo un nombre y un local, sino un <strong class="font-medium text-primary">símbolo de calidad y sabor auténtico</strong>. Con cada producto que ofrecemos, ya sea una golosina clásica o una novedad deliciosa, celebramos la herencia de una mujer que enseñó que el mejor ingrediente es <strong class="text-accent font-medium">el amor</strong>.
+                </p>
+                <p class="text-secondary font-medium leading-relaxed">
+                    Te invitamos a ser parte de nuestra historia. Ven y descubre por qué en Doña Lucía, cada bocado cuenta una historia.
+                </p>
+            </div>
+        </div>
     </div>
+
+     <!-- Modal: Combos Solidarios Fullscreen - ADDED -->
+    <div id="solidarityModalFs" class="modal-fullscreen">
+        <!-- Cabecera del Modal -->
+        <div class="modal-header-fs">
+            <div class="modal-header-content">
+                <span class="w-10"></span> <!-- Espaciador para centrar el título -->
+                <h2 class="modal-title-fs">🇨🇺❤️ Combos Solidarios: Un Puente de Sabor a Cuba ❤️🇨🇺</h2>
+                <button class="modal-close-btn-fs" data-modal-id="solidarityModalFs" aria-label="Cerrar información de combos solidarios">
+                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Cuerpo del Modal -->
+        <div class="modal-body-fs md:text-left"> <!-- Clases del cuerpo -->
+            <div class="modal-body-content-wrapper"> <!-- Wrapper para centrar/estilizar contenido -->
+                <!-- Contenido sobre los combos solidarios -->
+                <h3 class="text-xl font-semibold mb-4 text-primary">Acortando Distancias, Bocado a Bocado</h3>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    Sabemos lo que significa estar lejos de la familia en Cuba. Por eso, creamos **Doña Lucía**<!-- REPLACE THIS if needed -->, una tienda online pensada especialmente para ti, que resides en el extranjero y deseas enviar un gesto de <strong class="font-medium text-primary">amor y apoyo directo</strong> a los tuyos en la isla.
+                </p>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    Nos dedicamos a la elaboración y entrega de <strong class="font-medium text-primary">combos de alimentos cuidadosamente seleccionados</strong>. Queremos facilitar que envíes productos esenciales y de calidad que lleguen directamente a la puerta de tus seres queridos, llevando no solo sustento, sino también un mensaje claro: <strong class="font-medium">"Estoy pensando en ustedes"</strong>.
+                </p>
+                <p class="text-secondary mb-4 leading-relaxed">
+                    Entendemos la importancia de este <strong class="font-medium text-primary">acto de solidaridad</strong> en momentos donde cada ayuda cuenta. Nuestro servicio busca ser un puente fiable y humano que conecte tu generosidad con las necesidades de tu familia en Cuba, asegurando que tu cariño se sienta a pesar de la distancia.
+                </p>
+                <p class="text-secondary font-medium leading-relaxed">
+                    Explora nuestras opciones de combos. Con cada envío, no solo mandas alimentos, mandas <strong class="text-accent font-medium">esperanza, cuidado y la fuerza del lazo familiar</strong>. ¡Estamos aquí para ayudarte a estar presente!
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- End Combos Solidarios Modal -->
+
 
     <!-- Tutorial Modal -->
     <div id="tutorialModalFs" class="modal-fullscreen">
@@ -526,6 +632,8 @@
             let dataLoadError = false;
             let isRenderingCart = false;
             const WHATSAPP_NUMBER = '5355189657'; // Centralize WhatsApp number
+             // --- NUEVO ---: Contraseña para el admin (¡CAMBIAR ESTO!)
+             const ADMIN_PASSWORD = '860818'; // !!! CAMBIA ESTA CONTRASEÑA POR UNA SEGURA !!!
 
             // --- DOM Elements ---
             const productGrid = document.getElementById('productGrid');
@@ -550,10 +658,13 @@
             const forceRefreshLinkMobile = document.getElementById('forceRefreshLinkMobile'); // Mobile refresh
             const forceRefreshLinkDesktop = document.getElementById('forceRefreshLinkDesktop'); // Desktop refresh
             const toastContainer = document.getElementById('toastContainer');
-            // Image Zoom Modal Elements (Add these)
+            // Image Zoom Modal Elements
             const zoomedImageElement = document.getElementById('zoomedImage');
             const zoomedImageCaptionElement = document.getElementById('zoomedImageCaption');
             const imageZoomModalElement = document.getElementById('imageZoomModalFs');
+            // --- NUEVO ---: Admin Access Links
+            const adminAccessLinkFooter = document.getElementById('adminAccessLinkFooter');
+            const adminAccessLinkMobile = document.getElementById('adminAccessLinkMobile');
 
 
              // --- Utility Functions ---
@@ -568,7 +679,12 @@
                 if (featuredSection) featuredSection.style.display = 'none'; // Hide featured initially
 
                 try {
+                    // --- MODIFICACIÓN: Usar la ruta relativa correcta ---
                     const response = await fetch(`1products.json?v=${Date.now()}`); // Cache-busting
+                    // Si '1products.json' está en 'Tiendacombos', la ruta debería ser 'Tiendacombos/1products.json'
+                    // const response = await fetch(`Tiendacombos/1products.json?v=${Date.now()}`); // EJEMPLO si está en subcarpeta
+                    // --- FIN MODIFICACIÓN ---
+
                     console.log(`[App] Estado de respuesta fetch: ${response.status}`);
                     if (!response.ok) {
                         throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
@@ -593,15 +709,15 @@
                     // ---- ERROR -> Display Error Messages ----
                     if (productGrid) productGrid.innerHTML = ''; // Clear grid content
                     if (productGridStatus) {
-                        productGridStatus.innerHTML = `<p class="text-red-600 font-semibold text-center col-span-full py-10">❌ Error al cargar los productos.<br>Asegúrate de que el archivo '1products.json' existe, es válido y está en la misma carpeta.<br> Intenta <a href="#" onclick="window.location.reload(true); return false;" class="underline hover:text-red-800">refrescar la página</a> o revisa la consola (F12).</p>`;
+                        productGridStatus.innerHTML = `<p class="text-red-600 font-semibold text-center col-span-full py-10">❌ Error al cargar los productos.<br>Verifica la conexión o <a href="#" onclick="window.location.reload(true); return false;" class="underline hover:text-red-800">intenta refrescar la página</a>.<br><span class="text-xs text-gray-400">(Detalles en consola F12)</span></p>`;
                         productGridStatus.classList.remove('hidden'); // Make sure status is visible
-                         productGrid.appendChild(productGridStatus); // Append status message into the grid area
+                        if (productGrid) productGrid.appendChild(productGridStatus); // Append status message into the grid area
                     }
                      if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<p class="text-red-500 text-xs">Error al cargar categorías.</p>';
                     if (featuredSection) featuredSection.style.display = 'none'; // Keep featured hidden
 
                     updateCartDisplay(); // Update cart (may show loading/error state there too)
-                    showToast("Error cargando datos. Revisa la consola (F12).", "error");
+                    showToast("Error cargando datos. Intenta recargar (F5).", "error");
                 }
             }
 
@@ -625,8 +741,9 @@
                         m.classList.add('active');
                         document.body.classList.add('modal-open');
                         const b = m.querySelector('.modal-body-fs');
-                        if(b) b.scrollTop = 0;
+                        if(b) b.scrollTop = 0; // Scroll modal body to top
                     });
+                     console.log(`[Modal] Abriendo modal '${id}'`);
                 } else {
                     console.error(`[Modal] Modal con ID '${id}' no encontrado.`);
                 }
@@ -634,8 +751,9 @@
 
             function closeFullScreenModal(id) {
                 const m = document.getElementById(id);
-                if (m) {
+                if (m && m.classList.contains('active')) { // Check if it's actually active
                     m.classList.remove('active');
+                    console.log(`[Modal] Cerrando modal '${id}'`);
                     // Wait for transition to finish before hiding completely and removing body class
                     m.addEventListener('transitionend', () => {
                         if (!m.classList.contains('active')) { // Ensure it's still meant to be hidden
@@ -643,6 +761,7 @@
                             // Check if any *other* modal is still active before removing body class
                             if (!document.querySelector('.modal-fullscreen.active')) {
                                 document.body.classList.remove('modal-open');
+                                console.log('[Modal] Último modal cerrado, restaurando scroll del body.');
                             }
                         }
                     }, { once: true });
@@ -657,6 +776,15 @@
                         }
                     }, 350); // Slightly longer than transition duration
 
+                } else if(m) {
+                    // console.log(`[Modal] Intento de cerrar modal '${id}' que no estaba activo.`);
+                    // Ensure it's hidden if state is inconsistent
+                    m.style.visibility = 'hidden';
+                    if (!document.querySelector('.modal-fullscreen.active')) {
+                        document.body.classList.remove('modal-open');
+                    }
+                } else {
+                    console.error(`[Modal] Intento de cerrar modal con ID '${id}' no encontrado.`);
                 }
             }
 
@@ -822,8 +950,9 @@
                     filteredProducts = filteredProducts.filter(p => {
                         const nameLower = p.name.toLowerCase();
                         const descLower = (p.description || '').toLowerCase();
-                        // Check if *all* search terms are present in name or description
-                        return terms.every(term => nameLower.includes(term) || descLower.includes(term));
+                        const categoryLower = (p.category || '').toLowerCase(); // --- NUEVO: Buscar también en categoría
+                        // Check if *all* search terms are present in name, description or category
+                        return terms.every(term => nameLower.includes(term) || descLower.includes(term) || categoryLower.includes(term));
                     });
                 }
 
@@ -1324,6 +1453,27 @@
                 }
             }
 
+            // --- NUEVO: Admin Access ---
+            function handleAdminAccess(event) {
+                event.preventDefault();
+                console.log('[Admin] Intento de acceso al panel.');
+                const password = prompt("Por favor, introduce la contraseña de administrador:");
+
+                if (password === null) { // User clicked Cancel
+                    console.log('[Admin] Acceso cancelado por el usuario.');
+                    return;
+                }
+
+                if (password.trim() === ADMIN_PASSWORD) {
+                    console.log('[Admin] Contraseña correcta. Redirigiendo a admin.html...');
+                    showToast('Acceso concedido. Redirigiendo...', 'success', 2000);
+                    // Redirigir a la página de administración
+                    window.location.href = 'admin.html'; // Asegúrate que admin.html está en el mismo directorio
+                } else {
+                    console.log('[Admin] Contraseña incorrecta.');
+                    showToast('Contraseña incorrecta. Acceso denegado.', 'error');
+                }
+            }
 
             // --- Event Listeners Setup ---
             function setupStaticEventListeners() {
@@ -1384,6 +1534,14 @@
                     }
                 });
 
+                 // --- NUEVO: Event Listeners for Admin Access ---
+                if (adminAccessLinkFooter) {
+                    adminAccessLinkFooter.addEventListener('click', handleAdminAccess);
+                }
+                if (adminAccessLinkMobile) {
+                    adminAccessLinkMobile.addEventListener('click', handleAdminAccess);
+                }
+
                  console.log('[Events] Configuración de escuchadores de eventos estáticos completa.');
             }
 
@@ -1396,6 +1554,9 @@
                      closeFullScreenModal('menuModalFs'); // Close menu first
                      // Open target modal after a short delay
                      setTimeout(() => { openFullScreenModal(targetModalId); }, 150); // Increased delay slightly
+                 } else if (linkElement.id === 'adminAccessLinkMobile') {
+                     // Let the specific admin handler take care of it (added in setupStaticEventListeners)
+                     console.log('[Menu] Clic en enlace de admin detectado.');
                  }
                  // Allow default behavior for links without data-target-modal (like force refresh)
              }
@@ -1411,12 +1572,17 @@
                       if (activeModal && activeModal.id !== targetModalId) {
                            closeFullScreenModal(activeModal.id);
                            setTimeout(() => openFullScreenModal(targetModalId), 150); // Delay opening new one
-                      } else {
+                      } else if (!activeModal) { // Only open if no modal is active
                            openFullScreenModal(targetModalId);
+                      } else {
+                           // If the target modal is already active, do nothing or maybe close it?
+                           // Currently doing nothing.
+                           console.log(`[Nav] El modal '${targetModalId}' ya está activo.`);
                       }
                   }
                  // Allow default behavior for links without data-target-modal (like force refresh)
               }
+
 
              // Generic Force Refresh Handler
              function handleForceRefresh(event) {
