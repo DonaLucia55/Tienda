@@ -84,61 +84,6 @@
         "category": "Chocolates"
     },
     {
-        "id": 7,
-        "name": "Otro Destacado",
-        "price": 3,
-        "image": "https://via.placeholder.com/300?text=Producto+7",
-        "description": "DescripciÃ³n de otro producto destacado.",
-        "specifications": [
-            "Spec 1",
-            "Spec 2"
-        ],
-        "featured": false,
-        "category": "Otros"
-    },
-    {
-        "id": 8,
-        "name": "Galleta MarÃ­a",
-        "price": 1.2,
-        "image": "https://via.placeholder.com/300?text=Galleta+Maria",
-        "description": "ClÃ¡sica galleta MarÃ­a, ideal para mojar.",
-        "specifications": [
-            "Paquete familiar",
-            "Textura crujiente",
-            "Sabor tradicional"
-        ],
-        "featured": false,
-        "category": "Galletas"
-    },
-    {
-        "id": 9,
-        "name": "TurrÃ³n Blando",
-        "price": 2.5,
-        "image": "https://via.placeholder.com/300?text=Turron",
-        "description": "Delicioso turrÃ³n blando de almendras.",
-        "specifications": [
-            "Calidad suprema",
-            "Textura suave",
-            "Ingredientes naturales"
-        ],
-        "featured": false,
-        "category": "Turrones"
-    },
-    {
-        "id": 9,
-        "name": "papitas fritas",
-        "price": 2.5,
-        "image": "https://via.placeholder.com/300?text=Turron",
-        "description": "Delicioso turrÃ³n blando de almendras.",
-        "specifications": [
-            "Calidad suprema",
-            "Textura suave",
-            "Ingredientes naturales"
-        ],
-        "featured": true,
-        "category": "Snacks salados"
-    },
-    {
         "id": 12,
         "name": "Picadillo",
         "price": 3,
@@ -159,20 +104,6 @@
         ],
         "featured": true,
         "category": "LÃ¡cteo"
-    },
-    {
-        "id": 10,
-        "name": "Refresco de Lata",
-        "price": 1,
-        "image": "https://via.placeholder.com/300?text=Refresco",
-        "description": "Refresco carbonatado en lata.",
-        "specifications": [
-            "Sabor cola",
-            "330ml",
-            "Servir frÃ­o"
-        ],
-        "featured": false,
-        "category": "Bebidas"
     },
     {
         "id": 49,
