@@ -1,12 +1,15 @@
-
 [
     {
         "id": 1,
         "name": "Bisclass",
-        "price": 1.50,
+        "price": 5,
         "image": "https://i.postimg.cc/KzcdjJLK/Bisclass.jpg",
-        "description": "Deliciosas galletas tipo sándwich con crema.",
-        "specifications": ["Paquete individual", "Sabor vainilla", "Crujiente"],
+        "description": "Deliciosas galletas tipo sÃ¡ndwich con crema.",
+        "specifications": [
+            "Paquete individual",
+            "Sabor vainilla",
+            "Crujiente"
+        ],
         "featured": true,
         "category": "Galletas"
     },
@@ -16,7 +19,11 @@
         "price": 0.75,
         "image": "https://i.postimg.cc/FRPwL3gT/Caramelos.jpg",
         "description": "Bolsa de caramelos de diferentes sabores frutales.",
-        "specifications": ["Sabores variados", "Textura suave", "Ideales para compartir"],
+        "specifications": [
+            "Sabores variados",
+            "Textura suave",
+            "Ideales para compartir"
+        ],
         "featured": false,
         "category": "Caramelos"
     },
@@ -26,77 +33,108 @@
         "price": 0.25,
         "image": "https://i.postimg.cc/Ls3cmrqK/chicle.jpg",
         "description": "Chicle sabor a menta para un aliento fresco.",
-        "specifications": ["Sabor intenso", "Larga duración", "Sin azúcar"],
+        "specifications": [
+            "Sabor intenso",
+            "Larga duraciÃ³n",
+            "Sin azÃºcar"
+        ],
         "featured": false,
         "category": "Chicles"
     },
     {
         "id": 4,
         "name": "Chicles de Bolitas",
-        "price": 1.00,
+        "price": 1,
         "image": "https://i.postimg.cc/90rKt0LC/Chicles-de-Bolitas.jpg",
-        "description": "Divertidos chicles en forma de bolitas con centro líquido.",
-        "specifications": ["Múltiples colores", "Sabor dulce", "Para todas las edades"],
+        "description": "Divertidos chicles en forma de bolitas con centro lÃ­quido.",
+        "specifications": [
+            "MÃºltiples colores",
+            "Sabor dulce",
+            "Para todas las edades"
+        ],
         "featured": false,
         "category": "Chicles"
     },
     {
         "id": 5,
         "name": "Choco Lips",
-        "price": 0.50,
+        "price": 0.5,
         "image": "https://i.postimg.cc/05BL5GNQ/Choco-Lips.jpg",
         "description": "Barrita de chocolate con forma de labios.",
-        "specifications": ["Chocolate con leche", "Diseño divertido", "Un pequeño placer"],
+        "specifications": [
+            "Chocolate con leche",
+            "DiseÃ±o divertido",
+            "Un pequeÃ±o placer"
+        ],
         "featured": true,
         "category": "Chocolates"
     },
     {
         "id": 6,
         "name": "Cigarro de Chocolate",
-        "price": 2.00,
+        "price": 2,
         "image": "https://i.postimg.cc/QCwP6Dz5/Cigarro-Popular.jpg",
         "description": "Barra de chocolate alargada simulando un cigarro.",
-        "specifications": ["Chocolate negro", "Forma peculiar", "Ideal para bromas"],
+        "specifications": [
+            "Chocolate negro",
+            "Forma peculiar",
+            "Ideal para bromas"
+        ],
         "featured": true,
         "category": "Chocolates"
     },
     {
         "id": 7,
         "name": "Otro Destacado",
-        "price": 3.00,
+        "price": 3,
         "image": "https://via.placeholder.com/300?text=Producto+7",
-        "description": "Descripción de otro producto destacado.",
-        "specifications": ["Spec 1", "Spec 2"],
+        "description": "DescripciÃ³n de otro producto destacado.",
+        "specifications": [
+            "Spec 1",
+            "Spec 2"
+        ],
         "featured": false,
         "category": "Otros"
     },
     {
         "id": 8,
-        "name": "Galleta María",
-        "price": 1.20,
+        "name": "Galleta MarÃ­a",
+        "price": 1.2,
         "image": "https://via.placeholder.com/300?text=Galleta+Maria",
-        "description": "Clásica galleta María, ideal para mojar.",
-        "specifications": ["Paquete familiar", "Textura crujiente", "Sabor tradicional"],
+        "description": "ClÃ¡sica galleta MarÃ­a, ideal para mojar.",
+        "specifications": [
+            "Paquete familiar",
+            "Textura crujiente",
+            "Sabor tradicional"
+        ],
         "featured": false,
         "category": "Galletas"
     },
     {
         "id": 9,
-        "name": "Turrón Blando",
-        "price": 2.50,
+        "name": "TurrÃ³n Blando",
+        "price": 2.5,
         "image": "https://via.placeholder.com/300?text=Turron",
-        "description": "Delicioso turrón blando de almendras.",
-        "specifications": ["Calidad suprema", "Textura suave", "Ingredientes naturales"],
+        "description": "Delicioso turrÃ³n blando de almendras.",
+        "specifications": [
+            "Calidad suprema",
+            "Textura suave",
+            "Ingredientes naturales"
+        ],
         "featured": false,
         "category": "Turrones"
     },
     {
         "id": 9,
         "name": "papitas fritas",
-        "price": 2.50,
+        "price": 2.5,
         "image": "https://via.placeholder.com/300?text=Turron",
-        "description": "Delicioso turrón blando de almendras.",
-        "specifications": ["Calidad suprema", "Textura suave", "Ingredientes naturales"],
+        "description": "Delicioso turrÃ³n blando de almendras.",
+        "specifications": [
+            "Calidad suprema",
+            "Textura suave",
+            "Ingredientes naturales"
+        ],
         "featured": true,
         "category": "Snacks salados"
     },
@@ -120,29 +158,33 @@
             "Fresa"
         ],
         "featured": true,
-        "category": "Lácteo"
+        "category": "LÃ¡cteo"
     },
     {
         "id": 10,
         "name": "Refresco de Lata",
-        "price": 1.00,
+        "price": 1,
         "image": "https://via.placeholder.com/300?text=Refresco",
         "description": "Refresco carbonatado en lata.",
-        "specifications": ["Sabor cola", "330ml", "Servir frío"],
+        "specifications": [
+            "Sabor cola",
+            "330ml",
+            "Servir frÃ­o"
+        ],
         "featured": false,
         "category": "Bebidas"
     },
     {
-    "id": 49,
-    "name": "Carne Limpia de Cerdo",
-    "price": 58,
-    "image": "https://i.postimg.cc/KcLZMnRm/Pernil-de-Cerdo.jpg",
-    "description": "Carne Limpia de cerdo",
-    "specifications": [
-        "3.5us por Libra",
-        "58.00 us por 20 Libras"
-    ],
-    "featured": true,
-    "category": ""
-}
+        "id": 49,
+        "name": "Carne Limpia de Cerdo",
+        "price": 58,
+        "image": "https://i.postimg.cc/KcLZMnRm/Pernil-de-Cerdo.jpg",
+        "description": "Carne Limpia de cerdo",
+        "specifications": [
+            "3.5us por Libra",
+            "58.00 us por 20 Libras"
+        ],
+        "featured": true,
+        "category": ""
+    }
 ]
