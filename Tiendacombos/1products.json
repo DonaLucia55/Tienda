@@ -130,5 +130,20 @@
         ],
         "featured": true,
         "category": "Bebidas"
+    },
+    {
+        "id": 440,
+        "name": "Refresco de Pomo 1.5 L",
+        "price": 2,
+        "image": "https://i.postimg.cc/VLWm7mqT/Pomo-Un-litro-Cola.jpg",
+        "description": "Refresco de Pomo de 1.5 litros",
+        "specifications": [
+            "Sabor",
+            "Cola",
+            "Naranja",
+            "Limón"
+        ],
+        "featured": false,
+        "category": "Bebidas"
     }
 ]
