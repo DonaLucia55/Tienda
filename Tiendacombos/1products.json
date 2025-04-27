@@ -127,5 +127,18 @@
         "specifications": [],
         "featured": true,
         "category": "Bebidas"
+    },
+    {
+        "id": 395,
+        "name": "Cerveza Bucanero",
+        "price": 1,
+        "image": "https://i.postimg.cc/bYxmTTFH/Cerveza-Bucanero-alamesacuba-com-8-Bebidas.jpg",
+        "description": "Cerveza de Produccion Cubana",
+        "specifications": [
+            "Por unidad",
+            "Por 24 unidades"
+        ],
+        "featured": true,
+        "category": "Bebidas"
     }
 ]
