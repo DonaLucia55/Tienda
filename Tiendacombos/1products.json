@@ -1,33 +1,5 @@
 [
     {
-        "id": 1,
-        "name": "Bisclass",
-        "price": 5,
-        "image": "https://i.postimg.cc/KzcdjJLK/Bisclass.jpg",
-        "description": "Deliciosas galletas tipo sÃ¡ndwich con crema.",
-        "specifications": [
-            "Paquete individual",
-            "Sabor vainilla",
-            "Crujiente"
-        ],
-        "featured": true,
-        "category": "Galletas"
-    },
-    {
-        "id": 2,
-        "name": "Caramelos Surtidos",
-        "price": 5,
-        "image": "https://i.postimg.cc/FRPwL3gT/Caramelos.jpg",
-        "description": "Bolsa de caramelos de diferentes sabores frutales.",
-        "specifications": [
-            "Sabores variados",
-            "Textura suave",
-            "Ideales para compartir"
-        ],
-        "featured": false,
-        "category": "Caramelos"
-    },
-    {
         "id": 3,
         "name": "Chicle Menta",
         "price": 0.25,
