@@ -145,5 +145,15 @@
         ],
         "featured": false,
         "category": "Bebidas"
+    },
+    {
+        "id": 443,
+        "name": "Pizza de jamon",
+        "price": 1,
+        "image": "https://i.postimg.cc/cLqNSK1n/Chorizo-pizza.jpg",
+        "description": "Domicilio gratis.\nExcelente calidad garantizada.",
+        "specifications": [],
+        "featured": true,
+        "category": "Pizzas"
     }
 ]
