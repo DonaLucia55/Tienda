@@ -1,19 +1,5 @@
 [
     {
-        "id": 3,
-        "name": "Chicle Menta",
-        "price": 0.25,
-        "image": "https://i.postimg.cc/Ls3cmrqK/chicle.jpg",
-        "description": "Chicle sabor a menta para un aliento fresco.",
-        "specifications": [
-            "Sabor intenso",
-            "Larga duraciÃ³n",
-            "Sin azÃºcar"
-        ],
-        "featured": false,
-        "category": "Chicles"
-    },
-    {
         "id": 4,
         "name": "Chicles de Bolitas",
         "price": 1,
