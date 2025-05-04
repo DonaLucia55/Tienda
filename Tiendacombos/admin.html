@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -83,7 +84,7 @@
         #editModal pre { margin-top: 0.25rem; }
 
 
-        /* --- Estilos Modal Pantalla Completa (NUEVO / AJUSTADO) --- */
+        /* --- Estilos Modal Pantalla Completa --- */
         .modal-fullscreen {
             position: fixed;
             inset: 0; /* Cubre toda la pantalla */
@@ -179,8 +180,24 @@
 </head>
 <body>
 
-    <div class="max-w-7xl mx-auto bg-white p-5 md:p-8 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Editor Catálogo Dual (GitHub / Local)</h1>
+    <div class="max-w-7xl mx-auto bg-white p-5 md:p-8 rounded-lg shadow-lg relative">
+
+        <!-- Wrapper para Título y Link a Tienda Principal (NUEVO/ACTUALIZADO) -->
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-4 border-b border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-800 text-center sm:text-left mb-2 sm:mb-0">
+                Editor Catálogo Dual
+            </h1>
+            <a href="https://donalucia55.github.io/Tienda/Tiendacombos/TiendaCombos.html"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-gray btn-sm inline-flex items-center"
+               title="Abrir la tienda principal en una nueva pestaña">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Ir a la Tienda Principal
+            </a>
+        </div>
 
         <!-- === SECCIÓN DE GESTIÓN GITHUB === -->
         <div class="mb-6 p-4 border border-blue-200 rounded-md bg-blue-50">
@@ -201,7 +218,7 @@
                  </div>
                  <div class="flex-shrink-0">
                      <button id="clearAllBtn" class="btn btn-red btn-sm">Limpiar TODO (GitHub & Local)</button>
-                     <!-- Ejemplo de botón para abrir modal fullscreen -->
+                     <!-- Botones para abrir modales fullscreen -->
                      <button data-modal-target-fs="contactModalFs" class="btn btn-indigo btn-sm mt-2">Abrir Contacto</button>
                      <button data-modal-target-fs="tutorialModalFs" class="btn btn-yellow btn-sm mt-2">Abrir Guía</button>
 
@@ -218,7 +235,6 @@
 
         <!-- === SECCIÓN DE GESTIÓN SUB-CATÁLOGOS === -->
         <div class="mb-6 p-4 border border-indigo-200 rounded-md bg-indigo-50">
-            <!-- ... Contenido sin cambios ... -->
              <h2 class="text-lg font-semibold text-indigo-800 mb-3">Gestión de Sub-Catálogos (del Catálogo GitHub)</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
                 <div> <label for="subCatalogSelector">Sub-Catálogo Activo:</label> <select id="subCatalogSelector"><option value="">-- Ninguno --</option></select> </div>
@@ -229,7 +245,6 @@
 
         <!-- === SECCIÓN AÑADIR AL CATÁLOGO LOCAL === -->
          <div class="mb-6 p-4 border border-green-200 rounded-md bg-green-50">
-             <!-- ... Contenido sin cambios ... -->
               <h2 class="text-lg font-semibold text-green-800 mb-3">Añadir Productos al Catálogo <span class="font-bold">Local</span></h2>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                  <div>
@@ -255,24 +270,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Catálogo GitHub -->
             <div id="githubCatalogSection">
-                <!-- ... Contenido sin cambios ... -->
                  <h2 class="text-xl font-semibold text-blue-700 mb-3">Catálogo GitHub</h2>
                 <div class="mb-3"> <input type="search" id="githubCatalogSearch" placeholder="Buscar en GitHub Cat..." class="mb-0 text-sm p-2"> </div>
                  <p class="text-xs text-gray-500 mb-2">
-                    <span class="inline-block w-3 h-3 bg-indigo-500 rounded-full mr-1"></span> Mover a Local.
-                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-1 ml-2"></span> Añadir a Sub.
-                    <span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-1"></span> Quitar de Sub. Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar.
+                    <span class="inline-block w-3 h-3 bg-indigo-500 rounded-full mr-1 align-middle"></span> Mover a Local.
+                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-1 ml-2 align-middle"></span> Añadir a Sub.
+                    <span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-1 align-middle"></span> Quitar de Sub. Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar.
                  </p>
                 <div id="githubCatalogGridContainer"> <div id="githubCatalogGrid" class="catalog-grid mb-6 hidden"></div> <div id="githubCatalogPlaceholder" class="catalog-placeholder">Carga el catálogo desde GitHub o añade productos desde el Local.</div> </div>
                  <div class="mt-4 text-center"> <h3 class="text-lg font-semibold text-gray-700 mb-2">Exportar Sub-Catálogo Activo</h3> <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto"> <button id="copySubCatalogBtn" class="btn btn-green flex-1" disabled>Copiar JSON (Sub)</button> <button id="downloadSubCatalogBtn" class="btn btn-indigo flex-1" disabled>Descargar JSON (Sub)</button> </div> <p id="subCopyFeedback" class="feedback text-sm"></p> <p id="subDownloadFeedback" class="feedback text-sm"></p> </div>
             </div>
             <!-- Catálogo Local -->
             <div id="localCatalogSection">
-                <!-- ... Contenido sin cambios ... -->
                  <h2 class="text-xl font-semibold text-green-700 mb-3">Catálogo Local (Temporal/Staging)</h2>
                  <div class="mb-3"> <input type="search" id="localCatalogSearch" placeholder="Buscar en Local Cat..." class="mb-0 text-sm p-2"> </div>
                   <p class="text-xs text-gray-500 mb-2">
-                     <span class="inline-block w-3 h-3 bg-indigo-500 rounded-full mr-1"></span> Mover a GitHub. Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar.
+                     <span class="inline-block w-3 h-3 bg-indigo-500 rounded-full mr-1 align-middle"></span> Mover a GitHub. Clic <strong class="text-blue-600">[IMG]</strong>/Nombre: editar.
                   </p>
                  <div id="localCatalogGridContainer"> <div id="localCatalogGrid" class="catalog-grid mb-6 hidden"></div> <div id="localCatalogPlaceholder" class="catalog-placeholder">Añade productos usando los botones de arriba o mueve desde GitHub.</div> </div>
                   <div class="mt-4 text-center">
@@ -288,7 +301,7 @@
         </div>
     </div>
 
-    <!-- === MODAL DE EDICIÓN (HTML sin cambios, CSS ajustado arriba) === -->
+    <!-- === MODAL DE EDICIÓN === -->
     <div id="editModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[60] hidden opacity-0 transition-opacity duration-300 ease-in-out" aria-labelledby="modalTitle" role="dialog" aria-modal="true">
         <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-3xl transform transition-all duration-300 ease-in-out scale-95 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center border-b border-gray-200 pb-3 mb-4 flex-shrink-0"> <h2 class="text-xl font-semibold text-gray-800" id="modalTitle">Editar Producto</h2> <button id="closeModalBtn" class="p-1 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors" aria-label="Cerrar modal"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg> </button> </div>
@@ -297,7 +310,7 @@
         </div>
     </div>
 
-     <!-- === TOOLTIP (HTML sin cambios) === -->
+     <!-- === TOOLTIP === -->
     <div id="productTooltip" class="fixed hidden opacity-0 transition-opacity duration-200 ease-in-out z-[100] pointer-events-none"> <div class="bg-gray-900 bg-opacity-90 text-white rounded-lg shadow-2xl p-4 max-w-xs text-sm leading-relaxed backdrop-blur-sm border border-gray-700"> <h4 id="tooltipName" class="font-bold text-base mb-2 text-indigo-300"></h4> <p class="mb-2 flex justify-between items-center"> <span id="tooltipCategory" class="text-xs uppercase tracking-wider font-medium text-gray-400"></span> <span id="tooltipPrice" class="text-lg font-semibold text-green-400"></span> </p> <p id="tooltipDescription" class="text-gray-300 mb-3 text-xs"></p> <div id="tooltipSpecsContainer" class="mb-1"> <h5 class="text-xs font-semibold text-gray-400 mb-1">Especificaciones:</h5> <ul id="tooltipSpecsList" class="list-disc list-inside text-gray-300 text-xs space-y-0.5 pl-1"></ul> </div> <div id="tooltipFeaturedBadge" class="mt-3 hidden"> <span class="inline-block bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-0.5 rounded">✨ Destacado ✨</span> </div> </div> </div>
 
     <!-- === MODAL DE CONTACTO (Pantalla Completa) === -->
@@ -330,7 +343,7 @@
         </div>
     </div>
 
-    <!-- === MODAL TUTORIAL (Pantalla Completa - Estilo Sencillo) === -->
+    <!-- === MODAL TUTORIAL (Pantalla Completa) === -->
     <div id="tutorialModalFs" class="modal-fullscreen">
         <div class="modal-header-fs">
             <div class="modal-header-content">
@@ -401,7 +414,7 @@
         const renameSubCatalogBtn = document.getElementById('renameSubCatalogBtn');
         const deleteSubCatalogBtn = document.getElementById('deleteSubCatalogBtn');
         const subCatalogMgmtFeedback = document.getElementById('subCatalogMgmtFeedback');
-        const activeSubCatalogNameDisplay = document.getElementById('activeSubCatalogNameDisplay');
+        // const activeSubCatalogNameDisplay = document.getElementById('activeSubCatalogNameDisplay'); // Elemento eliminado o no usado, comentar/eliminar
         const copySubCatalogBtn = document.getElementById('copySubCatalogBtn');
         const downloadSubCatalogBtn = document.getElementById('downloadSubCatalogBtn');
         const subCopyFeedback = document.getElementById('subCopyFeedback');
@@ -470,10 +483,10 @@
         // --- Search Helper ---
         function productMatchesSearch(product, searchTerm) {
             if (!product || !searchTerm) return true;
-            const term = searchTerm;
+            const term = searchTerm.toLowerCase(); // Convertir a minúsculas una sola vez
             const nameMatch = (product.name || '').toLowerCase().includes(term);
             const descMatch = (product.description || '').toLowerCase().includes(term);
-            const idMatch = String(product.id || '').includes(term);
+            const idMatch = String(product.id || '').includes(term); // No necesita lowerCase
             const urlMatch = (product.image || '').toLowerCase().includes(term);
             const specsMatch = (product.specifications || []).some(spec => (spec || '').toLowerCase().includes(term));
             const categoryMatch = (product.category || '').toLowerCase().includes(term);
@@ -490,9 +503,9 @@
              };
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataToSave));
-                console.log("Local catalog data saved");
+                console.log("Datos del catálogo guardados localmente");
             } catch (error) {
-                console.error("Error saving catalog data to localStorage:", error);
+                console.error("Error al guardar datos del catálogo en localStorage:", error);
                 showFeedback(githubFeedback, '¡ERROR GRAVE AL GUARDAR DATOS DE CATÁLOGO LOCALMENTE!', true, 0);
             }
         }
@@ -505,16 +518,16 @@
                     localCatalogData = d.localData || [];
                     subCatalogs = d.subCatalogs || {};
                     activeSubCatalogName = (d.activeSubCatalogName && subCatalogs[d.activeSubCatalogName]) ? d.activeSubCatalogName : null;
-                    console.log("Local catalog data loaded");
+                    console.log("Datos del catálogo cargados localmente");
                     return true;
                 }
             } catch (error) {
-                console.error("Error loading catalog data from localStorage:", error);
+                console.error("Error al cargar datos del catálogo desde localStorage:", error);
                 githubCatalogData = [];
                 localCatalogData = [];
                 subCatalogs = {};
                 activeSubCatalogName = null;
-                localStorage.removeItem(LOCAL_STORAGE_KEY);
+                localStorage.removeItem(LOCAL_STORAGE_KEY); // Limpiar si hay error
             }
             return false;
         }
@@ -522,7 +535,7 @@
         // --- GitHub Token Handling (LocalStorage) ---
         function saveTokenToLocalStorage(token) {
             if (!token || !token.startsWith('ghp_') || token.length < 30) {
-                localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY);
+                localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY); // Elimina si no es válido
                 return false;
             }
             try {
@@ -530,7 +543,7 @@
                 console.log("Token guardado en localStorage.");
                 return true;
             } catch (error) {
-                console.error("Error saving token to localStorage:", error);
+                console.error("Error al guardar token en localStorage:", error);
                 showFeedback(githubFeedback, "Error al guardar token localmente.", true);
                 return false;
             }
@@ -540,7 +553,7 @@
             try {
                 return localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY);
             } catch (error) {
-                console.error("Error loading token from localStorage:", error);
+                console.error("Error al cargar token desde localStorage:", error);
                 return null;
             }
         }
@@ -554,12 +567,17 @@
                 if (newToken !== currentStoredToken) {
                     if (saveTokenToLocalStorage(newToken)) {
                          console.log("Nuevo token guardado automáticamente en localStorage.");
+                         // Podrías añadir un showFeedback aquí si quieres confirmar al usuario
+                         // showFeedback(githubFeedback, "Token guardado localmente.", false, 2000);
                     }
                 }
             } else {
+                // Si el campo se vacía o es inválido, y había un token guardado, lo eliminamos
                 if (currentStoredToken) {
                     localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY);
                     console.log("Token eliminado de localStorage porque el input está vacío/inválido.");
+                    // Podrías añadir un showFeedback aquí
+                    // showFeedback(githubFeedback, "Token eliminado del almacenamiento local.", true, 2000);
                 }
             }
         }
@@ -573,18 +591,29 @@
             }
             loadGithubBtn.disabled = true;
             loadGithubBtn.textContent = 'Cargando...';
+            showFeedback(githubFeedback, 'Cargando desde GitHub...', false, 0); // Mensaje inmediato
+
             try {
-                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`, {
-                    headers: { 'Accept': 'application/vnd.github.v3+json', 'Authorization': `Bearer ${currentToken}` }
-                });
+                const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}&t=${Date.now()}`, { // Timestamp para evitar caché
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Authorization': `Bearer ${currentToken}`
+                    // Se eliminó 'Cache-Control': 'no-cache'
+                }
+            });
 
                 if (response.status === 404) {
                     githubCatalogData = [];
                     showFeedback(githubFeedback, 'Archivo no encontrado en GitHub. Catálogo GitHub inicializado vacío.', false, 5000);
                 } else if (!response.ok) {
+                    const errorBody = await response.text(); // Leer cuerpo del error
                     if (response.status === 401) {
                         showFeedback(githubFeedback, `Error 401: Token inválido o sin permisos para leer el repositorio '${repoName}'. Verifica el token.`, true, 6000);
-                    } else { throw new Error(`Error ${response.status}: ${response.statusText}`); }
+                    } else if (response.status === 403) {
+                         showFeedback(githubFeedback, `Error 403: Límite de API de GitHub alcanzado o problema de permisos (quizás SSO?). Detalles: ${errorBody}`, true, 7000);
+                    } else {
+                         throw new Error(`Error ${response.status}: ${response.statusText}. Respuesta: ${errorBody}`);
+                    }
                 } else {
                     const data = await response.json();
                     if (!data.content) {
@@ -593,7 +622,10 @@
                     } else {
                         const content = atob(data.content);
                         try {
-                             githubCatalogData = JSON.parse(decodeURIComponent(escape(content)));
+                             // Intentar decodificar como UTF-8 de forma robusta
+                             const decodedContent = new TextDecoder("utf-8").decode(Uint8Array.from(content, c => c.charCodeAt(0)));
+                             githubCatalogData = JSON.parse(decodedContent);
+
                              if (!Array.isArray(githubCatalogData)) {
                                  githubCatalogData = [];
                                  throw new Error("El contenido JSON no es un array.");
@@ -601,16 +633,17 @@
                              showFeedback(githubFeedback, `Catálogo GitHub cargado (${githubCatalogData.length} productos).`, false);
                         } catch (parseError){
                              console.error("JSON Parse Error:", parseError);
-                             showFeedback(githubFeedback, `Error al parsear JSON de GitHub: ${parseError.message}`, true, 5000);
+                             console.error("Contenido recibido (decodificado):", content); // Log para depurar
+                             showFeedback(githubFeedback, `Error al parsear JSON de GitHub: ${parseError.message}. Verifica que el archivo JSON sea válido y esté codificado en UTF-8.`, true, 8000);
                              githubCatalogData = [];
                         }
                     }
                 }
-                saveDataStructure();
+                saveDataStructure(); // Guardar localmente aunque venga vacío o con error de parseo (para reflejar el estado)
                 updateAllUI();
 
             } catch (error) {
-                if (error.message.includes('401') === false) {
+                if (error.message.includes('401') === false && error.message.includes('403') === false) { // Evitar duplicar feedback
                      console.error('Error al cargar de GitHub:', error);
                      showFeedback(githubFeedback, `Error al cargar de GitHub: ${error.message}`, true, 5000);
                 }
@@ -631,42 +664,90 @@
             }
 
             saveGithubBtn.disabled = true; saveGithubBtn.textContent = 'Guardando...';
+            showFeedback(githubFeedback, 'Guardando en GitHub...', false, 0); // Mensaje inmediato
             try {
                 let sha = null;
+                // 1. Obtener el SHA del archivo actual (si existe)
                 try {
-                    const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`, {
-                        headers: { 'Accept': 'application/vnd.github.v3+json', 'Authorization': `Bearer ${currentToken}` }
-                    });
-                    if (response.ok) { sha = (await response.json()).sha; }
-                    else if (response.status === 401) { throw new Error("401 Unauthorized getting SHA"); }
-                    else if (response.status !== 404) { throw new Error(`Error al obtener SHA ${response.status}: ${response.statusText}`); }
+                    const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}&t=${Date.now()}`, { // Timestamp para evitar caché
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': `Bearer ${currentToken}`
+                         // Se eliminó 'Cache-Control': 'no-cache'
+                    }
+                });
+                    if (response.ok) {
+                         sha = (await response.json()).sha;
+                         console.log("SHA obtenido:", sha);
+                    } else if (response.status === 404) {
+                        console.log("El archivo no existe en GitHub, se creará uno nuevo.");
+                        sha = null; // Es un archivo nuevo
+                    } else if (response.status === 401) {
+                        throw new Error("401 Unauthorized getting SHA");
+                    } else if (response.status === 403) {
+                         const errorBody = await response.text();
+                         throw new Error(`403 Forbidden getting SHA. Details: ${errorBody}`);
+                    }
+                    else {
+                         const errorBody = await response.text();
+                         throw new Error(`Error al obtener SHA ${response.status}: ${response.statusText}. Respuesta: ${errorBody}`);
+                    }
                 } catch (fetchShaError) {
                     if (fetchShaError.message.includes("401")) {
                          showFeedback(githubFeedback, `Error 401: Token inválido o sin permisos para leer SHA del repo '${repoName}'.`, true, 6000);
-                    } else { showFeedback(githubFeedback, `Error conectando para obtener SHA: ${fetchShaError.message}`, true, 5000); }
-                    throw fetchShaError; // Relanzar para detener
+                    } else if (fetchShaError.message.includes("403")) {
+                         showFeedback(githubFeedback, `Error 403 obteniendo SHA: Límite de API o permisos (quizás SSO?). ${fetchShaError.message}`, true, 7000);
+                    } else {
+                         showFeedback(githubFeedback, `Error conectando para obtener SHA: ${fetchShaError.message}`, true, 5000);
+                    }
+                    throw fetchShaError; // Relanzar para detener el proceso
                 }
 
+                 // 2. Preparar el contenido a guardar (codificado en Base64, asegurando UTF-8)
                  const contentToSave = JSON.stringify(githubCatalogData, null, 4);
-                 const encodedContent = btoa(unescape(encodeURIComponent(contentToSave)));
+                 // Convertir string a Uint8Array (UTF-8) y luego a Base64
+                 const encodedContent = btoa(String.fromCharCode.apply(null, new TextEncoder().encode(contentToSave)));
 
+                 // 3. Enviar la petición PUT para guardar/actualizar
                 const saveResponse = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
                     method: 'PUT',
-                    headers: { 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json', 'Authorization': `Bearer ${currentToken}` },
-                    body: JSON.stringify({ message: `Actualización catálogo desde editor dual (${new Date().toISOString()})`, content: encodedContent, sha: sha, branch: branch })
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}`
+                    },
+                    body: JSON.stringify({
+                        message: `Actualización catálogo desde editor dual (${new Date().toISOString()})`,
+                        content: encodedContent,
+                        sha: sha, // Incluir SHA si el archivo existía, si es null, GitHub sabe que es nuevo
+                        branch: branch
+                    })
                 });
 
                 if (!saveResponse.ok) {
                     const errorDetails = await saveResponse.json();
-                     if (saveResponse.status === 401) { showFeedback(githubFeedback, `Error 401: Token inválido o sin permisos para escribir en '${repoName}'. Verifica scopes ('repo').`, true, 7000); }
-                     else if (saveResponse.status === 409) { showFeedback(githubFeedback, `Error 409: Conflicto. El archivo en GitHub cambió. Recarga e intenta de nuevo.`, true, 7000); }
-                     else { throw new Error(`Error ${saveResponse.status}: ${saveResponse.statusText}. ${errorDetails.message || ''}`); }
+                    const errorMessage = errorDetails.message || '';
+                     if (saveResponse.status === 401) {
+                         showFeedback(githubFeedback, `Error 401: Token inválido o sin permisos para escribir en '${repoName}'. Verifica scopes ('repo').`, true, 7000);
+                     } else if (saveResponse.status === 403) {
+                          showFeedback(githubFeedback, `Error 403 al guardar: Límite API o permisos. ${errorMessage}`, true, 7000);
+                     } else if (saveResponse.status === 409) {
+                         showFeedback(githubFeedback, `Error 409: Conflicto. El archivo en GitHub cambió. Recarga (Cargar desde GitHub) e intenta de nuevo. ${errorMessage}`, true, 8000);
+                     } else if (saveResponse.status === 422) {
+                         showFeedback(githubFeedback, `Error 422: Datos inválidos o commit vacío (¿no hubo cambios?). ${errorMessage}`, true, 7000);
+                     }
+                     else {
+                         throw new Error(`Error ${saveResponse.status}: ${saveResponse.statusText}. ${errorMessage}`);
+                     }
                 } else {
+                     const commitData = await saveResponse.json();
+                     console.log("Archivo guardado/actualizado en GitHub:", commitData);
                      showFeedback(githubFeedback, '¡Catálogo guardado en GitHub con éxito!', false);
                 }
 
             } catch (error) {
-                if (!error.message.includes("401") && !error.message.includes("409")) {
+                 // Solo mostrar errores no manejados específicamente arriba
+                if (![401, 403, 409, 422].some(status => error.message.includes(status.toString()))) {
                     console.error('Error al guardar en GitHub:', error);
                     showFeedback(githubFeedback, `Error al guardar en GitHub: ${error.message}`, true, 5000);
                 }
@@ -676,68 +757,922 @@
             }
         }
 
-        // --- Core Logic: Rendering (Sin cambios) ---
-        function renderGithubCatalogGrid() { githubCatalogGrid.innerHTML = ''; const searchTerm = githubSearchTerm; const filteredProducts = githubCatalogData.filter(product => productMatchesSearch(product, searchTerm)); const hasProducts = filteredProducts.length > 0; githubCatalogPlaceholder.classList.toggle('hidden', hasProducts); githubCatalogGrid.classList.toggle('hidden', !hasProducts); githubCatalogPlaceholder.textContent = searchTerm ? 'No hay productos que coincidan en GitHub.' : 'Catálogo GitHub vacío o no cargado.'; if (hasProducts) { filteredProducts.sort((a, b) => (a.id || 0) - (b.id || 0)); const activeSubCatalogIds = activeSubCatalogName ? (subCatalogs[activeSubCatalogName] || []) : []; filteredProducts.forEach(product => { const item = document.createElement('div'); item.classList.add('catalog-item'); item.dataset.productId = product.id; item.dataset.source = 'github'; item.classList.toggle('selected-for-subcatalog', activeSubCatalogIds.includes(product.id)); const btnContainer = document.createElement('div'); btnContainer.classList.add('catalog-item-buttons'); const moveBtn = document.createElement('button'); moveBtn.classList.add('catalog-item-btn', 'move-btn'); moveBtn.title = 'Mover a Catálogo Local'; moveBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" /></svg>`; moveBtn.addEventListener('click', (e) => { e.stopPropagation(); handleMoveProduct(product.id, 'github'); }); btnContainer.appendChild(moveBtn); if (activeSubCatalogName) { const isAddedToSub = activeSubCatalogIds.includes(product.id); const subToggleBtn = document.createElement('button'); subToggleBtn.classList.add('catalog-item-btn'); subToggleBtn.classList.toggle('sub-add-btn', !isAddedToSub); subToggleBtn.classList.toggle('sub-remove-btn', isAddedToSub); subToggleBtn.title = isAddedToSub ? 'Quitar del Sub-Catálogo Activo' : 'Añadir al Sub-Catálogo Activo'; subToggleBtn.innerHTML = isAddedToSub ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>`; subToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); handleToggleProductInSubCatalog(product.id); }); btnContainer.appendChild(subToggleBtn); } item.appendChild(btnContainer); const img = document.createElement('img'); img.src = product.image || 'https://via.placeholder.com/150?text=No+Image'; img.alt = product.name || 'Producto sin nombre'; img.loading = 'lazy'; img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150?text=Error'; }; img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'github'); }); item.appendChild(img); const nameDiv = document.createElement('div'); nameDiv.classList.add('catalog-item-name'); nameDiv.textContent = product.name || `ID: ${product.id}`; nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'github'); }); item.appendChild(nameDiv); githubCatalogGrid.appendChild(item); }); } }
-        function renderLocalCatalogGrid() { localCatalogGrid.innerHTML = ''; const searchTerm = localSearchTerm; const filteredProducts = localCatalogData.filter(product => productMatchesSearch(product, searchTerm)); const hasProducts = filteredProducts.length > 0; localCatalogPlaceholder.classList.toggle('hidden', hasProducts); localCatalogGrid.classList.toggle('hidden', !hasProducts); localCatalogPlaceholder.textContent = searchTerm ? 'No hay productos que coincidan en Local.' : 'Catálogo Local vacío.'; if (hasProducts) { filteredProducts.sort((a, b) => (a.id || 0) - (b.id || 0)); filteredProducts.forEach(product => { const item = document.createElement('div'); item.classList.add('catalog-item'); item.dataset.productId = product.id; item.dataset.source = 'local'; const btnContainer = document.createElement('div'); btnContainer.classList.add('catalog-item-buttons'); const moveBtn = document.createElement('button'); moveBtn.classList.add('catalog-item-btn', 'move-btn'); moveBtn.title = 'Mover a Catálogo GitHub'; moveBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.707-4.707a1 1 0 001.414-1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293z" clip-rule="evenodd" /></svg>`; moveBtn.addEventListener('click', (e) => { e.stopPropagation(); handleMoveProduct(product.id, 'local'); }); btnContainer.appendChild(moveBtn); item.appendChild(btnContainer); const img = document.createElement('img'); img.src = product.image || 'https://via.placeholder.com/150?text=No+Image'; img.alt = product.name || 'Producto sin nombre'; img.loading = 'lazy'; img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150?text=Error'; }; img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'local'); }); item.appendChild(img); const nameDiv = document.createElement('div'); nameDiv.classList.add('catalog-item-name'); nameDiv.textContent = product.name || `ID: ${product.id}`; nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'local'); }); item.appendChild(nameDiv); localCatalogGrid.appendChild(item); }); } }
+        // --- Core Logic: Rendering ---
+        function renderGithubCatalogGrid() {
+            githubCatalogGrid.innerHTML = '';
+            const searchTerm = githubSearchTerm;
+            const filteredProducts = githubCatalogData.filter(product => productMatchesSearch(product, searchTerm));
+            const hasProducts = filteredProducts.length > 0;
 
-        // --- Sub-Catalog Specific (Sin cambios) ---
-        function populateSubCatalogSelector() { const currentVal = subCatalogSelector.value; subCatalogSelector.innerHTML = '<option value="">-- Ninguno --</option>'; Object.keys(subCatalogs).sort().forEach(name => { const option = document.createElement('option'); option.value = name; option.textContent = name; subCatalogSelector.appendChild(option); }); subCatalogSelector.value = activeSubCatalogName && subCatalogs[activeSubCatalogName] ? activeSubCatalogName : ""; activeSubCatalogName = subCatalogSelector.value || null; const hasSelection = !!activeSubCatalogName; renameSubCatalogBtn.disabled = !hasSelection; deleteSubCatalogBtn.disabled = !hasSelection; copySubCatalogBtn.disabled = !hasSelection || !subCatalogs[activeSubCatalogName]?.length; downloadSubCatalogBtn.disabled = !hasSelection || !subCatalogs[activeSubCatalogName]?.length; }
-        function handleToggleProductInSubCatalog(productId) { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName]) { showFeedback(subCatalogMgmtFeedback, "Selecciona un sub-catálogo activo primero.", true); return; } if (!githubCatalogData.some(p => p.id === productId)) { showFeedback(subCatalogMgmtFeedback, "Este producto no está en el catálogo GitHub.", true); return; } const productIds = subCatalogs[activeSubCatalogName]; const index = productIds.indexOf(productId); if (index > -1) { productIds.splice(index, 1); } else { productIds.push(productId); } saveDataStructure(); renderGithubCatalogGrid(); copySubCatalogBtn.disabled = !activeSubCatalogName || !subCatalogs[activeSubCatalogName]?.length; downloadSubCatalogBtn.disabled = !activeSubCatalogName || !subCatalogs[activeSubCatalogName]?.length; }
+            githubCatalogPlaceholder.classList.toggle('hidden', hasProducts);
+            githubCatalogGrid.classList.toggle('hidden', !hasProducts);
+            githubCatalogPlaceholder.textContent = searchTerm ? 'No hay productos que coincidan en GitHub.' : (githubCatalogData.length > 0 ? 'Carga el catálogo desde GitHub o añade productos.' : 'Catálogo GitHub vacío o no cargado.'); // Ajuste mensaje
 
-        // --- Update UI (Sin cambios) ---
-        function updateAllUI() { renderGithubCatalogGrid(); renderLocalCatalogGrid(); populateSubCatalogSelector(); }
+            if (hasProducts) {
+                // Ordenar por ID numérico, tratando IDs no numéricos o faltantes como 0
+                filteredProducts.sort((a, b) => (parseInt(a.id, 10) || 0) - (parseInt(b.id, 10) || 0));
+                const activeSubCatalogIds = activeSubCatalogName ? (subCatalogs[activeSubCatalogName] || []) : [];
 
-        // --- Sub-Catalog Management (Sin cambios) ---
-        function handleCreateSubCatalog() { const name = newSubCatalogNameInput.value.trim(); if (!name) { showFeedback(subCatalogMgmtFeedback, "Introduce nombre.", true); return; } if (subCatalogs[name]) { showFeedback(subCatalogMgmtFeedback, `"${name}" ya existe.`, true); return; } subCatalogs[name] = []; activeSubCatalogName = name; newSubCatalogNameInput.value = ''; saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Sub "${name}" creado.`, false); }
-        function handleRenameSubCatalog() { if (!activeSubCatalogName) return; const oldName = activeSubCatalogName; const newName = prompt(`Renombrar sub-catálogo "${oldName}" a:`, oldName); if (!newName || newName.trim() === '' || newName === oldName) { showFeedback(subCatalogMgmtFeedback, "Renombrado cancelado.", true); return; } const finalNewName = newName.trim(); if (subCatalogs[finalNewName]) { showFeedback(subCatalogMgmtFeedback, `"${finalNewName}" ya existe.`, true); return; } subCatalogs[finalNewName] = subCatalogs[oldName]; delete subCatalogs[oldName]; activeSubCatalogName = finalNewName; saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Renombrado a "${activeSubCatalogName}".`, false); }
-        function handleDeleteSubCatalog() { if (!activeSubCatalogName) return; if (confirm(`¿Eliminar sub-catálogo "${activeSubCatalogName}"? (Los productos no se eliminarán del catálogo GitHub)`)) { const deletedName = activeSubCatalogName; delete subCatalogs[activeSubCatalogName]; activeSubCatalogName = null; saveDataStructure(); updateAllUI(); showFeedback(subCatalogMgmtFeedback, `Sub "${deletedName}" eliminado.`, true); } }
-        function handleSubCatalogSelect() { activeSubCatalogName = subCatalogSelector.value || null; const hasSelection = !!activeSubCatalogName; renameSubCatalogBtn.disabled = !hasSelection; deleteSubCatalogBtn.disabled = !hasSelection; copySubCatalogBtn.disabled = !hasSelection || !subCatalogs[activeSubCatalogName]?.length; downloadSubCatalogBtn.disabled = !hasSelection || !subCatalogs[activeSubCatalogName]?.length; renderGithubCatalogGrid(); }
+                filteredProducts.forEach(product => {
+                    const item = document.createElement('div');
+                    item.classList.add('catalog-item');
+                    item.dataset.productId = product.id;
+                    item.dataset.source = 'github';
+                    item.classList.toggle('selected-for-subcatalog', activeSubCatalogIds.includes(product.id));
 
-        // --- Product Movement (Sin cambios) ---
-        function handleMoveProduct(productId, source) { let productToMove = null; let sourceArray = null; let destinationArray = null; let feedbackElement = null; let targetCatalogName = ''; if (source === 'github') { sourceArray = githubCatalogData; destinationArray = localCatalogData; feedbackElement = githubFeedback; targetCatalogName = 'Local'; } else if (source === 'local') { sourceArray = localCatalogData; destinationArray = githubCatalogData; feedbackElement = bulkFeedback; targetCatalogName = 'GitHub'; } else { console.error("Invalid source for move:", source); return; } const productIndex = sourceArray.findIndex(p => p.id === productId); if (productIndex === -1) { showFeedback(feedbackElement, `Error: Producto ${productId} no encontrado en origen.`, true); return; } [productToMove] = sourceArray.splice(productIndex, 1); destinationArray.push(productToMove); if (source === 'github') { for (const catName in subCatalogs) { subCatalogs[catName] = subCatalogs[catName].filter(id => id !== productId); } copySubCatalogBtn.disabled = !activeSubCatalogName || !subCatalogs[activeSubCatalogName]?.length; downloadSubCatalogBtn.disabled = !activeSubCatalogName || !subCatalogs[activeSubCatalogName]?.length; } saveDataStructure(); updateAllUI(); showFeedback(feedbackElement, `Producto ${productToMove.name || productId} movido a Catálogo ${targetCatalogName}.`, false); }
+                    const btnContainer = document.createElement('div');
+                    btnContainer.classList.add('catalog-item-buttons');
 
-        // --- Modal Edición Functions (Sin cambios lógicos) ---
-        function openModal(productId, source) { const { product } = findProductById(productId); if (!product) { console.error(`Product ${productId} not found in any catalog.`); return; } originalProductIdBeforeEdit = productId; selectedProductId = productId; selectedProductSource = source; modalTitle.textContent = `Editar (${source === 'github' ? 'GitHub' : 'Local'}): ${product.name || `ID ${productId}`}`; populateModalForm(product); idFeedback.textContent = ''; document.querySelectorAll('.catalog-item-buttons').forEach(btnDiv => { btnDiv.classList.add('hidden-when-modal-open'); }); editModal.classList.remove('hidden'); requestAnimationFrame(() => { editModal.classList.remove('opacity-0', 'scale-95'); editModal.classList.add('opacity-100', 'scale-100'); const isPlaceholderLocal = source === 'local' && product.name === `Nuevo Producto ${productId}` && product.image.includes('placeholder'); if (isPlaceholderLocal) { modalProductNameInput.focus(); modalProductNameInput.select(); } }); document.querySelectorAll('.catalog-item.selected-for-edit').forEach(el => el.classList.remove('selected-for-edit')); const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid'; document.querySelectorAll(`${gridSelector} .catalog-item[data-product-id="${productId}"]`).forEach(el => { el.classList.add('selected-for-edit'); }); }
-        function closeModal() { /* Cierra el modal de EDICIÓN */ editModal.classList.remove('opacity-100', 'scale-100'); editModal.classList.add('opacity-0', 'scale-95'); setTimeout(() => { editModal.classList.add('hidden'); document.querySelectorAll('.catalog-item.selected-for-edit').forEach(el => el.classList.remove('selected-for-edit')); selectedProductId = null; selectedProductSource = null; originalProductIdBeforeEdit = null; modalFeedback.textContent = ''; document.querySelectorAll('.catalog-item-buttons').forEach(btnDiv => { btnDiv.classList.remove('hidden-when-modal-open'); }); }, 300); }
-        function populateModalForm(product) { if (!product) return; modalProductIdInput.value = product.id || ''; modalProductNameInput.value = product.name || ''; modalProductPriceInput.value = product.price !== undefined ? product.price.toFixed(2) : ''; modalProductImageInput.value = product.image || ''; modalProductDescriptionInput.value = product.description || ''; modalProductSpecificationsInput.value = (product.specifications || []).join('\n'); modalProductFeaturedInput.checked = product.featured || false; modalProductCategoryInput.value = product.category || ''; updateModalJsonOutput(); }
-        function updateModalJsonOutput() { if (selectedProductId === null || selectedProductSource === null) { modalJsonOutput.textContent = '...'; return; } const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData; const product = sourceArray.find(p => p.id === selectedProductId); modalJsonOutput.textContent = product ? JSON.stringify(product, null, 4) : '{ // Error: Producto no encontrado en origen }'; }
-        function updateProductDataFromModalForm() { if (selectedProductId === null || selectedProductSource === null) return; const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData; const productIndex = sourceArray.findIndex(p => p.id === selectedProductId); if (productIndex === -1) { console.error(`Autosave fail: ID ${selectedProductId} not found in ${selectedProductSource} catalog.`); showFeedback(modalFeedback, "Error: Producto no encontrado para guardar.", true); return; } const specificationsArray = modalProductSpecificationsInput.value.split('\n').map(line => line.trim()).filter(line => line.length > 0); const updatedProduct = { ...sourceArray[productIndex], name: modalProductNameInput.value.trim(), price: parseFloat(modalProductPriceInput.value) || 0.00, image: modalProductImageInput.value.trim(), description: modalProductDescriptionInput.value.trim(), specifications: specificationsArray, featured: modalProductFeaturedInput.checked, category: modalProductCategoryInput.value.trim() }; sourceArray[productIndex] = updatedProduct; const gridSelector = selectedProductSource === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid'; document.querySelectorAll(`${gridSelector} .catalog-item[data-product-id="${selectedProductId}"]`).forEach(gridItem => { if (gridItem) { const nameEl = gridItem.querySelector('.catalog-item-name'); const imgEl = gridItem.querySelector('img'); if (nameEl) nameEl.textContent = updatedProduct.name || `ID: ${updatedProduct.id}`; if (imgEl && imgEl.src !== updatedProduct.image) { imgEl.src = updatedProduct.image || 'https://via.placeholder.com/150?text=No+Image'; } } }); updateModalJsonOutput(); saveDataStructure(); }
-        function handleIdChange() { idFeedback.textContent = ''; if (selectedProductId === null || originalProductIdBeforeEdit === null || selectedProductSource === null) { return false; } const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData; const otherArray = selectedProductSource === 'github' ? localCatalogData : githubCatalogData; const newIdValue = modalProductIdInput.value.trim(); const newId = parseInt(newIdValue); if (isNaN(newId) || newId <= 0 || newIdValue !== String(newId)) { showFeedback(idFeedback, "ID inválido (debe ser número entero positivo).", true, 0); return false; } if (newId === originalProductIdBeforeEdit) { selectedProductId = originalProductIdBeforeEdit; idFeedback.textContent = ''; updateModalJsonOutput(); return true; } if (sourceArray.some(p => p.id === newId) || otherArray.some(p => p.id === newId)) { showFeedback(idFeedback, `ID ${newId} ya existe en uno de los catálogos.`, true, 0); return false; } const productIndex = sourceArray.findIndex(p => p.id === originalProductIdBeforeEdit); if (productIndex === -1) { showFeedback(idFeedback, "Error interno: Producto original no encontrado.", true, 0); return false; } const oldId = originalProductIdBeforeEdit; sourceArray[productIndex].id = newId; if (selectedProductSource === 'github') { for (const catName in subCatalogs) { const idIndex = subCatalogs[catName].indexOf(oldId); if (idIndex > -1) { subCatalogs[catName][idIndex] = newId; } } } selectedProductId = newId; originalProductIdBeforeEdit = newId; modalTitle.textContent = `Editar (${selectedProductSource === 'github' ? 'GitHub' : 'Local'}): ${sourceArray[productIndex].name || `ID ${newId}`}`; saveDataStructure(); updateModalJsonOutput(); updateAllUI(); showFeedback(idFeedback, `ID actualizado a ${newId}.`, false, 3000); return true; }
-        function deleteSelectedProduct() { if (selectedProductId === null || selectedProductSource === null) { showFeedback(modalFeedback, "Ningún producto seleccionado para eliminar.", true); return; } const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData; const productIndex = sourceArray.findIndex(p => p.id === selectedProductId); if (productIndex === -1) { showFeedback(modalFeedback, `Error: Producto ${selectedProductId} no encontrado en Catálogo ${selectedProductSource}.`, true); return; } const product = sourceArray[productIndex]; const productName = product?.name || `ID ${selectedProductId}`; const catalogName = selectedProductSource === 'github' ? 'GitHub' : 'Local'; if (confirm(`¿Eliminar "${productName}" del Catálogo ${catalogName}? ${selectedProductSource === 'github' ? '(También se quitará de TODOS los sub-catálogos)' : ''}`)) { const deletedId = selectedProductId; sourceArray.splice(productIndex, 1); if (selectedProductSource === 'github') { for (const catName in subCatalogs) { subCatalogs[catName] = subCatalogs[catName].filter(id => id !== deletedId); } } saveDataStructure(); updateAllUI(); showFeedback(modalFeedback, `"${productName}" eliminado del Catálogo ${catalogName}.`, false, 4000); closeModal(); } }
+                    // Botón Mover a Local
+                    const moveBtn = document.createElement('button');
+                    moveBtn.classList.add('catalog-item-btn', 'move-btn');
+                    moveBtn.title = 'Mover a Catálogo Local';
+                    moveBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" /></svg>`;
+                    moveBtn.addEventListener('click', (e) => { e.stopPropagation(); handleMoveProduct(product.id, 'github'); });
+                    btnContainer.appendChild(moveBtn);
 
-        // --- Tooltip Functions (Sin cambios) ---
-         function populateTooltip(product) { if (!product) return; tooltipName.textContent = product.name || 'Sin Nombre'; tooltipCategory.textContent = product.category || 'Sin Categoría'; tooltipPrice.textContent = product.price !== undefined ? `$${product.price.toFixed(2)}` : 'N/A'; tooltipDescription.textContent = product.description || ''; tooltipDescription.classList.toggle('hidden', !product.description); tooltipSpecsList.innerHTML = ''; if (product.specifications && product.specifications.length > 0) { tooltipSpecsContainer.classList.remove('hidden'); product.specifications.forEach(spec => { const li = document.createElement('li'); li.textContent = spec; tooltipSpecsList.appendChild(li); }); } else { tooltipSpecsContainer.classList.add('hidden'); } tooltipFeaturedBadge.classList.toggle('hidden', !product.featured); }
-         function positionTooltip(event) { const tooltipRect = productTooltip.getBoundingClientRect(); const scrollX = window.scrollX; const scrollY = window.scrollY; let x = event.pageX + 15; let y = event.pageY + 15; if (x + tooltipRect.width > window.innerWidth + scrollX - 10) { x = event.pageX - tooltipRect.width - 15; } if (y + tooltipRect.height > window.innerHeight + scrollY - 10) { y = event.pageY - tooltipRect.height - 15; } if (x < scrollX + 10) { x = scrollX + 10; } if (y < scrollY + 10) { y = scrollY + 10; } productTooltip.style.left = `${x}px`; productTooltip.style.top = `${y}px`; }
-         function showTooltip(productId, event, source) { clearTimeout(tooltipTimeout); const { product } = findProductById(productId); if (!product) return; const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid'; const gridItem = document.querySelector(`${gridSelector} .catalog-item[data-product-id="${productId}"]`); if (gridItem) gridItem.classList.add('tooltip-active'); populateTooltip(product); productTooltip.classList.remove('hidden'); requestAnimationFrame(() => { positionTooltip(event); productTooltip.classList.remove('opacity-0'); productTooltip.classList.add('opacity-100'); }); }
-         function hideTooltip(productId, source) { clearTimeout(tooltipTimeout); if (productId && source) { const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid'; const gridItem = document.querySelector(`${gridSelector} .catalog-item[data-product-id="${productId}"]`); if (gridItem) gridItem.classList.remove('tooltip-active'); } else { document.querySelectorAll('.catalog-item.tooltip-active').forEach(el => el.classList.remove('tooltip-active')); } productTooltip.classList.remove('opacity-100'); productTooltip.classList.add('opacity-0'); tooltipTimeout = setTimeout(() => { productTooltip.classList.add('hidden'); }, 200); }
+                    // Botón Añadir/Quitar de Sub-Catálogo (si hay uno activo)
+                    if (activeSubCatalogName) {
+                        const isAddedToSub = activeSubCatalogIds.includes(product.id);
+                        const subToggleBtn = document.createElement('button');
+                        subToggleBtn.classList.add('catalog-item-btn');
+                        subToggleBtn.classList.toggle('sub-add-btn', !isAddedToSub);
+                        subToggleBtn.classList.toggle('sub-remove-btn', isAddedToSub);
+                        subToggleBtn.title = isAddedToSub ? 'Quitar del Sub-Catálogo Activo' : 'Añadir al Sub-Catálogo Activo';
+                        subToggleBtn.innerHTML = isAddedToSub
+                            ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>`
+                            : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>`;
+                        subToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); handleToggleProductInSubCatalog(product.id); });
+                        btnContainer.appendChild(subToggleBtn);
+                    }
 
-        // --- Event Handlers (Sin cambios lógicos) ---
-        function handleBulkAdd() { const urls = bulkUrls.value.split('\n').map(url => url.trim()).filter(url => url.length > 5 && (url.startsWith('http') || url.startsWith('data:image'))); if (urls.length === 0) { showFeedback(bulkFeedback, "No URLs válidas encontradas.", true); return; } let count = 0; urls.forEach(url => { const newId = getNextId(); const newProduct = { id: newId, name: `Nuevo ${newId}`, price: 0.00, image: url, description: "", specifications: [], featured: false, category: "" }; localCatalogData.push(newProduct); count++; }); if (count > 0) { saveDataStructure(); renderLocalCatalogGrid(); bulkUrls.value = ''; showFeedback(bulkFeedback, `${count} producto(s) añadidos al Catálogo Local.`); } else { showFeedback(bulkFeedback, "No se añadieron productos.", true); } }
-        function handleAddManualProduct() { const newId = getNextId(); const newProduct = { id: newId, name: `Nuevo Producto ${newId}`, price: 0.00, image: 'https://via.placeholder.com/150/EEEEEE/AAAAAA?text=Editar+Imagen', description: "", specifications: [], featured: false, category: "" }; localCatalogData.push(newProduct); saveDataStructure(); renderLocalCatalogGrid(); requestAnimationFrame(() => { const newItemElement = localCatalogGrid.querySelector(`.catalog-item[data-product-id="${newId}"]`); if (newItemElement && localCatalogGridContainer) { const containerRect = localCatalogGridContainer.getBoundingClientRect(); const itemRect = newItemElement.getBoundingClientRect(); const scrollOffset = itemRect.top - containerRect.top + localCatalogGridContainer.scrollTop - 10; localCatalogGridContainer.scrollTop = scrollOffset; newItemElement.style.transition = 'box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out'; newItemElement.style.borderColor = '#10b981'; newItemElement.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.5)'; setTimeout(() => { newItemElement.style.borderColor = ''; newItemElement.style.boxShadow = ''; setTimeout(() => { newItemElement.style.transition = ''; }, 300); }, 1500); } }); openModal(newId, 'local'); showFeedback(addManualFeedback, `Producto ${newId} añadido a Local. Edita detalles.`, false); }
-        function handleCopyLocalCatalog() { if (!localCatalogData || localCatalogData.length === 0) { showFeedback(copyLocalFeedback, 'Catálogo Local vacío.', true); return; } copyToClipboard(JSON.stringify(localCatalogData, null, 4), copyLocalFeedback); }
-        function handleDownloadLocalCatalog() { if (!localCatalogData || localCatalogData.length === 0) { showFeedback(downloadLocalFeedback, 'Catálogo Local vacío.', true); return; } try { const filename = "products_local.json"; const jsonStr = JSON.stringify(localCatalogData, null, 4); const blob = new Blob([jsonStr], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); showFeedback(downloadLocalFeedback, `"${filename}" descargado.`); } catch (error) { console.error("Error descarga local:", error); showFeedback(downloadLocalFeedback, 'Error descarga.', true); } }
-        function handleCopySubCatalog() { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) { showFeedback(subCopyFeedback, 'Sub-catálogo vacío o no seleccionado.', true); return; } const ids = subCatalogs[activeSubCatalogName]; const data = ids.map(id => githubCatalogData.find(p => p.id === id)).filter(Boolean); copyToClipboard(JSON.stringify(data, null, 4), subCopyFeedback); }
-        function handleDownloadSubCatalog() { if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) { showFeedback(subDownloadFeedback, 'Sub-catálogo vacío o no seleccionado.', true); return; } try { const ids = subCatalogs[activeSubCatalogName]; const data = ids.map(id => githubCatalogData.find(p => p.id === id)).filter(Boolean); const filename = `sub_${activeSubCatalogName.replace(/\W+/g, '_')}.json`; const jsonStr = JSON.stringify(data, null, 4); const blob = new Blob([jsonStr], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); showFeedback(subDownloadFeedback, `"${filename}" descargado.`); } catch (error) { console.error("Error descarga sub:", error); showFeedback(subDownloadFeedback, 'Error descarga.', true); } }
-        function handleClearAll() {
-            if (confirm("¿BORRAR TODO? Esto eliminará los datos de AMBOS catálogos (GitHub y Local) y los sub-catálogos guardados localmente. ¡Esta acción no se puede deshacer!")) {
-                githubCatalogData = []; localCatalogData = []; subCatalogs = {}; activeSubCatalogName = null; selectedProductId = null; selectedProductSource = null; originalProductIdBeforeEdit = null;
-                githubSearchTerm = ''; githubCatalogSearch.value = ''; localSearchTerm = ''; localCatalogSearch.value = '';
-                localStorage.removeItem(LOCAL_STORAGE_KEY); // Borrar datos de catálogos
-                localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY); // Borrar token guardado
-                githubTokenInput.value = ''; // Limpiar el campo del token
-                updateAllUI(); closeModal(); closeFullscreenModal('contactModalFs'); closeFullscreenModal('tutorialModalFs'); // Cierra todos los modales
-                showFeedback(githubFeedback, "Todos los datos locales (incluido token) eliminados.", true, 5000);
+                    item.appendChild(btnContainer);
+
+                    // Imagen
+                    const img = document.createElement('img');
+                    img.src = product.image || 'https://via.placeholder.com/150/cccccc/999999?text=Sin+Imagen'; // Placeholder mejorado
+                    img.alt = product.name || `Producto ID ${product.id}`;
+                    img.loading = 'lazy';
+                    img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150/FEE2E2/DC2626?text=Error'; }; // Placeholder de error
+                    img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'github'); });
+                    item.appendChild(img);
+
+                    // Nombre
+                    const nameDiv = document.createElement('div');
+                    nameDiv.classList.add('catalog-item-name');
+                    nameDiv.textContent = product.name || `ID: ${product.id}`;
+                    nameDiv.title = nameDiv.textContent; // Tooltip con el nombre completo
+                    nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'github'); });
+                    item.appendChild(nameDiv);
+
+                    githubCatalogGrid.appendChild(item);
+                });
             }
         }
-        function handleSearchInput(event) { clearTimeout(searchDebounceTimeout); const inputElement = event.target; const searchTerm = inputElement.value.toLowerCase(); searchDebounceTimeout = setTimeout(() => { if (inputElement.id === 'githubCatalogSearch') { githubSearchTerm = searchTerm; renderGithubCatalogGrid(); } else if (inputElement.id === 'localCatalogSearch') { localSearchTerm = searchTerm; renderLocalCatalogGrid(); } }, 300); }
+        function renderLocalCatalogGrid() {
+             localCatalogGrid.innerHTML = '';
+             const searchTerm = localSearchTerm;
+             const filteredProducts = localCatalogData.filter(product => productMatchesSearch(product, searchTerm));
+             const hasProducts = filteredProducts.length > 0;
+
+             localCatalogPlaceholder.classList.toggle('hidden', hasProducts);
+             localCatalogGrid.classList.toggle('hidden', !hasProducts);
+             localCatalogPlaceholder.textContent = searchTerm ? 'No hay productos que coincidan en Local.' : 'Catálogo Local vacío. Añade productos con los botones de arriba.';
+
+             if (hasProducts) {
+                 // Ordenar por ID numérico
+                 filteredProducts.sort((a, b) => (parseInt(a.id, 10) || 0) - (parseInt(b.id, 10) || 0));
+
+                 filteredProducts.forEach(product => {
+                     const item = document.createElement('div');
+                     item.classList.add('catalog-item');
+                     item.dataset.productId = product.id;
+                     item.dataset.source = 'local';
+
+                     const btnContainer = document.createElement('div');
+                     btnContainer.classList.add('catalog-item-buttons');
+
+                     // Botón Mover a GitHub
+                     const moveBtn = document.createElement('button');
+                     moveBtn.classList.add('catalog-item-btn', 'move-btn');
+                     moveBtn.title = 'Mover a Catálogo GitHub';
+                     moveBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.707-4.707a1 1 0 001.414-1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293z" clip-rule="evenodd" /></svg>`;
+                     moveBtn.addEventListener('click', (e) => { e.stopPropagation(); handleMoveProduct(product.id, 'local'); });
+                     btnContainer.appendChild(moveBtn);
+
+                     item.appendChild(btnContainer);
+
+                     // Imagen
+                     const img = document.createElement('img');
+                     img.src = product.image || 'https://via.placeholder.com/150/cccccc/999999?text=Sin+Imagen';
+                     img.alt = product.name || `Producto ID ${product.id}`;
+                     img.loading = 'lazy';
+                     img.onerror = (e) => { e.target.src = 'https://via.placeholder.com/150/FEE2E2/DC2626?text=Error'; };
+                     img.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'local'); });
+                     item.appendChild(img);
+
+                     // Nombre
+                     const nameDiv = document.createElement('div');
+                     nameDiv.classList.add('catalog-item-name');
+                     nameDiv.textContent = product.name || `ID: ${product.id}`;
+                     nameDiv.title = nameDiv.textContent;
+                     nameDiv.addEventListener('click', (e) => { e.stopPropagation(); openModal(product.id, 'local'); });
+                     item.appendChild(nameDiv);
+
+                     localCatalogGrid.appendChild(item);
+                 });
+             }
+        }
 
 
-        // --- NUEVO: Control de Modales Fullscreen ---
+        // --- Sub-Catalog Specific ---
+        function populateSubCatalogSelector() {
+            const currentVal = subCatalogSelector.value;
+            subCatalogSelector.innerHTML = '<option value="">-- Ninguno --</option>';
+            // Ordenar nombres de sub-catálogos alfabéticamente
+            Object.keys(subCatalogs).sort((a, b) => a.localeCompare(b)).forEach(name => {
+                const productCount = subCatalogs[name] ? subCatalogs[name].length : 0;
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = `${name} (${productCount})`; // Mostrar contador
+                subCatalogSelector.appendChild(option);
+            });
+            // Re-seleccionar el activo si todavía existe
+            subCatalogSelector.value = activeSubCatalogName && subCatalogs[activeSubCatalogName] ? activeSubCatalogName : "";
+            activeSubCatalogName = subCatalogSelector.value || null; // Actualizar estado
+            updateSubCatalogButtonsState(); // Actualizar estado de botones
+        }
+
+        function updateSubCatalogButtonsState() {
+             const hasSelection = !!activeSubCatalogName;
+             const hasProductsInActiveSub = hasSelection && subCatalogs[activeSubCatalogName]?.length > 0;
+             renameSubCatalogBtn.disabled = !hasSelection;
+             deleteSubCatalogBtn.disabled = !hasSelection;
+             copySubCatalogBtn.disabled = !hasProductsInActiveSub;
+             downloadSubCatalogBtn.disabled = !hasProductsInActiveSub;
+        }
+
+        function handleToggleProductInSubCatalog(productId) {
+            if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName]) {
+                showFeedback(subCatalogMgmtFeedback, "Selecciona un sub-catálogo activo primero.", true);
+                return;
+            }
+            // Asegurarse que el producto existe en el catálogo GitHub principal
+            if (!githubCatalogData.some(p => p.id === productId)) {
+                showFeedback(subCatalogMgmtFeedback, "Este producto no está (o ya no está) en el catálogo GitHub.", true);
+                // Opcional: eliminarlo del subcatálogo si ya no existe en el principal
+                // const indexInSub = subCatalogs[activeSubCatalogName].indexOf(productId);
+                // if (indexInSub > -1) subCatalogs[activeSubCatalogName].splice(indexInSub, 1);
+                saveDataStructure();
+                updateAllUI(); // Refrescar UI para reflejar el estado
+                return;
+            }
+
+            const productIds = subCatalogs[activeSubCatalogName];
+            const index = productIds.indexOf(productId);
+
+            if (index > -1) { // Si está, quitarlo
+                productIds.splice(index, 1);
+                showFeedback(subCatalogMgmtFeedback, `Producto ID ${productId} quitado de "${activeSubCatalogName}".`, false, 2000);
+            } else { // Si no está, añadirlo
+                productIds.push(productId);
+                 showFeedback(subCatalogMgmtFeedback, `Producto ID ${productId} añadido a "${activeSubCatalogName}".`, false, 2000);
+            }
+            saveDataStructure();
+            // Optimización: Solo re-renderizar el grid afectado y actualizar botones
+            renderGithubCatalogGrid();
+            populateSubCatalogSelector(); // Actualiza contador en dropdown
+            updateSubCatalogButtonsState();
+        }
+
+        // --- Update UI ---
+        function updateAllUI() {
+            renderGithubCatalogGrid();
+            renderLocalCatalogGrid();
+            populateSubCatalogSelector();
+            // No es necesario llamar a updateSubCatalogButtonsState() aquí
+            // porque populateSubCatalogSelector() ya lo hace al final.
+        }
+
+        // --- Sub-Catalog Management ---
+        function handleCreateSubCatalog() {
+            const name = newSubCatalogNameInput.value.trim();
+            if (!name) { showFeedback(subCatalogMgmtFeedback, "Introduce un nombre para el nuevo sub-catálogo.", true); return; }
+            if (subCatalogs[name]) { showFeedback(subCatalogMgmtFeedback, `El sub-catálogo "${name}" ya existe. Elige otro nombre.`, true); return; }
+
+            subCatalogs[name] = []; // Crear el nuevo sub-catálogo vacío
+            activeSubCatalogName = name; // Establecerlo como activo
+            newSubCatalogNameInput.value = ''; // Limpiar input
+            saveDataStructure();
+            updateAllUI(); // Refrescar toda la UI
+            showFeedback(subCatalogMgmtFeedback, `Sub-catálogo "${name}" creado y seleccionado.`, false);
+        }
+        function handleRenameSubCatalog() {
+            if (!activeSubCatalogName) return; // No debería pasar si el botón está habilitado
+            const oldName = activeSubCatalogName;
+            const newName = prompt(`Renombrar sub-catálogo "${oldName}" a:`, oldName);
+
+            if (!newName || newName.trim() === '' || newName.trim() === oldName) {
+                showFeedback(subCatalogMgmtFeedback, "Renombrado cancelado o nombre no cambiado.", true); return;
+            }
+            const finalNewName = newName.trim();
+            if (subCatalogs[finalNewName]) {
+                showFeedback(subCatalogMgmtFeedback, `El nombre "${finalNewName}" ya está en uso por otro sub-catálogo.`, true); return;
+            }
+
+            // Renombrar
+            subCatalogs[finalNewName] = subCatalogs[oldName];
+            delete subCatalogs[oldName];
+            activeSubCatalogName = finalNewName; // Actualizar el activo
+
+            saveDataStructure();
+            updateAllUI();
+            showFeedback(subCatalogMgmtFeedback, `Sub-catálogo renombrado a "${activeSubCatalogName}".`, false);
+        }
+        function handleDeleteSubCatalog() {
+            if (!activeSubCatalogName) return; // Seguridad
+            if (confirm(`¿Estás seguro de eliminar el sub-catálogo "${activeSubCatalogName}"? Los productos NO se eliminarán del catálogo principal de GitHub.`)) {
+                const deletedName = activeSubCatalogName;
+                delete subCatalogs[activeSubCatalogName];
+                activeSubCatalogName = null; // Ninguno seleccionado
+
+                saveDataStructure();
+                updateAllUI();
+                showFeedback(subCatalogMgmtFeedback, `Sub-catálogo "${deletedName}" eliminado.`, true); // Usar color rojo/alerta
+            }
+        }
+        function handleSubCatalogSelect() {
+            activeSubCatalogName = subCatalogSelector.value || null;
+            saveDataStructure(); // Guardar el subcatálogo activo seleccionado
+            updateSubCatalogButtonsState(); // Actualizar botones
+            renderGithubCatalogGrid(); // Re-renderizar grid GitHub para mostrar selección visual
+        }
+
+        // --- Product Movement ---
+        function handleMoveProduct(productId, source) {
+             let productToMove = null;
+             let sourceArray = null;
+             let destinationArray = null;
+             let feedbackElement = null;
+             let targetCatalogName = '';
+             let sourceCatalogName = '';
+
+             if (source === 'github') {
+                 sourceArray = githubCatalogData;
+                 destinationArray = localCatalogData;
+                 feedbackElement = githubFeedback; // Feedback en sección GitHub
+                 targetCatalogName = 'Local';
+                 sourceCatalogName = 'GitHub';
+             } else if (source === 'local') {
+                 sourceArray = localCatalogData;
+                 destinationArray = githubCatalogData;
+                 feedbackElement = bulkFeedback; // Feedback en sección Local/Bulk
+                 targetCatalogName = 'GitHub';
+                 sourceCatalogName = 'Local';
+             } else {
+                 console.error("Fuente inválida para mover:", source);
+                 return;
+             }
+
+             const productIndex = sourceArray.findIndex(p => p.id === productId);
+             if (productIndex === -1) {
+                 showFeedback(feedbackElement, `Error: Producto ${productId} no encontrado en Catálogo ${sourceCatalogName} para mover.`, true);
+                 return;
+             }
+
+             // Comprobar si el ID ya existe en el destino
+             if (destinationArray.some(p => p.id === productId)) {
+                 showFeedback(feedbackElement, `Error: El ID ${productId} ya existe en el Catálogo ${targetCatalogName}. No se puede mover. Cambia el ID primero.`, true, 5000);
+                 return;
+             }
+
+             // Mover el producto
+             [productToMove] = sourceArray.splice(productIndex, 1);
+             destinationArray.push(productToMove);
+
+             // Si se movió DESDE GitHub, eliminarlo de TODOS los sub-catálogos
+             if (source === 'github') {
+                 let removedFromSubs = false;
+                 for (const catName in subCatalogs) {
+                     const indexInSub = subCatalogs[catName].indexOf(productId);
+                     if (indexInSub > -1) {
+                         subCatalogs[catName].splice(indexInSub, 1);
+                         removedFromSubs = true;
+                     }
+                 }
+                 // Si se eliminó de algún sub, actualizar los botones de exportación/copia
+                 if (removedFromSubs) {
+                     updateSubCatalogButtonsState();
+                     populateSubCatalogSelector(); // Actualizar contadores
+                 }
+             }
+
+             saveDataStructure();
+             updateAllUI(); // Re-renderizar ambos grids y el selector
+             showFeedback(feedbackElement, `Producto "${productToMove.name || productId}" movido al Catálogo ${targetCatalogName}.`, false);
+         }
+
+
+        // --- Modal Edición Functions ---
+        function openModal(productId, source) {
+            const { product } = findProductById(productId);
+            if (!product) {
+                console.error(`Producto ${productId} no encontrado en ningún catálogo.`);
+                showFeedback(modalFeedback, `Error: Producto ID ${productId} no encontrado.`, true);
+                return;
+            }
+            originalProductIdBeforeEdit = product.id; // Guardar el ID actual antes de cualquier cambio
+            selectedProductId = product.id;
+            selectedProductSource = source;
+            modalTitle.textContent = `Editar (${source === 'github' ? 'GitHub' : 'Local'}): ${product.name || `ID ${productId}`}`;
+            populateModalForm(product);
+            idFeedback.textContent = ''; // Limpiar feedback de ID
+
+            // Ocultar botones de acción en los items del catálogo mientras el modal está abierto
+            document.querySelectorAll('.catalog-item-buttons').forEach(btnDiv => {
+                btnDiv.classList.add('hidden-when-modal-open');
+            });
+
+            editModal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                editModal.classList.remove('opacity-0', 'scale-95');
+                editModal.classList.add('opacity-100', 'scale-100');
+                // Enfocar el nombre si es un producto recién creado en Local
+                const isPlaceholderLocal = source === 'local' && product.name === `Nuevo Producto ${productId}` && product.image.includes('placeholder');
+                if (isPlaceholderLocal) {
+                    modalProductNameInput.focus();
+                    modalProductNameInput.select();
+                } else {
+                     modalProductIdInput.focus(); // Enfocar ID por defecto al abrir
+                }
+            });
+
+            // Marcar visualmente el item que se está editando
+            document.querySelectorAll('.catalog-item.selected-for-edit').forEach(el => el.classList.remove('selected-for-edit'));
+            const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid';
+            document.querySelectorAll(`${gridSelector} .catalog-item[data-product-id="${productId}"]`).forEach(el => {
+                el.classList.add('selected-for-edit');
+            });
+        }
+        function closeModal() { /* Cierra el modal de EDICIÓN */
+             editModal.classList.remove('opacity-100', 'scale-100');
+             editModal.classList.add('opacity-0', 'scale-95');
+             setTimeout(() => {
+                 editModal.classList.add('hidden');
+                 document.querySelectorAll('.catalog-item.selected-for-edit').forEach(el => el.classList.remove('selected-for-edit'));
+                 // Mostrar botones de acción nuevamente
+                 document.querySelectorAll('.catalog-item-buttons.hidden-when-modal-open').forEach(btnDiv => {
+                    btnDiv.classList.remove('hidden-when-modal-open');
+                 });
+                 // Limpiar estado global
+                 selectedProductId = null;
+                 selectedProductSource = null;
+                 originalProductIdBeforeEdit = null;
+                 modalFeedback.textContent = '';
+                 idFeedback.textContent = ''; // Limpiar feedback de ID también al cerrar
+             }, 300); // Coincidir con la duración de la transición
+        }
+        function populateModalForm(product) {
+            if (!product) return;
+            modalProductIdInput.value = product.id || '';
+            modalProductNameInput.value = product.name || '';
+            modalProductPriceInput.value = product.price !== undefined ? product.price.toFixed(2) : '';
+            modalProductImageInput.value = product.image || '';
+            modalProductDescriptionInput.value = product.description || '';
+            modalProductSpecificationsInput.value = (product.specifications || []).join('\n');
+            modalProductFeaturedInput.checked = product.featured || false;
+            modalProductCategoryInput.value = product.category || '';
+            updateModalJsonOutput(product); // Pasar el producto directamente
+        }
+        function updateModalJsonOutput(product = null) {
+            // Si no se pasa producto, intenta encontrarlo (útil para el cambio de ID)
+            if (!product && selectedProductId !== null && selectedProductSource !== null) {
+                 const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData;
+                 product = sourceArray.find(p => p.id === selectedProductId);
+            }
+
+            if (product) {
+                 modalJsonOutput.textContent = JSON.stringify(product, null, 4);
+            } else {
+                 modalJsonOutput.textContent = '{ // Producto no encontrado o no seleccionado }';
+            }
+        }
+        // Función que se llama al cambiar cualquier campo del formulario (excepto ID)
+        function updateProductDataFromModalForm() {
+            if (selectedProductId === null || selectedProductSource === null) return;
+
+            const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData;
+            const productIndex = sourceArray.findIndex(p => p.id === selectedProductId);
+
+            if (productIndex === -1) {
+                console.error(`Autosave fail: ID ${selectedProductId} not found in ${selectedProductSource} catalog.`);
+                showFeedback(modalFeedback, "Error: Producto no encontrado para guardar.", true);
+                return;
+            }
+
+            // Recoger datos del formulario
+            const specificationsArray = modalProductSpecificationsInput.value.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+            const updatedProductData = {
+                // Mantener el ID existente
+                id: sourceArray[productIndex].id,
+                name: modalProductNameInput.value.trim(),
+                price: parseFloat(modalProductPriceInput.value) || 0.00,
+                image: modalProductImageInput.value.trim(),
+                description: modalProductDescriptionInput.value.trim(),
+                specifications: specificationsArray,
+                featured: modalProductFeaturedInput.checked,
+                category: modalProductCategoryInput.value.trim()
+            };
+
+            // Actualizar el objeto en el array
+            sourceArray[productIndex] = updatedProductData;
+
+            // Actualizar la vista del item en el grid (sin re-renderizar todo)
+            const gridSelector = selectedProductSource === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid';
+            document.querySelectorAll(`${gridSelector} .catalog-item[data-product-id="${selectedProductId}"]`).forEach(gridItem => {
+                if (gridItem) {
+                    const nameEl = gridItem.querySelector('.catalog-item-name');
+                    const imgEl = gridItem.querySelector('img');
+                    if (nameEl) {
+                         nameEl.textContent = updatedProductData.name || `ID: ${updatedProductData.id}`;
+                         nameEl.title = nameEl.textContent; // Actualizar tooltip del nombre
+                    }
+                    if (imgEl && imgEl.src !== updatedProductData.image) {
+                        imgEl.src = updatedProductData.image || 'https://via.placeholder.com/150/cccccc/999999?text=Sin+Imagen';
+                        imgEl.alt = updatedProductData.name || `Producto ID ${updatedProductData.id}`;
+                    }
+                    // No es necesario actualizar la clase 'selected-for-subcatalog' aquí, se hace en renderGithubCatalogGrid
+                }
+            });
+
+            updateModalJsonOutput(updatedProductData); // Actualizar JSON preview con los nuevos datos
+            saveDataStructure(); // Guardar cambios en localStorage
+            // showFeedback(modalFeedback, "Cambios guardados localmente.", false, 1500); // Feedback opcional
+        }
+        // Función que se llama al perder el foco del campo ID
+        function handleIdChange() {
+             idFeedback.textContent = ''; // Limpiar feedback previo
+             // Validaciones iniciales
+             if (selectedProductId === null || originalProductIdBeforeEdit === null || selectedProductSource === null) {
+                 console.warn("handleIdChange llamado sin producto seleccionado.");
+                 return false; // No hay producto seleccionado
+             }
+
+             const newIdValue = modalProductIdInput.value.trim();
+             const newId = parseInt(newIdValue);
+
+             // Validar formato del nuevo ID
+             if (isNaN(newId) || newId <= 0 || newIdValue !== String(newId)) {
+                 showFeedback(idFeedback, "ID inválido. Debe ser un número entero positivo.", true, 0);
+                 modalProductIdInput.value = originalProductIdBeforeEdit; // Revertir al ID original en el input
+                 return false;
+             }
+
+             // Si el ID no cambió, no hacer nada más
+             if (newId === originalProductIdBeforeEdit) {
+                 // Asegurarse que el ID global está correcto (por si acaso)
+                 selectedProductId = originalProductIdBeforeEdit;
+                 updateModalJsonOutput(); // Actualizar JSON por si acaso
+                 return true; // ID no cambió, es válido
+             }
+
+             // Verificar si el nuevo ID ya existe en CUALQUIER catálogo
+             const idExistsInGithub = githubCatalogData.some(p => p.id === newId);
+             const idExistsInLocal = localCatalogData.some(p => p.id === newId);
+
+             if (idExistsInGithub || idExistsInLocal) {
+                 showFeedback(idFeedback, `El ID ${newId} ya existe en el catálogo ${idExistsInGithub ? 'GitHub' : 'Local'}. Elige otro.`, true, 0);
+                 modalProductIdInput.value = originalProductIdBeforeEdit; // Revertir
+                 return false;
+             }
+
+             // Si el ID es nuevo y válido, proceder con el cambio
+             const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData;
+             const productIndex = sourceArray.findIndex(p => p.id === originalProductIdBeforeEdit);
+
+             if (productIndex === -1) {
+                 console.error("Error interno: Producto original no encontrado para cambiar ID.");
+                 showFeedback(idFeedback, "Error interno al cambiar ID.", true, 0);
+                 modalProductIdInput.value = originalProductIdBeforeEdit; // Revertir
+                 return false;
+             }
+
+             const oldId = originalProductIdBeforeEdit;
+
+             // Actualizar ID en el objeto del array
+             sourceArray[productIndex].id = newId;
+
+             // Si el producto estaba en GitHub, actualizar su ID en los sub-catálogos
+             if (selectedProductSource === 'github') {
+                 for (const catName in subCatalogs) {
+                     const idIndex = subCatalogs[catName].indexOf(oldId);
+                     if (idIndex > -1) {
+                         subCatalogs[catName][idIndex] = newId;
+                     }
+                 }
+                 // No es necesario actualizar botones/selector aquí, updateAllUI lo hará
+             }
+
+             // Actualizar estado global y UI
+             selectedProductId = newId; // Actualizar el ID seleccionado globalmente
+             originalProductIdBeforeEdit = newId; // El "nuevo original" es el que acabamos de poner
+             modalTitle.textContent = `Editar (${selectedProductSource === 'github' ? 'GitHub' : 'Local'}): ${sourceArray[productIndex].name || `ID ${newId}`}`; // Actualizar título del modal
+
+             saveDataStructure(); // Guardar la estructura completa con el ID cambiado
+             updateModalJsonOutput(sourceArray[productIndex]); // Actualizar JSON preview
+             updateAllUI(); // Re-renderizar grids y selector para reflejar el cambio de ID
+             showFeedback(idFeedback, `ID actualizado correctamente a ${newId}.`, false, 3000);
+
+             // Re-seleccionar el item editado en el grid (ya que updateAllUI lo recrea)
+             requestAnimationFrame(() => {
+                 const gridSelector = selectedProductSource === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid';
+                 document.querySelectorAll(`${gridSelector} .catalog-item[data-product-id="${newId}"]`).forEach(el => {
+                    el.classList.add('selected-for-edit');
+                 });
+             });
+
+             return true; // Cambio de ID exitoso
+         }
+
+        function deleteSelectedProduct() {
+            if (selectedProductId === null || selectedProductSource === null) {
+                showFeedback(modalFeedback, "Ningún producto seleccionado para eliminar.", true);
+                return;
+            }
+
+            const sourceArray = selectedProductSource === 'github' ? githubCatalogData : localCatalogData;
+            const productIndex = sourceArray.findIndex(p => p.id === selectedProductId);
+
+            if (productIndex === -1) {
+                showFeedback(modalFeedback, `Error: Producto ${selectedProductId} no encontrado en Catálogo ${selectedProductSource}. Quizás ya fue eliminado.`, true);
+                return;
+            }
+
+            const product = sourceArray[productIndex];
+            const productName = product?.name || `ID ${selectedProductId}`;
+            const catalogName = selectedProductSource === 'github' ? 'GitHub' : 'Local';
+
+            if (confirm(`¿Estás seguro de eliminar "${productName}" del Catálogo ${catalogName}? ${selectedProductSource === 'github' ? '\n(También se quitará de TODOS los sub-catálogos)' : ''}\n\n¡Esta acción no se puede deshacer!`)) {
+                const deletedId = selectedProductId; // Guardar ID antes de eliminar
+
+                // Eliminar del array principal
+                sourceArray.splice(productIndex, 1);
+
+                // Si estaba en GitHub, eliminar de sub-catálogos
+                if (selectedProductSource === 'github') {
+                    let removedFromSubs = false;
+                    for (const catName in subCatalogs) {
+                        const indexInSub = subCatalogs[catName].indexOf(deletedId);
+                        if (indexInSub > -1) {
+                            subCatalogs[catName].splice(indexInSub, 1);
+                            removedFromSubs = true;
+                        }
+                    }
+                    // Si se eliminó de algún sub, actualizar UI relacionada
+                    if (removedFromSubs) {
+                         // updateSubCatalogButtonsState() y populateSubCatalogSelector() se llamarán en updateAllUI()
+                    }
+                }
+
+                saveDataStructure();
+                updateAllUI(); // Refrescar grids y selector
+                showFeedback(modalFeedback, `"${productName}" eliminado del Catálogo ${catalogName}.`, true, 4000); // Usar color rojo/alerta
+                closeModal(); // Cerrar el modal después de eliminar
+            }
+        }
+
+        // --- Tooltip Functions ---
+         function populateTooltip(product) {
+             if (!product) return;
+             tooltipName.textContent = product.name || 'Sin Nombre';
+             tooltipCategory.textContent = product.category || 'Sin Categoría';
+             tooltipPrice.textContent = product.price !== undefined ? `$${product.price.toFixed(2)}` : 'N/A';
+             // Mostrar descripción solo si existe
+             tooltipDescription.textContent = product.description || '';
+             tooltipDescription.classList.toggle('hidden', !product.description);
+             // Mostrar especificaciones solo si existen
+             tooltipSpecsList.innerHTML = '';
+             if (product.specifications && product.specifications.length > 0) {
+                 tooltipSpecsContainer.classList.remove('hidden');
+                 product.specifications.forEach(spec => {
+                     const li = document.createElement('li');
+                     li.textContent = spec;
+                     tooltipSpecsList.appendChild(li);
+                 });
+             } else {
+                 tooltipSpecsContainer.classList.add('hidden');
+             }
+             tooltipFeaturedBadge.classList.toggle('hidden', !product.featured);
+         }
+         function positionTooltip(event) {
+             const tooltipRect = productTooltip.getBoundingClientRect();
+             const scrollX = window.scrollX || window.pageXOffset;
+             const scrollY = window.scrollY || window.pageYOffset;
+             const clientWidth = document.documentElement.clientWidth;
+             const clientHeight = document.documentElement.clientHeight;
+             const cursorPadding = 15; // Espacio desde el cursor
+             const edgePadding = 10; // Espacio desde el borde de la ventana
+
+             let x = event.pageX + cursorPadding;
+             let y = event.pageY + cursorPadding;
+
+             // Ajustar si se sale por la derecha
+             if (x + tooltipRect.width > clientWidth + scrollX - edgePadding) {
+                 x = event.pageX - tooltipRect.width - cursorPadding;
+             }
+             // Ajustar si se sale por abajo
+             if (y + tooltipRect.height > clientHeight + scrollY - edgePadding) {
+                 y = event.pageY - tooltipRect.height - cursorPadding;
+             }
+             // Ajustar si se sale por la izquierda
+             if (x < scrollX + edgePadding) {
+                 x = scrollX + edgePadding;
+             }
+             // Ajustar si se sale por arriba
+             if (y < scrollY + edgePadding) {
+                 y = scrollY + edgePadding;
+             }
+
+             productTooltip.style.left = `${x}px`;
+             productTooltip.style.top = `${y}px`;
+         }
+         function showTooltip(productId, event, source) {
+             clearTimeout(tooltipTimeout);
+             const { product } = findProductById(productId);
+             if (!product) return;
+
+             // Marcar el item activo
+             const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid';
+             const gridItem = document.querySelector(`${gridSelector} .catalog-item[data-product-id="${productId}"]`);
+             if (gridItem) gridItem.classList.add('tooltip-active');
+
+             populateTooltip(product);
+             productTooltip.classList.remove('hidden');
+
+             // Usar requestAnimationFrame para asegurar que el tooltip es visible antes de calcular posición
+             requestAnimationFrame(() => {
+                 positionTooltip(event); // Posicionar inicial
+                 productTooltip.style.opacity = 1; // Usar opacity para transición suave
+             });
+         }
+         function hideTooltip(productId, source) {
+             clearTimeout(tooltipTimeout);
+
+             // Quitar marca activa del item específico o de todos si no hay ID
+             if (productId && source) {
+                 const gridSelector = source === 'github' ? '#githubCatalogGrid' : '#localCatalogGrid';
+                 const gridItem = document.querySelector(`${gridSelector} .catalog-item[data-product-id="${productId}"]`);
+                 if (gridItem) gridItem.classList.remove('tooltip-active');
+             } else {
+                 document.querySelectorAll('.catalog-item.tooltip-active').forEach(el => el.classList.remove('tooltip-active'));
+             }
+
+             productTooltip.style.opacity = 0; // Iniciar transición de ocultamiento
+             tooltipTimeout = setTimeout(() => {
+                 productTooltip.classList.add('hidden'); // Ocultar completamente después de la transición
+             }, 200); // Duración debe coincidir con transition-opacity en CSS
+         }
+
+
+        // --- Event Handlers ---
+        function handleBulkAdd() {
+             const urls = bulkUrls.value.split('\n')
+                 .map(url => url.trim())
+                 .filter(url => url.length > 5 && (url.startsWith('http') || url.startsWith('data:image'))); // Validación básica
+
+             if (urls.length === 0) {
+                 showFeedback(bulkFeedback, "No se encontraron URLs válidas para añadir.", true);
+                 return;
+             }
+
+             let count = 0;
+             let addedIds = []; // Para posible feedback más detallado
+             urls.forEach(url => {
+                 const newId = getNextId();
+                 // Validar si el ID generado ya existe (muy improbable pero seguro)
+                 if (localCatalogData.some(p => p.id === newId) || githubCatalogData.some(p => p.id === newId)) {
+                    console.warn(`ID ${newId} generado ya existe. Se saltará esta URL: ${url}`);
+                    return; // Saltar esta URL
+                 }
+                 const newProduct = {
+                     id: newId,
+                     name: `Nuevo ${newId}`, // Nombre temporal
+                     price: 0.00,
+                     image: url,
+                     description: "",
+                     specifications: [],
+                     featured: false,
+                     category: ""
+                 };
+                 localCatalogData.push(newProduct);
+                 addedIds.push(newId);
+                 count++;
+             });
+
+             if (count > 0) {
+                 saveDataStructure();
+                 renderLocalCatalogGrid(); // Actualizar la vista del catálogo local
+                 bulkUrls.value = ''; // Limpiar el textarea
+                 showFeedback(bulkFeedback, `${count} producto(s) añadido(s) al Catálogo Local.`, false);
+             } else {
+                 showFeedback(bulkFeedback, "No se añadieron nuevos productos (quizás IDs duplicados?).", true);
+             }
+         }
+        function handleAddManualProduct() {
+             const newId = getNextId();
+              // Validar si el ID generado ya existe
+             if (localCatalogData.some(p => p.id === newId) || githubCatalogData.some(p => p.id === newId)) {
+                  console.error(`Error Crítico: ID generado ${newId} ya existe. Revisar getNextId().`);
+                  showFeedback(addManualFeedback, `Error: ID ${newId} ya existe. Intenta de nuevo.`, true);
+                  return;
+             }
+
+             const newProduct = {
+                 id: newId,
+                 name: `Nuevo Producto ${newId}`, // Nombre placeholder
+                 price: 0.00,
+                 image: 'https://via.placeholder.com/150/EEEEEE/AAAAAA?text=Editar+Imagen', // Placeholder visual
+                 description: "",
+                 specifications: [],
+                 featured: false,
+                 category: ""
+             };
+             localCatalogData.push(newProduct);
+             saveDataStructure();
+             renderLocalCatalogGrid(); // Renderizar para que aparezca
+
+             // Scroll hacia el nuevo item y resaltarlo brevemente
+             requestAnimationFrame(() => {
+                 const newItemElement = localCatalogGrid.querySelector(`.catalog-item[data-product-id="${newId}"]`);
+                 if (newItemElement && localCatalogGridContainer) { // Asegurarse que el contenedor es el correcto
+                     // Calcular scroll: posición del item relativa al contenedor + scroll actual
+                     const containerRect = localCatalogGridContainer.getBoundingClientRect();
+                     const itemRect = newItemElement.getBoundingClientRect();
+                     // Scroll para que el item esté cerca de la parte superior del contenedor visible
+                     const scrollOffset = itemRect.top - containerRect.top + localCatalogGridContainer.scrollTop - 10;
+                     localCatalogGridContainer.scrollTop = scrollOffset;
+
+                     // Resaltado visual temporal
+                     newItemElement.style.transition = 'box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out';
+                     newItemElement.style.borderColor = '#10b981'; // Verde
+                     newItemElement.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.5)';
+                     setTimeout(() => {
+                         newItemElement.style.borderColor = ''; // Quitar borde
+                         newItemElement.style.boxShadow = ''; // Quitar sombra
+                         setTimeout(() => {
+                             newItemElement.style.transition = ''; // Quitar transición para evitar efectos raros después
+                         }, 300);
+                     }, 1500); // Duración del resaltado
+                 }
+                 // Abrir modal para editar inmediatamente
+                 openModal(newId, 'local');
+                 showFeedback(addManualFeedback, `Producto ${newId} añadido a Local. Edita los detalles.`, false);
+             });
+         }
+        function handleCopyLocalCatalog() {
+            if (!localCatalogData || localCatalogData.length === 0) {
+                showFeedback(copyLocalFeedback, 'Catálogo Local está vacío, nada que copiar.', true);
+                return;
+            }
+            copyToClipboard(JSON.stringify(localCatalogData, null, 4), copyLocalFeedback);
+        }
+        function handleDownloadLocalCatalog() {
+             if (!localCatalogData || localCatalogData.length === 0) {
+                 showFeedback(downloadLocalFeedback, 'Catálogo Local está vacío, nada que descargar.', true);
+                 return;
+             }
+             try {
+                 const filename = "products_local.json";
+                 const jsonStr = JSON.stringify(localCatalogData, null, 4);
+                 const blob = new Blob([jsonStr], { type: "application/json;charset=utf-8" }); // Especificar charset UTF-8
+                 const url = URL.createObjectURL(blob);
+                 const link = document.createElement("a");
+                 link.href = url;
+                 link.download = filename;
+                 document.body.appendChild(link);
+                 link.click();
+                 document.body.removeChild(link);
+                 URL.revokeObjectURL(url); // Liberar memoria
+                 showFeedback(downloadLocalFeedback, `Archivo "${filename}" descargado.`, false);
+             } catch (error) {
+                 console.error("Error al descargar catálogo local:", error);
+                 showFeedback(downloadLocalFeedback, 'Error al generar la descarga.', true);
+             }
+         }
+        function handleCopySubCatalog() {
+            if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) {
+                showFeedback(subCopyFeedback, 'Sub-catálogo activo está vacío o no seleccionado.', true);
+                return;
+            }
+            const ids = subCatalogs[activeSubCatalogName];
+            // Filtrar productos del catálogo GitHub principal que están en la lista de IDs del subcatálogo
+            const data = githubCatalogData.filter(p => ids.includes(p.id));
+            // Opcional: Ordenar por ID antes de copiar
+            data.sort((a, b) => (parseInt(a.id, 10) || 0) - (parseInt(b.id, 10) || 0));
+            copyToClipboard(JSON.stringify(data, null, 4), subCopyFeedback);
+        }
+        function handleDownloadSubCatalog() {
+             if (!activeSubCatalogName || !subCatalogs[activeSubCatalogName] || subCatalogs[activeSubCatalogName].length === 0) {
+                 showFeedback(subDownloadFeedback, 'Sub-catálogo activo está vacío o no seleccionado.', true);
+                 return;
+             }
+             try {
+                 const ids = subCatalogs[activeSubCatalogName];
+                 const data = githubCatalogData.filter(p => ids.includes(p.id));
+                 // Opcional: Ordenar por ID
+                 data.sort((a, b) => (parseInt(a.id, 10) || 0) - (parseInt(b.id, 10) || 0));
+
+                 // Crear nombre de archivo seguro
+                 const safeSubName = activeSubCatalogName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+                 const filename = `sub_${safeSubName}_products.json`;
+
+                 const jsonStr = JSON.stringify(data, null, 4);
+                 const blob = new Blob([jsonStr], { type: "application/json;charset=utf-8" });
+                 const url = URL.createObjectURL(blob);
+                 const link = document.createElement("a");
+                 link.href = url;
+                 link.download = filename;
+                 document.body.appendChild(link);
+                 link.click();
+                 document.body.removeChild(link);
+                 URL.revokeObjectURL(url);
+                 showFeedback(subDownloadFeedback, `Archivo "${filename}" descargado.`, false);
+             } catch (error) {
+                 console.error("Error al descargar sub-catálogo:", error);
+                 showFeedback(subDownloadFeedback, 'Error al generar la descarga del sub-catálogo.', true);
+             }
+         }
+        function handleClearAll() {
+             if (confirm("¡ATENCIÓN! ¿Estás SEGURO de BORRAR TODO?\n\nEsto eliminará:\n- Todos los productos de los catálogos GitHub y Local mostrados aquí.\n- Todos los sub-catálogos definidos.\n- El token de GitHub guardado en este navegador.\n\n¡ESTA ACCIÓN NO SE PUEDE DESHACER LOCALMENTE! (No afecta el archivo en GitHub hasta que guardes).")) {
+                 if (confirm("ÚLTIMA CONFIRMACIÓN: ¿Realmente quieres borrar todos los datos locales de este editor?")) {
+                     // Limpiar estado en memoria
+                     githubCatalogData = [];
+                     localCatalogData = [];
+                     subCatalogs = {};
+                     activeSubCatalogName = null;
+                     selectedProductId = null;
+                     selectedProductSource = null;
+                     originalProductIdBeforeEdit = null;
+                     githubSearchTerm = '';
+                     localSearchTerm = '';
+
+                     // Limpiar inputs y selects
+                     githubCatalogSearch.value = '';
+                     localCatalogSearch.value = '';
+                     newSubCatalogNameInput.value = '';
+                     githubTokenInput.value = '';
+                     bulkUrls.value = '';
+
+                     // Limpiar almacenamiento local
+                     localStorage.removeItem(LOCAL_STORAGE_KEY);
+                     localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY);
+
+                     // Actualizar UI completa
+                     updateAllUI();
+
+                     // Cerrar modales si están abiertos
+                     if (!editModal.classList.contains('hidden')) { closeModal(); }
+                     closeFullscreenModal('contactModalFs');
+                     closeFullscreenModal('tutorialModalFs');
+
+                     // Mensaje final
+                     showFeedback(githubFeedback, "¡TODO ELIMINADO LOCALMENTE! Los datos en GitHub no se modificarán hasta que presiones 'Guardar Cambios en GitHub'.", true, 8000);
+                 } else {
+                      showFeedback(githubFeedback, "Limpieza cancelada (segunda confirmación).", true);
+                 }
+             } else {
+                  showFeedback(githubFeedback, "Limpieza cancelada.", true);
+             }
+         }
+        function handleSearchInput(event) {
+             clearTimeout(searchDebounceTimeout);
+             const inputElement = event.target;
+             const searchTerm = inputElement.value.toLowerCase(); // Convertir a minúsculas aquí
+
+             searchDebounceTimeout = setTimeout(() => {
+                 if (inputElement.id === 'githubCatalogSearch') {
+                     githubSearchTerm = searchTerm;
+                     renderGithubCatalogGrid();
+                 } else if (inputElement.id === 'localCatalogSearch') {
+                     localSearchTerm = searchTerm;
+                     renderLocalCatalogGrid();
+                 }
+             }, 300); // Retraso de 300ms antes de ejecutar la búsqueda/renderizado
+         }
+
+
+        // --- Control de Modales Fullscreen ---
         function openFullscreenModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
                 document.body.style.overflow = 'hidden'; // Bloquear scroll del body
                 modal.classList.add('active');
+                 // Enfocar el botón de cierre para accesibilidad
+                 const closeButton = modal.querySelector('.modal-close-btn-fs');
+                 if (closeButton) {
+                     // Pequeño retraso para asegurar que la transición de opacidad no interfiera
+                     setTimeout(() => closeButton.focus(), 50);
+                 }
             } else {
                 console.error(`Modal fullscreen con id "${modalId}" no encontrado.`);
             }
@@ -745,33 +1680,33 @@
 
         function closeFullscreenModal(modalId) {
             const modal = document.getElementById(modalId);
-            if (modal) {
+            if (modal && modal.classList.contains('active')) { // Solo actuar si está activo
                 document.body.style.overflow = ''; // Restaurar scroll del body
                 modal.classList.remove('active');
             }
-             // No es necesario loguear error si no se encuentra al cerrar
+             // No es necesario loguear error si no se encuentra al cerrar o no está activo
         }
 
 
         // --- Event Listeners Setup ---
         function setupEventListeners() {
-            // GitHub Management
+            // Gestión GitHub
             loadGithubBtn.addEventListener('click', loadCatalogFromGithub);
             saveGithubBtn.addEventListener('click', saveCatalogToGithub);
             clearAllBtn.addEventListener('click', handleClearAll);
-            githubTokenInput.addEventListener('input', handleTokenInputChange);
+            githubTokenInput.addEventListener('input', handleTokenInputChange); // Cambio a 'input' para respuesta inmediata
 
-            // Local Catalog Management
+            // Gestión Catálogo Local
             addBulkBtn.addEventListener('click', handleBulkAdd);
             addNewManualBtn.addEventListener('click', handleAddManualProduct);
             copyLocalCatalogBtn.addEventListener('click', handleCopyLocalCatalog);
             downloadLocalCatalogBtn.addEventListener('click', handleDownloadLocalCatalog);
             localCatalogSearch.addEventListener('input', handleSearchInput);
 
-            // GitHub Catalog Search
+            // Búsqueda Catálogo GitHub
             githubCatalogSearch.addEventListener('input', handleSearchInput);
 
-            // Sub-Catálogos
+            // Gestión Sub-Catálogos
             subCatalogSelector.addEventListener('change', handleSubCatalogSelect);
             createSubCatalogBtn.addEventListener('click', handleCreateSubCatalog);
             renameSubCatalogBtn.addEventListener('click', handleRenameSubCatalog);
@@ -779,55 +1714,158 @@
             copySubCatalogBtn.addEventListener('click', handleCopySubCatalog);
             downloadSubCatalogBtn.addEventListener('click', handleDownloadSubCatalog);
 
-            // Modal Edición
-            closeModalBtn.addEventListener('click', closeModal); // Botón X del modal de edición
-            modalSaveChangesAndCloseBtn.addEventListener('click', closeModal); // Botón 'Cerrar Editor'
+            // --- Modal Edición ---
+            // Botón 'X' del modal de edición
+            closeModalBtn.addEventListener('click', closeModal);
+            // Botón 'Cerrar Editor' (guarda implícitamente al cambiar campos)
+            modalSaveChangesAndCloseBtn.addEventListener('click', closeModal);
+            // Botón Eliminar Producto dentro del modal
             modalDeleteProductBtn.addEventListener('click', deleteSelectedProduct);
-            modalCopySingleBtn.addEventListener('click', () => { copyToClipboard(modalJsonOutput.textContent, modalFeedback); });
+            // Botón Copiar JSON del producto actual
+            modalCopySingleBtn.addEventListener('click', () => {
+                const product = findProductById(selectedProductId)?.product;
+                if(product) {
+                    copyToClipboard(JSON.stringify(product, null, 4), modalFeedback);
+                } else {
+                    showFeedback(modalFeedback, 'No hay producto seleccionado para copiar.', true);
+                }
+            });
+            // Cambio de ID (al salir del campo)
             modalProductIdInput.addEventListener('blur', handleIdChange);
-            editModal.addEventListener('click', (event) => { if (event.target === editModal) { closeModal(); } }); // Cierre al hacer clic fuera (Modal Edición)
-            modalOtherFormInputs.forEach(input => {
-                 const eventType = input.type === 'checkbox' ? 'change' : 'input';
+            // Cierre al hacer clic fuera del contenido del modal de edición
+            editModal.addEventListener('click', (event) => {
+                // Verificar si el clic fue directamente en el fondo (editModal) y no en sus hijos
+                if (event.target === editModal) {
+                    closeModal();
+                }
+            });
+             // Listeners para autoguardado en campos del modal (excepto ID)
+             modalOtherFormInputs.forEach(input => {
+                 const eventType = input.type === 'checkbox' ? 'change' : 'input'; // 'change' para checkbox, 'input' para otros
                  input.addEventListener(eventType, updateProductDataFromModalForm);
              });
+             // Capturar Enter en campos de texto/número del modal para potencialmente cerrar o cambiar foco
+             [modalProductIdInput, modalProductNameInput, modalProductPriceInput, modalProductImageInput, modalProductCategoryInput].forEach(input => {
+                 input.addEventListener('keydown', (event) => {
+                     if (event.key === 'Enter') {
+                         event.preventDefault(); // Evitar submit si estuviera en un form
+                         if (input === modalProductIdInput) {
+                             handleIdChange(); // Validar y aplicar cambio de ID
+                             modalProductNameInput.focus(); // Mover foco al siguiente campo
+                         } else {
+                             // Para otros campos, podría ser útil mover el foco o incluso cerrar
+                             // Por ahora, solo prevenimos la acción por defecto
+                             // closeModal(); // Opcional: cerrar modal al presionar Enter en otros campos
+                         }
+                     }
+                 });
+             });
 
-            // Tooltip
+
+            // --- Tooltip ---
              const setupTooltipListeners = (gridElement) => {
-                 gridElement.addEventListener('mouseover', (event) => { const item = event.target.closest('.catalog-item'); if (item && !event.target.closest('.catalog-item-btn')) { const id = parseInt(item.dataset.productId); const source = item.dataset.source; if (!isNaN(id) && source) { clearTimeout(tooltipTimeout); tooltipTimeout = setTimeout(() => { showTooltip(id, event, source); }, 150); } } else { clearTimeout(tooltipTimeout); hideTooltip(null, null); } });
-                 gridElement.addEventListener('mouseout', (event) => { const item = event.target.closest('.catalog-item'); if (item) { const id = parseInt(item.dataset.productId); const source = item.dataset.source; if (!isNaN(id) && source) { clearTimeout(tooltipTimeout); hideTooltip(id, source); } } });
-                 gridElement.addEventListener('mousemove', (event) => { if (!productTooltip.classList.contains('hidden') && event.target.closest('.catalog-item') && !event.target.closest('.catalog-item-btn')) { positionTooltip(event); } else if (!event.target.closest('.catalog-item')) { clearTimeout(tooltipTimeout); hideTooltip(null, null); } });
+                 let currentHoveredItemId = null; // Para rastrear sobre qué item está el ratón
+
+                 gridElement.addEventListener('mouseover', (event) => {
+                     const item = event.target.closest('.catalog-item');
+                     // No mostrar tooltip si se está sobre los botones internos
+                     if (item && !event.target.closest('.catalog-item-btn')) {
+                         const id = parseInt(item.dataset.productId);
+                         const source = item.dataset.source;
+                         if (!isNaN(id) && source) {
+                             currentHoveredItemId = id; // Actualizar item activo
+                             clearTimeout(tooltipTimeout); // Cancelar cualquier timeout pendiente para ocultar
+                             tooltipTimeout = setTimeout(() => {
+                                 // Volver a verificar si el ratón sigue sobre el mismo item
+                                 if (currentHoveredItemId === id) {
+                                     showTooltip(id, event, source);
+                                 }
+                             }, 250); // Un pequeño retraso antes de mostrar
+                         }
+                     } else {
+                         currentHoveredItemId = null; // Resetear si no está sobre un item válido
+                         clearTimeout(tooltipTimeout); // Cancelar mostrar
+                         hideTooltip(null, null); // Ocultar si estaba visible
+                     }
+                 });
+
+                 gridElement.addEventListener('mouseout', (event) => {
+                     const item = event.target.closest('.catalog-item');
+                      // Si salimos del item o del grid, ocultar
+                     if (item || event.target === gridElement) {
+                         currentHoveredItemId = null; // Resetear item activo
+                         clearTimeout(tooltipTimeout); // Cancelar timeout para mostrar
+                         hideTooltip(null, null); // Ocultar tooltip
+                     }
+                 });
+
+                 gridElement.addEventListener('mousemove', (event) => {
+                     // Reposicionar solo si el tooltip está visible y estamos sobre un item (no sobre botones)
+                     if (!productTooltip.classList.contains('hidden') && event.target.closest('.catalog-item') && !event.target.closest('.catalog-item-btn')) {
+                         positionTooltip(event);
+                     } else if (!event.target.closest('.catalog-item')) {
+                         // Si movemos el ratón fuera de cualquier item, ocultar
+                         currentHoveredItemId = null;
+                         clearTimeout(tooltipTimeout);
+                         hideTooltip(null, null);
+                     }
+                 });
              };
             setupTooltipListeners(githubCatalogGrid);
             setupTooltipListeners(localCatalogGrid);
 
             // --- Listeners para Modales Fullscreen ---
+            // Abrir modales fullscreen
             document.querySelectorAll('[data-modal-target-fs]').forEach(button => {
                 button.addEventListener('click', () => {
                     const modalId = button.getAttribute('data-modal-target-fs');
                     openFullscreenModal(modalId);
                 });
             });
+            // Botones de cierre ('X') dentro de modales fullscreen
             document.querySelectorAll('.modal-close-btn-fs').forEach(button => {
                 button.addEventListener('click', () => {
                     const modalId = button.getAttribute('data-modal-id');
                     closeFullscreenModal(modalId);
                 });
             });
+             // Cerrar modal fullscreen al presionar la tecla Escape
+             document.addEventListener('keydown', (event) => {
+                 if (event.key === 'Escape') {
+                     // Buscar si hay algún modal fullscreen activo y cerrarlo
+                     const activeModal = document.querySelector('.modal-fullscreen.active');
+                     if (activeModal) {
+                         closeFullscreenModal(activeModal.id);
+                     }
+                      // También cerrar el modal de edición si está abierto
+                     if (!editModal.classList.contains('hidden')) {
+                         closeModal();
+                     }
+                 }
+             });
         }
 
         // --- Initial Load ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Cargar datos de catálogo
-            if (loadDataStructure()) { showFeedback(githubFeedback, "Datos locales de catálogo cargados.", false, 4000); }
-            else { showFeedback(githubFeedback, "No se encontraron datos locales de catálogo.", false, 5000); }
+            // Cargar datos de catálogo desde localStorage
+            if (loadDataStructure()) {
+                showFeedback(githubFeedback, "Datos locales de catálogo y sub-catálogos cargados.", false, 4000);
+            } else {
+                 showFeedback(githubFeedback, "No se encontraron datos locales guardados. Empezando desde cero.", false, 5000);
+            }
 
-            // Cargar token si existe
+            // Cargar token de GitHub desde localStorage si existe
             const storedToken = loadTokenFromLocalStorage();
-            if (storedToken) { githubTokenInput.value = storedToken; showFeedback(githubFeedback, "Token recuperado de almacenamiento local.", false, 4000); }
-            else { showFeedback(githubFeedback, "Introduce tu token de GitHub para empezar.", false, 5000); }
+            if (storedToken) {
+                githubTokenInput.value = storedToken;
+                showFeedback(githubFeedback, "Token de GitHub recuperado del almacenamiento local.", false, 4000);
+            } else {
+                 // Ya no mostramos mensaje aquí, la ausencia de token es normal
+                 // showFeedback(githubFeedback, "Introduce tu token de GitHub para interactuar con el repositorio.", false, 5000);
+            }
 
-            updateAllUI();
-            setupEventListeners(); // Asegurar que se llama después de cargar datos y token
+            updateAllUI(); // Renderizar todo con los datos cargados (o vacíos)
+            setupEventListeners(); // Configurar todos los listeners después de cargar datos y token
         });
 
     </script>
