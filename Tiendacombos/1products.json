@@ -1,33 +1,5 @@
 [
     {
-        "id": 5,
-        "name": "Choco Lips",
-        "price": 0.5,
-        "image": "https://i.postimg.cc/05BL5GNQ/Choco-Lips.jpg",
-        "description": "Barrita de chocolate con forma de labios.",
-        "specifications": [
-            "Chocolate con leche",
-            "DiseÃ±o divertido",
-            "Un pequeÃ±o placer"
-        ],
-        "featured": true,
-        "category": "Chocolates"
-    },
-    {
-        "id": 6,
-        "name": "Cigarro de Chocolate",
-        "price": 2,
-        "image": "https://i.postimg.cc/QCwP6Dz5/Cigarro-Popular.jpg",
-        "description": "Barra de chocolate alargada simulando un cigarro.",
-        "specifications": [
-            "Chocolate negro",
-            "Forma peculiar",
-            "Ideal para bromas"
-        ],
-        "featured": true,
-        "category": "Chocolates"
-    },
-    {
         "id": 11,
         "name": "Yogur Natural",
         "price": 3,
