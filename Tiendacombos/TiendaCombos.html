@@ -3,1747 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doña Lucía - Experiencia Completa</title>
+    <title>Doña Lucía - Experiencia de Lujo</title>
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        /* Base Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F9FAFB; /* Light gray background */
-            color: #1F2937;
-            overscroll-behavior: none;
-        }
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        /* Accent Color Definition */
+        /* --- THEME: Luxury Dark --- */
         :root {
+            --luxury-bg: #0e0e0e;
+            --luxury-bg-secondary: #1a1a1a;
+            --luxury-bg-modal-content: #1f1f1f;
+            --luxury-gold: #e8c991;
+            --luxury-gold-text: #f0d8a6;
+            --luxury-gold-secondary-text: #b69d75;
+            --luxury-btn-hover-bg: #e8c991;
+            --luxury-btn-hover-text: #101010;
+            --luxury-shadow: rgba(0, 0, 0, 0.85);
+            --luxury-glow: rgba(255, 255, 255, 0.08);
+            --luxury-border-outer: rgba(232, 201, 145, 0.15);
+            --luxury-border-inner: #e8c991;
+            --luxury-border-subtle: rgba(232, 201, 145, 0.3);
             --dl-accent-pink: #EC4899;
             --dl-accent-pink-dark: #DB2777;
-            --dl-text-primary: #1F2937;
-            --dl-text-secondary: #6B7280;
-            --dl-border-light: #E5E7EB;
-            --dl-bg-light: #F9FAFB;
-            --dl-gold-accent: #D4AF37; /* Richer Gold */
-            --dl-gold-accent-dark: #B8860B; /* Darker Gold for hover */
-            --dl-warning-text: #D97706; /* Amber 600 for refresh text */
-            --dl-warning-bg-hover: #FEF3C7; /* Amber 100 for refresh hover */
-            --dl-promo-bg: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* Subtle gradient for promo modal */
+            --dl-warning-text: #FFA726;
+            --dl-warning-bg-hover: rgba(255, 167, 38, 0.1);
+            --dl-info-text: #64B5F6;
+            --dl-success-text: #81C784;
+            --dl-error-text: #e57373;
+            --dl-text-primary: var(--luxury-gold-text);
+            --dl-text-secondary: var(--luxury-gold-secondary-text);
+            --dl-border-light: var(--luxury-border-subtle);
+            --dl-bg-light: var(--luxury-bg-secondary);
+            --dl-gold-accent: var(--luxury-gold);
+            --dl-gold-accent-dark: #d4af37;
         }
-        .bg-accent { background-color: var(--dl-accent-pink); }
-        .text-accent { color: var(--dl-accent-pink); }
-        .border-accent { border-color: var(--dl-accent-pink); }
-        .text-gold { color: var(--dl-gold-accent); }
-        .bg-gold { background-color: var(--dl-gold-accent); }
 
-        /* Buttons */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.25rem; border-radius: 0.375rem; font-weight: 500; transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out; cursor: pointer; border: 1px solid transparent; focus:outline-none; focus:ring-2 focus:ring-offset-2; --tw-ring-color: var(--dl-accent-pink); }
-        .btn-primary { background-color: var(--dl-accent-pink); color: white; border-color: var(--dl-accent-pink); }
-        .btn-primary:hover { background-color: var(--dl-accent-pink-dark); border-color: var(--dl-accent-pink-dark); }
-        .btn-primary:disabled { background-color: #f3f4f6; color: #9ca3af; border-color: #e5e7eb; cursor: not-allowed; opacity: 0.7; }
-        .btn-secondary { background-color: white; color: var(--dl-text-primary); border-color: var(--dl-border-light); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-        .btn-secondary:hover { background-color: var(--dl-bg-light); border-color: #D1D5DB; }
-        .btn-gold { background-color: var(--dl-gold-accent); color: white; border-color: var(--dl-gold-accent); }
-        .btn-gold:hover { background-color: var(--dl-gold-accent-dark); border-color: var(--dl-gold-accent-dark); }
+        /* Base Styles */
+        body { background: radial-gradient(circle at center, #222222 0%, #121212 100%); font-family: 'Georgia', serif; color: var(--dl-text-secondary); overscroll-behavior: none; scrollbar-width: thin; scrollbar-color: var(--luxury-gold-secondary-text) var(--luxury-bg); }
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: var(--luxury-bg); }
+        body::-webkit-scrollbar-thumb { background-color: var(--luxury-gold-secondary-text); border-radius: 4px; border: 2px solid var(--luxury-bg); }
+        body.modal-open { overflow: hidden; }
+
+        /* --- BOTONES GLOBALES (Luxury Theme) --- */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 1.25rem; border-radius: 0.375rem; font-weight: 500; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent; focus:outline-none; focus:ring-2 focus:ring-offset-2 focus:ring-offset-luxury-bg; --tw-ring-color: var(--luxury-gold); line-height: 1.4; }
+        .btn-primary { background-color: var(--luxury-gold); color: var(--luxury-btn-hover-text); border-color: var(--luxury-gold); }
+        .btn-primary:hover { background-color: var(--dl-gold-accent-dark); border-color: var(--dl-gold-accent-dark); color: black; box-shadow: 0 3px 10px rgba(232, 201, 145, 0.3); }
+        .btn-primary:disabled { background-color: rgba(182, 157, 117, 0.4); color: rgba(14, 14, 14, 0.7); border-color: transparent; cursor: not-allowed; opacity: 0.7; }
+        .btn-secondary { background-color: transparent; color: var(--luxury-gold); border-color: var(--luxury-gold-secondary-text); }
+        .btn-secondary:hover { background-color: var(--luxury-btn-hover-bg); color: var(--luxury-btn-hover-text); border-color: var(--luxury-btn-hover-bg); }
+        .btn-gold { background-color: var(--luxury-gold); color: var(--luxury-btn-hover-text); border-color: var(--luxury-gold); }
+        .btn-gold:hover { background-color: var(--dl-gold-accent-dark); border-color: var(--dl-gold-accent-dark); color: black; }
         .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.875rem; }
         .btn-xs { padding: 0.3rem 0.6rem; font-size: 0.75rem; line-height: 1rem; }
+        #contactModalFs .btn-green { background-color: #10B981; color: white; border-color: #10B981; }
+        #contactModalFs .btn-green:hover { background-color: #059669; border-color: #059669; }
+        #contactModalFs .btn-blue { background-color: #3B82F6; color: white; border-color: #3B82F6; }
+        #contactModalFs .btn-blue:hover { background-color: #2563EB; border-color: #2563EB; }
+        #contactModalFs .btn-gray { background-color: #6B7280; color: white; border-color: #6B7280; }
+        #contactModalFs .btn-gray:hover { background-color: #4B5563; border-color: #4B5563; }
+        #contactModalFs .btn { padding: 0.6rem 1.25rem; }
 
-        /* Product Card Style */
-        .product-card { background-color: white; border-radius: 0.75rem; overflow: hidden; transition: box-shadow 0.3s ease, transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; border: 1px solid var(--dl-border-light); }
-        .product-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: translateY(-5px); }
-        .product-card .product-image { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
-        .product-card .product-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card .product-name { font-weight: 600; font-size: 1rem; color: var(--dl-text-primary); margin-bottom: 0.35rem; line-height: 1.4; }
-        .product-card .product-price { font-weight: 700; font-size: 1.125rem; color: var(--dl-text-primary); margin-bottom: 0.8rem; }
+        /* --- PRODUCT CARD (Luxury Style - Main Grid) --- */
+        .product-card { position: relative; background-color: var(--luxury-bg); padding: 2rem; border-radius: 1.25rem; color: var(--luxury-gold); height: 100%; display: flex; flex-direction: column; box-shadow: 0 15px 30px var(--luxury-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05); overflow: hidden; font-family: 'Georgia', serif; }
+        .product-card::before { content: ""; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px; border-radius: 1.3rem; border: 1px solid var(--luxury-border-outer); pointer-events: none; z-index: 1; }
+        .product-card svg.inner-border { position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; width: calc(100% - 24px); height: calc(100% - 24px); z-index: 2; pointer-events: none; }
+        .product-card .top-glow { position: absolute; top: 0; left: 0; height: 10px; width: 100%; background: linear-gradient(to bottom, var(--luxury-glow), transparent); border-top-left-radius: 1.25rem; border-top-right-radius: 1.25rem; pointer-events: none; z-index: 3; }
+        .product-card img { margin: 0 auto 1rem; height: 140px; object-fit: contain; z-index: 4; position: relative; display: block; }
+        .product-card .product-title { font-size: 1.5rem; font-weight: 500; text-align: center; margin-bottom: 0.5rem; color: var(--luxury-gold-text); z-index: 4; position: relative; line-height: 1.2; }
+        .product-card .product-desc { text-align: center; font-size: 0.875rem; color: var(--luxury-gold-secondary-text); margin-bottom: 1rem; z-index: 4; position: relative; flex-grow: 1; overflow: hidden; max-height: 4.5em; line-height: 1.5; }
+        .product-card .product-price { font-size: 1.25rem; font-weight: bold; text-align: center; margin-bottom: 1rem; color: var(--luxury-gold-text); z-index: 4; position: relative; }
+        .product-card .btn { display: inline-block; border: 1px solid var(--luxury-gold-secondary-text); color: var(--luxury-gold); padding: 0.5rem 1.25rem; border-radius: 0.375rem; font-size: 0.875rem; text-align: center; transition: all 0.3s ease; background-color: transparent; z-index: 4; position: relative; cursor: pointer; font-family: 'Georgia', serif; margin: 0 auto; }
+        .product-card .btn:hover { background-color: var(--luxury-btn-hover-bg); color: var(--luxury-btn-hover-text); border-color: var(--luxury-btn-hover-bg); }
+        .product-card .button-container { text-align: center; margin-top: auto; padding-top: 0.5rem; z-index: 4; position: relative; }
 
-        /* Full-Screen Modal Styles */
-        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white bg */ backdrop-filter: blur(4px); z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out; display: flex; flex-direction: column; transform: scale(1.05); /* Start slightly zoomed out for entry */ }
-        .modal-fullscreen.active { opacity: 1; visibility: visible; transform: scale(1.0); /* Scale in */ }
-        /* Slide-in for menu */
-        .modal-fullscreen.menu-modal { transform: translateX(-100%); background-color: white; backdrop-filter: none;} /* Solid bg for menu */
-        .modal-fullscreen.menu-modal.active { transform: translateX(0); }
-        /* Different transition for cart (slide from right) */
-        .modal-fullscreen#cartModalFs { transform: translateX(100%); }
-        .modal-fullscreen#cartModalFs.active { transform: translateX(0); }
-
-        .modal-header-fs { padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dl-border-light); flex-shrink: 0; background-color: white; }
-        .modal-header-fs .modal-header-content { width: 100%; display: flex; align-items: center; justify-content: space-between; }
-        @media (min-width: 1024px) { .modal-header-fs .modal-header-content { max-width: 56rem; margin-left: auto; margin-right: auto; } }
-        .modal-title-fs { font-size: 1.25rem; font-weight: 600; color: var(--dl-text-primary); flex-grow: 1; text-align: center; margin: 0 1rem; }
-        .modal-close-btn-fs { padding: 0.5rem; color: var(--dl-text-secondary); background: none; border: none; cursor: pointer; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; flex-shrink: 0; }
-        .modal-close-btn-fs:hover { background-color: var(--dl-bg-light); color: var(--dl-text-primary); }
-        .modal-close-btn-fs svg { width: 1.5rem; height: 1.5rem; }
-        .modal-body-fs { padding: 1.5rem 1rem; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch; background-color: transparent; /* Inherit from modal-fullscreen */ }
-        /* Make menu body solid white */
-        .modal-fullscreen.menu-modal .modal-body-fs { background-color: white;}
-        .modal-body-content-wrapper { width: 100%; margin-left: auto; margin-right: auto; background-color: white; border-radius: 0.5rem; /* Add rounded corners to content area inside modal */ box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Subtle shadow for content */ padding: 1.5rem; }
-         /* Specific modal content wrappers */
-        #cartModalFs .modal-body-content-wrapper,
-        #menuModalFs .modal-body-content-wrapper { padding: 0; box-shadow: none; border-radius: 0; } /* Remove padding/shadow for cart/menu body wrappers */
-        #menuModalFs .modal-body-fs { padding: 0; } /* Remove body padding for menu */
-        @media (min-width: 1024px) { .modal-body-content-wrapper { max-width: 56rem; padding: 2rem; } #cartModalFs .modal-body-content-wrapper { padding: 0; } }
-
-        /* Cart Badge Style */
+        /* --- HEADER (Luxury Theme) --- */
+        header { background-color: var(--luxury-bg); box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); border-bottom: 1px solid var(--luxury-border-outer); position: sticky; top: 0; z-index: 50; /* Ensure header stays on top */ }
+        header .text-primary { color: var(--luxury-gold-text); }
+        header #menuBtn, header #openCartBtn { color: var(--luxury-gold-secondary-text); }
+        header #menuBtn:hover, header #openCartBtn:hover { background-color: var(--luxury-bg-secondary); color: var(--luxury-gold); }
+        .desktop-nav-link { color: var(--luxury-gold-secondary-text); padding: 0.5rem 0.8rem; }
+        .desktop-nav-link:hover { color: var(--luxury-gold-text); background-color: var(--luxury-bg-secondary); }
+        .desktop-nav-link svg { color: var(--luxury-gold-secondary-text); margin-right: 0.4rem;}
+        .desktop-nav-link:hover svg { color: var(--luxury-gold); }
+        #forceRefreshLinkDesktop { color: var(--dl-warning-text); }
+        #forceRefreshLinkDesktop:hover { background-color: var(--dl-warning-bg-hover); color: var(--dl-warning-text); }
+        #forceRefreshLinkDesktop svg { color: var(--dl-warning-text); }
+        #promoLinkDesktop { color: var(--luxury-gold); }
+        #promoLinkDesktop:hover { background-color: rgba(232, 201, 145, 0.1); color: var(--luxury-gold-text); }
+        #promoLinkDesktop svg { color: var(--luxury-gold); }
+        #solidarityLinkDesktop { color: var(--dl-info-text); }
+        #solidarityLinkDesktop:hover { background-color: rgba(100, 181, 246, 0.1); color: #90CAF9; }
+        #solidarityLinkDesktop svg { color: var(--dl-info-text); }
         .cart-badge { position: absolute; top: -4px; right: -6px; background-color: var(--dl-accent-pink); color: white; font-size: 0.65rem; font-weight: 600; line-height: 1; padding: 0.15rem 0.4rem; border-radius: 9999px; display: none; transition: transform 0.15s ease-out; }
 
-        /* Cart Item Style */
-        #cartItemsFs .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--dl-border-light); }
-        #cartItemsFs .cart-item:last-child { border-bottom: none; }
-        #cartItemsFs .cart-item-image { width: 4rem; height: 4rem; object-fit: cover; border-radius: 0.25rem; margin-right: 1rem; border: 1px solid var(--dl-border-light); flex-shrink: 0; }
-        #cartItemsFs .cart-item-details { flex-grow: 1; margin-right: 1rem; }
-        #cartItemsFs .cart-item-name { font-weight: 500; font-size: 0.875rem; line-height: 1.3; margin-bottom: 0.1rem; }
-        #cartItemsFs .cart-item-price { font-size: 0.75rem; color: var(--dl-text-secondary); margin-bottom: 0.3rem; }
-        #cartItemsFs .quantity-controls { display: flex; align-items: center; }
-        #cartItemsFs .quantity-controls button { background-color: #F3F4F6; color: var(--dl-text-secondary); border: 1px solid var(--dl-border-light); width: 1.75rem; height: 1.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; font-size: 0.875rem; transition: background-color 0.2s ease; }
-        #cartItemsFs .quantity-controls button:hover:not(:disabled) { background-color: #E5E7EB; }
-        #cartItemsFs .quantity-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
-        #cartItemsFs .quantity-controls .quantity-display { margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500; min-width: 1rem; text-align: center; }
-        #cartItemsFs .remove-button { color: var(--dl-text-secondary); flex-shrink: 0; padding: 0.25rem; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; }
-        #cartItemsFs .remove-button:hover { color: var(--dl-accent-pink); background-color: var(--dl-bg-light); }
-        #cartItemsFs .remove-button svg { width: 1.25rem; height: 1.25rem; }
+        /* --- MAIN CONTENT (Luxury Theme) --- */
+        main { padding-top: 3rem; padding-bottom: 3rem; } /* Add padding to main content */
+        main h2, main h3 { color: var(--luxury-gold-text); border-color: var(--luxury-border-subtle); }
+        #searchInput { background-color: var(--luxury-bg-secondary); border-color: var(--luxury-border-subtle); color: var(--luxury-gold-text); border-radius: 0.5rem; }
+        #searchInput::placeholder { color: var(--luxury-gold-secondary-text); opacity: 0.8; }
+        #searchInput:focus { border-color: var(--luxury-gold); box-shadow: 0 0 0 3px rgba(232, 201, 145, 0.3); outline: none; background-color: var(--luxury-bg); }
+        #categoryFilters .text-gray-500 { color: var(--luxury-gold-secondary-text); }
+        #productGridStatus { color: var(--luxury-gold-secondary-text); }
+        #productGridStatus a { color: var(--luxury-gold); }
+        #productGridStatus a:hover { color: var(--luxury-gold-text); }
+        #productGridStatus .text-red-600 { color: var(--dl-error-text); }
+        #productGridStatus .text-red-600 a { color: var(--dl-error-text); }
+        #productGridStatus .text-red-600 a:hover { opacity: 0.8; }
 
-        /* Menu Modal Link Style (Mobile Menu) */
-        #menuModalFs .menu-link { display: flex; align-items: center; padding: 1rem 1.5rem; font-size: 1.125rem; font-weight: 500; color: var(--dl-text-primary); border-bottom: 1px solid var(--dl-border-light); transition: background-color 0.2s ease; text-decoration: none; }
-        #menuModalFs .menu-link:hover { background-color: var(--dl-bg-light); }
-        #menuModalFs .menu-link svg { width: 1.5rem; height: 1.5rem; margin-right: 1rem; color: var(--dl-text-secondary); }
-        /* Refresh Link specific colors (Mobile) */
+        /* --- MODALS (Luxury Theme) --- */
+        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; display: flex; flex-direction: column; background-color: rgba(14, 14, 14, 0.9); backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transform: scale(1.05); transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s, transform 0.3s ease-in-out; /* Delay visibility hide */ }
+        .modal-fullscreen.active { opacity: 1; visibility: visible; transform: scale(1.0); transition: opacity 0.3s ease-in-out, visibility 0s linear 0s, transform 0.3s ease-in-out; } /* Visibility immediate */
+        .modal-fullscreen.menu-modal { transform: translateX(-100%); background-color: var(--luxury-bg); backdrop-filter: none; }
+        .modal-fullscreen.menu-modal.active { transform: translateX(0); }
+        .modal-fullscreen#cartModalFs { transform: translateX(100%); background-color: var(--luxury-bg); backdrop-filter: none; }
+        .modal-fullscreen#cartModalFs.active { transform: translateX(0); }
+        .modal-header-fs { flex-shrink: 0; background-color: var(--luxury-bg-secondary); border-bottom: 1px solid var(--luxury-border-outer); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .modal-header-fs .modal-header-content { width: 100%; display: flex; align-items: center; justify-content: space-between; max-width: 56rem; margin-left: auto; margin-right: auto; }
+        .modal-title-fs { flex-grow: 1; text-align: center; margin: 0 1rem; color: var(--luxury-gold-text); font-size: 1.25rem; font-weight: 600; }
+        .modal-close-btn-fs { flex-shrink: 0; padding: 0.5rem; color: var(--luxury-gold-secondary-text); background: none; border: none; cursor: pointer; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; }
+        .modal-close-btn-fs:hover { background-color: var(--luxury-bg); color: var(--luxury-gold); }
+        .modal-close-btn-fs svg { width: 1.5rem; height: 1.5rem; }
+        .modal-body-fs { flex-grow: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; background-color: transparent; padding: 1.5rem 1rem; scrollbar-color: var(--luxury-gold-secondary-text) rgba(0,0,0,0.3); }
+        .modal-body-fs::-webkit-scrollbar { width: 6px; }
+        .modal-body-fs::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+        .modal-body-fs::-webkit-scrollbar-thumb { background-color: var(--luxury-gold-secondary-text); border-radius: 3px; }
+        .modal-body-content-wrapper { background-color: var(--luxury-bg-modal-content); border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7); border: 1px solid var(--luxury-border-outer); position: relative; width: 100%; max-width: 56rem; /* Apply max-width here */ margin-left: auto; margin-right: auto; padding: 1.5rem; }
+        @media (min-width: 1024px) { .modal-body-content-wrapper { padding: 2rem; } }
+        .modal-body-content-wrapper::after { content: ""; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid var(--luxury-border-inner); border-radius: 0.6rem; pointer-events: none; z-index: 0; opacity: 0.5; }
+        .modal-body-content-wrapper > *:not(svg.inner-border) { position: relative; z-index: 1; }
+        #cartModalFs .modal-body-fs, #menuModalFs .modal-body-fs { padding: 0; }
+        #cartModalFs .modal-body-content-wrapper, #menuModalFs .modal-body-content-wrapper { padding: 0; box-shadow: none; border-radius: 0; border: none; background: transparent; max-width: none; /* Remove max-width for these */ }
+        #cartModalFs .modal-body-content-wrapper::after, #menuModalFs .modal-body-content-wrapper::after { display: none; }
+
+        /* --- CART (Luxury Theme) --- */
+        #cartItemsFs .cart-item { border-bottom: 1px solid var(--luxury-border-outer); padding: 1rem 1.5rem; display: flex; align-items: center; }
+        #cartItemsFs .cart-item:last-child { border-bottom: none; }
+        /* AJUSTE: Imagen del carrito más pequeña */
+        #cartItemsFs .cart-item-image { width: 3rem; height: 3rem; object-fit: cover; border-radius: 0.375rem; border: 1px solid var(--luxury-border-subtle); margin-right: 0.75rem; flex-shrink: 0; }
+        #cartItemsFs .cart-item-details { flex-grow: 1; margin-right: 0.75rem; }
+        #cartItemsFs .cart-item-name { color: var(--luxury-gold-text); font-weight: 500; font-size: 0.9rem; line-height: 1.3; margin-bottom: 0.1rem; }
+        #cartItemsFs .cart-item-price { color: var(--luxury-gold-secondary-text); font-size: 0.8rem; margin-bottom: 0.3rem;}
+        #cartItemsFs .quantity-controls { display: flex; align-items: center; }
+        #cartItemsFs .quantity-controls button { background-color: var(--luxury-bg-secondary); color: var(--luxury-gold-secondary-text); border: 1px solid var(--luxury-border-subtle); width: 1.75rem; height: 1.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; font-size: 0.875rem; transition: background-color 0.2s ease; }
+        #cartItemsFs .quantity-controls button:hover:not(:disabled) { background-color: var(--luxury-bg); color: var(--luxury-gold); }
+        #cartItemsFs .quantity-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+        #cartItemsFs .quantity-controls .quantity-display { margin: 0 0.75rem; font-size: 0.9rem; font-weight: 500; min-width: 1rem; text-align: center; color: var(--luxury-gold-text); }
+        #cartItemsFs .remove-button { color: var(--luxury-gold-secondary-text); flex-shrink: 0; padding: 0.25rem; border-radius: 9999px; transition: background-color 0.2s ease, color 0.2s ease; background: none; border: none; cursor: pointer; }
+        #cartItemsFs .remove-button:hover { color: var(--dl-error-text); background-color: rgba(229, 115, 115, 0.1); }
+        #cartItemsFs .remove-button svg { width: 1.25rem; height: 1.25rem; }
+        #emptyCartMessageFs { color: var(--luxury-gold-secondary-text); padding: 2rem 1.5rem; text-align: center; }
+        #cartSummaryFs { background-color: var(--luxury-bg-secondary); border-top: 1px solid var(--luxury-border-outer); padding: 1rem 1.5rem; }
+        #cartSummaryFs .text-secondary { color: var(--luxury-gold-secondary-text); }
+        #cartSummaryFs .text-primary { color: var(--luxury-gold-text); }
+        #cartSummaryFs #cartTotalFs { color: var(--luxury-gold-text); font-size: 1.5rem; }
+        #cartSummaryFs .flex-col { padding: 0.5rem 0; } /* Add padding around buttons */
+
+        /* --- MENU MODAL (Luxury Theme) --- */
+        #menuModalFs .menu-link { color: var(--luxury-gold-secondary-text); border-bottom: 1px solid var(--luxury-border-outer); padding: 1rem 1.5rem; display: flex; align-items: center; font-size: 1.125rem; font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease; text-decoration: none; }
+        #menuModalFs .menu-link:hover { background-color: var(--luxury-bg-secondary); color: var(--luxury-gold-text); }
+        #menuModalFs .menu-link svg { width: 1.5rem; height: 1.5rem; margin-right: 1rem; color: var(--luxury-gold-secondary-text); transition: color 0.2s ease; }
+        #menuModalFs .menu-link:hover svg { color: var(--luxury-gold); }
         #forceRefreshLinkMobile { color: var(--dl-warning-text); }
         #forceRefreshLinkMobile:hover { background-color: var(--dl-warning-bg-hover); }
-        #forceRefreshLinkMobile svg { color: var(--dl-warning-text); }
-        /* Promo Link specific colors (Mobile) */
-        #promoLinkMobile { color: var(--dl-gold-accent); }
-        #promoLinkMobile:hover { background-color: #FFFBEB; /* Lighter gold hover */ }
-        #promoLinkMobile svg { color: var(--dl-gold-accent); }
-        /* Solidarity Link specific colors (Mobile) - OPTIONAL */
-        #solidarityLinkMobile { color: #3B82F6; /* Example Blue */ }
-        #solidarityLinkMobile:hover { background-color: #EFF6FF; }
-        #solidarityLinkMobile svg { color: #3B82F6; }
-        /* <!-- NUEVO --> Admin Link specific colors (Mobile) */
-        #adminAccessLinkMobile { color: #4B5563; /* Gray-600 */ }
-        #adminAccessLinkMobile:hover { background-color: #E5E7EB; }
-        #adminAccessLinkMobile svg { color: #6B7280; /* Gray-500 */ }
+        #promoLinkMobile { color: var(--luxury-gold); }
+        #promoLinkMobile:hover { background-color: rgba(232, 201, 145, 0.1); }
+        #solidarityLinkMobile { color: var(--dl-info-text); }
+        #solidarityLinkMobile:hover { background-color: rgba(100, 181, 246, 0.1); }
+        #adminAccessLinkMobile { color: var(--luxury-gold-secondary-text); }
+        #adminAccessLinkMobile:hover { background-color: var(--luxury-bg-secondary); }
+        #menuModalFs .border-t { border-color: var(--luxury-border-outer); }
 
-
-        /* Desktop Navbar Link Style */
-        .desktop-nav-link { color: var(--dl-text-secondary); transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; }
-        .desktop-nav-link:hover { color: var(--dl-text-primary); background-color: var(--dl-bg-light); }
-        .desktop-nav-link svg { width: 1.1rem; height: 1.1rem; margin-right: 0.4rem; }
-        /* Refresh Link specific colors (Desktop) */
-        #forceRefreshLinkDesktop { color: var(--dl-warning-text); }
-        #forceRefreshLinkDesktop:hover { background-color: var(--dl-warning-bg-hover); }
-        #forceRefreshLinkDesktop svg { color: var(--dl-warning-text); }
-         /* Promo Link specific colors (Desktop) */
-        #promoLinkDesktop { color: var(--dl-gold-accent); }
-        #promoLinkDesktop:hover { background-color: #FFFBEB; /* Lighter gold hover */ color: var(--dl-gold-accent-dark); }
-        #promoLinkDesktop svg { color: var(--dl-gold-accent); }
-        /* Solidarity Link specific colors (Desktop) - OPTIONAL */
-        #solidarityLinkDesktop { color: #3B82F6; }
-        #solidarityLinkDesktop:hover { background-color: #EFF6FF; color: #1D4ED8; }
-        #solidarityLinkDesktop svg { color: #3B82F6; }
-
-
-        /* Heroicon Size Utilities */
-        .heroicon { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
-        .heroicon-sm { width: 1rem; height: 1rem; }
-        .heroicon-md { width: 1.5rem; height: 1.5rem; }
-        .heroicon-lg { width: 2rem; height: 2rem; }
-        .heroicon-xl { width: 3rem; height: 3rem; }
-        .heroicon-xxl { width: 4rem; height: 4rem; }
-
-        /* Featured Badge Style */
-        .featured-badge { position: absolute; top: 0.75rem; left: 0.75rem; background-color: var(--dl-gold-accent); color: white; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 0.25rem; z-index: 10; text-transform: uppercase; letter-spacing: 0.05em; }
-
-        /* Swiper Carousel Styles */
-        .featured-carousel { padding-left: 5px; padding-right: 5px; position: relative; z-index: 20; }
-        .featured-carousel .swiper-button-next, .featured-carousel .swiper-button-prev { color: var(--dl-text-primary); background-color: rgba(255, 255, 255, 0.8); border-radius: 9999px; width: 2.75rem; height: 2.75rem; transition: all 0.25s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); display: none; /* Hide by default */ align-items: center; justify-content: center; }
-        .featured-carousel.swiper-initialized .swiper-button-next,
-        .featured-carousel.swiper-initialized .swiper-button-prev { display: flex; } /* Show only when initialized */
-        .featured-carousel .swiper-button-next:hover, .featured-carousel .swiper-button-prev:hover { background-color: white; color: var(--dl-accent-pink); box-shadow: 0 5px 12px rgba(0,0,0,0.12); transform: scale(1.05); }
+        /* --- SWIPER CAROUSEL (Luxury Theme) --- */
+        .featured-carousel { margin-bottom: 1rem; padding-left: 5px; padding-right: 5px; position: relative; z-index: 10; }
+        .featured-carousel .swiper-button-next, .featured-carousel .swiper-button-prev { color: var(--luxury-gold); background-color: rgba(14, 14, 14, 0.7); border: 1px solid var(--luxury-border-outer); backdrop-filter: blur(3px); border-radius: 9999px; width: 2.75rem; height: 2.75rem; transition: all 0.25s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: none; align-items: center; justify-content: center; }
+        .featured-carousel.swiper-initialized .swiper-button-next, .featured-carousel.swiper-initialized .swiper-button-prev { display: flex; }
+        .featured-carousel .swiper-button-next:hover, .featured-carousel .swiper-button-prev:hover { background-color: var(--luxury-bg); color: var(--luxury-gold-text); border-color: var(--luxury-border-subtle); transform: scale(1.05); }
         .featured-carousel .swiper-button-next::after, .featured-carousel .swiper-button-prev::after { content: ''; }
         .featured-carousel .swiper-button-prev { left: -5px; }
         .featured-carousel .swiper-button-next { right: -5px; }
         @media (max-width: 640px) { .featured-carousel .swiper-button-prev { left: 5px; } .featured-carousel .swiper-button-next { right: 5px; } .featured-carousel { padding-left: 0; padding-right: 0; } }
         .featured-carousel .swiper-slide { height: auto; display: flex; padding: 5px 0; }
-        .featured-carousel .product-card { width: 100%; height: 100%; margin-bottom: 0.5rem; }
+        /* Carousel Card Adjustments */
+        .featured-carousel .product-card { padding: 1.5rem; border-radius: 1rem; }
+        .featured-carousel .product-card::before { border-radius: 1.1rem; }
+        .featured-carousel .product-card .top-glow { border-top-left-radius: 1rem; border-top-right-radius: 1rem; }
+        .featured-carousel .product-card img { height: 110px; margin-bottom: 0.75rem; }
+        .featured-carousel .product-card .product-title { font-size: 1.25rem; margin-bottom: 0.3rem; }
+        .featured-carousel .product-card .product-desc { font-size: 0.8rem; margin-bottom: 0.75rem; max-height: 3.2em; }
+        .featured-carousel .product-card .product-price { font-size: 1.1rem; margin-bottom: 0.75rem; }
+        .featured-carousel .product-card .btn { padding: 0.4rem 1rem; font-size: 0.75rem; }
+        .featured-carousel .product-card svg.inner-border { top: 8px; left: 8px; right: 8px; bottom: 8px; width: calc(100% - 16px); height: calc(100% - 16px); }
 
-        /* Toast Notification Style (Top-Center) - UPDATED */
-        #toastContainer {
-            position: fixed;
-            top: 0;
-            left: 50%; /* Added */
-            transform: translateX(-50%); /* Added */
-            z-index: 9998;
-            pointer-events: none;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center toasts horizontally within the container */
-            gap: 0.5rem;
-        }
+        /* --- TOASTS (Luxury Theme) --- */
+        #toastContainer { position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: 9999; pointer-events: none; padding: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .toast-notification { z-index: 9999; background-color: var(--luxury-bg-modal-content); color: var(--luxury-gold-text); border: 1px solid var(--luxury-border-subtle); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); font-size: 0.875rem; font-weight: 500; padding: 0.75rem 1rem; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease-out; pointer-events: none; transform: translateY(-150%); opacity: 0; max-width: calc(100% - 2rem); width: auto; border-left-width: 4px; }
+        .toast-notification.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .toast-notification .toast-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
 
-        .toast-notification {
-            z-index: 9999;
-            background-color: rgba(31, 41, 55, 0.95);
-            color: white;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease-out;
-            pointer-events: none;
-            transform: translateY(-150%); /* Animation still starts off-screen top */
-            opacity: 0;
-            max-width: calc(100% - 2rem); /* Keep max-width */
-            width: auto; /* Allow toast to size based on content */
-        }
+        /* --- IMAGE ZOOM MODAL (Luxury Theme) --- */
+        #imageZoomModalFs { background-color: rgba(14, 14, 14, 0.95); backdrop-filter: blur(8px); /* Modal fullscreen styles apply automatically */ }
+        #imageZoomModalFs .modal-header-fs { background: transparent; border-bottom: none; } /* Override header */
+        #imageZoomModalFs .modal-close-btn-fs { background-color: rgba(31, 31, 31, 0.7); color: var(--luxury-gold); }
+        #imageZoomModalFs .modal-close-btn-fs:hover { background-color: var(--luxury-bg); color: var(--luxury-gold-text); }
+        #imageZoomModalFs .modal-body-fs { background: transparent; display: flex; align-items: center; justify-content: center; padding: 1rem; /* Override body padding if needed */ }
+        #zoomedImage { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 0.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); margin-left: auto; margin-right: auto; display: block; }
+        #zoomedImageCaption { margin-top: 1rem; color: var(--luxury-gold); font-size: 1rem; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.8); text-align: center; }
 
-        .toast-notification.show {
-            transform: translateY(0); /* Animation ends in view */
-            opacity: 1;
-            pointer-events: auto;
-        }
+        /* --- MODAL CONTENT TEXTS (Luxury Theme) --- */
+        .modal-body-content-wrapper .text-primary, .modal-body-content-wrapper h3, .modal-body-content-wrapper .font-semibold { color: var(--luxury-gold-text); }
+        .modal-body-content-wrapper .text-secondary, .modal-body-content-wrapper p, .modal-body-content-wrapper li, .modal-body-content-wrapper .font-medium { color: var(--luxury-gold-secondary-text); }
+        .modal-body-content-wrapper .text-accent { color: var(--dl-accent-pink); }
+        .modal-body-content-wrapper a { color: var(--luxury-gold); }
+        .modal-body-content-wrapper a:hover { color: var(--luxury-gold-text); text-decoration: underline; }
+        .modal-body-content-wrapper ul { padding-left: 1.5rem; }
+        .modal-body-content-wrapper li::marker { color: var(--luxury-gold-secondary-text); }
+        .modal-body-content-wrapper .text-green-500 svg { color: var(--dl-success-text); }
+        .modal-body-content-wrapper .text-blue-500 svg { color: var(--dl-info-text); }
+        .modal-body-content-wrapper .text-gray-600 svg { color: var(--luxury-gold-secondary-text); }
 
-        .toast-notification .toast-icon {
-            flex-shrink: 0;
-            width: 1.25rem;
-            height: 1.25rem;
-        }
+        /* --- FOOTER (Luxury Theme) --- */
+        footer { background-color: var(--luxury-bg-secondary); border-top: 1px solid var(--luxury-border-outer); color: var(--luxury-gold-secondary-text); padding-top: 2rem; padding-bottom: 2rem; margin-top: 4rem;}
+        footer .text-secondary { color: var(--luxury-gold-secondary-text); }
+        footer .text-gray-400 { color: var(--luxury-gold-secondary-text); opacity: 0.7; }
+        footer a { color: var(--luxury-gold-secondary-text); }
+        footer a:hover { color: var(--luxury-gold); }
 
-        /* Tutorial Modal Specific Styles */
-        #tutorialModalFs .modal-body-fs ul { list-style-position: outside; padding-left: 1.5rem; }
-        #tutorialModalFs .modal-body-fs li { margin-bottom: 0.5rem; }
-
-        /* Promo Modal Specific Styles */
-        #promoModalFs .modal-body-fs { background: var(--dl-promo-bg); }
-        #promoModalFs .modal-body-content-wrapper {
-            text-align: center;
-            padding: 2rem 1rem;
-            display: flex; /* Enable flex for centering */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px; /* Ensure minimum height */
-        }
-        #promoModalFs .promo-icon {
-            color: var(--dl-gold-accent);
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 3px 5px rgba(212, 175, 55, 0.3)); /* Subtle gold shadow */
-        }
-        #promoModalFs .promo-headline {
-            font-size: 1.8rem; /* Larger headline */
-            font-weight: 700;
-            color: var(--dl-text-primary);
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-         @media (min-width: 640px) { #promoModalFs .promo-headline { font-size: 2.25rem; } }
-        #promoModalFs .promo-subheadline {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--dl-accent-pink);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        #promoModalFs .promo-text {
-            color: var(--dl-text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 450px; /* Limit text width for readability */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #promoModalFs .promo-cta-button {
-            padding: 0.8rem 2rem; /* Larger button */
-            font-size: 1rem;
-        }
-
-        /* Image Zoom Modal Specific Styles (Optional, mostly inline) */
-        #imageZoomModalFs {
-            /* Inline styles handle background and blur */
-        }
-        #imageZoomModalFs .modal-header-fs {
-            background: transparent;
-            border-bottom: none;
-        }
-         #imageZoomModalFs .modal-close-btn-fs {
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-         }
-         #imageZoomModalFs .modal-close-btn-fs:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-         }
-        #imageZoomModalFs .modal-body-fs {
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem; /* Adjust padding as needed */
-        }
-        #zoomedImage {
-            max-width: 90%;
-            max-height: 85vh; /* Slightly more height */
-            object-fit: contain;
-            border-radius: 0.5rem; /* Optional rounded corners */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-            margin-left: auto;
-            margin-right: auto;
-            display: block; /* Ensure it behaves like a block element */
-        }
-        #zoomedImageCaption {
-            margin-top: 1rem;
-            color: rgba(255, 255, 255, 0.9); /* Slightly less bright white */
-            font-size: 1rem;
-            font-weight: 500;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6); /* Text shadow for readability */
-        }
-
-        /* --- Specific Styles for About Modal (Added for clarity) --- */
-        #aboutModalFs .modal-body-fs .text-primary { color: var(--dl-text-primary); }
-        #aboutModalFs .modal-body-fs .text-secondary { color: var(--dl-text-secondary); }
-        #aboutModalFs .modal-body-fs .text-accent { color: var(--dl-accent-pink); }
-        #aboutModalFs .modal-body-fs .font-medium { font-weight: 500; }
-        #aboutModalFs .modal-body-fs .font-semibold { font-weight: 600; }
-        #aboutModalFs .modal-body-fs .mb-4 { margin-bottom: 1rem; }
-        #aboutModalFs .modal-body-fs .leading-relaxed { line-height: 1.6; }
-        #aboutModalFs .modal-body-fs .text-xl { font-size: 1.25rem; }
-
+        /* --- UTILITIES --- */
+        .heroicon { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
+        .heroicon-sm { width: 1rem; height: 1rem; }
+        .heroicon-md { width: 1.5rem; height: 1.5rem; }
+        .heroicon-lg, .heroicon-xl, .heroicon-xxl { /* Simplified */ width: 2rem; height: 2rem; }
+        @media (min-width: 640px) { .heroicon-lg {width: 2.5rem; height: 2.5rem;} .heroicon-xl {width: 3rem; height: 3rem;} .heroicon-xxl {width: 4rem; height: 4rem;} }
 
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Header - RESPONSIVE -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <!-- Header -->
+    <header class="sticky top-0 z-50">
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-
                 <div class="flex items-center">
-                    <button id="menuBtn" class="p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent lg:hidden mr-2" aria-label="Abrir menú">
-                        <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                    <a href="#" class="flex-shrink-0">
-                        <span class="font-bold text-2xl text-primary tracking-tight">Doña Lucía</span>
-                    </a>
+                    <button id="menuBtn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset lg:hidden mr-2" aria-label="Abrir menú"> <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg> </button>
+                    <a href="#" class="flex-shrink-0"> <span class="font-bold text-2xl tracking-tight text-primary">Doña Lucía</span> </a>
                 </div>
-
-                <nav class="hidden lg:flex lg:items-center lg:space-x-1"> <!-- Reduced space slightly -->
+                <nav class="hidden lg:flex lg:items-center lg:space-x-3">
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="cartModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg> Carrito (<span id="desktopCartCount">0</span>) </a>
-                     <!-- Desktop Promo Link -->
                      <a href="#" id="promoLinkDesktop" class="desktop-nav-link nav-link" data-target-modal="promoModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> Envío Gratis </a>
-                     <!-- Desktop Solidarity Link - ADDED -->
                      <a href="#" id="solidarityLinkDesktop" class="desktop-nav-link nav-link" data-target-modal="solidarityModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /> </svg> Combos Cuba </a>
                      <a href="#" class="desktop-nav-link nav-link" data-target-modal="contactModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
-                     <a style="display: none;" href="#" class="desktop-nav-link nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de </a>
-                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /> </svg> Guía Rápida </a>
-                     <!-- Desktop Refresh Link -->
-                     <a href="#" id="forceRefreshLinkDesktop" class="desktop-nav-link"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Actualizar Productos </a>
+                     <a style="display: none;" href="#" class="desktop-nav-link nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca </a>
+                     <a href="#" class="desktop-nav-link nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /> </svg> Guía </a>
+                     <a href="#" id="forceRefreshLinkDesktop" class="desktop-nav-link"> <svg class="heroicon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Actualizar </a>
                  </nav>
-
                 <div class="flex items-center">
                      <div class="relative flex-shrink-0">
-                         <button id="openCartBtn" class="p-2 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-default" aria-label="Abrir carrito">
-                            <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg>
-                            <span id="cartItemCount" class="cart-badge" data-prev-count="0">0</span>
-                        </button>
+                         <button id="openCartBtn" class="p-2 rounded-full transition-default focus:outline-none focus:ring-2 focus:ring-offset-2" aria-label="Abrir carrito"> <svg class="heroicon heroicon-md h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /> </svg> <span id="cartItemCount" class="cart-badge" data-prev-count="0">0</span> </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
     <!-- End Header -->
 
-
     <!-- Contenido Principal -->
-    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-
-        <section id="featuredSection" class="mb-12 relative" style="display: none;"> <!-- Hide until populated -->
-            <h3 class="text-2xl font-semibold text-center text-primary mb-6 border-b pb-2 border-gray-200"> ✨ Destacados ✨ </h3>
-             <div class="swiper featured-carousel px-4 md:px-0">
-                <div class="swiper-wrapper" id="featuredProductWrapper"> <!-- Content added dynamically --> </div>
-                <div class="swiper-button-prev"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /> </svg> </div>
-                <div class="swiper-button-next"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"> <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /> </svg> </div>
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
+        <section id="featuredSection" class="mb-16 relative" style="display: none;">
+            <h3 class="text-2xl font-semibold text-center mb-6 border-b pb-2"> ✨ Destacados ✨ </h3>
+             <div class="swiper featured-carousel">
+                <div class="swiper-wrapper pb-2" id="featuredProductWrapper"></div>
+                <div class="swiper-button-prev"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg> </div>
+                <div class="swiper-button-next"> <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg> </div>
             </div>
         </section>
-
-        <h2 class="text-3xl font-bold text-center text-primary mb-4 mt-12"> Todos Nuestros Productos </h2>
-
+        <h2 class="text-3xl font-bold text-center mb-4 mt-8"> Nuestros Productos </h2>
         <div class="mb-8 space-y-4">
-           <input type="search" id="searchInput" placeholder="Buscar Producto..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-accent focus:border-accent transition duration-150 ease-in-out shadow-sm" aria-label="Buscar productos">
-           <div id="categoryFilters" class="flex flex-wrap gap-2 justify-center">
-                <span class="text-sm text-gray-500 italic">Cargando categorías...</span>
-           </div>
+           <input type="search" id="searchInput" placeholder="Buscar..." class="w-full p-3 transition duration-150 ease-in-out shadow-sm" aria-label="Buscar productos">
+           <div id="categoryFilters" class="flex flex-wrap gap-2 justify-center"> <span class="text-sm italic">Cargando...</span> </div>
         </div>
-
-        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-            <!-- Initial Loading/Error Message -->
-            <p id="productGridStatus" class="text-center text-gray-500 col-span-full py-10">
-                <svg class="animate-spin h-6 w-6 text-gray-400 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                Cargando productos...
-            </p>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            <p id="productGridStatus" class="col-span-full py-10 text-center"> <svg class="animate-spin h-6 w-6 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Cargando... </p>
         </div>
-
     </main>
     <!-- End Contenido Principal -->
 
-
     <!-- Footer -->
-    <footer class="bg-gray-100 py-8 mt-16 border-t border-gray-200">
+    <footer>
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-sm text-secondary">© 2024 Doña Lucía. Todos los derechos reservados.</p>
-            <!-- NUEVO: Admin Access Link -->
-            <p class="text-xs text-gray-400 mt-2">
-                <a href="#" id="adminAccessLinkFooter" class="hover:text-gray-600 transition-colors">Acceso Admin</a>
-            </p>
+            <p class="text-sm">© 2024 Doña Lucía. Derechos Reservados.</p>
+            <p class="text-xs mt-2"> <a href="#" id="adminAccessLinkFooter" class="transition-colors">Admin</a> </p>
         </div>
     </footer>
     <!-- End Footer -->
 
-
-    <!-- --- Full-Screen Modals --- -->
-
-    <!-- Menu Modal (Mobile Sidebar) -->
-    <div id="menuModalFs" class="modal-fullscreen menu-modal">
-        <div class="modal-header-fs">
-            <div class="modal-header-content">
-                <h2 class="modal-title-fs text-left flex-grow-0 mr-auto">Menú</h2>
-                <button class="modal-close-btn-fs" data-modal-id="menuModalFs" aria-label="Cerrar menú"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg> </button>
-            </div>
-        </div>
-        <div class="modal-body-fs">
-            <div class="modal-body-content-wrapper">
-                 <nav class="flex flex-col h-full"> <!-- Allow nav to grow -->
-                    <!-- Main Links -->
-                    <a href="#" class="menu-link modal-nav-link" data-target-modal="cartModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> Ver Carrito (<span id="menuCartCount">0</span>) </a>
-                    <a href="#" id="promoLinkMobile" class="menu-link modal-nav-link" data-target-modal="promoModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> ¡Envío Gratis! </a>
-                    <a href="#" id="solidarityLinkMobile" class="menu-link modal-nav-link" data-target-modal="solidarityModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg> Combos para Cuba </a>
-                    <a href="#" class="menu-link modal-nav-link" data-target-modal="contactModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a>
-                    <a style="display: none;" href="#" class="menu-link modal-nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca de Nosotros </a>
-                    <a href="#" class="menu-link modal-nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg> Guía Rápida </a>
-                    <a href="#" id="forceRefreshLinkMobile" class="menu-link"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Actualzar Productos </a>
-
-                    <!-- Separator and Admin Link -->
-                    <div class="mt-auto pt-4 border-t border-gray-200"> <!-- Push to bottom -->
-                         <!-- NUEVO: Admin Link -->
-                         <a href="#" id="adminAccessLinkMobile" class="menu-link">
-                             <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                             Administrar Catálogo
-                         </a>
-                    </div>
-                 </nav>
-            </div>
-        </div>
-    </div>
-
+    <!-- --- Modals (HTML Structure only) --- -->
+    <!-- Menu Modal -->
+    <div id="menuModalFs" class="modal-fullscreen menu-modal"> <div class="modal-header-fs"> <div class="modal-header-content"> <h2 class="modal-title-fs text-left flex-grow-0 mr-auto">Menú</h2> <button class="modal-close-btn-fs" data-modal-id="menuModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg> </button> </div> </div> <div class="modal-body-fs"> <nav class="flex flex-col h-full"> <a href="#" class="menu-link modal-nav-link" data-target-modal="cartModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> Carrito (<span id="menuCartCount">0</span>) </a> <a href="#" id="promoLinkMobile" class="menu-link modal-nav-link" data-target-modal="promoModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-14l-3-3m0 0l-3 3m3-3v12" /></svg> Envío Gratis </a> <a href="#" id="solidarityLinkMobile" class="menu-link modal-nav-link" data-target-modal="solidarityModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg> Combos Cuba </a> <a href="#" class="menu-link modal-nav-link" data-target-modal="contactModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> Contacto </a> <a style="display: none;" href="#" class="menu-link modal-nav-link" data-target-modal="aboutModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Acerca </a> <a href="#" class="menu-link modal-nav-link" data-target-modal="tutorialModalFs"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg> Guía </a> <a href="#" id="forceRefreshLinkMobile" class="menu-link"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> </svg> Actualizar </a> <div class="mt-auto pt-4 border-t"> <a href="#" id="adminAccessLinkMobile" class="menu-link"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Admin </a> </div> </nav> </div> </div>
     <!-- Product Details Modal -->
-    <div id="productModalFs" class="modal-fullscreen">
-         <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 id="productModalTitleFs" class="modal-title-fs">Detalles</h2> <button class="modal-close-btn-fs" data-modal-id="productModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
-         <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <div id="productDetailsContentFs"><p class="text-gray-500">Cargando...</p></div> </div> </div>
-    </div>
-
+    <div id="productModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 id="productModalTitleFs" class="modal-title-fs">Detalles</h2> <button class="modal-close-btn-fs" data-modal-id="productModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <div id="productDetailsContentFs"><p>Cargando...</p></div> </div> </div> </div>
     <!-- Cart Modal -->
-    <div id="cartModalFs" class="modal-fullscreen"> <!-- Specific ID for animation override -->
-         <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Carrito de Compras</h2> <button class="modal-close-btn-fs" data-modal-id="cartModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div>
-         <div class="modal-body-fs flex flex-col p-0"> <!-- Remove padding from body -->
-             <div class="modal-body-content-wrapper h-full flex flex-col"> <!-- Wrapper still has padding -->
-                <div id="cartItemsFs" class="flex-grow overflow-y-auto px-4 sm:px-6 lg:px-8 mb-4">
-                     <p class="text-secondary text-center py-8" id="emptyCartMessageFs">Tu carrito está vacío.</p>
-                 </div>
-                 <div id="cartSummaryFs" class="mt-auto border-t border-gray-200 pt-4 px-4 sm:px-6 lg:px-8 pb-4 flex-shrink-0 bg-gray-50 rounded-b-md">
-                     <div class="flex justify-between items-center mb-4">
-                         <span class="text-base font-medium text-secondary">Total:</span>
-                         <span id="cartTotalFs" class="text-xl font-bold text-primary">$0.00</span>
-                     </div>
-                     <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-3">
-                         <button id="clearCartBtnFs" class="btn btn-secondary w-full sm:w-auto text-sm">Vaciar carrito</button>
-                         <button id="checkoutBtnFs" class="btn btn-primary w-full sm:w-auto" disabled>Finalizar Pedido</button>
-                     </div>
-                 </div>
-             </div>
-         </div>
-    </div>
-
-    <!-- Contact Modal - Estilo Profesional -->
-<div id="contactModalFs" class="modal-fullscreen">
-    <div class="modal-header-fs">
-        <div class="modal-header-content">
-            <span class="w-10"></span> <!-- Espaciador para centrar título -->
-            <h2 class="modal-title-fs">Contacta con Doña Lucía</h2>
-            <button class="modal-close-btn-fs" data-modal-id="contactModalFs" aria-label="Cerrar">
-                <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-    <div class="modal-body-fs">
-        <div class="modal-body-content-wrapper text-center"> <!-- Centrado de texto -->
-
-            <h3 class="text-xl font-semibold mb-3 text-gray-800">¿Cómo Prefieres Contactarnos?</h3>
-            <p class="text-secondary mb-6 max-w-md mx-auto">
-                Estamos aquí para ayudarte con tu pedido o cualquier consulta que tengas. Elige tu método preferido:
-            </p>
-
-            <!-- Contenedor de Botones de Acción -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-
-                <!-- Botón WhatsApp -->
-                <a href="https://wa.me/5355189657" target="_blank" rel="noopener noreferrer" class="btn btn-green inline-flex items-center w-full sm:w-auto justify-center px-5 py-3">
-                    <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                       <path d="M16.25 3.75a1.938 1.938 0 00-2.75 0L4.813 11.813a1.938 1.938 0 000 2.75l.75.75a1.938 1.938 0 002.75 0l8.688-8.688a1.938 1.938 0 000-2.75l-.75-.75z" />
-                       <path fill-rule="evenodd" d="M6.47 11.53a.75.75 0 010-1.06l4.5-4.5a.75.75 0 011.06 0l2.5 2.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-2.5-2.5z" clip-rule="evenodd" />
-                       <path fill-rule="evenodd" d="M9.25 3.5a.75.75 0 01.75-.75h4a.75.75 0 01.75.75v4a.75.75 0 01-1.5 0V4.94l-6.22 6.22a.75.75 0 11-1.06-1.06L13.06 4H9.25z" clip-rule="evenodd" />
-                     </svg> <!-- Icono de WhatsApp o similar -->
-                    Enviar WhatsApp
-                </a>
-
-                <!-- Botón SMS -->
-                <a href="sms:+5355189657" class="btn btn-blue inline-flex items-center w-full sm:w-auto justify-center px-5 py-3">
-                    <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg> <!-- Icono de Mensaje/Sobre -->
-                    Enviar SMS
-                </a>
-
-                <!-- Botón Llamar -->
-                <a href="tel:+5355189657" class="btn btn-gray inline-flex items-center w-full sm:w-auto justify-center px-5 py-3">
-                   <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                    </svg> <!-- Icono de Teléfono -->
-                    Llamar Ahora
-                </a>
-
-            </div>
-
-            <!-- Separador Opcional -->
-            <hr class="my-6 border-gray-300 max-w-xs mx-auto">
-
-            <!-- Información Adicional -->
-            <div class="text-secondary text-sm">
-                 <h4 class="font-semibold text-gray-700 mb-1">Nuestra Ubicación</h4>
-                <p>Cumanayagua, Cienfuegos, Cuba</p>
-                <!-- Podrías añadir un icono de ubicación aquí si quieres -->
-                 <svg class="inline-block w-4 h-4 mr-1 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
-                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                 </svg>
-                 <span>Cumanayagua, Cienfuegos, Cuba</span>
-            </div>
-
-        </div>
-    </div>
-</div>
-
+    <div id="cartModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Carrito</h2> <button class="modal-close-btn-fs" data-modal-id="cartModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs flex flex-col"> <div class="h-full flex flex-col"> <div id="cartItemsFs" class="flex-grow overflow-y-auto mb-4"> <p id="emptyCartMessageFs" class="text-center py-8">Carrito vacío.</p> </div> <div id="cartSummaryFs" class="mt-auto flex-shrink-0"> <div class="flex justify-between items-center mb-4"> <span class="text-base font-medium">Total:</span> <span id="cartTotalFs" class="text-xl font-bold">$0.00</span> </div> <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-3"> <button id="clearCartBtnFs" class="btn btn-secondary w-full sm:w-auto text-sm">Vaciar</button> <button id="checkoutBtnFs" class="btn btn-primary w-full sm:w-auto" disabled>Finalizar</button> </div> </div> </div> </div> </div>
+    <!-- Contact Modal -->
+    <div id="contactModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">Contacto</h2> <button class="modal-close-btn-fs" data-modal-id="contactModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs"> <div class="modal-body-content-wrapper text-center"> <h3 class="text-xl font-semibold mb-3">Contactarnos</h3> <p class="mb-6 max-w-md mx-auto">Elige tu método:</p> <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"> <a href="https://wa.me/5355189657" target="_blank" rel="noopener noreferrer" class="btn btn-green w-full sm:w-auto"> <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M16.25 3.75a1.938 1.938 0 00-2.75 0L4.813 11.813a1.938 1.938 0 000 2.75l.75.75a1.938 1.938 0 002.75 0l8.688-8.688a1.938 1.938 0 000-2.75l-.75-.75z" /><path fill-rule="evenodd" d="M6.47 11.53a.75.75 0 010-1.06l4.5-4.5a.75.75 0 011.06 0l2.5 2.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-2.5-2.5z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M9.25 3.5a.75.75 0 01.75-.75h4a.75.75 0 01.75.75v4a.75.75 0 01-1.5 0V4.94l-6.22 6.22a.75.75 0 11-1.06-1.06L13.06 4H9.25z" clip-rule="evenodd" /></svg> WhatsApp </a> <a href="sms:+5355189657" class="btn btn-blue w-full sm:w-auto"> <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg> SMS </a> <a href="tel:+5355189657" class="btn btn-gray w-full sm:w-auto"> <svg class="heroicon-sm mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg> Llamar </a> </div> <hr class="my-6 max-w-xs mx-auto"> <div class="text-sm"> <h4 class="font-semibold mb-1">Ubicación</h4> <p> <svg class="inline-block w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" ><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg> Cumanayagua, Cfg </p> </div> </div> </div> </div>
     <!-- About Modal -->
-    <div id="aboutModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs">
-            <div class="modal-header-content">
-                <span class="w-10"></span> <!-- Espaciador para centrar el título -->
-                <h2 class="modal-title-fs">🍕✨ La Historia de Doña Lucía ✨🍕</h2> <!-- Título del primer modal -->
-                <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar acerca de"> <!-- Botón con detalles del primer modal -->
-                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="modal-body-fs">
-            <div class="modal-body-content-wrapper">
-                <!-- Contenido completo del primer modal -->
-                <h3 class="text-xl font-semibold mb-4 text-primary">Sabor que Viene de Corazón</h3>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    En el corazón de Cumanayagua, donde las tradiciones se viven con cada amanecer, nace <strong class="font-medium text-primary">Doña Lucía</strong>, un homenaje a la pasión y dedicación de mi madre, Lucia.
-                </p>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    Desde sus humildes comienzos ha compartido la alegría al pueblo, con sabores que evocan recuerdos de infancia y momentos compartidos cuando ofertaba café en las madrugadas, dulce de coco, pan con tortilla, café con leche y otras tradiciones culinarias.
-                </p>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    Hoy, Doña Lucía no es solo un nombre y un local, sino un <strong class="font-medium text-primary">símbolo de calidad y sabor auténtico</strong>. Con cada producto que ofrecemos, ya sea una golosina clásica o una novedad deliciosa, celebramos la herencia de una mujer que enseñó que el mejor ingrediente es <strong class="text-accent font-medium">el amor</strong>.
-                </p>
-                <p class="text-secondary font-medium leading-relaxed">
-                    Te invitamos a ser parte de nuestra historia. Ven y descubre por qué en Doña Lucía, cada bocado cuenta una historia.
-                </p>
-            </div>
-        </div>
-    </div>
-
-     <!-- Modal: Combos Solidarios Fullscreen - ADDED -->
-    <div id="solidarityModalFs" class="modal-fullscreen">
-        <!-- Cabecera del Modal -->
-        <div class="modal-header-fs">
-            <div class="modal-header-content">
-                <span class="w-10"></span> <!-- Espaciador para centrar el título -->
-                <h2 class="modal-title-fs">🇨🇺❤️ Combos Solidarios: Un Puente de Sabor a Cuba ❤️🇨🇺</h2>
-                <button class="modal-close-btn-fs" data-modal-id="solidarityModalFs" aria-label="Cerrar información de combos solidarios">
-                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <!-- Cuerpo del Modal -->
-        <div class="modal-body-fs md:text-left"> <!-- Clases del cuerpo -->
-            <div class="modal-body-content-wrapper"> <!-- Wrapper para centrar/estilizar contenido -->
-                <!-- Contenido sobre los combos solidarios -->
-                <h3 class="text-xl font-semibold mb-4 text-primary">Acortando Distancias, Bocado a Bocado</h3>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    Sabemos lo que significa estar lejos de la familia en Cuba. Por eso, creamos **Doña Lucía**<!-- REPLACE THIS if needed -->, una tienda online pensada especialmente para ti, que resides en el extranjero y deseas enviar un gesto de <strong class="font-medium text-primary">amor y apoyo directo</strong> a los tuyos en la isla.
-                </p>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    Nos dedicamos a la elaboración y entrega de <strong class="font-medium text-primary">combos de alimentos cuidadosamente seleccionados</strong>. Queremos facilitar que envíes productos esenciales y de calidad que lleguen directamente a la puerta de tus seres queridos, llevando no solo sustento, sino también un mensaje claro: <strong class="font-medium">"Estoy pensando en ustedes"</strong>.
-                </p>
-                <p class="text-secondary mb-4 leading-relaxed">
-                    Entendemos la importancia de este <strong class="font-medium text-primary">acto de solidaridad</strong> en momentos donde cada ayuda cuenta. Nuestro servicio busca ser un puente fiable y humano que conecte tu generosidad con las necesidades de tu familia en Cuba, asegurando que tu cariño se sienta a pesar de la distancia.
-                </p>
-                <p class="text-secondary font-medium leading-relaxed">
-                    Explora nuestras opciones de combos. Con cada envío, no solo mandas alimentos, mandas <strong class="text-accent font-medium">esperanza, cuidado y la fuerza del lazo familiar</strong>. ¡Estamos aquí para ayudarte a estar presente!
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- End Combos Solidarios Modal -->
-
-
-    <!-- Tutorial Modal - Estilo Sencillo y Amigable -->
-<div id="tutorialModalFs" class="modal-fullscreen">
-    <div class="modal-header-fs">
-        <div class="modal-header-content">
-            <span class="w-10"></span> <!-- Espaciador -->
-            <h2 class="modal-title-fs">👋 ¡Hola! Te Ayudamos a Comprar </h2>
-            <button class="modal-close-btn-fs" data-modal-id="tutorialModalFs" aria-label="Cerrar">
-                <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-    <div class="modal-body-fs">
-        <div class="modal-body-content-wrapper text-center"> <!-- Centrado para mejor lectura -->
-
-            <h3 class="text-xl font-semibold text-primary mb-5">¡Es muy fácil encontrar cosas ricas! 😋</h3>
-
-            <div class="space-y-5 text-left max-w-md mx-auto"> <!-- Lista más visual -->
-
-                <div class="flex items-start gap-3">
-                    <span class="text-3xl flex-shrink-0">🔍</span>
-                    <p class="text-secondary mt-1">Si buscas algo especial, ¡usa la <strong>lupa</strong> para escribirlo!</p>
-                </div>
-
-                <div class="flex items-start gap-3">
-                    <span class="text-3xl flex-shrink-0">✨</span>
-                    <p class="text-secondary mt-1">Mira los productos con la <strong>estrella</strong>, ¡son los más populares!</p>
-                </div>
-
-                <div class="flex items-start gap-3">
-                    <span class="text-3xl flex-shrink-0">🖼️</span>
-                    <p class="text-secondary mt-1">Toca la <strong>foto</strong> de algo que te guste para verla más grande.</p>
-                </div>
-
-                <div class="flex items-start gap-3">
-                     <!-- Icono de añadir al carrito más explícito -->
-                     <svg class="w-10 h-10 text-green-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                     </svg>
-                    <p class="text-secondary mt-1">¿Te gusta? Toca <strong>"Ver Detalles"</strong> y luego el botón verde para guardarlo en tu carrito.</p>
-                </div>
-
-                <div class="flex items-start gap-3">
-                    <!-- Icono del Carrito -->
-                     <svg class="w-10 h-10 text-blue-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                     </svg>
-                    <p class="text-secondary mt-1">Tu <strong>carrito</strong> <svg class="heroicon-sm inline-block align-text-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> está arriba. ¡Tócala para ver todo lo que guardaste!</p>
-                </div>
-
-                <div class="flex items-start gap-3">
-                     <span class="text-3xl flex-shrink-0">📲</span>
-                    <p class="text-secondary mt-1">Cuando termines, ve al carrito y toca el botón <strong class="text-accent">"Finalizar Pedido"</strong> para avisarnos por WhatsApp.</p>
-                </div>
-
-                 <div class="flex items-start gap-3">
-                     <!-- Icono de Menú -->
-                     <svg class="w-10 h-10 text-gray-600 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                     </svg>
-                     <p class="text-secondary mt-1">Usa las <strong>rayitas</strong> <svg class="heroicon-sm inline-block align-text-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg> (arriba a la izquierda) para ver otras cosas, ¡como esta ayuda!</p>
-                 </div>
-
-            </div>
-
-            <p class="mt-8 text-lg font-medium text-primary">¡Listo! ¡A comprar se ha dicho! 🥳</p>
-
-        </div>
-    </div>
-</div>
-
+     <div id="aboutModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">🍕✨ Historia</h2> <button class="modal-close-btn-fs" data-modal-id="aboutModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs"> <div class="modal-body-content-wrapper"> <h3 class="text-xl font-semibold mb-4 text-primary">Sabor de Corazón</h3> <p class="text-secondary mb-4 leading-relaxed">... <strong class="font-medium text-primary">Doña Lucía</strong>...</p> <p class="text-secondary mb-4 leading-relaxed">...alegría, sabores...</p> <p class="text-secondary mb-4 leading-relaxed">...<strong class="font-medium text-primary">calidad y sabor</strong>... <strong class="text-accent font-medium">amor</strong>.</p> <p class="text-secondary font-medium leading-relaxed"> Sé parte...</p> </div> </div> </div>
+     <!-- Solidarity Modal -->
+    <div id="solidarityModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">🇨🇺❤️ Combos</h2> <button class="modal-close-btn-fs" data-modal-id="solidarityModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs md:text-left"> <div class="modal-body-content-wrapper"> <h3 class="text-xl font-semibold mb-4 text-primary">Acortando Distancias</h3> <p class="text-secondary mb-4 leading-relaxed">...tienda online... <strong class="font-medium text-primary">amor y apoyo</strong>...</p> <p class="text-secondary mb-4 leading-relaxed">...<strong class="font-medium text-primary">combos alimentos</strong>... <strong class="font-medium text-primary">"Pensando en ti"</strong>.</p> <p class="text-secondary mb-4 leading-relaxed">...<strong class="font-medium text-primary">solidaridad</strong>... puente fiable...</p> <p class="text-secondary font-medium leading-relaxed">...<strong class="text-accent font-medium">esperanza</strong>.</p> </div> </div> </div>
+    <!-- Tutorial Modal -->
+     <div id="tutorialModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">👋 Guía</h2> <button class="modal-close-btn-fs" data-modal-id="tutorialModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs"> <div class="modal-body-content-wrapper text-center"> <h3 class="text-xl font-semibold mb-5">¡Fácil! 😋</h3> <div class="space-y-5 text-left max-w-md mx-auto"> <div class="flex items-start gap-3"> <span class="text-3xl flex-shrink-0">🔍</span> <p class="mt-1">Usa <strong>lupa</strong>.</p> </div> <div class="flex items-start gap-3"> <span class="text-3xl flex-shrink-0">✨</span> <p class="mt-1">Mira <strong>Destacados</strong>.</p> </div> <div class="flex items-start gap-3"> <span class="text-3xl flex-shrink-0">🖼️</span> <p class="mt-1">Toca <strong>foto</strong>.</p> </div> <div class="flex items-start gap-3"> <svg class="w-10 h-10 text-green-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> <p class="mt-1">Toca <strong>"Detalles"</strong> / <strong class="text-primary">"Añadir"</strong>.</p> </div> <div class="flex items-start gap-3"> <svg class="w-10 h-10 text-blue-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> <p class="mt-1">El <strong>carrito</strong> <svg class="heroicon-sm inline-block align-text-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> arriba.</p> </div> <div class="flex items-start gap-3"> <span class="text-3xl flex-shrink-0">📲</span> <p class="mt-1">En carrito, <strong class="text-primary">"Finalizar"</strong>.</p> </div> <div class="flex items-start gap-3"> <svg class="w-10 h-10 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /> </svg> <p class="mt-1">Usa <strong>rayitas</strong>.</p> </div> </div> <p class="mt-8 text-lg font-medium">¡Listo! 🥳</p> </div> </div> </div>
     <!-- Promo Modal -->
-    <div id="promoModalFs" class="modal-fullscreen">
-        <div class="modal-header-fs">
-            <div class="modal-header-content">
-                <span class="w-10"></span> <!-- Spacer -->
-                <h2 class="modal-title-fs text-gold">✨ ¡Oferta Especial! ✨</h2>
-                <button class="modal-close-btn-fs" data-modal-id="promoModalFs" aria-label="Cerrar">
-                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-            </div>
-        </div>
-        <div class="modal-body-fs">
-            <div class="modal-body-content-wrapper">
-                <!-- Icono de Camión (Representa Envío) -->
-                <svg class="heroicon-xxl promo-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5a1.125 1.125 0 001.125-1.125V6.75a1.125 1.125 0 00-1.125-1.125H3.375A1.125 1.125 0 002.25 6.75v10.5a1.125 1.125 0 001.125 1.125z" />
-                     <!-- Podrías mantener solo el camión o añadir algo que indique "gratis" -->
-                </svg>
-        
-                <!-- Título Principal - Claro y Directo -->
-                <h3 class="promo-headline">¡Atención Cumanayagua!</h3>
-        
-                <!-- Subtítulo - La Oferta Estrella -->
-                <p class="promo-subheadline">🎉 ¡Envío GRATIS en TODO tu pedido! 🎉</p>
-        
-                <!-- Texto Explicativo - Detallando la Oferta y Condición -->
-                <p class="promo-text">
-                    ¿Vives dentro del municipio de <strong>Cumanayagua</strong>? ¡Buenas noticias!
-                    Por el momento, te llevamos <strong>absolutamente todo</strong> lo que compres de Doña Lucía
-                    directamente a tu puerta <strong>sin ningún costo de envío</strong>.
-                    ¡Llena tu carrito sin preocupaciones!
-                </p>
-        
-                <!-- Botón de Cierre / Aceptación -->
-                <button class="btn btn-gold promo-cta-button modal-close-btn-fs" data-modal-id="promoModalFs">
-                    ¡Entendido, qué bien!
-                </button>
-            </div>
-        </div>
-
-    <!-- Image Zoom Modal (NEW) -->
-    <div id="imageZoomModalFs" class="modal-fullscreen image-zoom-modal" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);"> <!-- Darker overlay -->
-        <div class="modal-header-fs" style="background: transparent; border-bottom: none;">
-             <div class="modal-header-content" style="justify-content: flex-end;"> <!-- Only show close button -->
-                <button class="modal-close-btn-fs" data-modal-id="imageZoomModalFs" aria-label="Cerrar imagen" style="color: white; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);">
-                    <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-            </div>
-        </div>
-        <div class="modal-body-fs flex items-center justify-center p-4" style="background: transparent;"> <!-- Centering content -->
-            <div class="text-center"> <!-- Container for image and caption -->
-                 <img id="zoomedImage" src="" alt="Imagen ampliada" class="max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-xl mx-auto block">
-                 <p id="zoomedImageCaption" class="mt-4 text-white text-lg font-medium text-shadow"></p>
-            </div>
-        </div>
-    </div>
-
+     <div id="promoModalFs" class="modal-fullscreen"> <div class="modal-header-fs"> <div class="modal-header-content"> <span class="w-10"></span> <h2 class="modal-title-fs">✨ Oferta ✨</h2> <button class="modal-close-btn-fs" data-modal-id="promoModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs"> <div class="modal-body-content-wrapper text-center"> <svg class="heroicon-xxl mx-auto mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"> <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5h10.5a1.125 1.125 0 001.125-1.125V6.75a1.125 1.125 0 00-1.125-1.125H3.375A1.125 1.125 0 002.25 6.75v10.5a1.125 1.125 0 001.125 1.125z" /> </svg> <h3 class="text-2xl font-bold mb-2">Cumanayagua!</h3> <p class="text-lg font-semibold text-accent mb-4 uppercase tracking-wider">🎉 Envío GRATIS! 🎉</p> <p class="mb-8 max-w-md mx-auto"> Envío <strong>sin costo</strong>. ¡Llena carrito! </p> <button class="btn btn-gold promo-cta-button modal-close-btn-fs" data-modal-id="promoModalFs"> OK! </button> </div> </div> </div>
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModalFs" class="modal-fullscreen image-zoom-modal"> <div class="modal-header-fs"> <div class="modal-header-content" style="justify-content: flex-end;"> <button class="modal-close-btn-fs" data-modal-id="imageZoomModalFs" aria-label="Cerrar"> <svg class="heroicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button> </div> </div> <div class="modal-body-fs flex items-center justify-center p-4"> <div class="text-center"> <img id="zoomedImage" src="" alt="Zoom" class="max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-xl mx-auto block"> <p id="zoomedImageCaption" class="mt-4 text-lg font-medium"></p> </div> </div> </div>
 
     <!-- Toast Container -->
     <div id="toastContainer"></div>
-
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // --- State & Constants ---
-            const CART_STORAGE_KEY = 'donLuciaModernCart_v3';
-            let cart = {};
-            let allProductsData = null; // Stores the product array once loaded
-            let featuredSwiper = null;
-            let currentCategoryFilter = 'Todos';
-            let currentSearchTerm = '';
-            let dataLoadError = false;
-            let isRenderingCart = false;
-            const WHATSAPP_NUMBER = '5355189657'; // Centralize WhatsApp number
-             // --- NUEVO ---: Contraseña para el admin (¡CAMBIAR ESTO!)
-             const ADMIN_PASSWORD = '860818'; // !!! CAMBIA ESTA CONTRASEÑA POR UNA SEGURA !!!
-
-            // --- DOM Elements ---
-            const productGrid = document.getElementById('productGrid');
-            const productGridStatus = document.getElementById('productGridStatus'); // Message inside grid
-            const featuredWrapper = document.getElementById('featuredProductWrapper');
-            const featuredSection = document.getElementById('featuredSection');
-            const searchInput = document.getElementById('searchInput');
-            const categoryFiltersContainer = document.getElementById('categoryFilters');
-            const productDetailsContentFs = document.getElementById('productDetailsContentFs');
-            const productModalTitleFs = document.getElementById('productModalTitleFs');
-            const cartItemsContainerFs = document.getElementById('cartItemsFs');
-            const cartTotalElementFs = document.getElementById('cartTotalFs');
-            const emptyCartMessageFs = document.getElementById('emptyCartMessageFs');
-            const cartSummaryDivFs = document.getElementById('cartSummaryFs');
-            const clearCartBtnFs = document.getElementById('clearCartBtnFs');
-            const checkoutBtnFs = document.getElementById('checkoutBtnFs');
-            const menuBtn = document.getElementById('menuBtn'); // Hamburger
-            const openCartBtn = document.getElementById('openCartBtn');
-            const cartItemCountBadge = document.getElementById('cartItemCount'); // Shared Badge
-            const menuCartCount = document.getElementById('menuCartCount'); // Mobile Menu Count
-            const desktopCartCount = document.getElementById('desktopCartCount'); // Desktop Nav Count
-            const forceRefreshLinkMobile = document.getElementById('forceRefreshLinkMobile'); // Mobile refresh
-            const forceRefreshLinkDesktop = document.getElementById('forceRefreshLinkDesktop'); // Desktop refresh
-            const toastContainer = document.getElementById('toastContainer');
-            // Image Zoom Modal Elements
-            const zoomedImageElement = document.getElementById('zoomedImage');
-            const zoomedImageCaptionElement = document.getElementById('zoomedImageCaption');
-            const imageZoomModalElement = document.getElementById('imageZoomModalFs');
-            // --- NUEVO ---: Admin Access Links
-            const adminAccessLinkFooter = document.getElementById('adminAccessLinkFooter');
-            const adminAccessLinkMobile = document.getElementById('adminAccessLinkMobile');
-
-
-             // --- Utility Functions ---
-             function debounce(func, wait) { let timeout; return function executedFunction(...args) { const later = () => { clearTimeout(timeout); func.apply(this, args); }; clearTimeout(timeout); timeout = setTimeout(later, wait); }; }
-             function showConfirmation(message, onConfirm) { if (window.confirm(message)) { onConfirm(); } }
-
-            // --- Data Loading ---
-            async function loadProducts() {
-                console.log('[App] Intentando cargar productos...');
-                if (productGridStatus) productGridStatus.innerHTML = `<svg class="animate-spin h-6 w-6 text-gray-400 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Cargando productos...`;
-                if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<span class="text-sm text-gray-500 italic">Cargando...</span>';
-                if (featuredSection) featuredSection.style.display = 'none'; // Hide featured initially
-
-                try {
-                    // --- MODIFICACIÓN: Usar la ruta relativa correcta ---
-                    const response = await fetch(`1products.json?v=${Date.now()}`); // Cache-busting
-                    // Si '1products.json' está en 'Tiendacombos', la ruta debería ser 'Tiendacombos/1products.json'
-                    // const response = await fetch(`Tiendacombos/1products.json?v=${Date.now()}`); // EJEMPLO si está en subcarpeta
-                    // --- FIN MODIFICACIÓN ---
-
-                    console.log(`[App] Estado de respuesta fetch: ${response.status}`);
-                    if (!response.ok) {
-                        throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
-                    }
-                    const jsonData = await response.json();
-                    if (!Array.isArray(jsonData)) {
-                        throw new Error("Formato de datos inválido: Se esperaba un array de productos.");
-                    }
-                    allProductsData = jsonData;
-                    dataLoadError = false;
-                    console.log(`[App] Productos cargados exitosamente (${allProductsData.length} items).`);
-
-                    // ---- SUCCESS -> Initialize Page Content ----
-                    initializePageContent();
-                    updateCartDisplay(); // Update cart counts and totals
-
-                } catch (error) {
-                    console.error("[Error] Falló al cargar o procesar productos:", error);
-                    dataLoadError = true;
-                    allProductsData = []; // Ensure it's an empty array on error
-
-                    // ---- ERROR -> Display Error Messages ----
-                    if (productGrid) productGrid.innerHTML = ''; // Clear grid content
-                    if (productGridStatus) {
-                        productGridStatus.innerHTML = `<p class="text-red-600 font-semibold text-center col-span-full py-10">❌ Error al cargar los productos.<br>Verifica la conexión o <a href="#" onclick="window.location.reload(true); return false;" class="underline hover:text-red-800">intenta refrescar la página</a>.<br><span class="text-xs text-gray-400">(Detalles en consola F12)</span></p>`;
-                        productGridStatus.classList.remove('hidden'); // Make sure status is visible
-                        if (productGrid) productGrid.appendChild(productGridStatus); // Append status message into the grid area
-                    }
-                     if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<p class="text-red-500 text-xs">Error al cargar categorías.</p>';
-                    if (featuredSection) featuredSection.style.display = 'none'; // Keep featured hidden
-
-                    updateCartDisplay(); // Update cart (may show loading/error state there too)
-                    showToast("Error cargando datos. Intenta recargar (F5).", "error");
-                }
-            }
-
-            // --- Initial Page Setup (Called AFTER successful data load) ---
-            function initializePageContent() {
-                console.log('[App] Inicializando contenido de la página...');
-                renderFeaturedProducts(); // Render featured section first
-                renderCategoryFilters();
-                renderProducts(); // Render the main grid
-                setupSearchListener(); // Set up search only after data is ready
-                console.log('[App] Contenido de la página inicializado.');
-            }
-
-            // --- Modals ---
-            function openFullScreenModal(id) {
-                const m = document.getElementById(id);
-                if (m) {
-                    // Add 'active' slightly after making visible to ensure transition plays
-                    m.style.visibility = 'visible'; // Make it visible first
-                    requestAnimationFrame(() => { // Wait for next frame
-                        m.classList.add('active');
-                        document.body.classList.add('modal-open');
-                        const b = m.querySelector('.modal-body-fs');
-                        if(b) b.scrollTop = 0; // Scroll modal body to top
-                    });
-                     console.log(`[Modal] Abriendo modal '${id}'`);
-                } else {
-                    console.error(`[Modal] Modal con ID '${id}' no encontrado.`);
-                }
-            }
-
-            function closeFullScreenModal(id) {
-                const m = document.getElementById(id);
-                if (m && m.classList.contains('active')) { // Check if it's actually active
-                    m.classList.remove('active');
-                    console.log(`[Modal] Cerrando modal '${id}'`);
-                    // Wait for transition to finish before hiding completely and removing body class
-                    m.addEventListener('transitionend', () => {
-                        if (!m.classList.contains('active')) { // Ensure it's still meant to be hidden
-                            m.style.visibility = 'hidden';
-                            // Check if any *other* modal is still active before removing body class
-                            if (!document.querySelector('.modal-fullscreen.active')) {
-                                document.body.classList.remove('modal-open');
-                                console.log('[Modal] Último modal cerrado, restaurando scroll del body.');
-                            }
-                        }
-                    }, { once: true });
-
-                    // Fallback: If transitionend doesn't fire (e.g., element removed, display none)
-                    setTimeout(() => {
-                        if (!m.classList.contains('active')) {
-                           m.style.visibility = 'hidden';
-                            if (!document.querySelector('.modal-fullscreen.active')) {
-                                document.body.classList.remove('modal-open');
-                            }
-                        }
-                    }, 350); // Slightly longer than transition duration
-
-                } else if(m) {
-                    // console.log(`[Modal] Intento de cerrar modal '${id}' que no estaba activo.`);
-                    // Ensure it's hidden if state is inconsistent
-                    m.style.visibility = 'hidden';
-                    if (!document.querySelector('.modal-fullscreen.active')) {
-                        document.body.classList.remove('modal-open');
-                    }
-                } else {
-                    console.error(`[Modal] Intento de cerrar modal con ID '${id}' no encontrado.`);
-                }
-            }
-
-
-            // --- Cart Persistence ---
-            function saveCart() { try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); updateCartDisplay(); } catch (e) { console.error("[Cart] Error guardando carrito en localStorage:", e); showToast("Error al guardar carrito", "error"); } }
-            function loadCart() { try { const s = localStorage.getItem(CART_STORAGE_KEY); if (!s) return {}; const p = JSON.parse(s); if (typeof p === 'object' && p !== null) { const c = {}; for (const k in p) { const id = parseInt(k), q = p[k]; if (!isNaN(id) && typeof q === 'number' && q > 0 && Number.isInteger(q)) c[id] = q; } console.log('[Cart] Carrito cargado desde localStorage:', c); return c; } throw new Error("Invalid cart data format"); } catch (e) { console.error("[Cart] Error cargando carrito desde localStorage:", e); localStorage.removeItem(CART_STORAGE_KEY); return {}; } }
-
-            // --- Featured Products (Swiper) ---
-            function renderFeaturedProducts() {
-                if (!featuredWrapper || !featuredSection) { console.warn('[Featured] Faltan elementos DOM destacados.'); return; }
-                if (!Array.isArray(allProductsData) || dataLoadError || allProductsData.length === 0) {
-                    console.log('[Featured] Sin datos o error, ocultando sección.');
-                    featuredSection.style.display = 'none';
-                    if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
-                    return;
-                }
-                const featuredProducts = allProductsData.filter(p => p.featured);
-                console.log(`[Featured] Encontrados ${featuredProducts.length} productos destacados.`);
-                if (featuredProducts.length === 0) {
-                    featuredSection.style.display = 'none';
-                    if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; }
-                    return;
-                }
-
-                featuredWrapper.innerHTML = ''; // Clear previous slides
-                featuredProducts.forEach(p => {
-                    const slide = document.createElement('div');
-                    slide.className = 'swiper-slide h-auto'; // Swiper needs this class
-                    slide.innerHTML = `
-                        <div class="product-card featured-product-card w-full h-full flex flex-col">
-                            <div class="relative">
-                                <img src="${p.image}" alt="${p.name}" class="product-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
-                                <span class="featured-badge">Destacado</span>
-                            </div>
-                            <div class="product-info">
-                                <div class="mb-auto">
-                                    <h3 class="product-name">${p.name}</h3>
-                                    <p class="product-price">$${p.price.toFixed(2)}</p>
-                                </div>
-                                <button class="btn btn-secondary w-full mt-4 open-product-details text-sm" data-product-id="${p.id}">Ver Detalles</button>
-                            </div>
-                        </div>`;
-                    slide.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
-                    // Note: Click listener for image is handled by delegation on body
-                    featuredWrapper.appendChild(slide);
-                });
-
-                featuredSection.style.display = 'block'; // Show the section
-                initializeFeaturedSwiper(featuredProducts.length);
-            }
-
-            function initializeFeaturedSwiper(count) {
-                if (featuredSwiper) {
-                    featuredSwiper.destroy(true, true);
-                    featuredSwiper = null;
-                    console.log('[Swiper] Instancia previa destruida.');
-                }
-                if (typeof Swiper === 'undefined') { console.warn("[Swiper] Librería Swiper no cargada."); return; }
-
-                const container = document.querySelector('.featured-carousel');
-                if (!container || count === 0) { console.log('[Swiper] Sin contenedor o sin slides.'); return; }
-
-                // Determine max slides visible for loop calculation
-                const breakpoints = { 640: 2, 1024: 3, 1280: 4 };
-                let maxSlides = 1.3; // Mobile default
-                for(const bp in breakpoints) { if (window.innerWidth >= parseInt(bp)) maxSlides = breakpoints[bp]; }
-
-                console.log(`[Swiper] Inicializando con ${count} slides. Máx visibles: ${maxSlides}`);
-                featuredSwiper = new Swiper(container, {
-                    loop: count > maxSlides, // Enable loop only if more slides than visible
-                    slidesPerView: 1.3,
-                    spaceBetween: 15,
-                    centeredSlides: count <= 1, // Center only if 1 slide shown
-                    grabCursor: true,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    breakpoints: {
-                        640: { slidesPerView: 2, spaceBetween: 20, centeredSlides: count <= 2 },
-                        1024: { slidesPerView: 3, spaceBetween: 25, centeredSlides: count <= 3 },
-                        1280: { slidesPerView: 4, spaceBetween: 25, centeredSlides: count <= 4 }
-                    },
-                    on: { // Add event listener for init
-                        init: function () {
-                            container.classList.add('swiper-initialized'); // Add class to show nav buttons
-                             console.log('[Swiper] Inicializado.');
-                        },
-                    },
-                });
-            }
-
-            // --- Search & Filter ---
-            function setupSearchListener() {
-                 if (searchInput) {
-                    searchInput.addEventListener('input', debounce(() => {
-                        currentSearchTerm = searchInput.value.trim().toLowerCase();
-                         console.log(`[Search] Término actualizado: "${currentSearchTerm}"`);
-                        renderProducts(); // Re-render the grid based on new search term
-                    }, 300)); // Debounce search input
-                 } else {
-                     console.warn('[Search] Elemento de entrada de búsqueda no encontrado.');
-                 }
-            }
-
-            function renderCategoryFilters() {
-                 if (!categoryFiltersContainer) { console.warn('[Filter] Contenedor de categorías no encontrado.'); return; }
-                 if (!Array.isArray(allProductsData) || dataLoadError) {
-                     categoryFiltersContainer.innerHTML = dataLoadError ? '<p class="text-red-500 text-xs">Error</p>' : '<span class="text-sm text-gray-500 italic">...</span>';
-                     return;
-                 }
-                 // Extract unique categories, add "Todos", and sort
-                 const categories = ['Todos', ...new Set(allProductsData.map(p => p.category).filter(Boolean))].sort((a, b) => {
-                     if (a === 'Todos') return -1; if (b === 'Todos') return 1; return a.localeCompare(b);
-                 });
-
-                 console.log('[Filter] Renderizando categorías:', categories);
-                 categoryFiltersContainer.innerHTML = ''; // Clear previous filters
-                 categories.forEach(cat => {
-                     const button = document.createElement('button');
-                     button.textContent = cat;
-                     button.dataset.category = cat;
-                     // Apply active style if it matches the current filter
-                     const isActive = cat === currentCategoryFilter;
-                     button.className = `btn btn-sm transition-colors duration-150 ease-in-out ${isActive ? 'btn-primary' : 'btn-secondary text-gray-600 hover:bg-gray-100'}`;
-                     button.onclick = () => {
-                         currentCategoryFilter = cat; // Update state
-                         console.log(`[Filter] Categoría seleccionada: "${currentCategoryFilter}"`);
-                         renderCategoryFilters(); // Re-render filters to update active style
-                         renderProducts(); // Re-render products for the selected category
-                     };
-                     categoryFiltersContainer.appendChild(button);
-                 });
-            }
-
-            // --- Render Products ---
-            function renderProducts() {
-                if (!productGrid) { console.error("[Render] Contenedor de cuadrícula de productos no encontrado."); return; }
-                if (!productGridStatus) { console.warn("[Render] Elemento de estado de cuadrícula de productos no encontrado."); }
-
-                // Handle loading/error state for product data
-                if (!Array.isArray(allProductsData)) {
-                    if (dataLoadError) {
-                         // Error message is already handled by loadProducts
-                         console.log('[Render] No se pueden renderizar productos debido a error de carga de datos.');
-                     } else {
-                         console.log('[Render] Esperando datos de productos...');
-                        if (productGridStatus) productGridStatus.classList.remove('hidden'); // Show loading message
-                    }
-                    return; // Exit if data isn't ready or failed to load
-                }
-
-                console.log(`[Render] Renderizando productos. Filtro: "${currentCategoryFilter}", Búsqueda: "${currentSearchTerm}"`);
-
-                // Filter products based on category and search term
-                let filteredProducts = allProductsData;
-                if (currentCategoryFilter !== 'Todos') {
-                    filteredProducts = filteredProducts.filter(p => p.category === currentCategoryFilter);
-                }
-                if (currentSearchTerm) {
-                    const terms = currentSearchTerm.split(' ').filter(t => t.length > 0);
-                    filteredProducts = filteredProducts.filter(p => {
-                        const nameLower = p.name.toLowerCase();
-                        const descLower = (p.description || '').toLowerCase();
-                        const categoryLower = (p.category || '').toLowerCase(); // --- NUEVO: Buscar también en categoría
-                        // Check if *all* search terms are present in name, description or category
-                        return terms.every(term => nameLower.includes(term) || descLower.includes(term) || categoryLower.includes(term));
-                    });
-                }
-
-                productGrid.innerHTML = ''; // Clear previous products or loading message
-
-                 if (filteredProducts.length === 0) {
-                     console.log('[Render] Ningún producto coincide con los filtros.');
-                    // Display appropriate "no results" message
-                     const message = currentSearchTerm
-                        ? `No se encontraron productos para "${searchInput.value}".`
-                        : (currentCategoryFilter !== 'Todos'
-                            ? `No hay productos en la categoría "${currentCategoryFilter}".`
-                            : `🤷‍♀️ No hay productos disponibles en este momento.`);
-                     productGrid.innerHTML = `<p class="text-center text-gray-500 col-span-full py-10">${message}</p>`;
-                 } else {
-                     console.log(`[Render] Mostrando ${filteredProducts.length} productos.`);
-                    // Create and append product cards
-                     filteredProducts.forEach(p => {
-                         const productCardElement = document.createElement('div');
-                         productCardElement.className = 'product-card'; // Use existing class
-                         productCardElement.innerHTML = `
-                            <img src="${p.image}" alt="${p.name}" class="product-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
-                            <div class="product-info">
-                                <div>
-                                    <h3 class="product-name">${p.name}</h3>
-                                    <p class="product-price">$${p.price.toFixed(2)}</p>
-                                </div>
-                                <button class="btn btn-secondary w-full mt-2 open-product-details text-sm" data-product-id="${p.id}">Detalles</button>
-                            </div>`;
-                         // Add event listener to the button inside this card
-                        productCardElement.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails);
-                         // Note: Click listener for image is handled by delegation on body
-                        productGrid.appendChild(productCardElement);
-                     });
-                 }
-                 // Hide the initial status message if it exists and products are rendered or "no results" shown
-                 if (productGridStatus) productGridStatus.classList.add('hidden');
-            }
-
-            // --- Product Modal ---
-             function handleOpenProductDetails(event) {
-                 const productId = parseInt(event.currentTarget.dataset.productId);
-                 console.log(`[Product Modal] Abriendo detalles para ID: ${productId}`);
-                 if (isNaN(productId)) { console.warn('[Product Modal] ID de producto inválido.'); return; }
-                 if (!Array.isArray(allProductsData)) { showToast("Datos de productos no están listos.", "error"); return; }
-
-                 const product = allProductsData.find(p => p.id === productId);
-                 if (!product) { showToast("Error: No se pudo encontrar el producto.", "error"); return; }
-
-                 if (productDetailsContentFs && productModalTitleFs) {
-                     const relatedProducts = getRelatedProducts(productId, 3);
-                     let relatedHTML = '';
-                     if (relatedProducts.length > 0) {
-                        console.log(`[Product Modal] Encontrados ${relatedProducts.length} productos relacionados.`);
-                         relatedHTML = `
-                             <div class="mt-10 pt-6 border-t border-gray-200">
-                                 <h4 class="text-lg font-semibold text-primary mb-4">También te podría gustar:</h4>
-                                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                     ${relatedProducts.map(rp => `
-                                         <div class="related-product-card border border-gray-100 rounded-md p-3 text-center hover:shadow-sm flex flex-col items-center bg-white transition-shadow duration-200">
-                                             <img src="${rp.image}" alt="${rp.name}" class="w-20 h-20 object-cover mb-2 rounded zoomable-image cursor-pointer" loading="lazy" data-product-name="${rp.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
-                                             <h5 class="text-xs font-medium text-primary mb-1 leading-tight">${rp.name}</h5>
-                                             <p class="text-sm font-semibold text-gray-700 mb-2">$${rp.price.toFixed(2)}</p>
-                                             <button class="btn btn-secondary btn-xs w-full mt-auto related-details-btn text-xs py-1 px-2" data-product-id="${rp.id}">Ver</button>
-                                         </div>`).join('')}
-                                 </div>
-                             </div>`;
-                     }
-
-                     productDetailsContentFs.innerHTML = `
-                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                             <img src="${product.image}" alt="${product.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover border border-gray-100 zoomable-image cursor-pointer" data-product-name="${product.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
-                             <div class="flex flex-col h-full">
-                                 <p class="text-secondary mb-4 text-sm">${product.description || 'Descripción no disponible.'}</p>
-                                 <p class="text-3xl font-bold text-primary mb-5">$${product.price.toFixed(2)}</p>
-                                 ${product.specifications?.length ? `
-                                     <h4 class="font-semibold text-gray-600 mb-2 text-xs uppercase tracking-wider">Especificaciones:</h4>
-                                     <ul class="list-disc list-inside text-secondary mb-6 text-sm space-y-1 pl-1">
-                                         ${product.specifications.map(s => `<li>${s}</li>`).join('')}
-                                     </ul>` : ''}
-                                 <button class="btn btn-primary w-full mt-auto add-to-cart-btn" data-product-id="${product.id}">
-                                     <svg class="heroicon heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
-                                     Añadir al carrito
-                                 </button>
-                             </div>
-                         </div>
-                         ${relatedHTML}`;
-
-                     productModalTitleFs.textContent = product.name;
-                     // Add listeners for buttons inside the modal
-                     productDetailsContentFs.querySelector('.add-to-cart-btn')?.addEventListener('click', handleAddToCartFromDetails);
-                     productDetailsContentFs.querySelectorAll('.related-details-btn').forEach(button => button.addEventListener('click', handleRelatedProductClick));
-                     // Note: Click listener for images is handled by delegation on body
-
-                     openFullScreenModal('productModalFs');
-                 } else {
-                     console.error('[Product Modal] Elemento de contenido o título del modal no encontrado.');
-                 }
-             }
-
-            function getRelatedProducts(currentProductId, count = 3) {
-                 if (!Array.isArray(allProductsData)) return [];
-                 const currentProduct = allProductsData.find(p => p.id === currentProductId);
-                 const currentCategory = currentProduct?.category;
-
-                 // Filter out the current product
-                 const otherProducts = allProductsData.filter(p => p.id !== currentProductId);
-
-                 // Prioritize products from the same category
-                 let related = [];
-                 let remaining = [];
-                 if (currentCategory) {
-                     related = otherProducts.filter(p => p.category === currentCategory);
-                     remaining = otherProducts.filter(p => p.category !== currentCategory);
-                 } else {
-                     remaining = otherProducts; // No category to match
-                 }
-
-                 // Shuffle both lists for variety
-                 related.sort(() => 0.5 - Math.random());
-                 remaining.sort(() => 0.5 - Math.random());
-
-                 // Combine, prioritizing same category, and take the required count
-                 const combined = [...related, ...remaining];
-                 return combined.slice(0, count);
-             }
-
-            function handleRelatedProductClick(event) {
-                 const relatedProductId = event.currentTarget.dataset.productId;
-                 console.log(`[Product Modal] Clic en producto relacionado ID: ${relatedProductId}`);
-                 closeFullScreenModal('productModalFs');
-                 // Use setTimeout to allow the close animation to start before opening the new one
-                 setTimeout(() => {
-                     // Simulate the event object needed by handleOpenProductDetails
-                     handleOpenProductDetails({ currentTarget: { dataset: { productId: relatedProductId } } });
-                 }, 150); // Adjust delay if needed
-             }
-
-
-            // --- Cart ---
-            function handleAddToCart(productId, buttonElement = null) {
-                const id = parseInt(productId);
-                if (isNaN(id)) { console.warn('[Cart] ID de producto inválido para añadir.'); return; }
-                if (!Array.isArray(allProductsData)) { showToast("Error: Datos de productos no cargados.", "error"); return; }
-
-                const product = allProductsData.find(p => p.id === id);
-                if (!product) { showToast("Error: Producto no encontrado.", "error"); return; }
-
-                console.log(`[Cart] Añadiendo producto ID ${id} (${product.name})`);
-                cart[id] = (cart[id] || 0) + 1; // Increment quantity
-                saveCart(); // Save and trigger UI update
-                showToast(`"${product.name}" añadido al carrito`, 'success');
-
-                // Visual feedback on the button
-                if (buttonElement) {
-                    const originalHTML = buttonElement.innerHTML;
-                    const originalClassName = buttonElement.className;
-                    buttonElement.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`; // Loading spinner
-                    buttonElement.className = 'btn w-full mt-auto bg-green-500 text-white border-green-500 cursor-default pointer-events-none flex justify-center items-center'; // Green bg, disable
-                    buttonElement.disabled = true;
-
-                    setTimeout(() => {
-                        if (document.body.contains(buttonElement)) { // Check if button still exists
-                            buttonElement.innerHTML = `<svg class="heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg> Añadido`;
-                        }
-                    }, 700); // Show checkmark after spinner
-
-                    setTimeout(() => {
-                         if (document.body.contains(buttonElement)) {
-                            buttonElement.innerHTML = originalHTML;
-                            buttonElement.className = originalClassName;
-                            buttonElement.disabled = false;
-                        }
-                    }, 1500); // Restore original state
-                }
-            }
-
-             function handleAddToCartFromDetails(event) {
-                handleAddToCart(event.currentTarget.dataset.productId, event.currentTarget);
-            }
-
-             function renderCartItemsFs() {
-                 if (isRenderingCart) { console.log('[Cart Render] Ya renderizando, omitiendo.'); return; }
-                 isRenderingCart = true;
-
-                 if (!cartItemsContainerFs || !emptyCartMessageFs || !cartSummaryDivFs) {
-                     console.error("[Cart Render] Faltan elementos esenciales de la interfaz de usuario del carrito.");
-                     isRenderingCart = false; return;
-                 }
-
-                 console.log('[Cart Render] Renderizando ítems del carrito...');
-                 cartItemsContainerFs.innerHTML = ''; // Clear previous items
-                 const cartKeys = Object.keys(cart).map(k => parseInt(k)).filter(k => !isNaN(k) && cart[k] > 0);
-                 let hasVisibleItems = false;
-
-                 if (!Array.isArray(allProductsData)) {
-                     emptyCartMessageFs.textContent = dataLoadError ? "Error al cargar datos." : "Cargando datos...";
-                     emptyCartMessageFs.classList.remove('hidden');
-                     cartSummaryDivFs.classList.add('hidden');
-                     console.log('[Cart Render] No se pueden renderizar ítems, datos de productos no listos.');
-                 } else if (cartKeys.length === 0) {
-                     emptyCartMessageFs.textContent = "Tu carrito está vacío.";
-                     emptyCartMessageFs.classList.remove('hidden');
-                     cartSummaryDivFs.classList.add('hidden');
-                     console.log('[Cart Render] El carrito está vacío.');
-                 } else {
-                     emptyCartMessageFs.classList.add('hidden'); // Hide empty message
-                     cartSummaryDivFs.classList.remove('hidden'); // Show summary
-                     console.log(`[Cart Render] Procesando ${cartKeys.length} ítems.`);
-
-                     cartKeys.forEach(productId => {
-                         const quantity = cart[productId];
-                         const product = allProductsData.find(p => p.id === productId);
-
-                         if (product) {
-                             hasVisibleItems = true;
-                             const itemElement = document.createElement('div');
-                             itemElement.className = 'cart-item';
-                             itemElement.dataset.productId = productId;
-                             itemElement.innerHTML = `
-                                 <img src="${product.image}" alt="${product.name}" class="cart-item-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${product.name}"> <!-- ADDED zoomable-image, cursor-pointer, data-product-name -->
-                                 <div class="cart-item-details">
-                                     <h4 class="cart-item-name">${product.name}</h4>
-                                     <p class="cart-item-price">$${product.price.toFixed(2)} cada uno</p>
-                                     <div class="flex items-center mt-1 quantity-controls">
-                                         <button data-product-id="${productId}" data-action="decrease" aria-label="Disminuir cantidad de ${product.name}" class="btn btn-xs bg-gray-200 text-gray-600 hover:bg-gray-300 rounded-full p-1 leading-none" ${quantity <= 1 ? 'disabled' : ''}>
-                                             <svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-                                         </button>
-                                         <span class="quantity-display mx-2">${quantity}</span>
-                                         <button data-product-id="${productId}" data-action="increase" aria-label="Aumentar cantidad de ${product.name}" class="btn btn-xs bg-gray-200 text-gray-600 hover:bg-gray-300 rounded-full p-1 leading-none">
-                                             <svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
-                                         </button>
-                                     </div>
-                                 </div>
-                                 <button class="remove-button remove-from-cart ml-2" data-product-id="${productId}" title="Eliminar ${product.name} del carrito" aria-label="Eliminar ${product.name} del carrito">
-                                     <svg class="heroicon-sm w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                 </button>`;
-                             // Add listeners for buttons inside this item
-                             itemElement.querySelector('[data-action="decrease"]').onclick = handleCartItemActionFs;
-                             itemElement.querySelector('[data-action="increase"]').onclick = handleCartItemActionFs;
-                             itemElement.querySelector('.remove-from-cart').onclick = handleCartItemActionFs;
-                             // Note: Click listener for image is handled by delegation on body
-                             cartItemsContainerFs.appendChild(itemElement);
-                         } else {
-                             console.warn(`[Cart Render] ID de producto ${productId} en carrito pero no encontrado en datos. Eliminando.`);
-                             delete cart[productId];
-                             saveCart(); // Auto-clean invalid item (will trigger another render)
-                         }
-                     });
-
-                     // Handle edge case where all items were invalid and removed
-                     if (!hasVisibleItems && cartKeys.length > 0) {
-                         emptyCartMessageFs.textContent = "Error al mostrar ítems. Intenta recargar.";
-                         emptyCartMessageFs.classList.remove('hidden');
-                         cartSummaryDivFs.classList.add('hidden');
-                         console.log('[Cart Render] No se renderizaron ítems válidos, mostrando error.');
-                     } else if (!hasVisibleItems && cartKeys.length === 0) {
-                         emptyCartMessageFs.textContent = "Tu carrito está vacío.";
-                         emptyCartMessageFs.classList.remove('hidden');
-                         cartSummaryDivFs.classList.add('hidden');
-                         console.log('[Cart Render] El carrito quedó vacío después de eliminar ítems inválidos.');
-                     }
-                 }
-                 isRenderingCart = false;
-                 console.log('[Cart Render] Renderizado finalizado.');
-             }
-
-            function handleCartItemActionFs(event) {
-                 const button = event.currentTarget;
-                 const productIdStr = button.dataset.productId;
-                 const action = button.dataset.action || (button.classList.contains('remove-from-cart') ? 'remove' : null);
-                 const productId = parseInt(productIdStr);
-
-                 if (isNaN(productId) || !action) {
-                     console.warn(`[Cart Action] Acción o ID de producto inválido: Acción=${action}, ID=${productIdStr}`);
-                     return;
-                 }
-                 console.log(`[Cart Action] Acción: ${action}, ID Producto: ${productId}`);
-
-                 let cartChanged = false;
-                 if (action === 'increase') {
-                     cart[productId] = (cart[productId] || 0) + 1;
-                     cartChanged = true;
-                 } else if (action === 'decrease') {
-                     if (cart[productId] && cart[productId] > 1) {
-                         cart[productId]--;
-                         cartChanged = true;
-                     } else if (cart[productId] === 1) {
-                         // Decreasing from 1 means remove
-                         delete cart[productId];
-                         cartChanged = true;
-                          showToast("Producto eliminado del carrito", "info");
-                     }
-                 } else if (action === 'remove') {
-                     if (cart[productId]) {
-                         delete cart[productId];
-                         cartChanged = true;
-                         showToast("Producto eliminado del carrito", "info");
-                     }
-                 }
-
-                 if (cartChanged) {
-                     saveCart(); // Save and trigger UI update (which includes re-rendering)
-                 } else {
-                     console.warn(`[Cart Action] La acción "${action}" para el producto ${productId} no resultó en cambios.`);
-                 }
-            }
-
-            function updateCartTotalFs() {
-                 if (!cartTotalElementFs || !checkoutBtnFs) { console.warn('[Cart Total] Elemento de total o botón de finalizar no encontrado.'); return; }
-
-                 let total = 0;
-                 let canCalculate = false;
-                 if (Array.isArray(allProductsData)) {
-                     canCalculate = true;
-                     for (const pidStr in cart) {
-                         const pid = parseInt(pidStr);
-                         const quantity = cart[pid];
-                         const product = allProductsData.find(p => p.id === pid);
-                         if (product && quantity > 0) {
-                             total += product.price * quantity;
-                         } else if (quantity > 0) {
-                             // Product ID in cart but not in data - indicates an issue
-                             canCalculate = false;
-                              console.warn(`[Cart Total] No se puede calcular el total con precisión, faltan datos para el ID de producto ${pid}`);
-                             break;
-                         }
-                     }
-                 }
-
-                 if (canCalculate) {
-                     cartTotalElementFs.textContent = `$${total.toFixed(2)}`;
-                     checkoutBtnFs.disabled = total <= 0; // Enable only if total > 0
-                     console.log(`[Cart Total] Total actualizado: $${total.toFixed(2)}, Finalizar habilitado: ${!checkoutBtnFs.disabled}`);
-                 } else {
-                     cartTotalElementFs.textContent = `$?.??`;
-                     checkoutBtnFs.disabled = true;
-                     console.log('[Cart Total] No se puede calcular el total, finalizar deshabilitado.');
-                 }
-            }
-
-            function clearCartFs() {
-                 const itemCount = Object.keys(cart).length;
-                 if (itemCount > 0) {
-                     showConfirmation('¿Estás seguro de que quieres vaciar todo el carrito?', () => {
-                         console.log('[Cart] Vaciando carrito.');
-                         cart = {};
-                         saveCart(); // Save the empty cart and trigger UI update
-                         showToast('Carrito vaciado', 'info');
-                     });
-                 } else {
-                     showToast('El carrito ya está vacío.', 'info');
-                 }
-            }
-
-            function checkoutFs() {
-                 const validCartKeys = Object.keys(cart).filter(k => cart[k] > 0 && !isNaN(parseInt(k)));
-                 if (validCartKeys.length === 0) {
-                     showToast('Tu carrito está vacío. Añade productos antes de finalizar.', "error");
-                     return;
-                 }
-                 if (!Array.isArray(allProductsData)) {
-                     showToast("Error: Datos de productos no disponibles. Intenta recargar.", "error");
-                     return;
-                 }
-                 if (WHATSAPP_NUMBER === 'YOUR_NUMBER_HERE' || WHATSAPP_NUMBER.length < 10) {
-                    console.error("Número de WhatsApp no configurado correctamente en la constante WHATSAPP_NUMBER.");
-                    showToast("Error de configuración interna. Contacta al administrador.", "error");
-                    return;
-                }
-
-
-                 let messageBody = "";
-                 let grandTotal = 0;
-                 let productsFound = true;
-
-                 validCartKeys.forEach(pidStr => {
-                     const pid = parseInt(pidStr);
-                     const quantity = cart[pid];
-                     const product = allProductsData.find(p => p.id === pid);
-                     if (product) {
-                         const itemTotal = product.price * quantity;
-                         grandTotal += itemTotal;
-                         // Format: Checkmark, Bold Name, (Quantity), Price
-                         messageBody += `✅ *${product.name}* (x${quantity}) - $${itemTotal.toFixed(2)}\n`;
-                     } else {
-                         messageBody += `❓ _[ID ${pid} no encontrado]_ (x${quantity})\n`;
-                         productsFound = false; // Mark if any product details were missing
-                     }
-                 });
-
-                 // Construct the final WhatsApp message
-                 let finalMessage = `🎉 *¡Nuevo Pedido Doña Lucía!* 🎉\n\nHola! Me gustaría realizar el siguiente pedido:\n\n`;
-                 finalMessage += `-----------\n`;
-                 finalMessage += `${messageBody}`; // Add the list of items
-                 finalMessage += `-----------\n`;
-                 finalMessage += `💰 *Total Estimado:* $${grandTotal.toFixed(2)}\n\n`;
-
-                 if (!productsFound) {
-                     finalMessage += `_(Nota: Pueden faltar detalles de algunos productos. Por favor confirmar.)_\n\n`;
-                 }
-
-                 finalMessage += `📍 _Espero confirmación de disponibilidad y detalles para la entrega._\n\n`;
-                 finalMessage += `¡Muchas gracias! 🙏`;
-
-                 // Encode and open WhatsApp link
-                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(finalMessage)}`;
-                 console.log("[Checkout] Abriendo URL de WhatsApp:", whatsappUrl);
-                 window.open(whatsappUrl, '_blank'); // Open in a new tab
-            }
-
-
-            // --- Cart Display Update (Counters) ---
-            function updateCartDisplay() {
-                 const totalItems = Object.values(cart).reduce((sum, qty) => sum + (qty || 0), 0);
-                 console.log(`[Cart Display] Actualizando contadores. Ítems totales: ${totalItems}`);
-
-                 // Update badge counter
-                 if (cartItemCountBadge) {
-                     cartItemCountBadge.textContent = totalItems;
-                     cartItemCountBadge.style.display = totalItems > 0 ? 'inline-block' : 'none';
-                     // Simple scale animation on change (if badge was already visible)
-                     const prevCount = parseInt(cartItemCountBadge.dataset.prevCount || '0');
-                     if (totalItems > 0 && totalItems !== prevCount && !document.querySelector('.modal-fullscreen.active')) {
-                         cartItemCountBadge.style.transform = 'scale(1.25)';
-                         setTimeout(() => { cartItemCountBadge.style.transform = 'scale(1)'; }, 150);
-                     }
-                     cartItemCountBadge.dataset.prevCount = totalItems.toString();
-                 }
-
-                 // Update text counters
-                 if (menuCartCount) menuCartCount.textContent = totalItems;
-                 if (desktopCartCount) desktopCartCount.textContent = totalItems;
-
-                 // Render items and update total (important for enabling/disabling checkout)
-                 // This needs to happen regardless of whether the cart modal is open
-                 renderCartItemsFs();
-                 updateCartTotalFs();
-            }
-
-
-            // --- Toasts ---
-            function showToast(message, type = 'info', duration = 3000) {
-                if (!toastContainer) return;
-                const toast = document.createElement('div');
-                toast.className = 'toast-notification';
-                let icon = '';
-                let bgColorClass = 'bg-gray-800'; // Default: info
-
-                switch (type) {
-                    case 'success':
-                        icon = `<svg class="toast-icon text-green-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`;
-                        bgColorClass = 'bg-green-600'; break;
-                    case 'error':
-                        icon = `<svg class="toast-icon text-red-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>`;
-                        bgColorClass = 'bg-red-600'; break;
-                    case 'info':
-                        icon = `<svg class="toast-icon text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`;
-                        bgColorClass = 'bg-blue-600'; break;
-                }
-                toast.classList.add(bgColorClass);
-                toast.innerHTML = `${icon}<span class="flex-grow">${message}</span>`;
-                toastContainer.appendChild(toast);
-
-                // Trigger animation
-                requestAnimationFrame(() => { toast.classList.add('show'); });
-
-                // Auto-dismiss
-                const dismissTimeout = setTimeout(() => {
-                    toast.classList.remove('show');
-                    toast.addEventListener('transitionend', () => toast.remove(), { once: true });
-                    // Fallback removal if transitionend doesn't fire reliably
-                    setTimeout(() => { if(toast.parentNode) toast.remove(); }, 500);
-                }, duration);
-
-                // Click to dismiss
-                toast.addEventListener('click', () => {
-                    clearTimeout(dismissTimeout);
-                    toast.classList.remove('show');
-                     toast.addEventListener('transitionend', () => toast.remove(), { once: true });
-                     setTimeout(() => { if(toast.parentNode) toast.remove(); }, 500);
-                }, { once: true });
-            }
-
-            // --- Image Zoom Modal ---
-            function openImageZoomModal(imageUrl, imageAlt, captionText = '') {
-                if (imageZoomModalElement && zoomedImageElement && zoomedImageCaptionElement) {
-                    console.log(`[Image Zoom] Abriendo: ${imageUrl}, Leyenda: ${captionText}`);
-                    zoomedImageElement.src = imageUrl;
-                    zoomedImageElement.alt = imageAlt || 'Imagen ampliada'; // Use provided alt or a default
-                    zoomedImageCaptionElement.textContent = captionText;
-                    zoomedImageCaptionElement.style.display = captionText ? 'block' : 'none'; // Hide caption if empty
-
-                    openFullScreenModal('imageZoomModalFs'); // Use existing function to open
-                } else {
-                    console.error('[Image Zoom] No se encontró el modal, la imagen o el elemento de leyenda.');
-                    showToast("Error al mostrar la imagen.", "error");
-                }
-            }
-
-            // --- NUEVO: Admin Access ---
-            function handleAdminAccess(event) {
-                event.preventDefault();
-                console.log('[Admin] Intento de acceso al panel.');
-                const password = prompt("Por favor, introduce la contraseña de administrador:");
-
-                if (password === null) { // User clicked Cancel
-                    console.log('[Admin] Acceso cancelado por el usuario.');
-                    return;
-                }
-
-                if (password.trim() === ADMIN_PASSWORD) {
-                    console.log('[Admin] Contraseña correcta. Redirigiendo a admin.html...');
-                    showToast('Acceso concedido. Redirigiendo...', 'success', 2000);
-                    // Redirigir a la página de administración
-                    window.location.href = 'admin.html'; // Asegúrate que admin.html está en el mismo directorio
-                } else {
-                    console.log('[Admin] Contraseña incorrecta.');
-                    showToast('Contraseña incorrecta. Acceso denegado.', 'error');
-                }
-            }
-
-            // --- Event Listeners Setup ---
-            function setupStaticEventListeners() {
-                console.log('[Events] Configurando escuchadores de eventos estáticos...');
-                // Cart button
-                if (openCartBtn) openCartBtn.addEventListener('click', () => openFullScreenModal('cartModalFs'));
-
-                // Mobile menu button
-                if (menuBtn) menuBtn.addEventListener('click', () => openFullScreenModal('menuModalFs'));
-
-                // All modal close buttons
-                document.querySelectorAll('.modal-close-btn-fs').forEach(button => {
-                    button.addEventListener('click', () => closeFullScreenModal(button.dataset.modalId));
-                });
-
-                // Links inside the mobile menu (that open other modals)
-                 document.querySelectorAll('#menuModalFs .modal-nav-link').forEach(link => {
-                    link.addEventListener('click', (event) => handleMenuLinkClick(event, link));
-                });
-
-                // Links in the desktop nav bar (that open modals)
-                 document.querySelectorAll('header nav .desktop-nav-link.nav-link').forEach(link => {
-                    link.addEventListener('click', (event) => handleNavLinkClick(event, link));
-                });
-
-
-                // Cart actions
-                if (clearCartBtnFs) clearCartBtnFs.addEventListener('click', clearCartFs);
-                if (checkoutBtnFs) checkoutBtnFs.addEventListener('click', checkoutFs);
-
-                // Force refresh links
-                if(forceRefreshLinkMobile) forceRefreshLinkMobile.addEventListener('click', handleForceRefresh);
-                if(forceRefreshLinkDesktop) forceRefreshLinkDesktop.addEventListener('click', handleForceRefresh);
-
-                // Optional: Close modal on background click (clicking outside content)
-                document.querySelectorAll('.modal-fullscreen').forEach(modal => {
-                    modal.addEventListener('click', (e) => {
-                        // Close only if the direct target of the click is the modal overlay itself
-                        if (e.target === modal) {
-                             console.log(`[Modal] Cerrando modal '${modal.id}' por clic en fondo.`);
-                            closeFullScreenModal(modal.id);
-                        }
-                    });
-                });
-
-                // --- Event Listener for Image Zoom (Delegation) ---
-                document.body.addEventListener('click', (event) => {
-                    // Check if the clicked element is an image we want to zoom
-                    const clickedImage = event.target.closest('img.zoomable-image');
-
-                    if (clickedImage) {
-                        event.preventDefault(); // Prevent any default image link behavior if it existed
-                        const imageUrl = clickedImage.src; // Get the source URL
-                        const imageAlt = clickedImage.alt;
-                        const captionText = clickedImage.dataset.productName || imageAlt || ''; // Get name from data-attribute or alt
-
-                        openImageZoomModal(imageUrl, imageAlt, captionText);
-                    }
-                });
-
-                 // --- NUEVO: Event Listeners for Admin Access ---
-                if (adminAccessLinkFooter) {
-                    adminAccessLinkFooter.addEventListener('click', handleAdminAccess);
-                }
-                if (adminAccessLinkMobile) {
-                    adminAccessLinkMobile.addEventListener('click', handleAdminAccess);
-                }
-
-                 console.log('[Events] Configuración de escuchadores de eventos estáticos completa.');
-            }
-
-             // Handler for MOBILE menu links that trigger modals
-             function handleMenuLinkClick(event, linkElement) {
-                 const targetModalId = linkElement.dataset.targetModal;
-                 if (targetModalId) {
-                     event.preventDefault(); // Prevent default only if it's opening a modal
-                     console.log(`[Menu] Clic en enlace para modal: ${targetModalId}`);
-                     closeFullScreenModal('menuModalFs'); // Close menu first
-                     // Open target modal after a short delay
-                     setTimeout(() => { openFullScreenModal(targetModalId); }, 150); // Increased delay slightly
-                 } else if (linkElement.id === 'adminAccessLinkMobile') {
-                     // Let the specific admin handler take care of it (added in setupStaticEventListeners)
-                     console.log('[Menu] Clic en enlace de admin detectado.');
-                 }
-                 // Allow default behavior for links without data-target-modal (like force refresh)
-             }
-
-              // Handler for DESKTOP navbar links that trigger modals
-              function handleNavLinkClick(event, linkElement) {
-                  const targetModalId = linkElement.dataset.targetModal;
-                  if (targetModalId) {
-                      event.preventDefault(); // Prevent default only if it's opening a modal
-                      console.log(`[Nav] Clic en enlace para modal: ${targetModalId}`);
-                      // Check if another modal is already open and close it first
-                      const activeModal = document.querySelector('.modal-fullscreen.active');
-                      if (activeModal && activeModal.id !== targetModalId) {
-                           closeFullScreenModal(activeModal.id);
-                           setTimeout(() => openFullScreenModal(targetModalId), 150); // Delay opening new one
-                      } else if (!activeModal) { // Only open if no modal is active
-                           openFullScreenModal(targetModalId);
-                      } else {
-                           // If the target modal is already active, do nothing or maybe close it?
-                           // Currently doing nothing.
-                           console.log(`[Nav] El modal '${targetModalId}' ya está activo.`);
-                      }
-                  }
-                 // Allow default behavior for links without data-target-modal (like force refresh)
-              }
-
-
-             // Generic Force Refresh Handler
-             function handleForceRefresh(event) {
-                 event.preventDefault(); // Always prevent default for this link
-                 console.log('[Refresh] Recarga forzada solicitada.');
-                 showConfirmation("Esto borrará los datos locales (como el carrito) y recargará la página completamente para obtener la versión más reciente. ¿Continuar?", () => {
-                    console.log("[Refresh] Procediendo con la recarga...");
-                    try { localStorage.removeItem(CART_STORAGE_KEY); } catch (e) { console.warn("No se pudo eliminar el carrito del almacenamiento local:", e); }
-                    // Attempt cache-busting reload
-                    try { window.location.href = `${window.location.pathname}?force_reload=${Date.now()}`; setTimeout(()=>window.location.reload(true), 500); } catch(e) { window.location.reload(true); }
-                });
-            }
-
-            // --- Initial Application Load ---
-            console.log('[App] Evento DOMContentLoaded disparado.');
-            cart = loadCart(); // Load cart from storage first
-            setupStaticEventListeners(); // Setup listeners that don't depend on data
-            loadProducts(); // Start loading product data async
-
-        }); // End DOMContentLoaded
+            const CART_STORAGE_KEY = 'donLuciaLuxuryCart_v2'; let cart = {}; let allProductsData = null; let featuredSwiper = null; let currentCategoryFilter = 'Todos'; let currentSearchTerm = ''; let dataLoadError = false; let isRenderingCart = false; const WHATSAPP_NUMBER = '5355189657'; const ADMIN_PASSWORD = '860818'; /* <<< CAMBIAR */
+            const productGrid = document.getElementById('productGrid'); const productGridStatus = document.getElementById('productGridStatus'); const featuredWrapper = document.getElementById('featuredProductWrapper'); const featuredSection = document.getElementById('featuredSection'); const searchInput = document.getElementById('searchInput'); const categoryFiltersContainer = document.getElementById('categoryFilters'); const productDetailsContentFs = document.getElementById('productDetailsContentFs'); const productModalTitleFs = document.getElementById('productModalTitleFs'); const cartItemsContainerFs = document.getElementById('cartItemsFs'); const cartTotalElementFs = document.getElementById('cartTotalFs'); const emptyCartMessageFs = document.getElementById('emptyCartMessageFs'); const cartSummaryDivFs = document.getElementById('cartSummaryFs'); const clearCartBtnFs = document.getElementById('clearCartBtnFs'); const checkoutBtnFs = document.getElementById('checkoutBtnFs'); const menuBtn = document.getElementById('menuBtn'); const openCartBtn = document.getElementById('openCartBtn'); const cartItemCountBadge = document.getElementById('cartItemCount'); const menuCartCount = document.getElementById('menuCartCount'); const desktopCartCount = document.getElementById('desktopCartCount'); const forceRefreshLinkMobile = document.getElementById('forceRefreshLinkMobile'); const forceRefreshLinkDesktop = document.getElementById('forceRefreshLinkDesktop'); const toastContainer = document.getElementById('toastContainer'); const zoomedImageElement = document.getElementById('zoomedImage'); const zoomedImageCaptionElement = document.getElementById('zoomedImageCaption'); const imageZoomModalElement = document.getElementById('imageZoomModalFs'); const adminAccessLinkFooter = document.getElementById('adminAccessLinkFooter'); const adminAccessLinkMobile = document.getElementById('adminAccessLinkMobile');
+            function debounce(f, w) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => f.apply(this, a), w); }; }
+            function showConf(m, cb) { if (window.confirm(m)) cb(); }
+            async function loadProducts() { console.log('[App] Loading...'); if (productGridStatus) productGridStatus.innerHTML = `<svg class="animate-spin h-6 w-6 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Loading...`; if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<span class="text-sm italic">...</span>'; if (featuredSection) featuredSection.style.display = 'none'; try { const r = await fetch(`1products.json?v=${Date.now()}`); if (!r.ok) throw new Error(`HTTP ${r.status}`); const d = await r.json(); if (!Array.isArray(d)) throw new Error("Invalid data"); allProductsData = d; dataLoadError = false; console.log(`[App] ${allProductsData.length} loaded.`); initializePageContent(); updateCartDisplay(); } catch (e) { console.error("[Error] Load failed:", e); dataLoadError = true; allProductsData = []; if (productGrid) productGrid.innerHTML = ''; if (productGridStatus) { productGridStatus.innerHTML = `<p class="col-span-full py-10 text-center text-red-600 font-semibold">❌ Error.<br><a href="#" onclick="window.location.reload(true); return false;" class="underline hover:opacity-80">Refresh</a>.<br><span class="text-xs opacity-70">(F12)</span></p>`; productGridStatus.classList.remove('hidden'); if (productGrid) productGrid.appendChild(productGridStatus); } if (categoryFiltersContainer) categoryFiltersContainer.innerHTML = '<p class="text-xs text-red-500">Error.</p>'; if (featuredSection) featuredSection.style.display = 'none'; updateCartDisplay(); showToast("Error loading. Refresh (F5).", "error"); } }
+            function initializePageContent() { console.log('[App] Init UI...'); renderFeaturedProducts(); renderCategoryFilters(); renderProducts(); setupSearchListener(); console.log('[App] UI OK.'); }
+            function openModal(id) { const m = document.getElementById(id); if (m) { m.style.visibility = 'visible'; requestAnimationFrame(() => { m.classList.add('active'); document.body.classList.add('modal-open'); const b = m.querySelector('.modal-body-fs'); if(b) b.scrollTop = 0; }); console.log(`[Modal] Open '${id}'`); } else { console.error(`[Modal] ID '${id}' not found.`); } }
+            function closeModal(id) { const m = document.getElementById(id); if (m && m.classList.contains('active')) { m.classList.remove('active'); console.log(`[Modal] Close '${id}'`); const handler = () => { m.style.visibility = 'hidden'; if (!document.querySelector('.modal-fullscreen.active')) { document.body.classList.remove('modal-open'); console.log('[Modal] Scroll OK.'); } m.removeEventListener('transitionend', handler); }; m.addEventListener('transitionend', handler); setTimeout(() => { if (!m.classList.contains('active')) { m.style.visibility = 'hidden'; if (!document.querySelector('.modal-fullscreen.active')) { document.body.classList.remove('modal-open'); } } m.removeEventListener('transitionend', handler); }, 350); /* Match transition duration */ } else if(m) { m.style.visibility = 'hidden'; if (!document.querySelector('.modal-fullscreen.active')) { document.body.classList.remove('modal-open'); } } }
+            function saveCart() { try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); updateCartDisplay(); } catch (e) { console.error("[Cart] Save Err:", e); showToast("Error guardando", "error"); } }
+            function loadCart() { try { const s = localStorage.getItem(CART_STORAGE_KEY); if (!s) return {}; const p = JSON.parse(s); if (typeof p === 'object' && p !== null) { const c = {}; for (const k in p) { const id = parseInt(k), q = p[k]; if (!isNaN(id) && q > 0 && Number.isInteger(q)) c[id] = q; } console.log('[Cart] Loaded:', c); return c; } throw new Error("Invalid"); } catch (e) { console.error("[Cart] Load Err:", e); localStorage.removeItem(CART_STORAGE_KEY); return {}; } }
+            function renderFeaturedProducts() { if (!featuredWrapper || !featuredSection) return; if (!Array.isArray(allProductsData) || dataLoadError || allProductsData.length === 0) { featuredSection.style.display = 'none'; if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; } return; } const featured = allProductsData.filter(p => p.featured); if (featured.length === 0) { featuredSection.style.display = 'none'; if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; } return; } featuredWrapper.innerHTML = ''; featured.forEach(p => { const slide = document.createElement('div'); slide.className = 'swiper-slide'; slide.innerHTML = `<div class="product-card"><div class="top-glow"></div><img src="${p.image}" alt="${p.name}" class="zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"><h2 class="product-title">${p.name}</h2><p class="product-desc">${p.description || ''}</p><p class="product-price">$${p.price.toFixed(2)}</p><div class="button-container"><button class="btn open-product-details" data-product-id="${p.id}">Detalles</button></div><svg class="inner-border" viewBox="0 0 100 100" preserveAspectRatio="none"><path d=" M 5 0 Q 0 0 0 5 L 0 95 Q 0 100 5 100 L 95 100 Q 100 100 100 95 L 100 5 Q 100 0 95 0 Z " fill="none" stroke="var(--luxury-border-inner)" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></div>`; slide.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails); featuredWrapper.appendChild(slide); }); featuredSection.style.display = 'block'; initializeFeaturedSwiper(featured.length); }
+            function initializeFeaturedSwiper(count) { if (featuredSwiper) { featuredSwiper.destroy(true, true); featuredSwiper = null; } if (typeof Swiper === 'undefined') return; const container = document.querySelector('.featured-carousel'); if (!container || count === 0) return; const breakpoints = { 640: 2, 768: 2.5, 1024: 3, 1280: 4 }; let maxSlides = 1.5; for(const bp in breakpoints) { if (window.innerWidth >= parseInt(bp)) maxSlides = breakpoints[bp]; } console.log(`[Swiper] Init ${count}. Max: ${maxSlides}`); featuredSwiper = new Swiper(container, { loop: count > maxSlides, slidesPerView: 1.5, /* AJUSTE: Reducir espacio */ spaceBetween: 10, grabCursor: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', }, breakpoints: { 640: { slidesPerView: 2, spaceBetween: 15 }, 768: { slidesPerView: 2.5, spaceBetween: 15 }, 1024: { slidesPerView: 3, spaceBetween: 20 }, 1280: { slidesPerView: 4, spaceBetween: 20 } }, on: { init: function () { container.classList.add('swiper-initialized'); } }, }); }
+            function setupSearchListener() { if (searchInput) { searchInput.addEventListener('input', debounce(() => { currentSearchTerm = searchInput.value.trim().toLowerCase(); renderProducts(); }, 300)); } }
+            function renderCategoryFilters() { if (!categoryFiltersContainer) return; if (!Array.isArray(allProductsData) || dataLoadError) { categoryFiltersContainer.innerHTML = dataLoadError ? '<p class="text-xs text-red-500">X</p>' : '<span class="text-sm italic">...</span>'; return; } const cats = ['Todos', ...new Set(allProductsData.map(p => p.category).filter(Boolean))].sort((a, b) => { if (a === 'Todos') return -1; if (b === 'Todos') return 1; return a.localeCompare(b); }); categoryFiltersContainer.innerHTML = ''; cats.forEach(cat => { const btn = document.createElement('button'); btn.textContent = cat; btn.dataset.category = cat; const active = cat === currentCategoryFilter; btn.className = `btn btn-sm transition-colors ${active ? 'btn-primary' : 'btn-secondary'}`; btn.onclick = () => { currentCategoryFilter = cat; renderCategoryFilters(); renderProducts(); }; categoryFiltersContainer.appendChild(btn); }); }
+            function renderProducts() { if (!productGrid) return; if (!Array.isArray(allProductsData)) { if (!dataLoadError && productGridStatus) productGridStatus.classList.remove('hidden'); return; } let filtered = allProductsData; if (currentCategoryFilter !== 'Todos') { filtered = filtered.filter(p => p.category === currentCategoryFilter); } if (currentSearchTerm) { const terms = currentSearchTerm.split(' ').filter(t=>t); filtered = filtered.filter(p => { const n = p.name.toLowerCase(); const d = (p.description || '').toLowerCase(); const c = (p.category || '').toLowerCase(); return terms.every(t => n.includes(t) || d.includes(t) || c.includes(t)); }); } productGrid.innerHTML = ''; if (filtered.length === 0) { const msg = currentSearchTerm ? `No hay para "${searchInput.value}".` : (currentCategoryFilter !== 'Todos' ? `No hay en "${currentCategoryFilter}".` : `🤷‍♀️ No hay productos.`); productGrid.innerHTML = `<p class="col-span-full py-10 text-center">${msg}</p>`; } else { filtered.forEach(p => { const card = document.createElement('div'); card.innerHTML = `<div class="product-card"><div class="top-glow"></div><img src="${p.image}" alt="${p.name}" class="zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"><h2 class="product-title">${p.name}</h2><p class="product-desc">${p.description || ''}</p><p class="product-price">$${p.price.toFixed(2)}</p><div class="button-container"><button class="btn open-product-details" data-product-id="${p.id}">Detalles</button></div><svg class="inner-border" viewBox="0 0 100 100" preserveAspectRatio="none"><path d=" M 5 0 Q 0 0 0 5 L 0 95 Q 0 100 5 100 L 95 100 Q 100 100 100 95 L 100 5 Q 100 0 95 0 Z " fill="none" stroke="var(--luxury-border-inner)" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></div>`; card.querySelector('.open-product-details').addEventListener('click', handleOpenProductDetails); productGrid.appendChild(card); }); } if (productGridStatus) productGridStatus.classList.add('hidden'); }
+            function handleOpenProductDetails(event) { const id = parseInt(event.currentTarget.dataset.productId); if (isNaN(id)) return; if (!Array.isArray(allProductsData)) { showToast("Datos no listos", "error"); return; } const p = allProductsData.find(i => i.id === id); if (!p) { showToast("Error: No encontrado", "error"); return; } if (productDetailsContentFs && productModalTitleFs) { const rel = getRelatedProducts(id, 3); let relHTML = ''; if (rel.length > 0) { relHTML = `<div class="mt-10 pt-6 border-t border-dl-border-light"><h4 class="text-lg font-semibold mb-4 text-dl-text-primary">Quizás te guste:</h4><div class="grid grid-cols-2 sm:grid-cols-3 gap-3">${rel.map(rp => `<div class="related-product-card border border-dl-border-light rounded-md p-3 text-center hover:shadow-md flex flex-col items-center transition-shadow duration-200 bg-luxury-bg-secondary"><img src="${rp.image}" alt="${rp.name}" class="w-20 h-20 object-cover mb-2 rounded zoomable-image cursor-pointer" loading="lazy" data-product-name="${rp.name}"><h5 class="text-xs font-medium mb-1 leading-tight text-dl-text-primary">${rp.name}</h5><p class="text-sm font-semibold mb-2 text-dl-gold-accent">$${rp.price.toFixed(2)}</p><button class="btn btn-secondary btn-xs w-full mt-auto related-details-btn text-xs py-1 px-2" data-product-id="${rp.id}">Ver</button></div>`).join('')}</div></div>`; } productDetailsContentFs.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"><img src="${p.image}" alt="${p.name}" class="w-full rounded-lg shadow-md mb-4 lg:mb-0 aspect-square object-cover border border-dl-border-light zoomable-image cursor-pointer" data-product-name="${p.name}"><div class="flex flex-col h-full"><p class="mb-4 text-sm text-dl-text-secondary">${p.description || ''}</p><p class="text-3xl font-bold mb-5 text-dl-text-primary">$${p.price.toFixed(2)}</p>${p.specifications?.length ? `<h4 class="font-semibold mb-2 text-xs uppercase tracking-wider text-dl-text-secondary">Especificaciones:</h4><ul class="list-disc list-inside mb-6 text-sm space-y-1 pl-1 text-dl-text-secondary">${p.specifications.map(s => `<li>${s}</li>`).join('')}</ul>` : ''}<button class="btn btn-primary w-full mt-auto add-to-cart-btn" data-product-id="${p.id}"><svg class="heroicon heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>Añadir</button></div></div>${relHTML}`; productModalTitleFs.textContent = p.name; productDetailsContentFs.querySelector('.add-to-cart-btn')?.addEventListener('click', handleAddToCartFromDetails); productDetailsContentFs.querySelectorAll('.related-details-btn').forEach(b => b.addEventListener('click', handleRelatedProductClick)); openModal('productModalFs'); } }
+            function getRelatedProducts(currId, count=3) { if (!Array.isArray(allProductsData)) return []; const curr = allProductsData.find(p => p.id === currId); const cat = curr?.category; const others = allProductsData.filter(p => p.id !== currId); let rel=[], rem=[]; if (cat) { rel = others.filter(p => p.category === cat); rem = others.filter(p => p.category !== cat); } else { rem = others; } rel.sort(()=>0.5-Math.random()); rem.sort(()=>0.5-Math.random()); return [...rel, ...rem].slice(0, count); }
+            function handleRelatedProductClick(e) { const id = e.currentTarget.dataset.productId; closeModal('productModalFs'); setTimeout(() => { handleOpenProductDetails({ currentTarget: { dataset: { productId: id } } }); }, 150); }
+            function handleAddToCart(idStr, btn=null) { const id = parseInt(idStr); if (isNaN(id)) return; if (!Array.isArray(allProductsData)) { showToast("Error datos", "error"); return; } const p = allProductsData.find(i => i.id === id); if (!p) { showToast("Error producto", "error"); return; } cart[id] = (cart[id] || 0) + 1; saveCart(); showToast(`"${p.name}" añadido`, 'success'); if (btn) { const html = btn.innerHTML; const cls = btn.className; btn.innerHTML = `<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`; btn.className = 'btn btn-primary w-full mt-auto cursor-default pointer-events-none flex justify-center items-center opacity-80'; btn.disabled = true; setTimeout(() => { if (document.body.contains(btn)) { btn.innerHTML = `<svg class="heroicon-sm mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg> Añadido`; } }, 700); setTimeout(() => { if (document.body.contains(btn)) { btn.innerHTML = html; btn.className = cls; btn.disabled = false; } }, 1500); } }
+            function handleAddToCartFromDetails(e) { handleAddToCart(e.currentTarget.dataset.productId, e.currentTarget); }
+            function renderCartItemsFs() { if (isRenderingCart) return; isRenderingCart = true; if (!cartItemsContainerFs || !emptyCartMessageFs || !cartSummaryDivFs) { isRenderingCart = false; return; } cartItemsContainerFs.innerHTML = ''; const keys = Object.keys(cart).map(k=>parseInt(k)).filter(k=>!isNaN(k) && cart[k]>0); let vis = false; if (!Array.isArray(allProductsData)) { emptyCartMessageFs.textContent = dataLoadError?"Error":"Cargando..."; emptyCartMessageFs.classList.remove('hidden'); cartSummaryDivFs.classList.add('hidden'); } else if (keys.length === 0) { emptyCartMessageFs.textContent = "Carrito vacío"; emptyCartMessageFs.classList.remove('hidden'); cartSummaryDivFs.classList.add('hidden'); } else { emptyCartMessageFs.classList.add('hidden'); cartSummaryDivFs.classList.remove('hidden'); keys.forEach(id => { const q = cart[id]; const p = allProductsData.find(i => i.id === id); if (p) { vis = true; const item = document.createElement('div'); item.className = 'cart-item'; item.dataset.productId = id; item.innerHTML = `<img src="${p.image}" alt="${p.name}" class="cart-item-image zoomable-image cursor-pointer" loading="lazy" data-product-name="${p.name}"><div class="cart-item-details"><h4 class="cart-item-name">${p.name}</h4><p class="cart-item-price">$${p.price.toFixed(2)} c/u</p><div class="flex items-center mt-1 quantity-controls"><button data-product-id="${id}" data-action="decrease" class="btn btn-xs rounded-full p-1 leading-none" ${q<=1?'disabled':''}><svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd"/></svg></button><span class="quantity-display mx-2">${q}</span><button data-product-id="${id}" data-action="increase" class="btn btn-xs rounded-full p-1 leading-none"><svg class="heroicon-sm h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg></button></div></div><button class="remove-button remove-from-cart ml-2" data-product-id="${id}" title="Eliminar"><svg class="heroicon-sm w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>`; item.querySelector('[data-action=decrease]').onclick = handleCartItemActionFs; item.querySelector('[data-action=increase]').onclick = handleCartItemActionFs; item.querySelector('.remove-from-cart').onclick = handleCartItemActionFs; cartItemsContainerFs.appendChild(item); } else { delete cart[id]; saveCart(); } }); if (!vis && keys.length > 0) { emptyCartMessageFs.textContent = "Error mostrar."; emptyCartMessageFs.classList.remove('hidden'); cartSummaryDivFs.classList.add('hidden'); } else if (!vis && keys.length === 0) { emptyCartMessageFs.textContent = "Carrito vacío."; emptyCartMessageFs.classList.remove('hidden'); cartSummaryDivFs.classList.add('hidden'); } } isRenderingCart = false; }
+            function handleCartItemActionFs(e) { const btn = e.currentTarget; const idS = btn.dataset.productId; const act = btn.dataset.action || (btn.classList.contains('remove-from-cart') ? 'remove' : null); const id = parseInt(idS); if (isNaN(id) || !act) return; let ch = false; if (act === 'increase') { cart[id] = (cart[id] || 0) + 1; ch = true; } else if (act === 'decrease') { if (cart[id] > 1) { cart[id]--; ch = true; } else if (cart[id] === 1) { delete cart[id]; ch = true; showToast("Eliminado", "info"); } } else if (act === 'remove') { if (cart[id]) { delete cart[id]; ch = true; showToast("Eliminado", "info"); } } if (ch) saveCart(); }
+            function updateCartTotalFs() { if (!cartTotalElementFs || !checkoutBtnFs) return; let tot = 0; let ok = Array.isArray(allProductsData); if (ok) { for (const idS in cart) { const id = parseInt(idS); const q = cart[id]; const p = allProductsData.find(i => i.id === id); if (p && q > 0) tot += p.price * q; else if (q > 0) { ok = false; break; } } } if (ok) { cartTotalElementFs.textContent = `$${tot.toFixed(2)}`; checkoutBtnFs.disabled = tot <= 0; } else { cartTotalElementFs.textContent = `$?.??`; checkoutBtnFs.disabled = true; } }
+            function clearCartFs() { if (Object.keys(cart).length > 0) { showConf('Vaciar carrito?', () => { cart = {}; saveCart(); showToast('Vaciado', 'info'); }); } else { showToast('Ya vacío', 'info'); } }
+            function checkoutFs() { const keys = Object.keys(cart).filter(k=>cart[k]>0&&!isNaN(parseInt(k))); if (keys.length===0) { showToast('Vacío', "error"); return; } if (!Array.isArray(allProductsData)) { showToast("Error datos", "error"); return; } if (WHATSAPP_NUMBER.length<10) { showToast("Error conf.", "error"); return; } let bd="", tl=0, fn=true; keys.forEach(idS => { const id = parseInt(idS); const q = cart[id]; const p = allProductsData.find(i => i.id === id); if (p) { const it=p.price*q; tl+=it; bd+=`✅ *${p.name}* (x${q}) - $${it.toFixed(2)}\n`; } else { bd+=`❓ _[ID ${id}]_ (x${q})\n`; fn=false; } }); let msg = `🎉 *Pedido D. Lucía* 🎉\n\nPedido:\n-----------\n${bd}-----------\n💰 *Total:* $${tl.toFixed(2)}\n\n`; if (!fn) msg += `_(Confirmar disp.)_\n`; msg += `📍 _Espero confirmación._\n\nGracias 🙏`; const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`; window.open(url, '_blank'); }
+            function updateCartDisplay() { const items = Object.values(cart).reduce((s, q) => s + (q || 0), 0); if (cartItemCountBadge) { cartItemCountBadge.textContent = items; cartItemCountBadge.style.display = items > 0 ? 'inline-block' : 'none'; const prev = parseInt(cartItemCountBadge.dataset.prevCount || '0'); if (items > 0 && items !== prev && !document.querySelector('.modal-fullscreen.active')) { cartItemCountBadge.style.transform = 'scale(1.25)'; setTimeout(() => { cartItemCountBadge.style.transform = 'scale(1)'; }, 150); } cartItemCountBadge.dataset.prevCount = items.toString(); } if (menuCartCount) menuCartCount.textContent = items; if (desktopCartCount) desktopCartCount.textContent = items; renderCartItemsFs(); updateCartTotalFs(); }
+            function showToast(msg, type='info', dur=3000) { if (!toastContainer) return; const t = document.createElement('div'); t.className = 'toast-notification'; let i = '', c = ''; switch (type) { case 'success': i=`<svg class="toast-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`; c='var(--dl-success-text)'; break; case 'error': i=`<svg class="toast-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>`; c='var(--dl-error-text)'; break; default: i=`<svg class="toast-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`; c='var(--dl-info-text)'; } t.style.borderLeftColor = c; t.innerHTML = `<span style="color:${c};">${i}</span><span class="flex-grow">${msg}</span>`; toastContainer.appendChild(t); requestAnimationFrame(() => { t.classList.add('show'); }); const tm = setTimeout(() => { t.classList.remove('show'); t.addEventListener('transitionend', () => t.remove(), { once: true }); setTimeout(() => { if(t.parentNode) t.remove(); }, 500); }, dur); t.addEventListener('click', () => { clearTimeout(tm); t.classList.remove('show'); t.addEventListener('transitionend', () => t.remove(), { once: true }); setTimeout(() => { if(t.parentNode) t.remove(); }, 500); }, { once: true }); }
+            function openImageZoomModal(url, alt, cap='') { if (imageZoomModalElement && zoomedImageElement && zoomedImageCaptionElement) { zoomedImageElement.src = url; zoomedImageElement.alt = alt || 'Imagen'; zoomedImageCaptionElement.textContent = cap; zoomedImageCaptionElement.style.display = cap ? 'block' : 'none'; openModal('imageZoomModalFs'); } else { showToast("Error zoom", "error"); } }
+            function handleAdminAccess(e) { e.preventDefault(); const p = prompt("Admin pass:"); if (p===null) return; if (p.trim() === ADMIN_PASSWORD) { showToast('OK', 'success', 1500); window.location.href = 'admin.html'; } else { showToast('Error', 'error'); } }
+            function setupListeners() { console.log('[Events] Init...'); if (openCartBtn) openCartBtn.addEventListener('click', () => openModal('cartModalFs')); if (menuBtn) menuBtn.addEventListener('click', () => openModal('menuModalFs')); document.querySelectorAll('.modal-close-btn-fs').forEach(b => b.addEventListener('click', () => closeModal(b.dataset.modalId))); document.querySelectorAll('#menuModalFs .modal-nav-link').forEach(l => l.addEventListener('click', (e) => handleMenuLinkClick(e, l))); document.querySelectorAll('header nav .desktop-nav-link.nav-link').forEach(l => l.addEventListener('click', (e) => handleNavLinkClick(e, l))); if (clearCartBtnFs) clearCartBtnFs.addEventListener('click', clearCartFs); if (checkoutBtnFs) checkoutBtnFs.addEventListener('click', checkoutFs); if(forceRefreshLinkMobile) forceRefreshLinkMobile.addEventListener('click', handleForceRefresh); if(forceRefreshLinkDesktop) forceRefreshLinkDesktop.addEventListener('click', handleForceRefresh); document.querySelectorAll('.modal-fullscreen').forEach(m => m.addEventListener('click', (e) => { if (e.target === m) closeModal(m.id); })); document.body.addEventListener('click', (e) => { const img = e.target.closest('img.zoomable-image'); if (img) { e.preventDefault(); openImageZoomModal(img.src, img.alt, img.dataset.productName || img.alt || ''); } }); if (adminAccessLinkFooter) adminAccessLinkFooter.addEventListener('click', handleAdminAccess); if (adminAccessLinkMobile) adminAccessLinkMobile.addEventListener('click', handleAdminAccess); console.log('[Events] OK.'); }
+            function handleMenuLinkClick(e, link) { const target = link.dataset.targetModal; if (target) { e.preventDefault(); closeModal('menuModalFs'); setTimeout(() => { openModal(target); }, 150); } }
+            function handleNavLinkClick(e, link) { const target = link.dataset.targetModal; if (target) { e.preventDefault(); const active = document.querySelector('.modal-fullscreen.active'); if (active && active.id !== target) { closeModal(active.id); setTimeout(() => openModal(target), 150); } else if (!active) { openModal(target); } } }
+            function handleForceRefresh(e) { e.preventDefault(); showConf("Borrar datos & recargar?\n(Carrito se vacía)", () => { console.log("[Refresh] Reloading..."); try { localStorage.removeItem(CART_STORAGE_KEY); } catch (e) {} try { window.location.href = `${window.location.pathname}?r=${Date.now()}`; setTimeout(()=>window.location.reload(true), 500); } catch(e) { window.location.reload(true); } }); }
+            console.log('[App] DOMContentLoaded.'); cart = loadCart(); setupListeners(); loadProducts();
+        });
     </script>
 
 </body>
