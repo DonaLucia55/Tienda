@@ -1,19 +1,5 @@
 [
     {
-        "id": 4,
-        "name": "Chicles de Bolitas",
-        "price": 1,
-        "image": "https://i.postimg.cc/90rKt0LC/Chicles-de-Bolitas.jpg",
-        "description": "Divertidos chicles en forma de bolitas con centro lÃ­quido.",
-        "specifications": [
-            "MÃºltiples colores",
-            "Sabor dulce",
-            "Para todas las edades"
-        ],
-        "featured": false,
-        "category": "Chicles"
-    },
-    {
         "id": 5,
         "name": "Choco Lips",
         "price": 0.5,
